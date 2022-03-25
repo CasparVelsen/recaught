@@ -1,5 +1,14 @@
-function App() {
-  return <div>Capstone Project</div>;
-}
+import { Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
 
-export default App;
+export default function App() {
+  <>
+    <Routes>
+      <Route />
+      <Route />
+    </Routes>
+    <footer>
+      <Navigation />
+    </footer>
+  </>;
+}
