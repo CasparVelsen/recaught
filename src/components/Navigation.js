@@ -1,14 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { BsFillHouseFill, BsFillPlusCircleFill } from 'react-icons/bs';
+import ScreenReaderOnly from './ScreenRaderOnly';
 
 export default function Navigation() {
   return (
     <Nav>
       <LinkStyled to="/">
+        <ScreenReaderOnly>homepage</ScreenReaderOnly>
         <BsFillHouseFill size={25} />
       </LinkStyled>
       <LinkStyled to="/formpage">
+        <ScreenReaderOnly>formpage</ScreenReaderOnly>
         <BsFillPlusCircleFill size={25} />
       </LinkStyled>
     </Nav>
