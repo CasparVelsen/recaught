@@ -11,6 +11,7 @@ export default createGlobalStyle`
   header {
   display: flex;  
   align-items: center;
+  gap: 10px;
   height: 38px;
   border: 1px solid black;
   padding: 0 10px;
