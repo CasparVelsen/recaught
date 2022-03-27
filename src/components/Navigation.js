@@ -1,11 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { BsFillHouseFill, BsFillPlusCircleFill } from 'react-icons/bs';
 
 export default function Navigation() {
   return (
     <Nav>
-      <LinkStyled to="/">Homepage</LinkStyled>
-      <LinkStyled to="/formpage">FormPage</LinkStyled>
+      <LinkStyled to="/">
+        <BsFillHouseFill size={25} />
+      </LinkStyled>
+      <LinkStyled to="/formpage">
+        <BsFillPlusCircleFill size={25} />
+      </LinkStyled>
     </Nav>
   );
 }
