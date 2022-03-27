@@ -1,19 +1,14 @@
-import styled from 'styled-components';
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 
 export default function FormPage() {
   return (
     <>
-      <Header>formpage</Header>
+      <header>
+        <BsFillArrowLeftCircleFill size={25} />
+      </header>
       <main>
         <h1>Create your entry:</h1>
       </main>
     </>
   );
 }
-
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  height: 38px;
-  border: 1px solid black;
-`;
