@@ -51,8 +51,8 @@ export default function EntryForm({ onCreateCard }) {
   function handleSubmit(event) {
     event.preventDefault();
     onCreateCard({
-      date: date.split(',').map(name => name.trim()),
-      time: time.split(',').map(name => name.trim()),
+      date,
+      time,
       target: target.split(',').map(name => name.trim()),
     });
     setDate('');

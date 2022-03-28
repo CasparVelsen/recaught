@@ -7,13 +7,12 @@ import { useState } from 'react';
 
 export default function App() {
   const [cards, setCards] = useState([]);
-  const [target, setTarget] = useState('');
   const navigate = useNavigate();
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage target={target} cards={cards} />} />
+        <Route path="/" element={<HomePage cards={cards} />} />
         <Route
           path="/formpage"
           element={<FormPage onCreateCard={createCard} />}
@@ -27,8 +26,8 @@ export default function App() {
 
   function createCard({ date, time, target }) {
     console.log(date, time, target);
-    setTarget(target);
-    setCards({ date, time, target });
+    let entries = [{ date, time, target }];
+    setCards(entries);
     navigate('/');
   }
 }
