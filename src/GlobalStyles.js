@@ -15,6 +15,7 @@ export default createGlobalStyle`
   height: 38px;
   border: 1px solid black;
   padding: 0 10px;
+  position: relative;
   }
 
   main {
