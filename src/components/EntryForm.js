@@ -1,14 +1,23 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 
-export default function EntryForm() {
+export default function EntryForm({ onCreateCard }) {
+  const { Date, setDate } = useState('');
+
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit} autoComplete="off">
         <Fieldset>
           <Legend>general infos</Legend>
           <Div>
             <label htmlFor="date">Date</label>
-            <Input id="date" name="date" type="date" required />
+            <Input
+              id="date"
+              name="date"
+              type="date"
+              onChange={event => setDate(event.target.value)}
+              required
+            />
           </Div>
           <Div>
             <label htmlFor="time">Time</label>
@@ -28,6 +37,14 @@ export default function EntryForm() {
       </Form>
     </div>
   );
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onCreateCard({
+      Date,
+    });
+    setDate('');
+  }
 }
 
 const Form = styled.form`
