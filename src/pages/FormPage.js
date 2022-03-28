@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import styled from 'styled-components';
 
+import EntryForm from '../components/EntryForm';
+
 export default function FormPage() {
   return (
     <>
@@ -13,6 +15,7 @@ export default function FormPage() {
       </header>
       <main>
         <h1>Create a new entry:</h1>
+        <EntryForm />
       </main>
     </>
   );
