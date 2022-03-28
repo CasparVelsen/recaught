@@ -1,8 +1,10 @@
 import { BsPlusCircleFill } from 'react-icons/bs';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import Card from '../components/Card';
 
-export default function HomePage() {
+export default function HomePage({ cards }) {
+  console.log(cards);
   return (
     <>
       <header>
@@ -13,6 +15,9 @@ export default function HomePage() {
       </header>
       <main>
         <h1>Tight lines, Caspar</h1>
+        {cards.map(({ date, time, target, id }) => (
+          <Card date={date} time={time} target={target} key={id} />
+        ))}
       </main>
     </>
   );

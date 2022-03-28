@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import EntryForm from '../components/EntryForm';
 
-export default function FormPage() {
+export default function FormPage({ onCreateCard }) {
   return (
     <>
       <header>
@@ -15,7 +15,7 @@ export default function FormPage() {
       </header>
       <main>
         <h1>Create a new entry:</h1>
-        <EntryForm />
+        <EntryForm onCreateCard={onCreateCard} />
       </main>
     </>
   );

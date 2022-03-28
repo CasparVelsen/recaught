@@ -2,36 +2,46 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 export default function EntryForm({ onCreateCard }) {
-  const { Date, setDate } = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [target, setTarget] = useState('');
 
   return (
     <div>
-      <Form onSubmit={handleSubmit} autoComplete="off">
+      <Form
+        aria-labelledby="formHeader"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
         <Fieldset>
           <Legend>general infos</Legend>
-          <Div>
-            <label htmlFor="date">Date</label>
-            <Input
-              id="date"
-              name="date"
-              type="date"
-              onChange={event => setDate(event.target.value)}
-              required
-            />
-          </Div>
-          <Div>
-            <label htmlFor="time">Time</label>
-            <Input id="time" name="time" type="time" required />
-          </Div>
-          <Div>
-            <label htmlFor="target-species">target species</label>
-            <Input
-              id="target-species"
-              name="target-species"
-              type="text"
-              required
-            />
-          </Div>
+          <label htmlFor="date">Date</label>
+          <Input
+            id="date"
+            name="date"
+            type="date"
+            onChange={event => setDate(event.target.value)}
+            value={date}
+            required
+          />
+          <label htmlFor="time">Time</label>
+          <Input
+            id="time"
+            name="time"
+            type="time"
+            onChange={event => setTime(event.target.value)}
+            value={time}
+            required
+          />
+          <label htmlFor="target-species">target species</label>
+          <Input
+            id="targetspecies"
+            name="targetspecies"
+            type="text"
+            onChange={event => setTarget(event.target.value)}
+            value={target}
+            required
+          />
         </Fieldset>
         <button type="submit">Submit</button>
       </Form>
@@ -41,9 +51,13 @@ export default function EntryForm({ onCreateCard }) {
   function handleSubmit(event) {
     event.preventDefault();
     onCreateCard({
-      Date,
+      date: date.split(',').map(name => name.trim()),
+      time: time.split(',').map(name => name.trim()),
+      target: target.split(',').map(name => name.trim()),
     });
     setDate('');
+    setTime('');
+    setTarget('');
   }
 }
 
