@@ -24,9 +24,9 @@ export default function App() {
     </>
   );
 
-  function createCard({ date, time, target }) {
-    console.log(date, time, target);
-    let entries = [{ date, time, target }];
+  function createCard({ date, time, water, targetSpecies }) {
+    console.log(date, time, water, targetSpecies);
+    let entries = [{ date, time, water, targetSpecies }];
     setCards(entries);
     navigate('/');
   }

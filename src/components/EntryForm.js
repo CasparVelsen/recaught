@@ -6,7 +6,12 @@ import SubmitButton from './Button';
 export default function EntryForm({ onCreateCard }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [target, setTarget] = useState('');
+  const [targetSpecies, setTargetSpecies] = useState('');
+  const [water, setWater] = useState('');
+  const [stretch, setStretch] = useState('');
+  const [waterTemp, setWaterTemp] = useState('');
+  const [waterColor, setWaterColor] = useState('');
+  const [waterLevel, setWaterLevel] = useState('');
 
   return (
     <div>
@@ -14,9 +19,10 @@ export default function EntryForm({ onCreateCard }) {
         aria-labelledby="formHeader"
         onSubmit={handleSubmit}
         autoComplete="off"
+        labeltext="form"
       >
+        <small>general infos</small>
         <Fieldset>
-          <Legend>general infos</Legend>
           <Div>
             <label htmlFor="date">Date</label>
             <Input
@@ -40,14 +46,69 @@ export default function EntryForm({ onCreateCard }) {
             />
           </Div>
           <Div>
-            <label htmlFor="target-species">target species</label>
+            <label htmlFor="target species">Target species</label>
             <Input
-              id="targetspecies"
-              name="targetspecies"
+              id="target"
+              name="target"
               type="text"
-              onChange={event => setTarget(event.target.value)}
-              value={target}
+              onChange={event => setTargetSpecies(event.target.value)}
+              value={targetSpecies}
               required
+            />
+          </Div>
+        </Fieldset>
+        <small>water</small>
+        <Fieldset>
+          <Div>
+            <label htmlFor="water">Water</label>
+            <Input
+              id="water"
+              name="water"
+              type="text"
+              onChange={event => setWater(event.target.value)}
+              value={water}
+              required
+            />
+          </Div>
+          <Div>
+            <label htmlFor="stretch">Stretch</label>
+            <Input
+              id="stretch"
+              name="stretch"
+              type="text"
+              onChange={event => setStretch(event.target.value)}
+              value={stretch}
+            />
+          </Div>
+          <Div>
+            <label htmlFor="watertemp">Water temperature</label>
+            <Input
+              id="watertemp"
+              name="watertemp"
+              type="number"
+              onChange={event => setWaterTemp(event.target.value)}
+              value={waterTemp}
+              placeholder="°C"
+            />
+          </Div>
+          <Div>
+            <label htmlFor="watercolor">Water Color</label>
+            <Input
+              id="watercolor"
+              name="watercolor"
+              type="text"
+              onChange={event => setWaterColor(event.target.value)}
+              value={waterColor}
+            />
+          </Div>
+          <Div>
+            <label htmlFor="waterlevel">Water Level</label>
+            <Input
+              id="waterlevel"
+              name="waterlevel"
+              type="text"
+              onChange={event => setWaterLevel(event.target.value)}
+              value={waterLevel}
             />
           </Div>
         </Fieldset>
@@ -61,11 +122,17 @@ export default function EntryForm({ onCreateCard }) {
     onCreateCard({
       date,
       time,
-      target: target.split(',').map(name => name.trim()),
+      water: water.split(',').map(name => name.trim()),
+      targetSpecies: targetSpecies.split(',').map(name => name.trim()),
     });
     setDate('');
     setTime('');
-    setTarget('');
+    setTargetSpecies('');
+    setWater('');
+    setStretch('');
+    setWaterTemp('');
+    setWaterColor('');
+    setWaterLevel('');
   }
 }
 
@@ -81,12 +148,6 @@ const Fieldset = styled.fieldset`
   border: none;
   border-top: 1px solid black;
   position: relative;
-`;
-
-const Legend = styled.legend`
-  position: absolute;
-  width: 100%;
-  font-size: smaller;
 `;
 
 const Div = styled.div`
