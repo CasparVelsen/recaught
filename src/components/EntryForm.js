@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 
+import SubmitButton from './Button';
+
 export default function EntryForm({ onCreateCard }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
@@ -15,35 +17,41 @@ export default function EntryForm({ onCreateCard }) {
       >
         <Fieldset>
           <Legend>general infos</Legend>
-          <label htmlFor="date">Date</label>
-          <Input
-            id="date"
-            name="date"
-            type="date"
-            onChange={event => setDate(event.target.value)}
-            value={date}
-            required
-          />
-          <label htmlFor="time">Time</label>
-          <Input
-            id="time"
-            name="time"
-            type="time"
-            onChange={event => setTime(event.target.value)}
-            value={time}
-            required
-          />
-          <label htmlFor="target-species">target species</label>
-          <Input
-            id="targetspecies"
-            name="targetspecies"
-            type="text"
-            onChange={event => setTarget(event.target.value)}
-            value={target}
-            required
-          />
+          <Div>
+            <label htmlFor="date">Date</label>
+            <Input
+              id="date"
+              name="date"
+              type="date"
+              onChange={event => setDate(event.target.value)}
+              value={date}
+              required
+            />
+          </Div>
+          <Div>
+            <label htmlFor="time">Time</label>
+            <Input
+              id="time"
+              name="time"
+              type="time"
+              onChange={event => setTime(event.target.value)}
+              value={time}
+              required
+            />
+          </Div>
+          <Div>
+            <label htmlFor="target-species">target species</label>
+            <Input
+              id="targetspecies"
+              name="targetspecies"
+              type="text"
+              onChange={event => setTarget(event.target.value)}
+              value={target}
+              required
+            />
+          </Div>
         </Fieldset>
-        <button type="submit">Submit</button>
+        <SubmitButton text="Submit" />
       </Form>
     </div>
   );
