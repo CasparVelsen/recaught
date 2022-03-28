@@ -12,7 +12,7 @@ export default function HomePage() {
         </LinkStyled>
       </header>
       <main>
-        <h1>Your entries:</h1>
+        <h1>Tight lines, Caspar</h1>
       </main>
     </>
   );

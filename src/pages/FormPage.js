@@ -12,7 +12,7 @@ export default function FormPage() {
         Formpage
       </header>
       <main>
-        <h1>Create your entry:</h1>
+        <h1>Create a new entry:</h1>
       </main>
     </>
   );
