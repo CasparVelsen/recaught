@@ -25,7 +25,7 @@ export default function EntryForm({ onCreateCard }) {
       >
         <small>general infos</small>
         <Fieldset>
-          <Div>
+          <Part>
             <label htmlFor="date">Date</label>
             <Input
               id="date"
@@ -36,8 +36,8 @@ export default function EntryForm({ onCreateCard }) {
               value={date}
               required
             />
-          </Div>
-          <Div>
+          </Part>
+          <Part>
             <label htmlFor="time">Time</label>
             <Input
               id="time"
@@ -47,8 +47,8 @@ export default function EntryForm({ onCreateCard }) {
               value={time}
               required
             />
-          </Div>
-          <Div>
+          </Part>
+          <Part>
             <label htmlFor="target">Target species</label>
             <Input
               id="target"
@@ -59,11 +59,11 @@ export default function EntryForm({ onCreateCard }) {
               value={targetSpecies}
               required
             />
-          </Div>
+          </Part>
         </Fieldset>
         <small>water</small>
         <Fieldset>
-          <Div>
+          <Part>
             <label htmlFor="water">water</label>
             <Input
               id="water"
@@ -75,8 +75,8 @@ export default function EntryForm({ onCreateCard }) {
               placeholder="water"
               required
             />
-          </Div>
-          <Div>
+          </Part>
+          <Part>
             <label htmlFor="stretch">Stretch</label>
             <Input
               id="stretch"
@@ -86,8 +86,8 @@ export default function EntryForm({ onCreateCard }) {
               onChange={event => setStretch(event.target.value)}
               value={stretch}
             />
-          </Div>
-          <Div>
+          </Part>
+          <Part>
             <label htmlFor="watertemp">Water temperature</label>
             <Input
               id="watertemp"
@@ -99,8 +99,8 @@ export default function EntryForm({ onCreateCard }) {
               value={waterTemp}
               placeholder="°C"
             />
-          </Div>
-          <Div>
+          </Part>
+          <Part>
             <label htmlFor="watercolor">Water Color</label>
             <select
               id="watercolor"
@@ -113,8 +113,8 @@ export default function EntryForm({ onCreateCard }) {
               <option value="normal">normal</option>
               <option value="clear">clear</option>
             </select>
-          </Div>
-          <Div>
+          </Part>
+          <Part>
             <label htmlFor="waterlevel">Water Level</label>
             <select
               id="waterlevel"
@@ -127,7 +127,7 @@ export default function EntryForm({ onCreateCard }) {
               <option value="normal">normal</option>
               <option value="high">high</option>
             </select>
-          </Div>
+          </Part>
         </Fieldset>
         <SubmitButton text="Submit" isAccent={true} />
       </Form>
@@ -167,7 +167,7 @@ const Fieldset = styled.fieldset`
   position: relative;
 `;
 
-const Div = styled.div`
+const Part = styled.div`
   display: flex;
   flex-direction: column;
 `;
