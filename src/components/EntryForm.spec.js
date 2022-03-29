@@ -29,14 +29,14 @@ describe('EntryForm', () => {
 
     userEvent.type(dateInput, '2022-02-28"');
     userEvent.type(timeInput, '10:15');
-    userEvent.type(targetInput, 'Fisch');
-    userEvent.type(waterInput, 'Fluss');
+    userEvent.type(targetInput, 'fish');
+    userEvent.type(waterInput, 'fluss');
     userEvent.click(submitButton);
 
     expect(handleCreate).toHaveBeenCalledWith({
       time: '10:15',
-      water: 'Fluss',
-      targetSpecies: 'Fisch',
+      water: 'fluss',
+      targetSpecies: 'fish',
       date: '2022-02-28',
     });
   });
