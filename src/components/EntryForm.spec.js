@@ -17,27 +17,16 @@ describe('EntryForm', () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  it('submits form if required inputs are filled out', () => {
+  it('submits form if required inputs are filled out', formData => {
     const handleCreate = jest.fn();
     render(<EntryForm onCreateCard={handleCreate} />);
 
-    const dateInput = screen.getByLabelText(/date/i);
-    const timeInput = screen.getByLabelText(/time/i);
-    const targetInput = screen.getByLabelText(/target/i);
-    const waterInput = screen.getByPlaceholderText('water');
     const submitButton = screen.getByRole('button', { text: /submit/i });
 
-    userEvent.type(dateInput, '2022-02-28"');
-    userEvent.type(timeInput, '10:15');
-    userEvent.type(targetInput, 'fish');
-    userEvent.type(waterInput, 'fluss');
     userEvent.click(submitButton);
 
     expect(handleCreate).toHaveBeenCalledWith({
-      time: '10:15',
-      water: 'fluss',
-      targetSpecies: 'fish',
-      date: '2022-02-28',
+      formData,
     });
   });
 });

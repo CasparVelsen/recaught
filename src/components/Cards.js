@@ -1,19 +1,16 @@
 import styled from 'styled-components';
 
-export default function Cards({
-  date,
-  time,
-  water,
-  targetSpecies,
-}) {
+export default function Cards({ data }) {
+  console.log(data);
+
   return (
     <Card>
       <Div>
-        <Title>{date}</Title>
-        <span>{time}</span>
+        <Title>{data.date}</Title>
+        <span>{data.time}</span>
       </Div>
-      <span>{water}</span>
-      <span>{targetSpecies}</span>
+      <span>{data.water}</span>
+      <span>{data.target}</span>
     </Card>
   );
 }
