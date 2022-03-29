@@ -129,7 +129,7 @@ export default function EntryForm({ onCreateCard }) {
             </select>
           </Div>
         </Fieldset>
-        <SubmitButton text="Submit" />
+        <SubmitButton text="Submit" isAccent={true} />
       </Form>
     </div>
   );
