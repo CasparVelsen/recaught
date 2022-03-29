@@ -6,14 +6,21 @@ import { useState } from 'react';
 import SubmitButton from './Button';
 
 export default function EntryForm({ onCreateCard }) {
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [targetSpecies, setTargetSpecies] = useState('');
-  const [water, setWater] = useState('');
-  const [stretch, setStretch] = useState('');
-  const [waterTemp, setWaterTemp] = useState('');
-  const [waterColor, setWaterColor] = useState('');
-  const [waterLevel, setWaterLevel] = useState('');
+  const [formData, setFormData] = useState('');
+
+  const handleOnChange = event => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    console.log(formData);
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onCreateCard({ formData });
+  }
 
   return (
     <div>
@@ -32,8 +39,7 @@ export default function EntryForm({ onCreateCard }) {
               name="date"
               type="date"
               max={moment().format('YYYY-MM-DD')}
-              onChange={event => setDate(event.target.value)}
-              value={date}
+              onChange={handleOnChange}
               required
             />
           </Part>
@@ -43,8 +49,7 @@ export default function EntryForm({ onCreateCard }) {
               id="time"
               name="time"
               type="time"
-              onChange={event => setTime(event.target.value)}
-              value={time}
+              onChange={handleOnChange}
               required
             />
           </Part>
@@ -55,8 +60,7 @@ export default function EntryForm({ onCreateCard }) {
               name="target"
               type="text"
               maxLength={25}
-              onChange={event => setTargetSpecies(event.target.value)}
-              value={targetSpecies}
+              onChange={handleOnChange}
               required
             />
           </Part>
@@ -70,8 +74,7 @@ export default function EntryForm({ onCreateCard }) {
               name="water"
               type="text"
               maxLength={25}
-              onChange={event => setWater(event.target.value)}
-              value={water}
+              onChange={handleOnChange}
               placeholder="water"
               required
             />
@@ -83,8 +86,7 @@ export default function EntryForm({ onCreateCard }) {
               name="stretch"
               type="text"
               maxLength={100}
-              onChange={event => setStretch(event.target.value)}
-              value={stretch}
+              onChange={handleOnChange}
             />
           </Part>
           <Part>
@@ -95,8 +97,7 @@ export default function EntryForm({ onCreateCard }) {
               type="number"
               min={-5}
               max={50}
-              onChange={event => setWaterTemp(event.target.value)}
-              value={waterTemp}
+              onChange={handleOnChange}
               placeholder="°C"
             />
           </Part>
@@ -106,8 +107,7 @@ export default function EntryForm({ onCreateCard }) {
               id="watercolor"
               name="watercolor"
               type="text"
-              onChange={event => setWaterColor(event.target.value)}
-              value={waterColor}
+              onChange={handleOnChange}
             >
               <option value="cloudy">cloudy</option>
               <option value="normal">normal</option>
@@ -120,8 +120,7 @@ export default function EntryForm({ onCreateCard }) {
               id="waterlevel"
               name="waterlevel"
               type="text"
-              onChange={event => setWaterLevel(event.target.value)}
-              value={waterLevel}
+              onChange={handleOnChange}
             >
               <option value="low">low</option>
               <option value="normal">normal</option>
@@ -133,24 +132,6 @@ export default function EntryForm({ onCreateCard }) {
       </Form>
     </div>
   );
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onCreateCard({
-      date,
-      time,
-      water,
-      targetSpecies,
-    });
-    setDate('');
-    setTime('');
-    setTargetSpecies('');
-    setWater('');
-    setStretch('');
-    setWaterTemp('');
-    setWaterColor('');
-    setWaterLevel('');
-  }
 }
 
 const Form = styled.form`

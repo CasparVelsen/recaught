@@ -16,15 +16,9 @@ export default function HomePage({ cards }) {
       <main>
         <h1>Tight lines, Caspar</h1>
         <CardsList>
-          {cards.map(({ date, time, water, targetSpecies, _id }) => (
-            <li>
-              <Cards
-                date={date}
-                time={time}
-                water={water}
-                targetSpecies={targetSpecies}
-                key={_id}
-              />
+          {cards.map((data, id) => (
+            <li key={id}>
+              <Cards data={data} />
             </li>
           ))}
         </CardsList>

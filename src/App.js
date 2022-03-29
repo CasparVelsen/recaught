@@ -24,10 +24,10 @@ export default function App() {
     </>
   );
 
-  function createCard({ date, time, water, targetSpecies }) {
-    console.log(date, time, water, targetSpecies);
-    const entries = [{ date, time, water, targetSpecies }];
-    setCards(entries);
+  function createCard({ formData }) {
+    console.log(formData);
+    setCards(Object.values(formData));
+    console.log(cards);
     navigate('/');
   }
 }
