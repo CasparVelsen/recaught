@@ -15,15 +15,19 @@ export default function HomePage({ cards }) {
       </header>
       <main>
         <h1>Tight lines, Caspar</h1>
-        {cards.map(({ date, time, water, targetSpecies }, index) => (
-          <Cards
-            date={date}
-            time={time}
-            water={water}
-            targetSpecies={targetSpecies}
-            key={index}
-          />
-        ))}
+        <CardsList>
+          {cards.map(({ date, time, water, targetSpecies, _id }) => (
+            <li>
+              <Cards
+                date={date}
+                time={time}
+                water={water}
+                targetSpecies={targetSpecies}
+                key={_id}
+              />
+            </li>
+          ))}
+        </CardsList>
       </main>
     </>
   );
@@ -39,4 +43,10 @@ const LinkStyled = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   color: black;
+`;
+
+const CardsList = styled.ul`
+  list-style: none;
+  padding: 0;
+  width: 100%;
 `;
