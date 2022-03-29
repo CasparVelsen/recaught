@@ -6,11 +6,11 @@ export default function Cards({ data }) {
   return (
     <Card>
       <Div>
-        <Title>{data}</Title>
-        <span>{data}</span>
+        <Title>{data.date}</Title>
+        <span>{data.time}</span>
       </Div>
-      <span>{data}</span>
-      <span>{data}</span>
+      <span>{data.water}</span>
+      <span>{data.target}</span>
     </Card>
   );
 }

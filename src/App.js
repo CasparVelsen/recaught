@@ -24,10 +24,9 @@ export default function App() {
     </>
   );
 
-  function createCard({ formData }) {
+  function createCard(formData) {
     console.log(formData);
-    setCards(Object.values(formData));
-    console.log(cards);
+    setCards([...cards, formData]);
     navigate('/');
   }
 }

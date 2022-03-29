@@ -14,12 +14,12 @@ export default function EntryForm({ onCreateCard }) {
       ...formData,
       [name]: value,
     });
-    console.log(formData);
   };
 
   function handleSubmit(event) {
     event.preventDefault();
-    onCreateCard({ formData });
+    console.log('formData', formData);
+    onCreateCard(formData);
   }
 
   return (
