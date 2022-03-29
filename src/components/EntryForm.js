@@ -49,7 +49,7 @@ export default function EntryForm({ onCreateCard }) {
             />
           </Div>
           <Div>
-            <label htmlFor="target species">Target species</label>
+            <label htmlFor="target">Target species</label>
             <Input
               id="target"
               name="target"
@@ -64,7 +64,7 @@ export default function EntryForm({ onCreateCard }) {
         <small>water</small>
         <Fieldset>
           <Div>
-            <label htmlFor="water">Water</label>
+            <label htmlFor="water">water</label>
             <Input
               id="water"
               name="water"
@@ -72,6 +72,7 @@ export default function EntryForm({ onCreateCard }) {
               maxLength={25}
               onChange={event => setWater(event.target.value)}
               value={water}
+              placeholder="water"
               required
             />
           </Div>
@@ -138,8 +139,8 @@ export default function EntryForm({ onCreateCard }) {
     onCreateCard({
       date,
       time,
-      water: water.split(',').map(name => name.trim()),
-      targetSpecies: targetSpecies.split(',').map(name => name.trim()),
+      water,
+      targetSpecies,
     });
     setDate('');
     setTime('');
