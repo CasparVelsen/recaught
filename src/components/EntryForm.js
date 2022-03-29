@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import moment from 'moment';
+
 import { useState } from 'react';
 
 import SubmitButton from './Button';
@@ -29,6 +31,7 @@ export default function EntryForm({ onCreateCard }) {
               id="date"
               name="date"
               type="date"
+              max={moment().format('YYYY-MM-DD')}
               onChange={event => setDate(event.target.value)}
               value={date}
               required
@@ -86,6 +89,8 @@ export default function EntryForm({ onCreateCard }) {
               id="watertemp"
               name="watertemp"
               type="number"
+              min={-5}
+              max={50}
               onChange={event => setWaterTemp(event.target.value)}
               value={waterTemp}
               placeholder="°C"
