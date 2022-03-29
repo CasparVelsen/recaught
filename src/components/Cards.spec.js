@@ -2,17 +2,17 @@ import { render, screen } from '@testing-library/react';
 import Cards from './Cards';
 
 describe('Cards', () => {
-  it('renders a card with date, time, water, targetspecies', () => {
+  it('renders a card with date, time, water, targetspecies', ({ data }) => {
     render(
       <Cards
-        date="2022-02-28"
-        time="10:15"
-        water="fluss"
-        targetSpecies="fish"
+        date={data.date}
+        time={data.time}
+        water={data.water}
+        targetSpecies={data.targetSpecies}
       />
     );
 
-    const date = screen.getByText(/2022-02-28/i);
+    const date = screen.getByText(/2022-01-01/i);
     const time = screen.getByText(/10:15/i);
     const water = screen.getByText(/fluss/i);
     const targetSpecies = screen.getByText(/fish/i);
