@@ -54,6 +54,7 @@ export default function EntryForm({ onCreateCard }) {
               id="target"
               name="target"
               type="text"
+              maxLength={25}
               onChange={event => setTargetSpecies(event.target.value)}
               value={targetSpecies}
               required
@@ -68,6 +69,7 @@ export default function EntryForm({ onCreateCard }) {
               id="water"
               name="water"
               type="text"
+              maxLength={25}
               onChange={event => setWater(event.target.value)}
               value={water}
               required
@@ -79,6 +81,7 @@ export default function EntryForm({ onCreateCard }) {
               id="stretch"
               name="stretch"
               type="text"
+              maxLength={100}
               onChange={event => setStretch(event.target.value)}
               value={stretch}
             />
@@ -98,23 +101,31 @@ export default function EntryForm({ onCreateCard }) {
           </Div>
           <Div>
             <label htmlFor="watercolor">Water Color</label>
-            <Input
+            <select
               id="watercolor"
               name="watercolor"
               type="text"
               onChange={event => setWaterColor(event.target.value)}
               value={waterColor}
-            />
+            >
+              <option value="cloudy">cloudy</option>
+              <option value="normal">normal</option>
+              <option value="clear">clear</option>
+            </select>
           </Div>
           <Div>
             <label htmlFor="waterlevel">Water Level</label>
-            <Input
+            <select
               id="waterlevel"
               name="waterlevel"
               type="text"
               onChange={event => setWaterLevel(event.target.value)}
               value={waterLevel}
-            />
+            >
+              <option value="low">low</option>
+              <option value="normal">normal</option>
+              <option value="high">high</option>
+            </select>
           </Div>
         </Fieldset>
         <SubmitButton text="Submit" />

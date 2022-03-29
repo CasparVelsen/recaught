@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export default function Cards({ date, time, water, targetSpecies }) {
+export default function Cards({
+  date,
+  time,
+  water,
+  targetSpecies,
+}) {
   return (
     <Card>
       <Div>
