@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { MdOutlineArrowForwardIos } from 'react-icons/md';
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 export default function Cards({ data }) {
   console.log(data);
@@ -13,15 +13,18 @@ export default function Cards({ data }) {
 
   return (
     <Card>
-      <Header>
+      <Row>
         <Title>{data.date}</Title>
         <div>
           <span>{data.time}</span>-<span>{data.timeto}</span>
         </div>
-      </Header>
+      </Row>
       <span>{data.water}</span>
-      <span>{data.target}</span>
-      <MdOutlineArrowForwardIos onClick={toggleInvisibleData} />
+      <Row>
+        <span>{data.target}</span>
+        {active && <IoIosArrowForward onClick={toggleInvisibleData} />}
+        {!active && <IoIosArrowDown onClick={toggleInvisibleData} />}
+      </Row>
       {!active && (
         <Invisible>
           <Part>
@@ -113,7 +116,7 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-const Header = styled.div`
+const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
