@@ -3,10 +3,10 @@ import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
 import FormPage from './pages/FormPage';
 import styled from 'styled-components';
-import { useState } from 'react';
+import useLocalStorage from './hooks/useLocalStorage';
 
 export default function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useLocalStorage('cards', []);
   const navigate = useNavigate();
 
   return (
