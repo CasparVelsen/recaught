@@ -5,69 +5,81 @@ export default function Cards({ data }) {
 
   return (
     <Card>
-      <Div>
+      <Header>
         <Title>{data.date}</Title>
         <div>
           <span>{data.time}</span>-<span>{data.timeto}</span>
         </div>
-      </Div>
+      </Header>
       <span>{data.water}</span>
       <span>{data.target}</span>
       <Invisible>
-        <small>
-          <Term>stretch:</Term> {data.stretch}
-        </small>
-        <small>
-          <Term>watertemp:</Term> {data.watertemp}
-        </small>
-        <small>
-          <Term>watercolor:</Term> {data.watercolor}
-        </small>
-        <small>
-          <Term>waterlevel:</Term> {data.waterlevel}
-        </small>
-        <small>
-          <Term>weather:</Term> {data.weather}
-        </small>
-        <small>
-          <Term>airpressure:</Term> {data.airpressure}
-        </small>
-        <small>
-          <Term>temperature:</Term> {data.temperature}
-        </small>
-        <small>
-          <Term>moon:</Term> {data.moon}
-        </small>
-        <small>
-          <Term>wind:</Term> {data.wind}
-        </small>
-        <small>
-          <Term>windspeed:</Term> {data.windspeed}
-        </small>
-        <small>
-          <Term>species:</Term> {data.species}
-        </small>
-        <small>
-          <Term>bait:</Term> {data.bait}
-        </small>
-        <small>
-          <Term>length:</Term> {data.length}
-        </small>
-        <small>
-          <Term>weight:</Term> {data.weight}
-        </small>
-        <small>
-          <Term>location:</Term> {data.location}
-        </small>
-        <small>
-          <Term>notes:</Term> {data.notes}
-        </small>
-        <small>
-          <Term>total bites:</Term> {data.bites}
-        </small>
-        <small>
-          <Term>lost fish:</Term> {data.lost}
-        </small>
+        <Part>
+          <PartTitle>Fishing water</PartTitle>
+          <Data>
+            <Term>stretch:</Term> {data.stretch}
+          </Data>
+          <Data>
+            <Term>watertemp:</Term> {data.watertemp}
+          </Data>
+          <Data>
+            <Term>watercolor:</Term> {data.watercolor}
+          </Data>
+          <Data>
+            <Term>waterlevel:</Term> {data.waterlevel}
+          </Data>
+        </Part>
+        <Part>
+          <PartTitle>Weather</PartTitle>
+          <Data>
+            <Term>weather:</Term> {data.weather}
+          </Data>
+          <Data>
+            <Term>airpressure:</Term> {data.airpressure}
+          </Data>
+          <Data>
+            <Term>temperature:</Term> {data.temperature}
+          </Data>
+          <Data>
+            <Term>moon:</Term> {data.moon}
+          </Data>
+          <Data>
+            <Term>wind:</Term> {data.wind}
+          </Data>
+          <Data>
+            <Term>windspeed:</Term> {data.windspeed}
+          </Data>
+        </Part>
+        <Part>
+          <PartTitle>Catch</PartTitle>
+          <Data>
+            <Term>species:</Term> {data.species}
+          </Data>
+          <Data>
+            <Term>bait:</Term> {data.bait}
+          </Data>
+          <Data>
+            <Term>length:</Term> {data.length}
+          </Data>
+          <Data>
+            <Term>weight:</Term> {data.weight}
+          </Data>
+          <Data>
+            <Term>location:</Term> {data.location}
+          </Data>
+          <Data>
+            <Term>notes:</Term> {data.notes}
+          </Data>
+        </Part>
+        <Part>
+          <PartTitle>Summary</PartTitle>
+          <Data>
+            <Term>total bites:</Term> {data.bites}
+          </Data>
+          <Data>
+            <Term>lost fish:</Term> {data.lost}
+          </Data>
+        </Part>
       </Invisible>
     </Card>
   );
@@ -81,7 +93,13 @@ const Card = styled.section`
   padding: 10px;
 `;
 
-const Div = styled.div`
+const Title = styled.h2`
+  font-size: 1.25rem;
+  padding: 0;
+  margin: 0;
+`;
+
+const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -91,18 +109,30 @@ const Div = styled.div`
 const Invisible = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 15px;
   border: 1px solid #ddd;
   padding: 5px;
   margin-top: 10px;
 `;
 
-const Term = styled.span`
-  font-weight: bold;
+const Part = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 `;
 
-const Title = styled.h2`
-  font-size: 1.25rem;
+const PartTitle = styled.h3`
+  font-size: 1rem;
   padding: 0;
   margin: 0;
+  margin-bottom: 5px;
+  border-bottom: 0.5px solid black;
+`;
+
+const Data = styled.small`
+  font-size: 0.8rem;
+`;
+
+const Term = styled.span`
+  font-weight: bold;
 `;
