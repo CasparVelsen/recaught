@@ -25,6 +25,9 @@ export default createGlobalStyle`
   }
 
   body {
+    display: grid;
+    grid-template-rows: 38px auto 48px;
+    height: 100vh;
     margin: 0;
     font-family: sans-serif;
     font-size: 112.5%;

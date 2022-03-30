@@ -4,6 +4,7 @@ import moment from 'moment';
 import { useState } from 'react';
 
 import SubmitButton from './Button';
+import ScreenRaderOnly from './ScreenRaderOnly';
 
 export default function EntryForm({ onCreateCard }) {
   const [formData, setFormData] = useState('');
@@ -24,7 +25,7 @@ export default function EntryForm({ onCreateCard }) {
 
   return (
     <Form
-      aria-labelledby="Create your fishing experience"
+      aria-labelledby="form-name"
       onSubmit={handleSubmit}
       autoComplete="off"
       labeltext="form"
@@ -208,7 +209,9 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
       </Fieldset>
-      <SubmitButton text="Submit" isAccent={true} />
+      <SubmitButton text="Submit" isAccent={true} id="form-name" >
+        <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
+      </SubmitButton>
     </Form>
   );
 }
