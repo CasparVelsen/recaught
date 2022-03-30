@@ -20,6 +20,8 @@ export default createGlobalStyle`
 
   main {
     margin: 10px;
+    margin-bottom: 78px;
+    overflow-y: auto;
   }
 
   body {
