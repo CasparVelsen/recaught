@@ -9,7 +9,7 @@ export default function FormPage({ onCreateCard }) {
     <>
       <header>
         <LinkStyled to="/">
-          <BsFillArrowLeftCircleFill size={25} />
+          <BsFillArrowLeftCircleFill size={32} />
         </LinkStyled>
         Formpage
       </header>

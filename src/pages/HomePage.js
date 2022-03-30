@@ -10,7 +10,7 @@ export default function HomePage({ cards }) {
       <header>
         Homepage
         <LinkStyled to="/formpage">
-          <PlusIcon size={25} />
+          <PlusIcon size={32} />
         </LinkStyled>
       </header>
       <main>
