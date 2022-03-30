@@ -33,7 +33,9 @@ export default function EntryForm({ onCreateCard }) {
       <small>general infos</small>
       <Fieldset>
         <Part>
-          <label htmlFor="date">Date</label>
+          <label htmlFor="date">
+            Date <Hint>(no future dates)</Hint>
+          </label>
           <Input
             id="date"
             name="date"
@@ -55,7 +57,9 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
         <Part>
-          <label htmlFor="time">From</label>
+          <label htmlFor="time">
+            From <Hint>(half hour values)</Hint>
+          </label>
           <Input
             id="time"
             name="time"
@@ -66,7 +70,9 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
         <Part>
-          <label htmlFor="timeto">To</label>
+          <label htmlFor="timeto">
+            To <Hint>(half hour values)</Hint>
+          </label>
           <Input
             id="timeto"
             name="timeto"
@@ -205,7 +211,7 @@ export default function EntryForm({ onCreateCard }) {
             type="number"
             min={0}
             onChange={handleOnChange}
-            placeholder="min. 0kmH"
+            placeholder="min 0km/h"
           />
         </Part>
       </Fieldset>
@@ -326,4 +332,9 @@ const Part = styled.div`
 
 const Input = styled.input`
   width: 100%;
+`;
+
+const Hint = styled.small`
+  font-size: 0.8rem;
+  color: #aaa;
 `;

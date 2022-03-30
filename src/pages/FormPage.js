@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
+import { HiArrowLeft } from 'react-icons/hi';
 import styled from 'styled-components';
 import EntryForm from '../components/EntryForm';
 
@@ -8,7 +8,7 @@ export default function FormPage({ onCreateCard }) {
     <>
       <header>
         <LinkStyled to="/">
-          <BsFillArrowLeftCircleFill size={32} />
+          <HiArrowLeft size={35} />
         </LinkStyled>
         Formpage
       </header>
