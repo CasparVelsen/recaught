@@ -16,8 +16,8 @@ export default function HomePage({ cards }) {
       <main>
         <h1>Tight lines, Caspar</h1>
         <CardsList>
-          {cards.map((data, id) => (
-            <li key={id}>
+          {cards.map((data, index) => (
+            <li key={index}>
               <Cards data={data} />
             </li>
           ))}
@@ -40,6 +40,9 @@ const LinkStyled = styled(NavLink)`
 `;
 
 const CardsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
   list-style: none;
   padding: 0;
   width: 100%;
