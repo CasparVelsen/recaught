@@ -48,6 +48,7 @@ export default function EntryForm({ onCreateCard }) {
             id="time"
             name="time"
             type="time"
+            step={1800}
             onChange={handleOnChange}
             required
           />
@@ -144,9 +145,12 @@ export default function EntryForm({ onCreateCard }) {
           <Input
             id="temperature"
             name="temperature"
-            type="text"
+            type="number"
+            min={-50}
+            max={50}
             maxLength={100}
             onChange={handleOnChange}
+            placeholder="°C"
           />
         </Part>
         <Part>
