@@ -13,7 +13,7 @@ export default createGlobalStyle`
   align-items: center;
   gap: 10px;
   height: 38px;
-  border: 1px solid black;
+  border-bottom: 0.5px solid #a2c36c;
   padding: 0 10px;
   position: relative;
   }
@@ -29,7 +29,7 @@ export default createGlobalStyle`
     grid-template-rows: 38px auto 48px;
     height: 100vh;
     margin: 0;
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 112.5%;
   }
   input, label, button, textarea {

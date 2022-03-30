@@ -8,13 +8,12 @@ export default function HomePage({ cards }) {
   return (
     <>
       <header>
-        Homepage
         <LinkStyled to="/formpage">
-          <PlusIcon size={35} />
+          <PlusIcon size={35} color="#FF9C27" />
         </LinkStyled>
       </header>
       <main>
-        <h1>Tight lines, Caspar</h1>
+        <Title>Tight lines, Caspar</Title>
         <CardsList>
           {cards.map((data, index) => (
             <li key={index}>
@@ -26,6 +25,13 @@ export default function HomePage({ cards }) {
     </>
   );
 }
+
+const Title = styled.h1`
+  color: #687a48;
+  font-size: 32px;
+  width: 50%;
+  margin: 0 0 20px;
+`;
 
 const PlusIcon = styled(HiPlus)`
   position: absolute;

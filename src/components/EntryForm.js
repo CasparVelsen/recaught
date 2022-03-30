@@ -30,7 +30,7 @@ export default function EntryForm({ onCreateCard }) {
       autoComplete="off"
       labeltext="form"
     >
-      <small>general infos</small>
+      <Section>General infos</Section>
       <Fieldset>
         <Part>
           <label htmlFor="date">
@@ -83,7 +83,7 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
       </Fieldset>
-      <small>water</small>
+      <Section>Water</Section>
       <Fieldset>
         <Part>
           <label htmlFor="water">water</label>
@@ -93,7 +93,6 @@ export default function EntryForm({ onCreateCard }) {
             type="text"
             maxLength={25}
             onChange={handleOnChange}
-            placeholder="water"
             required
           />
         </Part>
@@ -121,7 +120,7 @@ export default function EntryForm({ onCreateCard }) {
         </Part>
         <Part>
           <label htmlFor="watercolor">Water Color</label>
-          <select
+          <Select
             id="watercolor"
             name="watercolor"
             type="text"
@@ -130,11 +129,11 @@ export default function EntryForm({ onCreateCard }) {
             <option value="cloudy">cloudy</option>
             <option value="normal">normal</option>
             <option value="clear">clear</option>
-          </select>
+          </Select>
         </Part>
         <Part>
           <label htmlFor="waterlevel">Water Level</label>
-          <select
+          <Select
             id="waterlevel"
             name="waterlevel"
             type="text"
@@ -143,10 +142,10 @@ export default function EntryForm({ onCreateCard }) {
             <option value="low">low</option>
             <option value="normal">normal</option>
             <option value="high">high</option>
-          </select>
+          </Select>
         </Part>
       </Fieldset>
-      <small>weather</small>
+      <Section>Weather</Section>
       <Fieldset>
         <Part>
           <label htmlFor="weather">Weather</label>
@@ -215,7 +214,7 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
       </Fieldset>
-      <small>catch</small>
+      <Section>Catch</Section>
       <Fieldset>
         <Part>
           <label htmlFor="species">Species</label>
@@ -281,7 +280,7 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
       </Fieldset>
-      <small>summary</small>
+      <Section>Summary</Section>
       <Fieldset>
         <Part>
           <label htmlFor="bites">Total bites</label>
@@ -312,17 +311,23 @@ export default function EntryForm({ onCreateCard }) {
 }
 
 const Form = styled.form`
-  padding: 0 10px;
+  padding: 15px 10px 30px;
+  background-color: #fffcf8;
+  color: #a2c36c;
+  border: 0.5px solid #a2c36c;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
 const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 30px 0;
+  padding: 10px 0 30px;
   border: none;
-  border-top: 1px solid black;
+  border-top: 1px solid #ff9c27;
   position: relative;
+  font-size: 1rem;
 `;
 
 const Part = styled.div`
@@ -332,6 +337,24 @@ const Part = styled.div`
 
 const Input = styled.input`
   width: 100%;
+  border: 1px solid #ff9c27;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #aaa;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  border: 1px solid #ff9c27;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #aaa;
+  background-color: white;
+  height: 25px;
+`;
+
+const Section = styled.span`
+  color: #687a48;
 `;
 
 const Hint = styled.small`

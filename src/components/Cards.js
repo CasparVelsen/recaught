@@ -22,8 +22,12 @@ export default function Cards({ data }) {
       <span>{data.water}</span>
       <InSameRow>
         <span>{data.target}</span>
-        {showDetails && <IoIosArrowForward onClick={toggleShowDetails} />}
-        {!showDetails && <IoIosArrowDown onClick={toggleShowDetails} />}
+        {showDetails && (
+          <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
+        )}
+        {!showDetails && (
+          <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
+        )}
       </InSameRow>
       {!showDetails && (
         <Details>
@@ -106,14 +110,19 @@ const Card = styled.section`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border: 0.5px solid green;
   padding: 10px;
+  background-color: #fffcf8;
+  color: #a2c36c;
+  border: 0.5px solid #a2c36c;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
 const Title = styled.h2`
   font-size: 1.25rem;
   padding: 0;
   margin: 0;
+  color: #687a48;
 `;
 
 const InSameRow = styled.div`
@@ -126,8 +135,6 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border: 1px solid #ddd;
-  padding: 5px;
   margin-top: 10px;
 `;
 
@@ -141,8 +148,9 @@ const PartTitle = styled.h3`
   font-size: 1rem;
   padding: 0;
   margin: 0;
-  margin-bottom: 5px;
-  border-bottom: 0.5px solid black;
+  width: 50%;
+  color: #687a48;
+  border-bottom: 1px solid #ff9c27;
 `;
 
 const Data = styled.small`
@@ -151,4 +159,5 @@ const Data = styled.small`
 
 const Term = styled.span`
   font-weight: bold;
+  color: #687a48;
 `;

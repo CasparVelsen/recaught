@@ -8,11 +8,11 @@ export default function Navigation() {
     <Nav>
       <LinkStyled to="/">
         <ScreenReaderOnly>homepage</ScreenReaderOnly>
-        <HiHome size={40} />
+        <HiHome size={35} />
       </LinkStyled>
       <LinkStyled to="/formpage">
         <ScreenReaderOnly>formpage</ScreenReaderOnly>
-        <HiPlus size={40} />
+        <HiPlus size={35} />
       </LinkStyled>
     </Nav>
   );
@@ -23,7 +23,8 @@ const Nav = styled.nav`
   justify-content: space-between;
   background: white;
   height: 48px;
-  border: 1px solid black;
+  border-radius: 10px 10px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 `;
 
 const LinkStyled = styled(NavLink)`
@@ -31,11 +32,10 @@ const LinkStyled = styled(NavLink)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: black;
+  color: #687a48;
   width: 100%;
 
   &.active {
-    background: black;
-    color: white;
+    color: #ff9c27;
   }
 `;

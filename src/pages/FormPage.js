@@ -8,17 +8,23 @@ export default function FormPage({ onCreateCard }) {
     <>
       <header>
         <LinkStyled to="/">
-          <HiArrowLeft size={35} />
+          <HiArrowLeft size={35} color="#FF9C27" />
         </LinkStyled>
-        Formpage
       </header>
       <main>
-        <h1>Create a new entry:</h1>
+        <Title>Create a new entry:</Title>
         <EntryForm onCreateCard={onCreateCard} />
       </main>
     </>
   );
 }
+
+const Title = styled.h1`
+  color: #687a48;
+  font-size: 32px;
+  width: 50%;
+  margin: 0 0 20px;
+`;
 
 const LinkStyled = styled(NavLink)`
   display: flex;
