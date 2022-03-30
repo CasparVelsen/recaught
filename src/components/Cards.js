@@ -17,6 +17,9 @@ export default function Cards({ data }) {
         <Part>
           <PartTitle>Fishing water</PartTitle>
           <Data>
+            <Term>water:</Term> {data.water}
+          </Data>
+          <Data>
             <Term>stretch:</Term> {data.stretch}
           </Data>
           <Data>
