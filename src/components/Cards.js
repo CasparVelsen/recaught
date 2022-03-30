@@ -36,7 +36,7 @@ export default function Cards({ data }) {
               <Term>stretch:</Term> {data.stretch}
             </Data>
             <Data>
-              <Term>watertemp:</Term> {data.watertemp}
+              <Term>watertemp:</Term> {data.watertemp} °C
             </Data>
             <Data>
               <Term>watercolor:</Term> {data.watercolor}
@@ -51,10 +51,10 @@ export default function Cards({ data }) {
               <Term>weather:</Term> {data.weather}
             </Data>
             <Data>
-              <Term>airpressure:</Term> {data.airpressure}
+              <Term>airpressure:</Term> {data.airpressure} hPa
             </Data>
             <Data>
-              <Term>temperature:</Term> {data.temperature}
+              <Term>temperature:</Term> {data.temperature} °C
             </Data>
             <Data>
               <Term>moon:</Term> {data.moon}
@@ -63,7 +63,7 @@ export default function Cards({ data }) {
               <Term>wind:</Term> {data.wind}
             </Data>
             <Data>
-              <Term>windspeed:</Term> {data.windspeed}
+              <Term>windspeed:</Term> {data.windspeed} km/h
             </Data>
           </Part>
           <Part>
@@ -75,10 +75,10 @@ export default function Cards({ data }) {
               <Term>bait:</Term> {data.bait}
             </Data>
             <Data>
-              <Term>length:</Term> {data.length}
+              <Term>length:</Term> {data.length} cm
             </Data>
             <Data>
-              <Term>weight:</Term> {data.weight}
+              <Term>weight:</Term> {data.weight} kg
             </Data>
             <Data>
               <Term>location:</Term> {data.location}
