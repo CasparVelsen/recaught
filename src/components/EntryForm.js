@@ -24,7 +24,7 @@ export default function EntryForm({ onCreateCard }) {
 
   return (
     <Form
-      aria-labelledby="formHeader"
+      aria-labelledby="Create your fishing experience"
       onSubmit={handleSubmit}
       autoComplete="off"
       labeltext="form"
