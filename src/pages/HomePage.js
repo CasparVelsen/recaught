@@ -40,6 +40,9 @@ const LinkStyled = styled(NavLink)`
 `;
 
 const CardsList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
   list-style: none;
   padding: 0;
   width: 100%;
