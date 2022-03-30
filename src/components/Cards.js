@@ -11,6 +11,18 @@ export default function Cards({ data }) {
       </Div>
       <span>{data.water}</span>
       <span>{data.target}</span>
+      <Invisible>
+        <small>{data.stretch}</small>
+        <small>{data.watertemp}</small>
+        <small>{data.watercolor}</small>
+        <small>{data.waterlevel}</small>
+        <small>{data.weather}</small>
+        <small>{data.temperature}</small>
+        <small>{data.airpressure}</small>
+        <small>{data.moon}</small>
+        <small>{data.wind}</small>
+        <small>{data.windspeed}</small>
+      </Invisible>
     </Card>
   );
 }
@@ -28,6 +40,14 @@ const Div = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`;
+
+const Invisible = styled.div`
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  padding: 5px;
+  margin-top: 10px;
 `;
 
 const Title = styled.h2`
