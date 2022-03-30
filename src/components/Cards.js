@@ -1,7 +1,15 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
 export default function Cards({ data }) {
   console.log(data);
+
+  const [active, setActive] = useState(true);
+
+  function toggleInvisibleData() {
+    setActive(!active);
+  }
 
   return (
     <Card>
@@ -13,77 +21,80 @@ export default function Cards({ data }) {
       </Header>
       <span>{data.water}</span>
       <span>{data.target}</span>
-      <Invisible>
-        <Part>
-          <PartTitle>Fishing water</PartTitle>
-          <Data>
-            <Term>water:</Term> {data.water}
-          </Data>
-          <Data>
-            <Term>stretch:</Term> {data.stretch}
-          </Data>
-          <Data>
-            <Term>watertemp:</Term> {data.watertemp}
-          </Data>
-          <Data>
-            <Term>watercolor:</Term> {data.watercolor}
-          </Data>
-          <Data>
-            <Term>waterlevel:</Term> {data.waterlevel}
-          </Data>
-        </Part>
-        <Part>
-          <PartTitle>Weather</PartTitle>
-          <Data>
-            <Term>weather:</Term> {data.weather}
-          </Data>
-          <Data>
-            <Term>airpressure:</Term> {data.airpressure}
-          </Data>
-          <Data>
-            <Term>temperature:</Term> {data.temperature}
-          </Data>
-          <Data>
-            <Term>moon:</Term> {data.moon}
-          </Data>
-          <Data>
-            <Term>wind:</Term> {data.wind}
-          </Data>
-          <Data>
-            <Term>windspeed:</Term> {data.windspeed}
-          </Data>
-        </Part>
-        <Part>
-          <PartTitle>Catch</PartTitle>
-          <Data>
-            <Term>species:</Term> {data.species}
-          </Data>
-          <Data>
-            <Term>bait:</Term> {data.bait}
-          </Data>
-          <Data>
-            <Term>length:</Term> {data.length}
-          </Data>
-          <Data>
-            <Term>weight:</Term> {data.weight}
-          </Data>
-          <Data>
-            <Term>location:</Term> {data.location}
-          </Data>
-          <Data>
-            <Term>notes:</Term> {data.notes}
-          </Data>
-        </Part>
-        <Part>
-          <PartTitle>Summary</PartTitle>
-          <Data>
-            <Term>total bites:</Term> {data.bites}
-          </Data>
-          <Data>
-            <Term>lost fish:</Term> {data.lost}
-          </Data>
-        </Part>
-      </Invisible>
+      <MdOutlineArrowForwardIos onClick={toggleInvisibleData} />
+      {!active && (
+        <Invisible>
+          <Part>
+            <PartTitle>Fishing water</PartTitle>
+            <Data>
+              <Term>water:</Term> {data.water}
+            </Data>
+            <Data>
+              <Term>stretch:</Term> {data.stretch}
+            </Data>
+            <Data>
+              <Term>watertemp:</Term> {data.watertemp}
+            </Data>
+            <Data>
+              <Term>watercolor:</Term> {data.watercolor}
+            </Data>
+            <Data>
+              <Term>waterlevel:</Term> {data.waterlevel}
+            </Data>
+          </Part>
+          <Part>
+            <PartTitle>Weather</PartTitle>
+            <Data>
+              <Term>weather:</Term> {data.weather}
+            </Data>
+            <Data>
+              <Term>airpressure:</Term> {data.airpressure}
+            </Data>
+            <Data>
+              <Term>temperature:</Term> {data.temperature}
+            </Data>
+            <Data>
+              <Term>moon:</Term> {data.moon}
+            </Data>
+            <Data>
+              <Term>wind:</Term> {data.wind}
+            </Data>
+            <Data>
+              <Term>windspeed:</Term> {data.windspeed}
+            </Data>
+          </Part>
+          <Part>
+            <PartTitle>Catch</PartTitle>
+            <Data>
+              <Term>species:</Term> {data.species}
+            </Data>
+            <Data>
+              <Term>bait:</Term> {data.bait}
+            </Data>
+            <Data>
+              <Term>length:</Term> {data.length}
+            </Data>
+            <Data>
+              <Term>weight:</Term> {data.weight}
+            </Data>
+            <Data>
+              <Term>location:</Term> {data.location}
+            </Data>
+            <Data>
+              <Term>notes:</Term> {data.notes}
+            </Data>
+          </Part>
+          <Part>
+            <PartTitle>Summary</PartTitle>
+            <Data>
+              <Term>total bites:</Term> {data.bites}
+            </Data>
+            <Data>
+              <Term>lost fish:</Term> {data.lost}
+            </Data>
+          </Part>
+        </Invisible>
+      )}
     </Card>
   );
 }
