@@ -209,7 +209,96 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
       </Fieldset>
-      <SubmitButton text="Submit" isAccent={true} id="form-name" >
+      <small>catch</small>
+      <Fieldset>
+        <Part>
+          <label htmlFor="species">Species</label>
+          <Input
+            id="species"
+            name="species"
+            type="text"
+            maxLength={100}
+            onChange={handleOnChange}
+          />
+        </Part>
+        <Part>
+          <label htmlFor="bait">Bait</label>
+          <Input
+            id="bait"
+            name="bait"
+            type="text"
+            maxLength={100}
+            onChange={handleOnChange}
+          />
+        </Part>
+        <Part>
+          <label htmlFor="length">Length</label>
+          <Input
+            id="length"
+            name="length"
+            type="number"
+            min={0}
+            onChange={handleOnChange}
+            placeholder="cm"
+          />
+        </Part>
+        <Part>
+          <label htmlFor="weight">Weight</label>
+          <Input
+            id="weight"
+            name="weight"
+            type="number"
+            step={0.01}
+            min={0}
+            onChange={handleOnChange}
+            placeholder="kg"
+          />
+        </Part>
+        <Part>
+          <label htmlFor="location">Location</label>
+          <Input
+            id="location"
+            name="location"
+            type="text"
+            maxLength={100}
+            onChange={handleOnChange}
+          />
+        </Part>
+        <Part>
+          <label htmlFor="notes">Notes</label>
+          <Input
+            id="notes"
+            name="notes"
+            type="text"
+            maxLength={300}
+            onChange={handleOnChange}
+          />
+        </Part>
+      </Fieldset>
+      <small>summary</small>
+      <Fieldset>
+        <Part>
+          <label htmlFor="bites">Total bites</label>
+          <Input
+            id="bites"
+            name="bites"
+            type="number"
+            min={0}
+            onChange={handleOnChange}
+          />
+        </Part>
+        <Part>
+          <label htmlFor="lost">Lost fish</label>
+          <Input
+            id="lost"
+            name="lost"
+            type="number"
+            min={0}
+            onChange={handleOnChange}
+          />
+        </Part>
+      </Fieldset>
+      <SubmitButton text="Submit" isAccent={true} id="form-name">
         <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
       </SubmitButton>
     </Form>
