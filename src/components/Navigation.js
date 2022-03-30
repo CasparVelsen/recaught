@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { BsFillHouseFill, BsFillPlusCircleFill } from 'react-icons/bs';
+import { HiPlus, HiHome } from 'react-icons/hi';
 import ScreenReaderOnly from './ScreenRaderOnly';
 
 export default function Navigation() {
@@ -8,11 +8,11 @@ export default function Navigation() {
     <Nav>
       <LinkStyled to="/">
         <ScreenReaderOnly>homepage</ScreenReaderOnly>
-        <BsFillHouseFill size={25} />
+        <HiHome size={40} />
       </LinkStyled>
       <LinkStyled to="/formpage">
         <ScreenReaderOnly>formpage</ScreenReaderOnly>
-        <BsFillPlusCircleFill size={25} />
+        <HiPlus size={40} />
       </LinkStyled>
     </Nav>
   );

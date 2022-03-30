@@ -1,4 +1,4 @@
-import { BsPlusCircleFill } from 'react-icons/bs';
+import { HiPlus } from 'react-icons/hi';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Cards from '../components/Cards';
@@ -10,7 +10,7 @@ export default function HomePage({ cards }) {
       <header>
         Homepage
         <LinkStyled to="/formpage">
-          <PlusIcon size={32} />
+          <PlusIcon size={35} />
         </LinkStyled>
       </header>
       <main>
@@ -27,7 +27,7 @@ export default function HomePage({ cards }) {
   );
 }
 
-const PlusIcon = styled(BsPlusCircleFill)`
+const PlusIcon = styled(HiPlus)`
   position: absolute;
   right: 10px;
 `;
