@@ -128,6 +128,72 @@ export default function EntryForm({ onCreateCard }) {
             </select>
           </Part>
         </Fieldset>
+        <small>weather</small>
+        <Fieldset>
+          <Part>
+            <label htmlFor="weather">Weather</label>
+            <Input
+              id="weather"
+              name="weather"
+              type="text"
+              maxLength={100}
+              onChange={handleOnChange}
+            />
+          </Part>
+          <Part>
+            <label htmlFor="temperature">Temperature</label>
+            <Input
+              id="temperature"
+              name="temperature"
+              type="text"
+              maxLength={100}
+              onChange={handleOnChange}
+            />
+          </Part>
+          <Part>
+            <label htmlFor="airpressure">Air pressure</label>
+            <Input
+              id="airpressure"
+              name="airpressure"
+              type="number"
+              min={850}
+              max={1150}
+              onChange={handleOnChange}
+              placeholder="850 - 1150"
+            />
+          </Part>
+          <Part>
+            <label htmlFor="moon">Moon phase</label>
+            <Input
+              id="moon"
+              name="moon"
+              type="text"
+              maxLength={100}
+              onChange={handleOnChange}
+            />
+          </Part>
+          <Part>
+            <label htmlFor="wind">Wind direction</label>
+            <Input
+              id="wind"
+              name="wind"
+              type="text"
+              maxLength={100}
+              onChange={handleOnChange}
+            />
+          </Part>
+          <Part>
+            <label htmlFor="windspeed">Wind speed</label>
+            <Input
+              id="windspeed"
+              name="windspeed"
+              type="number"
+              min={0}
+              onChange={handleOnChange}
+              placeholder="min. 0kmH"
+            />
+          </Part>
+        </Fieldset>
         <SubmitButton text="Submit" isAccent={true} />
       </Form>
     </div>
