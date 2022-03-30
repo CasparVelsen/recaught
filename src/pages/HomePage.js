@@ -16,8 +16,8 @@ export default function HomePage({ cards }) {
       <main>
         <h1>Tight lines, Caspar</h1>
         <CardsList>
-          {cards.map((data, id) => (
-            <li key={id}>
+          {cards.map((data, index) => (
+            <li key={index}>
               <Cards data={data} />
             </li>
           ))}
