@@ -5,28 +5,28 @@ import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 export default function Cards({ data }) {
   console.log(data);
 
-  const [active, setActive] = useState(true);
+  const [showDetails, setshowDetails] = useState(true);
 
-  function toggleInvisibleData() {
-    setActive(!active);
+  function toggleShowDetails() {
+    setshowDetails(!showDetails);
   }
 
   return (
     <Card>
-      <Row>
+      <InSameRow>
         <Title>{data.date}</Title>
         <div>
           <span>{data.time}</span>-<span>{data.timeto}</span>
         </div>
-      </Row>
+      </InSameRow>
       <span>{data.water}</span>
-      <Row>
+      <InSameRow>
         <span>{data.target}</span>
-        {active && <IoIosArrowForward onClick={toggleInvisibleData} />}
-        {!active && <IoIosArrowDown onClick={toggleInvisibleData} />}
-      </Row>
-      {!active && (
-        <Invisible>
+        {showDetails && <IoIosArrowForward onClick={toggleShowDetails} />}
+        {!showDetails && <IoIosArrowDown onClick={toggleShowDetails} />}
+      </InSameRow>
+      {!showDetails && (
+        <Details>
           <Part>
             <PartTitle>Fishing water</PartTitle>
             <Data>
@@ -96,7 +96,7 @@ export default function Cards({ data }) {
               <Term>lost fish:</Term> {data.lost}
             </Data>
           </Part>
-        </Invisible>
+        </Details>
       )}
     </Card>
   );
@@ -116,14 +116,13 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-const Row = styled.div`
+const InSameRow = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
 
-const Invisible = styled.div`
+const Details = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
