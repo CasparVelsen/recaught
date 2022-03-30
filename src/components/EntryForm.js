@@ -43,7 +43,18 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
         <Part>
-          <label htmlFor="time">Time</label>
+          <label htmlFor="target">Target species</label>
+          <Input
+            id="target"
+            name="target"
+            type="text"
+            maxLength={25}
+            onChange={handleOnChange}
+            required
+          />
+        </Part>
+        <Part>
+          <label htmlFor="time">From</label>
           <Input
             id="time"
             name="time"
@@ -54,12 +65,12 @@ export default function EntryForm({ onCreateCard }) {
           />
         </Part>
         <Part>
-          <label htmlFor="target">Target species</label>
+          <label htmlFor="timeto">To</label>
           <Input
-            id="target"
-            name="target"
-            type="text"
-            maxLength={25}
+            id="timeto"
+            name="timeto"
+            type="time"
+            step={1800}
             onChange={handleOnChange}
             required
           />

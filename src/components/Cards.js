@@ -7,7 +7,9 @@ export default function Cards({ data }) {
     <Card>
       <Div>
         <Title>{data.date}</Title>
-        <span>{data.time}</span>
+        <div>
+          <span>{data.time}</span>-<span>{data.timeto}</span>
+        </div>
       </Div>
       <span>{data.water}</span>
       <span>{data.target}</span>
