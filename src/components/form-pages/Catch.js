@@ -3,6 +3,12 @@ import styled from 'styled-components';
 export default function Catch({ handleOnChange }) {
   return (
     <>
+      <Title>Add</Title>
+      <Title>Catch data</Title>
+      <Small>4 of 5</Small>
+      <Progressbar>
+        <div></div>
+      </Progressbar>
       <Fieldset>
         <Part>
           <label htmlFor="species">Species</label>
@@ -71,6 +77,34 @@ export default function Catch({ handleOnChange }) {
     </>
   );
 }
+
+const Title = styled.h1`
+  color: #687a48;
+  font-size: 32px;
+  width: 100%;
+  margin: 0;
+`;
+const Small = styled.small`
+  font-size: 0.8rem;
+  color: #aaa;
+  position: absolute;
+  right: 10px;
+  top: 70px;
+  background-color: #fffcf8;
+`;
+const Progressbar = styled.div`
+  border: 0.5px solid #ff9c27;
+  height: 10px;
+  border-radius: 10px;
+  margin: 15px 0 15px;
+
+  div {
+    width: 80%;
+    height: 100%;
+    background-color: #a2c36c;
+    border-radius: 10px;
+  }
+`;
 
 const Fieldset = styled.fieldset`
   display: grid;

@@ -47,21 +47,11 @@ export default function FormPage({ onCreateCard }) {
           autoComplete="off"
           labeltext="form"
         >
-          <Title>Create a</Title>
-          <Title>new entry:</Title>
-          <Small>1 of 5</Small>
-          <Progressbar>
-            <div
-              style={{
-                width: '20%',
-              }}
-            ></div>
-          </Progressbar>
-          <Start formData={formData} />
-          <Water formData={formData} />
-          <Weather formData={formData} />
-          <Catch formData={formData} />
-          <Summary formData={formData} />
+          <Start onChange={handleOnChange} />
+          <Water onChange={handleOnChange} />
+          <Weather onChange={handleOnChange} />
+          <Catch onChange={handleOnChange} />
+          <Summary onChange={handleOnChange} />
           <Buttons>
             <NormalButton
               text={[<HiArrowCircleLeft />, 'Back']}
@@ -83,40 +73,11 @@ export default function FormPage({ onCreateCard }) {
   );
 }
 
-const Title = styled.h1`
-  color: #687a48;
-  font-size: 32px;
-  width: 100%;
-  margin: 0;
-`;
-
-const Small = styled.small`
-  font-size: 0.8rem;
-  color: #aaa;
-  position: absolute;
-  right: 10px;
-  top: 70px;
-`;
-
 const LinkStyled = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
   color: black;
-`;
-
-const Progressbar = styled.div`
-  border: 0.5px solid #ff9c27;
-  height: 10px;
-  border-radius: 10px;
-  margin: 15px 0 15px;
-
-  div {
-    width: 20%;
-    height: 100%;
-    background-color: #a2c36c;
-    border-radius: 10px;
-  }
 `;
 
 const Form = styled.form`
