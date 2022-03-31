@@ -3,7 +3,7 @@ import { HiArrowLeft } from 'react-icons/hi';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import SubmitButton from '../components/Button';
+import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 
 import Start from '../components/form-pages/Start';
