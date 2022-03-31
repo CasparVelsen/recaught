@@ -29,6 +29,16 @@ export default function FormPage({ onCreateCard }) {
     onCreateCard(formData);
   }
 
+  const [page, setPage] = useState(0);
+
+  const PageTitles = [
+    'Create a new entry',
+    'Add water data',
+    'Add weather data',
+    'Add your catches',
+    'Summary',
+  ];
+
   return (
     <>
       <header>
@@ -37,7 +47,7 @@ export default function FormPage({ onCreateCard }) {
         </LinkStyled>
       </header>
       <main>
-        <Title>Create a new entry:</Title>
+        <Title>{PageTitles[page]}</Title>
         <Form
           aria-labelledby="form-name"
           onSubmit={handleSubmit}
