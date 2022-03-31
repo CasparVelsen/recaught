@@ -39,6 +39,8 @@ export default function FormPage({ onCreateCard }) {
     'Summary',
   ];
 
+  const Hint = ['1 of 5', '2 of 5', '3 of 5', '4 of 5', ' 5 of 5'];
+
   const PageDisplay = () => {
     if (page === 0) {
       return <Start handleOnChange={handleOnChange} formData={formData} />;
@@ -63,6 +65,7 @@ export default function FormPage({ onCreateCard }) {
       <main>
         <Title>{PageTitlesTop[page]}</Title>
         <Title>{PageTitlesBottom[page]}</Title>
+        <Small>{Hint[page]}</Small>
         <Progressbar>
           <div
             style={{
@@ -119,6 +122,14 @@ const Title = styled.h1`
   font-size: 32px;
   width: 100%;
   margin: 0;
+`;
+
+const Small = styled.small`
+  font-size: 0.8rem;
+  color: #aaa;
+  position: absolute;
+  right: 10px;
+  top: 55px;
 `;
 
 const LinkStyled = styled(NavLink)`

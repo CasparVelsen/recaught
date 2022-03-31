@@ -22,6 +22,7 @@ export default createGlobalStyle`
     margin: 10px;
     padding-bottom: 68px;
     overflow-y: auto;
+    position: relative;
   }
 
   body {
