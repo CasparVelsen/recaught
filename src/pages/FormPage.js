@@ -16,7 +16,7 @@ import NormalButton from '../components/NormalButton';
 export default function FormPage({ onCreateCard }) {
   const [formData, setFormData] = useState('');
 
-  /* const handleOnChange = event => {
+  const handleOnChange = event => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
@@ -24,7 +24,7 @@ export default function FormPage({ onCreateCard }) {
     });
   };
 
-    function handleSubmit(event) {
+  /*function handleSubmit(event) {
     event.preventDefault();
     console.log('formData', formData);
     onCreateCard(formData);
@@ -44,15 +44,15 @@ export default function FormPage({ onCreateCard }) {
 
   const PageDisplay = () => {
     if (page === 0) {
-      return <Start /*handleOnChange={handleOnChange}*/ />;
+      return <Start handleOnChange={handleOnChange} formData={formData} />;
     } else if (page === 1) {
-      return <Water /*handleOnChange={handleOnChange}*/ />;
+      return <Water handleOnChange={handleOnChange} formData={formData} />;
     } else if (page === 2) {
-      return <Weather /*handleOnChange={handleOnChange}*/ />;
+      return <Weather handleOnChange={handleOnChange} formData={formData} />;
     } else if (page === 3) {
-      return <Catch /*handleOnChange={handleOnChange}*/ />;
+      return <Catch handleOnChange={handleOnChange} formData={formData} />;
     } else {
-      return <Summary /*handleOnChange={handleOnChange}*/ />;
+      return <Summary handleOnChange={handleOnChange} formData={formData} />;
     }
   };
 

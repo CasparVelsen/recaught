@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Weather({ handleOnChange }) {
+export default function Weather({ handleOnChange, formData }) {
   return (
     <>
       <Fieldset>
@@ -12,6 +12,7 @@ export default function Weather({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.weather}
           />
         </Part>
         <Part>
@@ -24,6 +25,7 @@ export default function Weather({ handleOnChange }) {
             max={50}
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.temperature}
             placeholder="°C"
           />
         </Part>
@@ -36,6 +38,7 @@ export default function Weather({ handleOnChange }) {
             min={850}
             max={1150}
             onChange={handleOnChange}
+            value={formData.airpressure}
             placeholder="850 - 1150"
           />
         </Part>
@@ -47,6 +50,7 @@ export default function Weather({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.moon}
           />
         </Part>
         <Part>
@@ -57,6 +61,7 @@ export default function Weather({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.wind}
           />
         </Part>
         <Part>
@@ -67,6 +72,7 @@ export default function Weather({ handleOnChange }) {
             type="number"
             min={0}
             onChange={handleOnChange}
+            value={formData.windspeed}
             placeholder="min 0km/h"
           />
         </Part>

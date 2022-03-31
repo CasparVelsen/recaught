@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SubmitButton from '../SubmitButton';
 
-export default function Summary({ handleOnChange }) {
+export default function Summary({ handleOnChange, formData }) {
   return (
     <>
       <Fieldset>
@@ -13,6 +13,7 @@ export default function Summary({ handleOnChange }) {
             type="number"
             min={0}
             onChange={handleOnChange}
+            value={formData.bites}
           />
         </Part>
         <Part>
@@ -23,6 +24,7 @@ export default function Summary({ handleOnChange }) {
             type="number"
             min={0}
             onChange={handleOnChange}
+            value={formData.lost}
           />
         </Part>
       </Fieldset>

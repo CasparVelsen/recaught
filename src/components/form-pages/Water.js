@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Water({ handleOnChange }) {
+export default function Water({ handleOnChange, formData }) {
   return (
     <>
       <Fieldset>
@@ -12,6 +12,7 @@ export default function Water({ handleOnChange }) {
             type="text"
             maxLength={25}
             onChange={handleOnChange}
+            value={formData.water}
             required
           />
         </Part>
@@ -23,6 +24,7 @@ export default function Water({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.stretch}
           />
         </Part>
         <Part>
@@ -34,6 +36,7 @@ export default function Water({ handleOnChange }) {
             min={-5}
             max={50}
             onChange={handleOnChange}
+            value={formData.watertemp}
             placeholder="°C"
           />
         </Part>
@@ -44,6 +47,7 @@ export default function Water({ handleOnChange }) {
             name="watercolor"
             type="text"
             onChange={handleOnChange}
+            value={formData.watercolor}
           >
             <option value="cloudy">cloudy</option>
             <option value="normal">normal</option>
@@ -57,6 +61,7 @@ export default function Water({ handleOnChange }) {
             name="waterlevel"
             type="text"
             onChange={handleOnChange}
+            value={formData.waterlevel}
           >
             <option value="low">low</option>
             <option value="normal">normal</option>

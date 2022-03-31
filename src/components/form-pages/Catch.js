@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Catch({ handleOnChange }) {
+export default function Catch({ handleOnChange, formData }) {
   return (
     <>
       <Fieldset>
@@ -12,6 +12,7 @@ export default function Catch({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.species}
           />
         </Part>
         <Part>
@@ -22,6 +23,7 @@ export default function Catch({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.bait}
           />
         </Part>
         <Part>
@@ -32,6 +34,7 @@ export default function Catch({ handleOnChange }) {
             type="number"
             min={0}
             onChange={handleOnChange}
+            value={formData.length}
             placeholder="cm"
           />
         </Part>
@@ -44,6 +47,7 @@ export default function Catch({ handleOnChange }) {
             step={0.01}
             min={0}
             onChange={handleOnChange}
+            value={formData.weight}
             placeholder="kg"
           />
         </Part>
@@ -55,6 +59,7 @@ export default function Catch({ handleOnChange }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
+            value={formData.location}
           />
         </Part>
         <Part>
@@ -65,6 +70,7 @@ export default function Catch({ handleOnChange }) {
             type="text"
             maxLength={300}
             onChange={handleOnChange}
+            value={formData.notes}
           />
         </Part>
       </Fieldset>
