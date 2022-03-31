@@ -66,6 +66,22 @@ export default function FormPage({ onCreateCard }) {
       <main>
         <Title>{PageTitlesTop[page]}</Title>
         <Title>{PageTitlesBottom[page]}</Title>
+        <Progressbar>
+          <div
+            style={{
+              width:
+                page === 0
+                  ? '20%'
+                  : page == 1
+                  ? '40%'
+                  : page == 2
+                  ? '60%'
+                  : page == 3
+                  ? '80%'
+                  : '100%',
+            }}
+          ></div>
+        </Progressbar>
         <Form
           aria-labelledby="form-name"
           /*onSubmit={handleSubmit}*/
@@ -110,6 +126,20 @@ const LinkStyled = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   color: black;
+`;
+
+const Progressbar = styled.div`
+  border: 0.5px solid #ff9c27;
+  height: 10px;
+  border-radius: 10px;
+  margin: 10px 0 15px;
+
+  div {
+    width: 20%;
+    height: 100%;
+    background-color: #a2c36c;
+    border-radius: 10px;
+  }
 `;
 
 const Form = styled.form`
