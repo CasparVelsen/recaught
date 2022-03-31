@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export default function NormalButton({ text, isAccent, onClick }) {
+export default function NormalButton({ text, isAccent, onClick, disabled }) {
   return (
     <>
-      <Button isAccent={isAccent} onClick={onClick}>
+      <Button isAccent={isAccent} onClick={onClick} disabled={disabled}>
         {text}
       </Button>
     </>
