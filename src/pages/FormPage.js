@@ -32,11 +32,13 @@ export default function FormPage({ onCreateCard }) {
 
   const [page, setPage] = useState(0);
 
-  const PageTitles = [
-    'Create a new entry',
-    'Add water data',
-    'Add weather data',
-    'Add your catches',
+  const PageTitlesTop = ['Create a', 'Add', 'Add', 'Add', 'Last step:'];
+
+  const PageTitlesBottom = [
+    'new entry',
+    'water data',
+    'weather data',
+    'your catches',
     'Summary',
   ];
 
@@ -62,7 +64,8 @@ export default function FormPage({ onCreateCard }) {
         </LinkStyled>
       </header>
       <main>
-        <Title>{PageTitles[page]}</Title>
+        <Title>{PageTitlesTop[page]}</Title>
+        <Title>{PageTitlesBottom[page]}</Title>
         <Form
           aria-labelledby="form-name"
           /*onSubmit={handleSubmit}*/
@@ -86,7 +89,7 @@ export default function FormPage({ onCreateCard }) {
                 event.preventDefault();
                 setPage(currPage => currPage + 1);
               }}
-              disabled={page == PageTitles.length - 1}
+              disabled={page == 4}
             />
           </Buttons>
         </Form>
@@ -98,8 +101,8 @@ export default function FormPage({ onCreateCard }) {
 const Title = styled.h1`
   color: #687a48;
   font-size: 32px;
-  width: 50%;
-  margin: 0 0 20px;
+  width: 100%;
+  margin: 0;
 `;
 
 const LinkStyled = styled(NavLink)`
