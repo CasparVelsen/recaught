@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
 import { useState } from 'react';
 import styled from 'styled-components';
-import useLocalStorage from '../hooks/useLocalStorage';
 
 import Start from '../components/form-pages/Start';
 import Water from '../components/form-pages/Water';
@@ -12,7 +11,7 @@ import Summary from '../components/form-pages/Summary';
 import NormalButton from '../components/NormalButton';
 
 export default function FormPage({ onCreateCard }) {
-  const [formData, setFormData] = useLocalStorage('formData', {});
+  const [formData, setFormData] = useState('');
 
   const handleOnChange = event => {
     const { name, value } = event.target;
@@ -22,11 +21,11 @@ export default function FormPage({ onCreateCard }) {
     });
   };
 
-  /*function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     console.log('formData', formData);
     onCreateCard(formData);
-  } */
+  }
 
   const [page, setPage] = useState(0);
 
@@ -82,7 +81,7 @@ export default function FormPage({ onCreateCard }) {
         </Progressbar>
         <Form
           aria-labelledby="form-name"
-          /*onSubmit={handleSubmit}*/
+          onSubmit={handleSubmit}
           autoComplete="off"
           labeltext="form"
         >
@@ -97,13 +96,16 @@ export default function FormPage({ onCreateCard }) {
               disabled={page == 0}
             />
             <NormalButton
-              text="Next"
+              text={page === 4 ? 'Submit' : 'Next'}
               isAccent={true}
               onClick={event => {
-                event.preventDefault();
-                setPage(currPage => currPage + 1);
+                if (page === 4) {
+                  alert('Form submitted');
+                } else {
+                  event.preventDefault();
+                  setPage(currPage => currPage + 1);
+                }
               }}
-              disabled={page == 4}
             />
           </Buttons>
         </Form>
