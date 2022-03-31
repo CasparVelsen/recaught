@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import SubmitButton from '../SubmitButton';
 
 export default function Summary({ handleOnChange }) {
   return (
@@ -35,7 +36,6 @@ const Fieldset = styled.fieldset`
   gap: 20px;
   padding: 10px 0 30px;
   border: none;
-  border-top: 1px solid #ff9c27;
   position: relative;
   font-size: 1rem;
 `;

@@ -11,11 +11,12 @@ import Water from '../components/form-pages/Water';
 import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
+import NormalButton from '../components/NormalButton';
 
 export default function FormPage({ onCreateCard }) {
   const [formData, setFormData] = useState('');
 
-  const handleOnChange = event => {
+  /* const handleOnChange = event => {
     const { name, value } = event.target;
     setFormData({
       ...formData,
@@ -23,11 +24,11 @@ export default function FormPage({ onCreateCard }) {
     });
   };
 
-  function handleSubmit(event) {
+    function handleSubmit(event) {
     event.preventDefault();
     console.log('formData', formData);
     onCreateCard(formData);
-  }
+  } */
 
   const [page, setPage] = useState(0);
 
@@ -38,6 +39,20 @@ export default function FormPage({ onCreateCard }) {
     'Add your catches',
     'Summary',
   ];
+
+  const PageDisplay = () => {
+    if (page === 0) {
+      return <Start /*handleOnChange={handleOnChange}*/ />;
+    } else if (page === 1) {
+      return <Water /*handleOnChange={handleOnChange}*/ />;
+    } else if (page === 2) {
+      return <Weather /*handleOnChange={handleOnChange}*/ />;
+    } else if (page === 3) {
+      return <Catch /*handleOnChange={handleOnChange}*/ />;
+    } else {
+      return <Summary /*handleOnChange={handleOnChange}*/ />;
+    }
+  };
 
   return (
     <>
@@ -50,23 +65,30 @@ export default function FormPage({ onCreateCard }) {
         <Title>{PageTitles[page]}</Title>
         <Form
           aria-labelledby="form-name"
-          onSubmit={handleSubmit}
+          /*onSubmit={handleSubmit}*/
           autoComplete="off"
           labeltext="form"
         >
-          <Section>General infos</Section>
-          <Start handleOnChange={handleOnChange} />
-          <Section>Water</Section>
-          <Water handleOnChange={handleOnChange} />
-          <Section>Weather</Section>
-          <Weather handleOnChange={handleOnChange} />
-          <Section>Catch</Section>
-          <Catch handleOnChange={handleOnChange} />
-          <Section>Summary</Section>
-          <Summary handleOnChange={handleOnChange} />
-          <SubmitButton text="Submit" isAccent={true} id="form-name">
-            <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
-          </SubmitButton>
+          {PageDisplay()}
+          <Buttons>
+            <NormalButton
+              text="Back"
+              onClick={event => {
+                event.preventDefault();
+                setPage(currPage => currPage - 1);
+              }}
+              disabled={page == 0}
+            />
+            <NormalButton
+              text="Next"
+              isAccent={true}
+              onClick={event => {
+                event.preventDefault();
+                setPage(currPage => currPage + 1);
+              }}
+              disabled={page == PageTitles.length - 1}
+            />
+          </Buttons>
         </Form>
       </main>
     </>
@@ -96,6 +118,8 @@ const Form = styled.form`
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
-const Section = styled.span`
-  color: #687a48;
+const Buttons = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: right;
 `;

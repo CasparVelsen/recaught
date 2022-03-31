@@ -74,7 +74,6 @@ const Fieldset = styled.fieldset`
   gap: 20px;
   padding: 10px 0 30px;
   border: none;
-  border-top: 1px solid #ff9c27;
   position: relative;
   font-size: 1rem;
 `;
