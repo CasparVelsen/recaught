@@ -4,9 +4,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import useLocalStorage from '../hooks/useLocalStorage';
 
-import SubmitButton from '../components/SubmitButton';
-import ScreenRaderOnly from '../components/ScreenRaderOnly';
-
 import Start from '../components/form-pages/Start';
 import Water from '../components/form-pages/Water';
 import Weather from '../components/form-pages/Weather';

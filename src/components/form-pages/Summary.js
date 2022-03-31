@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import SubmitButton from '../SubmitButton';
 
 export default function Summary({ handleOnChange, formData }) {
   return (
