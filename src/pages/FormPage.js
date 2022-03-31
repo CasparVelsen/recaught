@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
 import { useState } from 'react';
 import styled from 'styled-components';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
@@ -14,7 +15,7 @@ import Summary from '../components/form-pages/Summary';
 import NormalButton from '../components/NormalButton';
 
 export default function FormPage({ onCreateCard }) {
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useLocalStorage('formData', {});
 
   const handleOnChange = event => {
     const { name, value } = event.target;
