@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-import { HiCheckCircle } from 'react-icons/hi';
 
-export default function SubmitButton({ text, isAccent }) {
+export default function SubmitButton({ text, isAccent, icon }) {
   return (
     <>
       <Button isAccent={isAccent} type="submit">
-        {text}
-        <HiCheckCircle />
+        {text} {icon}
       </Button>
     </>
   );

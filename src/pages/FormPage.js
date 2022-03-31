@@ -3,6 +3,12 @@ import { HiArrowLeft } from 'react-icons/hi';
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import {
+  HiCheckCircle,
+  HiArrowCircleRight,
+  HiArrowCircleLeft,
+} from 'react-icons/hi';
+
 import Start from '../components/form-pages/Start';
 import Water from '../components/form-pages/Water';
 import Weather from '../components/form-pages/Weather';
@@ -91,7 +97,7 @@ export default function FormPage({ onCreateCard }) {
           {PageDisplay()}
           <Buttons>
             <NormalButton
-              text="Back"
+              text={[<HiArrowCircleLeft />, 'Back']}
               onClick={event => {
                 event.preventDefault();
                 setPage(currPage => currPage - 1);
@@ -99,7 +105,11 @@ export default function FormPage({ onCreateCard }) {
               disabled={page == 0}
             />
             <NormalButton
-              text={page === 4 ? 'Submit' : 'Next'}
+              text={
+                page === 4
+                  ? ['Submit', <HiCheckCircle />]
+                  : ['Next', <HiArrowCircleRight />]
+              }
               isAccent={true}
               onClick={event => {
                 if (page === 4) {
