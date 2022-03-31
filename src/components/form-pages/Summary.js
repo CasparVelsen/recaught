@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Summary({ handleOnChange, formData }) {
+export default function Summary({ handleOnChange }) {
   return (
     <>
       <Fieldset>
@@ -12,7 +12,6 @@ export default function Summary({ handleOnChange, formData }) {
             type="number"
             min={0}
             onChange={handleOnChange}
-            value={formData.bites}
           />
         </Part>
         <Part>
@@ -23,7 +22,6 @@ export default function Summary({ handleOnChange, formData }) {
             type="number"
             min={0}
             onChange={handleOnChange}
-            value={formData.lost}
           />
         </Part>
       </Fieldset>

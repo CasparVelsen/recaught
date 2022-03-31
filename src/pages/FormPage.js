@@ -33,34 +33,6 @@ export default function FormPage({ onCreateCard }) {
     onCreateCard(formData);
   }
 
-  const [page, setPage] = useState(0);
-
-  const PageTitlesTop = ['Create a', 'Add', 'Add', 'Add', 'Last step:'];
-
-  const PageTitlesBottom = [
-    'new entry',
-    'water data',
-    'weather data',
-    'your catches',
-    'Summary',
-  ];
-
-  const Hint = ['1 of 5', '2 of 5', '3 of 5', '4 of 5', ' 5 of 5'];
-
-  const PageDisplay = () => {
-    if (page === 0) {
-      return <Start handleOnChange={handleOnChange} formData={formData} />;
-    } else if (page === 1) {
-      return <Water handleOnChange={handleOnChange} formData={formData} />;
-    } else if (page === 2) {
-      return <Weather handleOnChange={handleOnChange} formData={formData} />;
-    } else if (page === 3) {
-      return <Catch handleOnChange={handleOnChange} formData={formData} />;
-    } else {
-      return <Summary handleOnChange={handleOnChange} formData={formData} />;
-    }
-  };
-
   return (
     <>
       <header>
@@ -69,55 +41,39 @@ export default function FormPage({ onCreateCard }) {
         </LinkStyled>
       </header>
       <main>
-        <Title>{PageTitlesTop[page]}</Title>
-        <Title>{PageTitlesBottom[page]}</Title>
-        <Small>{Hint[page]}</Small>
-        <Progressbar>
-          <div
-            style={{
-              width:
-                page === 0
-                  ? '20%'
-                  : page == 1
-                  ? '40%'
-                  : page == 2
-                  ? '60%'
-                  : page == 3
-                  ? '80%'
-                  : '100%',
-            }}
-          ></div>
-        </Progressbar>
         <Form
           aria-labelledby="form-name"
           onSubmit={handleSubmit}
           autoComplete="off"
           labeltext="form"
         >
-          {PageDisplay()}
+          <Title>Create a</Title>
+          <Title>new entry:</Title>
+          <Small>1 of 5</Small>
+          <Progressbar>
+            <div
+              style={{
+                width: '20%',
+              }}
+            ></div>
+          </Progressbar>
+          <Start formData={formData} />
+          <Water formData={formData} />
+          <Weather formData={formData} />
+          <Catch formData={formData} />
+          <Summary formData={formData} />
           <Buttons>
             <NormalButton
               text={[<HiArrowCircleLeft />, 'Back']}
               onClick={event => {
                 event.preventDefault();
-                setPage(currPage => currPage - 1);
               }}
-              disabled={page == 0}
             />
             <NormalButton
-              text={
-                page === 4
-                  ? ['Submit', <HiCheckCircle />]
-                  : ['Next', <HiArrowCircleRight />]
-              }
+              text={['Next', <HiArrowCircleRight />]}
               isAccent={true}
               onClick={event => {
-                if (page === 4) {
-                  alert('Form submitted');
-                } else {
-                  event.preventDefault();
-                  setPage(currPage => currPage + 1);
-                }
+                event.preventDefault();
               }}
             />
           </Buttons>
@@ -139,7 +95,7 @@ const Small = styled.small`
   color: #aaa;
   position: absolute;
   right: 10px;
-  top: 55px;
+  top: 70px;
 `;
 
 const LinkStyled = styled(NavLink)`
@@ -170,6 +126,7 @@ const Form = styled.form`
   border: 0.5px solid #a2c36c;
   border-radius: 20px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
+  position: relative;
 `;
 
 const Buttons = styled.div`

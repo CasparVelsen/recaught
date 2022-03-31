@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import moment from 'moment';
 
-export default function Start({ handleOnChange, formData }) {
+export default function Start({ handleOnChange }) {
   return (
     <>
       <Fieldset>
@@ -15,7 +15,6 @@ export default function Start({ handleOnChange, formData }) {
             type="date"
             max={moment().format('YYYY-MM-DD')}
             onChange={handleOnChange}
-            value={formData.date}
             required
           />
         </Part>
@@ -27,7 +26,6 @@ export default function Start({ handleOnChange, formData }) {
             type="text"
             maxLength={25}
             onChange={handleOnChange}
-            value={formData.target}
             required
           />
         </Part>
@@ -41,7 +39,6 @@ export default function Start({ handleOnChange, formData }) {
             type="time"
             step={1800}
             onChange={handleOnChange}
-            value={formData.time}
             required
           />
         </Part>
@@ -55,7 +52,6 @@ export default function Start({ handleOnChange, formData }) {
             type="time"
             step={1800}
             onChange={handleOnChange}
-            value={formData.timeto}
             required
           />
         </Part>

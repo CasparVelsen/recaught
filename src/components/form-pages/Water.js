@@ -1,18 +1,20 @@
 import styled from 'styled-components';
+import ScreenRaderOnly from '../ScreenRaderOnly';
 
-export default function Water({ handleOnChange, formData }) {
+export default function Water({ handleOnChange }) {
   return (
     <>
       <Fieldset>
         <Part>
-          <label htmlFor="water">water</label>
+          <label htmlFor="water">
+            water<ScreenRaderOnly>Waters</ScreenRaderOnly>
+          </label>
           <Input
             id="water"
             name="water"
             type="text"
             maxLength={25}
             onChange={handleOnChange}
-            value={formData.water}
             required
           />
         </Part>
@@ -24,7 +26,6 @@ export default function Water({ handleOnChange, formData }) {
             type="text"
             maxLength={100}
             onChange={handleOnChange}
-            value={formData.stretch}
           />
         </Part>
         <Part>
@@ -36,7 +37,6 @@ export default function Water({ handleOnChange, formData }) {
             min={-5}
             max={50}
             onChange={handleOnChange}
-            value={formData.watertemp}
             placeholder="°C"
           />
         </Part>
@@ -47,7 +47,6 @@ export default function Water({ handleOnChange, formData }) {
             name="watercolor"
             type="text"
             onChange={handleOnChange}
-            value={formData.watercolor}
           >
             <option value="cloudy">cloudy</option>
             <option value="normal">normal</option>
@@ -61,7 +60,6 @@ export default function Water({ handleOnChange, formData }) {
             name="waterlevel"
             type="text"
             onChange={handleOnChange}
-            value={formData.waterlevel}
           >
             <option value="low">low</option>
             <option value="normal">normal</option>
