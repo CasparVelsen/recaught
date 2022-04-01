@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
-import ScreenRaderOnly from '../ScreenRaderOnly';
 
 export default function Water({ handleOnChange }) {
   const [showInputs, setShowInputs] = useState(true);

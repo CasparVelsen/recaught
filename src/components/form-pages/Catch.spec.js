@@ -2,15 +2,16 @@ import { render, screen } from '@testing-library/react';
 import Catch from './Catch';
 
 describe('Catch', () => {
-  it('renders 6 input fields', () => {
-    render(<Catch formData />);
+  it('renders 7 input fields', () => {
+    render(<Catch />);
 
-    const inputSpecies = screen.getByLabelText(/Species/i);
     const inputBait = screen.getByLabelText(/Bait/i);
+    const inputSpecies = screen.getByLabelText(/Species/i);
     const inputLength = screen.getByLabelText(/Length/i);
     const inputWeight = screen.getByLabelText(/Weight/i);
     const inputLocation = screen.getByLabelText(/Location/i);
     const inputNotes = screen.getByLabelText(/Notes/i);
+    const inputTime = screen.getByLabelText(/Time/i);
 
     expect(inputSpecies).toBeInTheDocument();
     expect(inputBait).toBeInTheDocument();
@@ -18,5 +19,6 @@ describe('Catch', () => {
     expect(inputWeight).toBeInTheDocument();
     expect(inputLocation).toBeInTheDocument();
     expect(inputNotes).toBeInTheDocument();
+    expect(inputTime).toBeInTheDocument();
   });
 });
