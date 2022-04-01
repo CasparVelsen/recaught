@@ -1,11 +1,14 @@
 import styled from 'styled-components';
+import ScreenRaderOnly from '../ScreenRaderOnly';
 
 export default function Water({ handleOnChange }) {
   return (
     <>
       <Fieldset>
         <Part>
-          <label htmlFor="water">water</label>
+          <label htmlFor="water">
+            water<ScreenRaderOnly>Waters</ScreenRaderOnly>
+          </label>
           <Input
             id="water"
             name="water"

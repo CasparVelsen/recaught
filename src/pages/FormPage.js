@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
 import styled from 'styled-components';
-import EntryForm from '../components/EntryForm';
 import SubmitButton from '../components/Button';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
