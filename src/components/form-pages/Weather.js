@@ -12,7 +12,7 @@ export default function Weather({ handleOnChange }) {
     <>
       <Section>
         <Title>
-          Add water data:
+          Add weather data:
           {showInputs && (
             <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
           )}

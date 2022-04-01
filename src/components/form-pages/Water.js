@@ -24,19 +24,6 @@ export default function Water({ handleOnChange }) {
         {!showInputs && (
           <Fieldset>
             <Part>
-              <label htmlFor="water">
-                water<ScreenRaderOnly>Waters</ScreenRaderOnly>
-              </label>
-              <Input
-                id="water"
-                name="water"
-                type="text"
-                maxLength={25}
-                onChange={handleOnChange}
-                required
-              />
-            </Part>
-            <Part>
               <label htmlFor="stretch">Stretch</label>
               <Input
                 id="stretch"

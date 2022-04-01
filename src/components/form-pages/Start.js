@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ScreenRaderOnly from '../ScreenRaderOnly';
 import moment from 'moment';
 
 export default function Start({ handleOnChange }) {
@@ -20,10 +21,12 @@ export default function Start({ handleOnChange }) {
           />
         </Part>
         <Part>
-          <label htmlFor="target">Target species</label>
+          <label htmlFor="water">
+            water<ScreenRaderOnly>Waters</ScreenRaderOnly>
+          </label>
           <Input
-            id="target"
-            name="target"
+            id="water"
+            name="water"
             type="text"
             maxLength={25}
             onChange={handleOnChange}
@@ -31,27 +34,12 @@ export default function Start({ handleOnChange }) {
           />
         </Part>
         <Part>
-          <label htmlFor="time">
-            From <Hint>(half hour values)</Hint>
-          </label>
+          <label htmlFor="target">Target species</label>
           <Input
-            id="time"
-            name="time"
-            type="time"
-            step={1800}
-            onChange={handleOnChange}
-            required
-          />
-        </Part>
-        <Part>
-          <label htmlFor="timeto">
-            To <Hint>(half hour values)</Hint>
-          </label>
-          <Input
-            id="timeto"
-            name="timeto"
-            type="time"
-            step={1800}
+            id="target"
+            name="target"
+            type="text"
+            maxLength={25}
             onChange={handleOnChange}
             required
           />

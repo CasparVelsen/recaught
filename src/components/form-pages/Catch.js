@@ -12,7 +12,7 @@ export default function Catch({ handleOnChange }) {
     <>
       <Section>
         <Title>
-          Add water data:
+          Add your catches:
           {showInputs && (
             <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
           )}
@@ -33,12 +33,11 @@ export default function Catch({ handleOnChange }) {
               />
             </Part>
             <Part>
-              <label htmlFor="bait">Bait</label>
+              <label htmlFor="timeto">Time</label>
               <Input
-                id="bait"
-                name="bait"
-                type="text"
-                maxLength={100}
+                id="timeto"
+                name="timeto"
+                type="time"
                 onChange={handleOnChange}
               />
             </Part>
@@ -63,6 +62,16 @@ export default function Catch({ handleOnChange }) {
                 min={0}
                 onChange={handleOnChange}
                 placeholder="kg"
+              />
+            </Part>
+            <Part>
+              <label htmlFor="bait">Bait</label>
+              <Input
+                id="bait"
+                name="bait"
+                type="text"
+                maxLength={100}
+                onChange={handleOnChange}
               />
             </Part>
             <Part>
