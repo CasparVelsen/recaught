@@ -24,7 +24,6 @@ export default function FormPage({ onCreateCard }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log('formData', formData);
     onCreateCard(formData);
   }
 
