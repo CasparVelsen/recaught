@@ -84,7 +84,7 @@ export default function Catch({ handleOnChange }) {
                 onChange={handleOnChange}
               />
             </Part>
-            <Part>
+            <Notes>
               <label htmlFor="notes">Notes</label>
               <Input
                 id="notes"
@@ -93,7 +93,7 @@ export default function Catch({ handleOnChange }) {
                 maxLength={300}
                 onChange={handleOnChange}
               />
-            </Part>
+            </Notes>
           </Fieldset>
         )}
       </Section>
@@ -133,6 +133,11 @@ const Fieldset = styled.fieldset`
 const Part = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Notes = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
 `;
 
 const Input = styled.input`

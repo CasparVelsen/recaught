@@ -33,7 +33,7 @@ export default function Start({ handleOnChange }) {
             required
           />
         </Part>
-        <Part>
+        <Species>
           <label htmlFor="target">Target species</label>
           <Input
             id="target"
@@ -43,7 +43,7 @@ export default function Start({ handleOnChange }) {
             onChange={handleOnChange}
             required
           />
-        </Part>
+        </Species>
       </Fieldset>
     </>
   );
@@ -58,6 +58,7 @@ const Title = styled.div`
 const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 20px;
   padding: 10px 0 30px;
   border: none;
@@ -68,6 +69,11 @@ const Fieldset = styled.fieldset`
 const Part = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Species = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 3;
 `;
 
 const Input = styled.input`
