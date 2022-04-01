@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
 import { useState } from 'react';
 import styled from 'styled-components';
-import SubmitButton from '../components/Button';
-import ScreenRaderOnly from '../components/ScreenRaderOnly';
 
+import ScreenRaderOnly from '../components/ScreenRaderOnly';
+import SubmitButton from '../components/SubmitButton';
 import Start from '../components/form-pages/Start';
 import Water from '../components/form-pages/Water';
 import Weather from '../components/form-pages/Weather';
@@ -50,15 +50,24 @@ export default function FormPage({ onCreateCard }) {
             <Weather handleOnChange={handleOnChange} />
             <Catch handleOnChange={handleOnChange} />
             <Summary handleOnChange={handleOnChange} />
-            <SubmitButton text="Submit" isAccent={true} id="form-name">
-              <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
-            </SubmitButton>
+            <ButtonToRight>
+              <SubmitButton text="Submit" isAccent={true} id="form-name">
+                <ScreenRaderOnly>
+                  Create your fishing experience
+                </ScreenRaderOnly>
+              </SubmitButton>
+            </ButtonToRight>
           </Inputs>
         </form>
       </main>
     </>
   );
 }
+
+const ButtonToRight = styled.div`
+  display: flex;
+  justify-content: right;
+`;
 
 const Title = styled.h1`
   color: #687a48;

@@ -1,11 +1,11 @@
-import Button from './Button';
+import SubmitButton from './SubmitButton';
 
 export default {
-  title: 'components/Button',
-  component: Button,
+  title: 'components/SubmitButton',
+  component: SubmitButton,
 };
 
-const Template = args => <Button {...args} />;
+const Template = args => <SubmitButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
