@@ -33,6 +33,7 @@ export default function Cards({ data }) {
         <Details>
           <Part>
             <PartTitle>Fishing water</PartTitle>
+            <PartTitle>Water</PartTitle>
             <Data>
               <Term>water:</Term> {data.water}
             </Data>
