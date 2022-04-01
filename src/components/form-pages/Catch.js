@@ -100,9 +100,11 @@ export default function Catch({ handleOnChange }) {
               </Notes>
             </Fieldset>
             <Button text={[<HiPlusCircle />, 'Add Catch']} isDark={true} />
+            <div>
+              <Catches handleOnChange={handleOnChange} />
+            </div>
           </div>
         )}
-        <Catches handleOnChange={handleOnChange} />
       </Section>
     </>
   );

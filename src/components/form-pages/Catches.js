@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default function Catches({ handleOnChange }) {
   return (
-    <>
+    <Fieldset>
       <Part>
         <label htmlFor="species">Species</label>
         <Input
@@ -75,9 +75,19 @@ export default function Catches({ handleOnChange }) {
           onChange={handleOnChange}
         />
       </Notes>
-    </>
+    </Fieldset>
   );
 }
+
+const Fieldset = styled.fieldset`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 10px 0 30px;
+  border: none;
+  position: relative;
+  font-size: 1rem;
+`;
 
 const Part = styled.div`
   display: flex;
