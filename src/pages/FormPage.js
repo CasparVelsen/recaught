@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { HiArrowLeft } from 'react-icons/hi';
+import { useState } from 'react';
 import styled from 'styled-components';
 import SubmitButton from '../components/Button';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
-import { useState } from 'react';
 
 import Start from '../components/form-pages/Start';
 import Water from '../components/form-pages/Water';
@@ -36,26 +36,29 @@ export default function FormPage({ onCreateCard }) {
         </LinkStyled>
       </header>
       <main>
-        <Title>Create a new entry:</Title>
         <Form
           aria-labelledby="form-name"
           onSubmit={handleSubmit}
           autoComplete="off"
           labeltext="form"
         >
-          <Section>General infos</Section>
-          <Start handleOnChange={handleOnChange} />
-          <Section>Water</Section>
-          <Water handleOnChange={handleOnChange} />
-          <Section>Weather</Section>
-          <Weather handleOnChange={handleOnChange} />
-          <Section>Catch</Section>
-          <Catch handleOnChange={handleOnChange} />
-          <Section>Summary</Section>
-          <Summary handleOnChange={handleOnChange} />
-          <SubmitButton text="Submit" isAccent={true} id="form-name">
-            <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
-          </SubmitButton>
+          <Title>Your fishing</Title>
+          <Title>experience:</Title>
+          <Inputs>
+            <Section>General infos</Section>
+            <Start handleOnChange={handleOnChange} />
+            <Section>Water</Section>
+            <Water handleOnChange={handleOnChange} />
+            <Section>Weather</Section>
+            <Weather handleOnChange={handleOnChange} />
+            <Section>Catch</Section>
+            <Catch handleOnChange={handleOnChange} />
+            <Section>Summary</Section>
+            <Summary handleOnChange={handleOnChange} />
+            <SubmitButton text="Submit" isAccent={true} id="form-name">
+              <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
+            </SubmitButton>
+          </Inputs>
         </Form>
       </main>
     </>
@@ -65,8 +68,8 @@ export default function FormPage({ onCreateCard }) {
 const Title = styled.h1`
   color: #687a48;
   font-size: 32px;
-  width: 50%;
-  margin: 0 0 20px;
+  width: 100%;
+  margin: 0;
 `;
 
 const LinkStyled = styled(NavLink)`
@@ -76,15 +79,12 @@ const LinkStyled = styled(NavLink)`
   color: black;
 `;
 
-const Form = styled.form`
+const Inputs = styled.div`
   padding: 15px 10px 30px;
   background-color: #fffcf8;
   color: #a2c36c;
   border: 0.5px solid #a2c36c;
   border-radius: 20px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
-`;
-
-const Section = styled.span`
-  color: #687a48;
+  margin-top: 20px;
 `;
