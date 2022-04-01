@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export default function Summary({ handleOnChange }) {
   return (
     <>
+      <Title>Summary:</Title>
       <Fieldset>
         <Part>
           <label htmlFor="bites">Total bites</label>
@@ -29,13 +30,19 @@ export default function Summary({ handleOnChange }) {
   );
 }
 
+const Title = styled.div`
+  color: #687a48;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 20px;
+`;
+
 const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 10px 0 30px;
   border: none;
-  border-top: 1px solid #ff9c27;
   position: relative;
   font-size: 1rem;
 `;

@@ -4,6 +4,7 @@ import moment from 'moment';
 export default function Start({ handleOnChange }) {
   return (
     <>
+      <Title>General infos:</Title>
       <Fieldset>
         <Part>
           <label htmlFor="date">
@@ -60,13 +61,18 @@ export default function Start({ handleOnChange }) {
   );
 }
 
+const Title = styled.div`
+  color: #687a48;
+  font-weight: bold;
+  font-size: 1.3rem;
+`;
+
 const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 10px 0 30px;
   border: none;
-  border-top: 1px solid #ff9c27;
   position: relative;
   font-size: 1rem;
 `;

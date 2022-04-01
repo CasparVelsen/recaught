@@ -36,7 +36,7 @@ export default function FormPage({ onCreateCard }) {
         </LinkStyled>
       </header>
       <main>
-        <Form
+        <form
           aria-labelledby="form-name"
           onSubmit={handleSubmit}
           autoComplete="off"
@@ -45,21 +45,16 @@ export default function FormPage({ onCreateCard }) {
           <Title>Your fishing</Title>
           <Title>experience:</Title>
           <Inputs>
-            <Section>General infos</Section>
             <Start handleOnChange={handleOnChange} />
-            <Section>Water</Section>
             <Water handleOnChange={handleOnChange} />
-            <Section>Weather</Section>
             <Weather handleOnChange={handleOnChange} />
-            <Section>Catch</Section>
             <Catch handleOnChange={handleOnChange} />
-            <Section>Summary</Section>
             <Summary handleOnChange={handleOnChange} />
             <SubmitButton text="Submit" isAccent={true} id="form-name">
               <ScreenRaderOnly>Create your fishing experience</ScreenRaderOnly>
             </SubmitButton>
           </Inputs>
-        </Form>
+        </form>
       </main>
     </>
   );
