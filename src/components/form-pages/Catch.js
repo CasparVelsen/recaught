@@ -2,10 +2,9 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle } from 'react-icons/hi';
-import Catches from './Catches';
 import Button from '../Button';
 
-export default function Catch({ handleOnChange }) {
+export default function Catch({ handleAddCatch }) {
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
@@ -33,17 +32,11 @@ export default function Catch({ handleOnChange }) {
                   name="species"
                   type="text"
                   maxLength={100}
-                  onChange={handleOnChange}
                 />
               </Part>
               <Part>
-                <label htmlFor="timeto">Time</label>
-                <Input
-                  id="timeto"
-                  name="timeto"
-                  type="time"
-                  onChange={handleOnChange}
-                />
+                <label htmlFor="time">Time</label>
+                <Input id="time" name="time" type="time" />
               </Part>
               <Part>
                 <label htmlFor="length">Length</label>
@@ -52,7 +45,6 @@ export default function Catch({ handleOnChange }) {
                   name="length"
                   type="number"
                   min={0}
-                  onChange={handleOnChange}
                   placeholder="cm"
                 />
               </Part>
@@ -64,19 +56,12 @@ export default function Catch({ handleOnChange }) {
                   type="number"
                   step={0.01}
                   min={0}
-                  onChange={handleOnChange}
                   placeholder="kg"
                 />
               </Part>
               <Part>
                 <label htmlFor="bait">Bait</label>
-                <Input
-                  id="bait"
-                  name="bait"
-                  type="text"
-                  maxLength={100}
-                  onChange={handleOnChange}
-                />
+                <Input id="bait" name="bait" type="text" maxLength={100} />
               </Part>
               <Part>
                 <label htmlFor="location">Location</label>
@@ -85,24 +70,18 @@ export default function Catch({ handleOnChange }) {
                   name="location"
                   type="text"
                   maxLength={100}
-                  onChange={handleOnChange}
                 />
               </Part>
               <Notes>
                 <label htmlFor="notes">Notes</label>
-                <Input
-                  id="notes"
-                  name="notes"
-                  type="text"
-                  maxLength={300}
-                  onChange={handleOnChange}
-                />
+                <Input id="notes" name="notes" type="text" maxLength={300} />
               </Notes>
             </Fieldset>
-            <Button text={[<HiPlusCircle />, 'Add Catch']} isDark={true} />
-            <div>
-              <Catches handleOnChange={handleOnChange} />
-            </div>
+            <Button
+              text={[<HiPlusCircle />, 'Add Catch']}
+              isDark={true}
+              onClick={handleAddCatch}
+            />
           </div>
         )}
       </Section>

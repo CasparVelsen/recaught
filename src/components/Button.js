@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export default function Button({ text, isDark }) {
+export default function Button({ text, isDark, onClick }) {
   return (
     <>
-      <NormalButton isDark={isDark} type="button">
+      <NormalButton isDark={isDark} type="button" onClick={onClick}>
         {text}
       </NormalButton>
     </>
