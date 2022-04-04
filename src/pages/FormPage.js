@@ -13,7 +13,7 @@ import Summary from '../components/form-pages/Summary';
 
 export default function FormPage({ onCreateCard }) {
   const [formData, setFormData] = useState('');
-  const catches = [];
+  const [catches, setCatches] = useState([]);
 
   const handleOnChange = event => {
     const { name, value } = event.target;
@@ -36,7 +36,7 @@ export default function FormPage({ onCreateCard }) {
       location: document.getElementById('location').value,
       notes: document.getElementById('notes').value,
     };
-    catches.push(newCatch);
+    setCatches([...catches, newCatch]);
     console.log(catches);
   };
 
@@ -65,7 +65,7 @@ export default function FormPage({ onCreateCard }) {
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
             <Weather handleOnChange={handleOnChange} />
-            <Catch handleAddCatch={handleAddCatch} />
+            <Catch handleAddCatch={handleAddCatch} catches={catches} />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>
               <SubmitButton text="Submit" isAccent={true} id="form-name">

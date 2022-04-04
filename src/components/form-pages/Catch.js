@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
-import { HiPlusCircle } from 'react-icons/hi';
+import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
 
-export default function Catch({ handleAddCatch }) {
+export default function Catch({ handleAddCatch, catches }) {
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
   }
+
+  console.log(catches);
 
   return (
     <>
@@ -82,6 +84,17 @@ export default function Catch({ handleAddCatch }) {
               isDark={true}
               onClick={handleAddCatch}
             />
+            {console.log(catches)}
+            <CatchList>
+              <span>Your catches:</span>
+              {catches.map((data, index) => (
+                <Catches key={index}>
+                  <span>{index + 1}.</span>
+                  <span>{data.species}</span>
+                  <HiOutlineTrash size={25} color={'#a2c36c'} />
+                </Catches>
+              ))}
+            </CatchList>
           </div>
         )}
       </Section>
@@ -134,4 +147,33 @@ const Input = styled.input`
   padding: 2px 5px;
   border-radius: 5px;
   color: #aaa;
+`;
+
+const CatchList = styled.ul`
+  list-style: none;
+  padding: 0;
+  width: 100%;
+
+  span {
+    font-weight: bold;
+  }
+`;
+
+const Catches = styled.li`
+  border: 0.5px solid #ff9c27;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #fffcf8;
+
+  span {
+    font-size: 1rem;
+    color: #687a48;
+    margin: 0;
+    font-weight: bold;
+  }
 `;
