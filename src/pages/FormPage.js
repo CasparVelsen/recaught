@@ -11,9 +11,8 @@ import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 
-export default function FormPage({ onCreateCard }) {
+export default function FormPage({ onCreateCard, handleAddCatch, catches }) {
   const [formData, setFormData] = useState('');
-  const [catches, setCatches] = useState([]);
 
   const handleOnChange = event => {
     const { name, value } = event.target;
@@ -23,26 +22,9 @@ export default function FormPage({ onCreateCard }) {
     });
   };
 
-  const handleAddCatch = event => {
-    console.log(formData);
-    event.preventDefault();
-    let newCatch = {
-      id: Date.now(),
-      species: document.getElementById('species').value,
-      time: document.getElementById('time').value,
-      length: document.getElementById('length').value,
-      weight: document.getElementById('weight').value,
-      bait: document.getElementById('bait').value,
-      location: document.getElementById('location').value,
-      notes: document.getElementById('notes').value,
-    };
-    setCatches([...catches, newCatch]);
-    console.log(catches);
-  };
-
   function handleSubmit(event) {
     event.preventDefault();
-    onCreateCard(formData);
+    onCreateCard(formData, catches);
   }
 
   return (

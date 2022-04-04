@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Cards from '../components/Cards';
 
-export default function HomePage({ cards }) {
-  console.log(cards);
+export default function HomePage({ cards, catches }) {
+  console.log(catches);
   return (
     <>
       <header>
@@ -17,7 +17,7 @@ export default function HomePage({ cards }) {
         <CardsList>
           {cards.map((data, index) => (
             <li key={index}>
-              <Cards data={data} />
+              <Cards data={data} catches={catches} />
             </li>
           ))}
         </CardsList>

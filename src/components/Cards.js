@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
-export default function Cards({ data }) {
-  console.log(data);
+export default function Cards({ data, catches }) {
+  console.log(catches);
 
   const [showDetails, setshowDetails] = useState(true);
 
@@ -70,27 +70,32 @@ export default function Cards({ data }) {
               <Term>windspeed:</Term> {data.windspeed} km/h
             </Data>
           </Part>
-          <Part>
-            <PartTitle>Catch</PartTitle>
-            <Data>
-              <Term>species:</Term> {data.species}
-            </Data>
-            <Data>
-              <Term>bait:</Term> {data.bait}
-            </Data>
-            <Data>
-              <Term>length:</Term> {data.length} cm
-            </Data>
-            <Data>
-              <Term>weight:</Term> {data.weight} kg
-            </Data>
-            <Data>
-              <Term>location:</Term> {data.location}
-            </Data>
-            <Data>
-              <Term>notes:</Term> {data.notes}
-            </Data>
-          </Part>
+          {catches.map((item, index) => (
+            <Part key={index}>
+              <PartTitle>Catch {index + 1})</PartTitle>
+              <Data>
+                <Term>species:</Term> {item.species}
+              </Data>
+              <Data>
+                <Term>time:</Term> {item.time}
+              </Data>
+              <Data>
+                <Term>lenght:</Term> {item.lenght} cm
+              </Data>
+              <Data>
+                <Term>weight:</Term> {item.weight} kg
+              </Data>
+              <Data>
+                <Term>bait:</Term> {item.bait}
+              </Data>
+              <Data>
+                <Term>location:</Term> {item.location}
+              </Data>
+              <Data>
+                <Term>notes:</Term> {item.notes}
+              </Data>
+            </Part>
+          ))}
           <Part>
             <PartTitle>Summary</PartTitle>
             <Data>

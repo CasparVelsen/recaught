@@ -10,8 +10,6 @@ export default function Catch({ handleAddCatch, catches }) {
     setShowInputs(!showInputs);
   }
 
-  console.log(catches);
-
   return (
     <>
       <Section>
@@ -84,7 +82,6 @@ export default function Catch({ handleAddCatch, catches }) {
               isDark={true}
               onClick={handleAddCatch}
             />
-            {console.log(catches)}
             <CatchList>
               <span>Your catches:</span>
               {catches.map((data, index) => (
