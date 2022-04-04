@@ -13,12 +13,7 @@ export default function Cards({ data, catches }) {
 
   return (
     <Card>
-      <InSameRow>
-        <Title>{data.date}</Title>
-        <div>
-          <span>{data.time}</span>-<span>{data.timeto}</span>
-        </div>
-      </InSameRow>
+      <Title>{data.date}</Title>
       <span>{data.water}</span>
       <InSameRow>
         <span>{data.target}</span>
