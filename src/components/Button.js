@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export default function Button({ text, isDark, onClick }) {
+export default function Button({ text, isDark, onClick, icon }) {
   return (
     <>
       <NormalButton isDark={isDark} type="button" onClick={onClick}>
-        {text}
+        {icon} {text}
       </NormalButton>
     </>
   );

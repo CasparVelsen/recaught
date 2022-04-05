@@ -78,9 +78,10 @@ export default function Catch({ handleAddCatch, catches }) {
               </Notes>
             </Fieldset>
             <Button
-              text={[<HiPlusCircle />, 'Add Catch']}
+              text={'Add Catch'}
               isDark={true}
               onClick={handleAddCatch}
+              icon={<HiPlusCircle />}
             />
             <CatchList>
               <span>Your catches:</span>
