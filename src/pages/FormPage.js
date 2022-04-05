@@ -11,7 +11,7 @@ import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 
-export default function FormPage({ onCreateCard }) {
+export default function FormPage({ onCreateCard, handleAddCatch, catches }) {
   const [formData, setFormData] = useState('');
 
   const handleOnChange = event => {
@@ -24,7 +24,7 @@ export default function FormPage({ onCreateCard }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onCreateCard(formData);
+    onCreateCard(formData, catches);
   }
 
   return (
@@ -47,7 +47,7 @@ export default function FormPage({ onCreateCard }) {
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
             <Weather handleOnChange={handleOnChange} />
-            <Catch handleOnChange={handleOnChange} />
+            <Catch handleAddCatch={handleAddCatch} catches={catches} />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>
               <SubmitButton text="Submit" isAccent={true} id="form-name">

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Summary from './Summary';
 
 describe('Summary', () => {
-  it('renders 4 input fields', () => {
+  it('renders 2 input fields', () => {
     render(<Summary formData />);
 
     const inputBites = screen.getByLabelText(/Total bites/i);

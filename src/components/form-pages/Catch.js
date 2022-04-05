@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
+import Button from '../Button';
 
-export default function Catch({ handleOnChange }) {
+export default function Catch({ handleAddCatch, catches }) {
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
@@ -21,80 +23,78 @@ export default function Catch({ handleOnChange }) {
           )}
         </Title>
         {!showInputs && (
-          <Fieldset>
-            <Part>
-              <label htmlFor="species">Species</label>
-              <Input
-                id="species"
-                name="species"
-                type="text"
-                maxLength={100}
-                onChange={handleOnChange}
-              />
-            </Part>
-            <Part>
-              <label htmlFor="timeto">Time</label>
-              <Input
-                id="timeto"
-                name="timeto"
-                type="time"
-                onChange={handleOnChange}
-              />
-            </Part>
-            <Part>
-              <label htmlFor="length">Length</label>
-              <Input
-                id="length"
-                name="length"
-                type="number"
-                min={0}
-                onChange={handleOnChange}
-                placeholder="cm"
-              />
-            </Part>
-            <Part>
-              <label htmlFor="weight">Weight</label>
-              <Input
-                id="weight"
-                name="weight"
-                type="number"
-                step={0.01}
-                min={0}
-                onChange={handleOnChange}
-                placeholder="kg"
-              />
-            </Part>
-            <Part>
-              <label htmlFor="bait">Bait</label>
-              <Input
-                id="bait"
-                name="bait"
-                type="text"
-                maxLength={100}
-                onChange={handleOnChange}
-              />
-            </Part>
-            <Part>
-              <label htmlFor="location">Location</label>
-              <Input
-                id="location"
-                name="location"
-                type="text"
-                maxLength={100}
-                onChange={handleOnChange}
-              />
-            </Part>
-            <Notes>
-              <label htmlFor="notes">Notes</label>
-              <Input
-                id="notes"
-                name="notes"
-                type="text"
-                maxLength={300}
-                onChange={handleOnChange}
-              />
-            </Notes>
-          </Fieldset>
+          <div>
+            <Fieldset>
+              <Part>
+                <label htmlFor="species">Species</label>
+                <Input
+                  id="species"
+                  name="species"
+                  type="text"
+                  maxLength={100}
+                />
+              </Part>
+              <Part>
+                <label htmlFor="time">Time</label>
+                <Input id="time" name="time" type="time" />
+              </Part>
+              <Part>
+                <label htmlFor="length">Length</label>
+                <Input
+                  id="length"
+                  name="length"
+                  type="number"
+                  min={0}
+                  placeholder="cm"
+                />
+              </Part>
+              <Part>
+                <label htmlFor="weight">Weight</label>
+                <Input
+                  id="weight"
+                  name="weight"
+                  type="number"
+                  step={0.01}
+                  min={0}
+                  placeholder="kg"
+                />
+              </Part>
+              <Part>
+                <label htmlFor="bait">Bait</label>
+                <Input id="bait" name="bait" type="text" maxLength={100} />
+              </Part>
+              <Part>
+                <label htmlFor="location">Location</label>
+                <Input
+                  id="location"
+                  name="location"
+                  type="text"
+                  maxLength={100}
+                />
+              </Part>
+              <Notes>
+                <label htmlFor="notes">Notes</label>
+                <Input id="notes" name="notes" type="text" maxLength={300} />
+              </Notes>
+            </Fieldset>
+            <Button
+              text={'Add Catch'}
+              isDark={true}
+              onClick={handleAddCatch}
+              icon={<HiPlusCircle />}
+            />
+            <CatchList>
+              <span>Your catches:</span>
+              {catches.map((data, index) => (
+                <Catches key={index}>
+                  <span>{index + 1}.</span>
+                  <span>{data.species}</span>
+                  <span>{data.length} cm</span>
+                  <HiOutlineTrash size={25} color={'#a2c36c'} />
+                </Catches>
+              ))}
+            </CatchList>
+          </div>
         )}
       </Section>
     </>
@@ -146,4 +146,33 @@ const Input = styled.input`
   padding: 2px 5px;
   border-radius: 5px;
   color: #aaa;
+`;
+
+const CatchList = styled.ul`
+  list-style: none;
+  padding: 0;
+  width: 100%;
+
+  span {
+    font-weight: bold;
+  }
+`;
+
+const Catches = styled.li`
+  border: 0.5px solid #ff9c27;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #fffcf8;
+
+  span {
+    font-size: 1rem;
+    color: #687a48;
+    margin: 0;
+    font-weight: bold;
+  }
 `;
