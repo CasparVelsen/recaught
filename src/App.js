@@ -16,7 +16,7 @@ export default function App() {
     getCards();
 
     async function getCards() {
-      const response = await fetch('api/cards');
+      const response = await fetch('/api/cards');
       const data = await response.json();
       console.log(data);
     }
