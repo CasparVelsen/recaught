@@ -1,16 +1,12 @@
 import dbConnect from '../lib/dbConnect.mjs';
-
-const cards = [
-  { text: 'first card', water: 'Bille' },
-  { text: 'second card', water: 'Großensee' },
-  { text: 'third card', water: 'Lelang' },
-];
+import Card from '../models/Card.mjs';
 
 await dbConnect();
 console.log('Connected to DB');
 
 export default function handler(req, res) {
   if (req.method === 'GET') {
+    const cards = await Card.find();
     res.json(cards);
     return;
   }
