@@ -10,6 +10,12 @@ async function handler(req, res) {
     res.json(cards);
     return;
   }
+
+  if (req.method === 'POST') {
+    const result = await Card.create(req.body);
+    res.json(result);
+    return;
+  }
 }
 
 export default handler;

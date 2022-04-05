@@ -1,1 +1,14 @@
-GET http://localhost:3000/api/cards
+@baseUrl =  http://localhost:3000/api
+
+GET {{baseUrl}}/cards
+
+###
+
+POST {{baseUrl}}/cards
+Content-Type: application/json
+
+{
+    "water": "Lelang",
+    "date": "2021-07-23",
+    "target": "Hecht"
+}
