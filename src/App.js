@@ -4,13 +4,23 @@ import HomePage from './pages/HomePage';
 import FormPage from './pages/FormPage';
 import styled from 'styled-components';
 import useLocalStorage from './hooks/useLocalStorage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App() {
   const [cards, setCards] = useLocalStorage('cards', []);
   const [catches, setCatches] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getCards();
+
+    async function getCards() {
+      const response = await fetch('api/cards');
+      const data = await response.json();
+      console.log(data);
+    }
+  });
 
   return (
     <>
@@ -22,7 +32,11 @@ export default function App() {
         <Route
           path="/formpage"
           element={
-            <FormPage onCreateCard={createCard} handleAddCatch={createCatch} catches={catches} />
+            <FormPage
+              onCreateCard={createCard}
+              handleAddCatch={createCatch}
+              catches={catches}
+            />
           }
         />
       </Routes>
