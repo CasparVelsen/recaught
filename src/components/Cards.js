@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 export default function Cards({ data, catches }) {
-  console.log(catches);
 
   const [showDetails, setshowDetails] = useState(true);
 
