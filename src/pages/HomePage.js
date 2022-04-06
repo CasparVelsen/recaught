@@ -14,11 +14,13 @@ export default function HomePage({ cards, catches }) {
       <main>
         <Title>Tight lines, Caspar</Title>
         <CardsList>
-          {cards.map((data, index) => (
-            <li key={index}>
-              <Cards data={data} catches={catches} />
-            </li>
-          ))}
+          {cards
+            ? cards.map((data, index) => (
+                <li key={index}>
+                  <Cards data={data} catches={catches} />
+                </li>
+              ))
+            : '...loading cards...'}
         </CardsList>
       </main>
     </>

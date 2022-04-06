@@ -1,0 +1,12 @@
+@baseUrl =  http://localhost:3000/api
+
+GET {{baseUrl}}/catches
+
+###
+
+POST {{baseUrl}}/catches
+Content-Type: application/json
+
+{
+    "species": "Barsch"
+}
