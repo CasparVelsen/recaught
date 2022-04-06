@@ -3,24 +3,24 @@ import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
 import FormPage from './pages/FormPage';
 import styled from 'styled-components';
-import useLocalStorage from './hooks/useLocalStorage';
 import { useEffect, useState } from 'react';
 
 export default function App() {
-  const [cards, setCards] = useLocalStorage('cards', []);
+  const [cards, setCards] = useState([]);
   const [catches, setCatches] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getCards();
-
-    async function getCards() {
-      const response = await fetch('/api/cards');
-      const data = await response.json();
-      console.log(data);
-    }
-  });
+    fetch('/api/cards').then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        console.error(data);
+        return [];
+      }
+      setCards([...data]);
+    });
+  }, []);
 
   return (
     <>
@@ -46,9 +46,17 @@ export default function App() {
     </>
   );
 
-  function createCard(formData) {
+  async function createCard(formData) {
     setCards([...cards, formData]);
     navigate('/');
+
+    await fetch('/api/cards', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
   }
 
   function createCatch(event) {
