@@ -59,7 +59,7 @@ export default function App() {
     });
   }
 
-  function createCatch(event) {
+  async function createCatch(event) {
     event.preventDefault();
     let newCatch = {
       id: Date.now(),
@@ -72,6 +72,14 @@ export default function App() {
       notes: document.getElementById('notes').value,
     };
     setCatches([...catches, newCatch]);
+
+    await fetch('/api/catches', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newCatch),
+    });
   }
 }
 
