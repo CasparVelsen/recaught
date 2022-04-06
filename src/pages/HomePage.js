@@ -15,8 +15,8 @@ export default function HomePage({ cards, catches }) {
         <Title>Tight lines, Caspar</Title>
         <CardsList>
           {cards
-            ? cards.map((data, index) => (
-                <li key={index}>
+            ? cards.map((data, _id) => (
+                <li key={_id}>
                   <Cards data={data} catches={catches} />
                 </li>
               ))
