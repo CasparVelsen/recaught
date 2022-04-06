@@ -1,19 +1,18 @@
 import dbConnect from '../../lib/dbConnect.js';
 import Card from '../../models/Card.js';
 
-async function handler(req, res) {
+async function handler(request, response) {
   await dbConnect();
   console.log('Connected to DB');
 
-  if (req.method === 'GET') {
+  if (request.method === 'GET') {
     const cards = await Card.find();
-    res.json(cards);
-    return;
+    return response.status(200).json(cards);
   }
 
-  if (req.method === 'POST') {
-    const result = await Card.create(req.body);
-    res.json(result);
+  if (request.method === 'POST') {
+    const result = await Card.create(request.body);
+    response.json(result);
     return;
   }
 }
