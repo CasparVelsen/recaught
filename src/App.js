@@ -20,6 +20,14 @@ export default function App() {
       }
       setCards([...data]);
     });
+    fetch('/api/catches').then(async res => {
+      const item = await res.json();
+      if (!res.ok) {
+        console.error(item);
+        return [];
+      }
+      setCatches([...item]);
+    });
   }, []);
 
   return (
@@ -72,6 +80,7 @@ export default function App() {
       notes: document.getElementById('notes').value,
     };
     setCatches([...catches, newCatch]);
+    console.log(catches);
 
     await fetch('/api/catches', {
       method: 'POST',
