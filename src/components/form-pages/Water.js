@@ -116,6 +116,8 @@ const Input = styled.input`
   padding: 2px 5px;
   border-radius: 5px;
   color: #aaa;
+  background-color: white;
+  height: 25px;
 `;
 
 const Select = styled.select`
