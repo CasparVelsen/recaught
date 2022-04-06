@@ -34,10 +34,10 @@ export default function Catch({ handleAddCatch, catches }) {
                   maxLength={100}
                 />
               </Part>
-              <Time>
+              <Part>
                 <label htmlFor="time">Time</label>
                 <Input id="time" name="time" type="time" />
-              </Time>
+              </Part>
               <Part>
                 <label htmlFor="length">Length</label>
                 <Input
@@ -133,11 +133,6 @@ const Fieldset = styled.fieldset`
 const Part = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const Time = styled.div`
-  grid-column-start: 2;
-  grid-column-end: 3;
 `;
 
 const Notes = styled.div`

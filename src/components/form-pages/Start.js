@@ -7,7 +7,7 @@ export default function Start({ handleOnChange }) {
     <>
       <Title>General infos:</Title>
       <Fieldset>
-        <Date>
+        <Part>
           <label htmlFor="date">
             Date <Hint>(no future dates)</Hint>
           </label>
@@ -19,7 +19,7 @@ export default function Start({ handleOnChange }) {
             onChange={handleOnChange}
             required
           />
-        </Date>
+        </Part>
         <Part>
           <label htmlFor="water">
             water<ScreenRaderOnly>Waters</ScreenRaderOnly>
@@ -69,11 +69,6 @@ const Fieldset = styled.fieldset`
 const Part = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const Date = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 2;
 `;
 
 const Species = styled.div`
