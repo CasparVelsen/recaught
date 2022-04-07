@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
-export default function Cards({ data, catches }) {
-  console.log(data);
-  console.log(catches);
-
+export default function Cards({ data }) {
   const [showDetails, setshowDetails] = useState(true);
 
   function toggleShowDetails() {

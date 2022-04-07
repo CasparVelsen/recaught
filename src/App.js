@@ -21,17 +21,10 @@ export default function App() {
     });
   }, []);
 
-  console.log(cards);
-
-  const catches = cards.map(card => card.catches);
-
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage cards={cards} catches={catches} />}
-        />
+        <Route path="/" element={<HomePage cards={cards} />} />
         <Route
           path="/formpage"
           element={<FormPage onCreateCard={createCard} />}
@@ -44,7 +37,6 @@ export default function App() {
   );
 
   async function createCard(formData) {
-    console.log(formData);
     setCards([...cards, formData]);
     navigate('/');
 
