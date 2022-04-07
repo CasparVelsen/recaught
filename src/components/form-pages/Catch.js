@@ -136,7 +136,7 @@ export default function Catch({ handleAddCatch, catches }) {
             />
             <CatchList>
               <span>Your catches:</span>
-              {catches &&
+              {catches ? (
                 catches.map((data, index) => (
                   <Catches key={index}>
                     <span>{index + 1}.</span>
@@ -144,7 +144,10 @@ export default function Catch({ handleAddCatch, catches }) {
                     <span>{data.length} cm</span>
                     <HiOutlineTrash size={25} color={'#a2c36c'} />
                   </Catches>
-                ))}
+                ))
+              ) : (
+                <p>no catches yet, add some</p>
+              )}
             </CatchList>
           </div>
         )}
@@ -209,6 +212,7 @@ const CatchList = styled.ul`
 
   span {
     font-weight: bold;
+    color: #ff9c27;
   }
 `;
 
