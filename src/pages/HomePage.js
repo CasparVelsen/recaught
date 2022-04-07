@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Cards from '../components/Cards';
 
 export default function HomePage({ cards, catches }) {
+  console.log(catches);
   return (
     <>
       <header>

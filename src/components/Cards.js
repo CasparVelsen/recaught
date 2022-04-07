@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 export default function Cards({ data, catches }) {
+  console.log(data);
+  console.log(catches);
 
   const [showDetails, setshowDetails] = useState(true);
 
@@ -64,7 +66,7 @@ export default function Cards({ data, catches }) {
               <Term>windspeed:</Term> {data.windspeed} km/h
             </Data>
           </Part>
-          {catches.map((item, index) => (
+          {data.catches.map((item, index) => (
             <Part key={index}>
               <PartTitle>Catch {index + 1})</PartTitle>
               <Data>
@@ -74,7 +76,7 @@ export default function Cards({ data, catches }) {
                 <Term>time:</Term> {item.time}
               </Data>
               <Data>
-                <Term>lenght:</Term> {item.lenght} cm
+                <Term>length:</Term> {item.length} cm
               </Data>
               <Data>
                 <Term>weight:</Term> {item.weight} kg

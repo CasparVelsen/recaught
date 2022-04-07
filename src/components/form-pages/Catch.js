@@ -4,11 +4,31 @@ import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
 
+const initialValues = {
+  species: '',
+  time: '',
+  length: '',
+  weight: '',
+  bait: '',
+  location: '',
+  notes: '',
+};
+
 export default function Catch({ handleAddCatch, catches }) {
   const [showInputs, setShowInputs] = useState(true);
+  const [values, setValues] = useState(initialValues);
+
   function toggleShowInputs() {
     setShowInputs(!showInputs);
   }
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -28,6 +48,8 @@ export default function Catch({ handleAddCatch, catches }) {
               <Part>
                 <label htmlFor="species">Species</label>
                 <Input
+                  onChange={handleChange}
+                  value={values.species}
                   id="species"
                   name="species"
                   type="text"
@@ -36,11 +58,19 @@ export default function Catch({ handleAddCatch, catches }) {
               </Part>
               <Part>
                 <label htmlFor="time">Time</label>
-                <Input id="time" name="time" type="time" />
+                <Input
+                  onChange={handleChange}
+                  value={values.time}
+                  id="time"
+                  name="time"
+                  type="time"
+                />
               </Part>
               <Part>
                 <label htmlFor="length">Length</label>
                 <Input
+                  onChange={handleChange}
+                  value={values.length}
                   id="length"
                   name="length"
                   type="number"
@@ -51,6 +81,8 @@ export default function Catch({ handleAddCatch, catches }) {
               <Part>
                 <label htmlFor="weight">Weight</label>
                 <Input
+                  onChange={handleChange}
+                  value={values.weight}
                   id="weight"
                   name="weight"
                   type="number"
@@ -61,11 +93,20 @@ export default function Catch({ handleAddCatch, catches }) {
               </Part>
               <Part>
                 <label htmlFor="bait">Bait</label>
-                <Input id="bait" name="bait" type="text" maxLength={100} />
+                <Input
+                  onChange={handleChange}
+                  value={values.bait}
+                  id="bait"
+                  name="bait"
+                  type="text"
+                  maxLength={100}
+                />
               </Part>
               <Part>
                 <label htmlFor="location">Location</label>
                 <Input
+                  onChange={handleChange}
+                  value={values.location}
                   id="location"
                   name="location"
                   type="text"
@@ -74,25 +115,36 @@ export default function Catch({ handleAddCatch, catches }) {
               </Part>
               <Notes>
                 <label htmlFor="notes">Notes</label>
-                <Input id="notes" name="notes" type="text" maxLength={300} />
+                <Input
+                  onChange={handleChange}
+                  value={values.notes}
+                  id="notes"
+                  name="notes"
+                  type="text"
+                  maxLength={300}
+                />
               </Notes>
             </Fieldset>
             <Button
               text={'Add Catch'}
               isDark={true}
-              onClick={handleAddCatch}
+              onClick={() => {
+                handleAddCatch(values);
+                setValues(initialValues);
+              }}
               icon={<HiPlusCircle />}
             />
             <CatchList>
               <span>Your catches:</span>
-              {catches.map((data, index) => (
-                <Catches key={index}>
-                  <span>{index + 1}.</span>
-                  <span>{data.species}</span>
-                  <span>{data.length} cm</span>
-                  <HiOutlineTrash size={25} color={'#a2c36c'} />
-                </Catches>
-              ))}
+              {catches &&
+                catches.map((data, index) => (
+                  <Catches key={index}>
+                    <span>{index + 1}.</span>
+                    <span>{data.species}</span>
+                    <span>{data.length} cm</span>
+                    <HiOutlineTrash size={25} color={'#a2c36c'} />
+                  </Catches>
+                ))}
             </CatchList>
           </div>
         )}

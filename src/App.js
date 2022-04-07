@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 
 export default function App() {
   const [cards, setCards] = useState([]);
-  const [catches, setCatches] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,6 +21,10 @@ export default function App() {
     });
   }, []);
 
+  console.log(cards);
+
+  const catches = cards.map(card => card.catches);
+
   return (
     <>
       <Routes>
@@ -31,13 +34,7 @@ export default function App() {
         />
         <Route
           path="/formpage"
-          element={
-            <FormPage
-              onCreateCard={createCard}
-              handleAddCatch={createCatch}
-              catches={catches}
-            />
-          }
+          element={<FormPage onCreateCard={createCard} />}
         />
       </Routes>
       <Footer>
@@ -47,6 +44,7 @@ export default function App() {
   );
 
   async function createCard(formData) {
+    console.log(formData);
     setCards([...cards, formData]);
     navigate('/');
 
@@ -56,29 +54,6 @@ export default function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
-    });
-  }
-
-  async function createCatch(event) {
-    event.preventDefault();
-    let newCatch = {
-      id: Date.now(),
-      species: document.getElementById('species').value,
-      time: document.getElementById('time').value,
-      length: document.getElementById('length').value,
-      weight: document.getElementById('weight').value,
-      bait: document.getElementById('bait').value,
-      location: document.getElementById('location').value,
-      notes: document.getElementById('notes').value,
-    };
-    setCatches([...catches, newCatch]);
-
-    await fetch('/api/catches', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newCatch),
     });
   }
 }
