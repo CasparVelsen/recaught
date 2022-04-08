@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 
 export default function App() {
   const [cards, setCards] = useState([]);
-  console.log(cards);
 
   const navigate = useNavigate();
 
@@ -54,12 +53,15 @@ export default function App() {
   }
 
   async function handleDeleteCard(_id) {
+    console.log(_id);
     const filteredCards = cards.filter(card => card._id !== _id);
-    setCards(filteredCards, false);
+    setCards(filteredCards);
+
+    console.log(JSON.stringify({ _id }));
 
     await fetch('/api/cards', {
       method: 'DELETE',
-      header: {
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ _id }),

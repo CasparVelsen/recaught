@@ -4,8 +4,6 @@ import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import Button from './Button';
 
 export default function Cards({ data, onDelete }) {
-  console.log(data._id);
-
   const [showDetails, setshowDetails] = useState(true);
 
   function toggleShowDetails() {
@@ -103,11 +101,7 @@ export default function Cards({ data, onDelete }) {
               <Term>lost fish:</Term> {data.lost}
             </Data>
           </Part>
-          <Button
-            text="Delete card"
-            isAccent={true}
-            onClick={() => onDelete(data._id)}
-          />
+          <Button text="Delete card" isAccent={true} onClick={onDelete} />
         </Details>
       )}
     </Card>

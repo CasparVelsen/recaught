@@ -19,5 +19,5 @@ DELETE {{baseUrl}}/cards
 Content-Type: application/json
 
 {
-    "_id": "624ee8bbd578168d31880325"
+    "_id": "624fff57b5d3965223468b12"
 }
