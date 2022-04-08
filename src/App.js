@@ -53,11 +53,8 @@ export default function App() {
   }
 
   async function handleDeleteCard(_id) {
-    console.log(_id);
     const filteredCards = cards.filter(card => card._id !== _id);
     setCards(filteredCards);
-
-    console.log(JSON.stringify({ _id }));
 
     await fetch('/api/cards', {
       method: 'DELETE',

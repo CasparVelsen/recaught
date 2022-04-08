@@ -29,6 +29,7 @@ const NormalButton = styled.button`
   ${({ disabled }) =>
     disabled &&
     css`
-      display: none;
+      background-color: #ddd;
+      color: #eee;
     `}
 `;
