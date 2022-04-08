@@ -20,8 +20,4 @@ const NormalButton = styled.button`
   border-radius: 5px;
   padding: 5px 10px;
   margin-bottom: 10px;
-
-  :hover {
-    transform: scale(1.1);
-  }
 `;
