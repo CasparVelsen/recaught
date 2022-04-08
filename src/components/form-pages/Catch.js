@@ -33,6 +33,8 @@ export default function Catch({ handleAddCatch, deleteCatch, catches }) {
     });
   };
 
+  const disabled = values === initialValues;
+
   return (
     <>
       <Section>
@@ -140,6 +142,7 @@ export default function Catch({ handleAddCatch, deleteCatch, catches }) {
                 handleAddCatch(values);
                 setValues(initialValues);
               }}
+              disabled={disabled}
               icon={<HiPlusCircle />}
             />
             <CatchList>

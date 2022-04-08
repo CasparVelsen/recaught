@@ -1,9 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export default function Button({ text, isAccent, onClick, icon }) {
+export default function Button({ text, isAccent, disabled, onClick, icon }) {
   return (
     <>
-      <NormalButton isAccent={isAccent} type="button" onClick={onClick}>
+      <NormalButton
+        isAccent={isAccent}
+        disabled={disabled}
+        type="button"
+        onClick={onClick}
+      >
         {icon} {text}
       </NormalButton>
     </>
@@ -20,4 +25,10 @@ const NormalButton = styled.button`
   border-radius: 5px;
   padding: 5px 10px;
   margin-bottom: 10px;
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      display: none;
+    `}
 `;
