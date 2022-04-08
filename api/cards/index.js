@@ -17,7 +17,7 @@ export default async function handler(request, response) {
   }
 
   if (request.method === 'DELETE') {
-    const { _id } = req.body;
+    const { _id } = request.body;
     const result = await Card.findByIdAndDelete(_id);
     response.json(result);
   }

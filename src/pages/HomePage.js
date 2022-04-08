@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Cards from '../components/Cards';
 
-export default function HomePage({ cards }) {
+export default function HomePage({ cards, handleDelete }) {
   return (
     <>
       <header>
@@ -17,7 +17,7 @@ export default function HomePage({ cards }) {
           {cards
             ? cards.map((data, _id) => (
                 <li key={_id}>
-                  <Cards data={data} />
+                  <Cards data={data} onDelete={handleDelete} />
                 </li>
               ))
             : '...loading cards...'}
