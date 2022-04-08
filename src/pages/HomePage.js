@@ -15,9 +15,8 @@ export default function HomePage({ cards, handleDelete }) {
         <Title>Tight lines, Caspar</Title>
         <CardsList>
           {cards
-            ? cards.map((data, tempId, _id) => (
+            ? cards.map((data, tempId) => (
                 <li key={tempId}>
-                  {console.log(_id)}
                   <Cards data={data} onDelete={() => handleDelete(data._id)} />
                 </li>
               ))
