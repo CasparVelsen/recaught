@@ -8,7 +8,8 @@ POST {{baseUrl}}/catches
 Content-Type: application/json
 
 {
-    "species": "Barsch"
+    "species": "Barsch",
+    "_id": "0.4039550408208712"
 }
 
 ### DELETE
@@ -17,5 +18,5 @@ DELETE {{baseUrl}}/catches
 Content-Type: application/json
 
 {
-    "_id": "624fff57b5d3965223468b12"
+    "_id": "0.4039550408208712"
 }
