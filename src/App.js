@@ -11,16 +11,14 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/cards')
-      .then(async res => {
-        const data = await res.json();
-        if (!res.ok) {
-          console.error(data);
-          return [];
-        }
-        return data;
-      })
-      .then(setCards);
+    fetch('/api/cards').then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        console.error(data);
+        return [];
+      }
+      setCards([...data]);
+    });
   }, []);
 
   return (
