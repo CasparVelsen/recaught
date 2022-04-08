@@ -15,6 +15,12 @@ async function handler(request, response) {
     response.json(result);
     return;
   }
+
+  if (request.method === 'DELETE') {
+    const { _id } = request.body;
+    const result = await Catch.findByIdAndDelete(_id);
+    response.json(result);
+  }
 }
 
 export default handler;

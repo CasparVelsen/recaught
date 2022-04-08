@@ -10,3 +10,12 @@ Content-Type: application/json
 {
     "species": "Barsch"
 }
+
+### DELETE
+
+DELETE {{baseUrl}}/catches
+Content-Type: application/json
+
+{
+    "_id": "624fff57b5d3965223468b12"
+}

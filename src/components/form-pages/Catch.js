@@ -153,7 +153,7 @@ export default function Catch({ handleAddCatch, deleteCatch, catches }) {
                     <HiOutlineTrash
                       size={25}
                       color={'#a2c36c'}
-                      onClick={() => deleteCatch(data._id)}
+                      onClick={() => deleteCatch(data._id, values)}
                     />
                   </Catches>
                 ))

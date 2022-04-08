@@ -29,11 +29,19 @@ export default function FormPage({ onCreateCard }) {
     });
   }
 
-  function handleDeleteCatch(_id) {
+  async function handleDeleteCatch(_id) {
     const filteredCatches = formData.catches.filter(fish => fish._id !== _id);
     setFormData({
       ...formData,
       catches: filteredCatches,
+    });
+
+    await fetch('api/catches', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id }),
     });
   }
 
