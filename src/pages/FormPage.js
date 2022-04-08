@@ -65,7 +65,7 @@ export default function FormPage({ onCreateCard }) {
             <Catch handleAddCatch={handleAddCatch} catches={formData.catches} />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>
-              <SubmitButton text="Submit" isAccent={true} id="form-name">
+              <SubmitButton text="Save" isAccent={true} id="form-name">
                 <ScreenRaderOnly>
                   Create your fishing experience
                 </ScreenRaderOnly>

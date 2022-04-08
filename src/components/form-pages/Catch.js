@@ -212,7 +212,7 @@ const CatchList = styled.ul`
 
   span {
     font-weight: bold;
-    color: #ff9c27;
+    color: #687a48;
   }
 `;
 
