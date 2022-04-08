@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
-export default function Cards({ data, catches }) {
-
+export default function Cards({ data }) {
   const [showDetails, setshowDetails] = useState(true);
 
   function toggleShowDetails() {
@@ -12,17 +11,19 @@ export default function Cards({ data, catches }) {
 
   return (
     <Card>
-      <Title>{data.date}</Title>
-      <span>{data.water}</span>
-      <InSameRow>
-        <span>{data.target}</span>
-        {showDetails && (
-          <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
-        )}
-        {!showDetails && (
-          <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
-        )}
-      </InSameRow>
+      <div onClick={toggleShowDetails}>
+        <Title>{data.date}</Title>
+        <span>{data.water}</span>
+        <InSameRow>
+          <span>{data.target}</span>
+          {showDetails && (
+            <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
+          )}
+          {!showDetails && (
+            <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
+          )}
+        </InSameRow>
+      </div>
       {!showDetails && (
         <Details>
           <Part>
@@ -64,7 +65,7 @@ export default function Cards({ data, catches }) {
               <Term>windspeed:</Term> {data.windspeed} km/h
             </Data>
           </Part>
-          {catches.map((item, index) => (
+          {data.catches.map((item, index) => (
             <Part key={index}>
               <PartTitle>Catch {index + 1})</PartTitle>
               <Data>
@@ -74,7 +75,7 @@ export default function Cards({ data, catches }) {
                 <Term>time:</Term> {item.time}
               </Data>
               <Data>
-                <Term>lenght:</Term> {item.lenght} cm
+                <Term>length:</Term> {item.length} cm
               </Data>
               <Data>
                 <Term>weight:</Term> {item.weight} kg

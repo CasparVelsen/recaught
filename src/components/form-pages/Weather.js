@@ -11,15 +11,20 @@ export default function Weather({ handleOnChange }) {
   return (
     <>
       <Section>
-        <Title>
-          Add weather data:
-          {showInputs && (
-            <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
-          )}
-          {!showInputs && (
-            <AiOutlineMinusCircle onClick={toggleShowInputs} color="#FF9C27" />
-          )}
-        </Title>
+        <div onClick={toggleShowInputs}>
+          <Title>
+            Add weather data:
+            {showInputs && (
+              <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
+            )}
+            {!showInputs && (
+              <AiOutlineMinusCircle
+                onClick={toggleShowInputs}
+                color="#FF9C27"
+              />
+            )}
+          </Title>
+        </div>
         {!showInputs && (
           <Fieldset>
             <Part>

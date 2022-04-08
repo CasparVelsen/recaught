@@ -11,8 +11,23 @@ import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 
-export default function FormPage({ onCreateCard, handleAddCatch, catches }) {
-  const [formData, setFormData] = useState('');
+export default function FormPage({ onCreateCard }) {
+  const [formData, setFormData] = useState({});
+
+  async function handleAddCatch(catchValue) {
+    const previousCatches = formData.catches ?? [];
+    setFormData({
+      ...formData,
+      catches: [...previousCatches, catchValue],
+    });
+    await fetch('/api/catches', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(catchValue),
+    });
+  }
 
   const handleOnChange = event => {
     const { name, value } = event.target;
@@ -24,7 +39,7 @@ export default function FormPage({ onCreateCard, handleAddCatch, catches }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onCreateCard(formData, catches);
+    onCreateCard(formData);
   }
 
   return (
@@ -47,10 +62,10 @@ export default function FormPage({ onCreateCard, handleAddCatch, catches }) {
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
             <Weather handleOnChange={handleOnChange} />
-            <Catch handleAddCatch={handleAddCatch} catches={catches} />
+            <Catch handleAddCatch={handleAddCatch} catches={formData.catches} />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>
-              <SubmitButton text="Submit" isAccent={true} id="form-name">
+              <SubmitButton text="Save" isAccent={true} id="form-name">
                 <ScreenRaderOnly>
                   Create your fishing experience
                 </ScreenRaderOnly>
