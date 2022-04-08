@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
   bait: { type: String },
   location: { type: String },
   notes: { type: String },
+  _id: { type: Number },
 });
 
 export default mongoose.model('Catch', schema);
