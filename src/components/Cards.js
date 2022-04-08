@@ -11,17 +11,19 @@ export default function Cards({ data }) {
 
   return (
     <Card>
-      <Title>{data.date}</Title>
-      <span>{data.water}</span>
-      <InSameRow>
-        <span>{data.target}</span>
-        {showDetails && (
-          <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
-        )}
-        {!showDetails && (
-          <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
-        )}
-      </InSameRow>
+      <div onClick={toggleShowDetails}>
+        <Title>{data.date}</Title>
+        <span>{data.water}</span>
+        <InSameRow>
+          <span>{data.target}</span>
+          {showDetails && (
+            <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
+          )}
+          {!showDetails && (
+            <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
+          )}
+        </InSameRow>
+      </div>
       {!showDetails && (
         <Details>
           <Part>

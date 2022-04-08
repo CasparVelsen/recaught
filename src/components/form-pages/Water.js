@@ -11,15 +11,20 @@ export default function Water({ handleOnChange }) {
   return (
     <>
       <Section>
-        <Title>
-          Add water data:
-          {showInputs && (
-            <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
-          )}
-          {!showInputs && (
-            <AiOutlineMinusCircle onClick={toggleShowInputs} color="#FF9C27" />
-          )}
-        </Title>
+        <div onClick={toggleShowInputs}>
+          <Title>
+            Add water data:
+            {showInputs && (
+              <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
+            )}
+            {!showInputs && (
+              <AiOutlineMinusCircle
+                onClick={toggleShowInputs}
+                color="#FF9C27"
+              />
+            )}
+          </Title>
+        </div>
         {!showInputs && (
           <Fieldset>
             <Part>

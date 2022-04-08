@@ -33,15 +33,20 @@ export default function Catch({ handleAddCatch, catches }) {
   return (
     <>
       <Section>
-        <Title>
-          Add your catches:
-          {showInputs && (
-            <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
-          )}
-          {!showInputs && (
-            <AiOutlineMinusCircle onClick={toggleShowInputs} color="#FF9C27" />
-          )}
-        </Title>
+        <div onClick={toggleShowInputs}>
+          <Title>
+            Add your catches:
+            {showInputs && (
+              <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
+            )}
+            {!showInputs && (
+              <AiOutlineMinusCircle
+                onClick={toggleShowInputs}
+                color="#FF9C27"
+              />
+            )}
+          </Title>
+        </div>
         {!showInputs && (
           <div>
             <Fieldset>
