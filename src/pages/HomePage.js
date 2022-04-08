@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Cards from '../components/Cards';
 
-export default function HomePage({ cards, catches }) {
+export default function HomePage({ cards, handleDelete }) {
   return (
     <>
       <header>
@@ -15,9 +15,9 @@ export default function HomePage({ cards, catches }) {
         <Title>Tight lines, Caspar</Title>
         <CardsList>
           {cards
-            ? cards.map((data, _id) => (
-                <li key={_id}>
-                  <Cards data={data} catches={catches} />
+            ? cards.map((data, tempId) => (
+                <li key={tempId}>
+                  <Cards data={data} onDelete={() => handleDelete(data._id)} />
                 </li>
               ))
             : '...loading cards...'}

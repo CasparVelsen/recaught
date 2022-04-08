@@ -12,6 +12,7 @@ const schema = new mongoose.Schema(
           bait: { type: String },
           location: { type: String },
           notes: { type: String },
+          _id: { type: Number },
         },
       ],
 

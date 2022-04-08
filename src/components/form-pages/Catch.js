@@ -12,9 +12,10 @@ const initialValues = {
   bait: '',
   location: '',
   notes: '',
+  _id: '',
 };
 
-export default function Catch({ handleAddCatch, catches }) {
+export default function Catch({ handleAddCatch, deleteCatch, catches }) {
   const [showInputs, setShowInputs] = useState(true);
   const [values, setValues] = useState(initialValues);
 
@@ -24,11 +25,15 @@ export default function Catch({ handleAddCatch, catches }) {
 
   const handleChange = event => {
     const { name, value } = event.target;
+    const _id = Math.random();
     setValues({
       ...values,
       [name]: value,
+      _id: _id,
     });
   };
+
+  const disabled = values === initialValues;
 
   return (
     <>
@@ -132,11 +137,12 @@ export default function Catch({ handleAddCatch, catches }) {
             </Fieldset>
             <Button
               text={'Add Catch'}
-              isDark={true}
+              isAccent={false}
               onClick={() => {
                 handleAddCatch(values);
                 setValues(initialValues);
               }}
+              disabled={disabled}
               icon={<HiPlusCircle />}
             />
             <CatchList>
@@ -147,7 +153,11 @@ export default function Catch({ handleAddCatch, catches }) {
                     <span>{index + 1}.</span>
                     <span>{data.species}</span>
                     <span>{data.length} cm</span>
-                    <HiOutlineTrash size={25} color={'#a2c36c'} />
+                    <HiOutlineTrash
+                      size={25}
+                      color={'#a2c36c'}
+                      onClick={() => deleteCatch(data._id, values)}
+                    />
                   </Catches>
                 ))
               ) : (

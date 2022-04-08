@@ -1,9 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export default function Button({ text, isDark, onClick, icon }) {
+export default function Button({ text, isAccent, disabled, onClick, icon }) {
   return (
     <>
-      <NormalButton isDark={isDark} type="button" onClick={onClick}>
+      <NormalButton
+        isAccent={isAccent}
+        disabled={disabled}
+        type="button"
+        onClick={onClick}
+      >
         {icon} {text}
       </NormalButton>
     </>
@@ -13,15 +18,18 @@ export default function Button({ text, isDark, onClick, icon }) {
 const NormalButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 5px;
-  background-color: ${props => (props.isDark ? '#687a48' : '#A2C36C')};
+  justify-content: center;
+  background-color: ${props => (props.isAccent ? '#ff9c27' : '#687a48')};
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
-  :hover {
-    transform: scale(1.1);
-  }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: #ddd;
+      color: #eee;
+    `}
 `;

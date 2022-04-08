@@ -29,6 +29,22 @@ export default function FormPage({ onCreateCard }) {
     });
   }
 
+  async function handleDeleteCatch(_id) {
+    const filteredCatches = formData.catches.filter(fish => fish._id !== _id);
+    setFormData({
+      ...formData,
+      catches: filteredCatches,
+    });
+
+    await fetch('api/catches', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id }),
+    });
+  }
+
   const handleOnChange = event => {
     const { name, value } = event.target;
     setFormData({
@@ -62,7 +78,11 @@ export default function FormPage({ onCreateCard }) {
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
             <Weather handleOnChange={handleOnChange} />
-            <Catch handleAddCatch={handleAddCatch} catches={formData.catches} />
+            <Catch
+              handleAddCatch={handleAddCatch}
+              deleteCatch={handleDeleteCatch}
+              catches={formData.catches}
+            />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>
               <SubmitButton text="Save" isAccent={true} id="form-name">

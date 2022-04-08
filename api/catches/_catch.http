@@ -8,5 +8,15 @@ POST {{baseUrl}}/catches
 Content-Type: application/json
 
 {
-    "species": "Barsch"
+    "species": "Barsch",
+    "_id": "0.4039550408208712"
+}
+
+### DELETE
+
+DELETE {{baseUrl}}/catches
+Content-Type: application/json
+
+{
+    "_id": "0.4039550408208712"
 }

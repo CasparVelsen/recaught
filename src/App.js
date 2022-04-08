@@ -24,7 +24,10 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage cards={cards} />} />
+        <Route
+          path="/"
+          element={<HomePage cards={cards} handleDelete={handleDeleteCard} />}
+        />
         <Route
           path="/formpage"
           element={<FormPage onCreateCard={createCard} />}
@@ -46,6 +49,19 @@ export default function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
+    });
+  }
+
+  async function handleDeleteCard(_id) {
+    const filteredCards = cards.filter(card => card._id !== _id);
+    setCards(filteredCards);
+
+    await fetch('/api/cards', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id }),
     });
   }
 }
