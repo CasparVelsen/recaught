@@ -1,11 +1,13 @@
 import { HiPlus } from 'react-icons/hi';
-import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
-import { useState } from 'react';
 
 export default function HomePage({ cards, handleDelete }) {
+  const [catches, setCatches] = useState([]);
+
   const [showData, setShowData] = useState(true);
   const [active, setActive] = useState(true);
 
@@ -13,6 +15,30 @@ export default function HomePage({ cards, handleDelete }) {
     setShowData(!showData);
     setActive(!active);
   }
+
+  async function handleDeleteCatch(_id) {
+    const filteredCatches = catches.filter(fish => fish._id !== _id);
+    setCatches(filteredCatches);
+
+    await fetch('api/catches', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ _id }),
+    });
+  }
+
+  useEffect(() => {
+    fetch('/api/catches').then(async res => {
+      const data = await res.json();
+      if (!res.ok) {
+        console.error(data);
+        return [];
+      }
+      setCatches([...data]);
+    });
+  }, []);
 
   return (
     <>
@@ -35,7 +61,9 @@ export default function HomePage({ cards, handleDelete }) {
           {showData && (
             <DisplayDays cards={cards} handleDelete={handleDelete} />
           )}
-          {!showData && <DisplayCatches />}
+          {!showData && (
+            <DisplayCatches catches={catches} onDelete={handleDeleteCatch} />
+          )}
         </div>
       </main>
     </>

@@ -55,8 +55,9 @@ const Card = styled.div`
   span {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     text-align: center;
+    margin: 0 2px;
   }
 `;
 
