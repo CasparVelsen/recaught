@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+import Button from './Button';
 
 export default function Cards({ data }) {
   const [showDetails, setshowDetails] = useState(true);
@@ -100,6 +101,7 @@ export default function Cards({ data }) {
               <Term>lost fish:</Term> {data.lost}
             </Data>
           </Part>
+          <Button text="Delete card" isAccent={true} />
         </Details>
       )}
     </Card>

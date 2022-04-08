@@ -132,7 +132,7 @@ export default function Catch({ handleAddCatch, catches }) {
             </Fieldset>
             <Button
               text={'Add Catch'}
-              isDark={true}
+              isAccent={false}
               onClick={() => {
                 handleAddCatch(values);
                 setValues(initialValues);

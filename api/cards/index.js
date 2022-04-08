@@ -1,7 +1,7 @@
 import dbConnect from '../../lib/dbConnect.js';
 import Card from '../../models/Card.js';
 
-async function handler(request, response) {
+export default async function handler(request, response) {
   await dbConnect();
   console.log('Connected to DB');
 
@@ -15,6 +15,10 @@ async function handler(request, response) {
     response.json(result);
     return;
   }
-}
 
-export default handler;
+  if (request.method === 'DELETE') {
+    const { _id } = req.body;
+    const result = await Card.findByIdAndDelete(_id);
+    response.json(result);
+  }
+}

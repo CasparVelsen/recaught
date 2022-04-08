@@ -12,3 +12,8 @@ Content-Type: application/json
     "date": "2021-09-15",
     "target": "Barsch"
 }
+
+### DELETE
+
+DELETE {{baseUrl}}/cards
+Content-Type: application/json
