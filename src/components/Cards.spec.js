@@ -2,24 +2,15 @@ import { render, screen } from '@testing-library/react';
 import Cards from './Cards';
 
 describe('Cards', () => {
-  it('renders a card with date, time, water, targetspecies', ({ data }) => {
-    render(
-      <Cards
-        date={data.date}
-        time={data.time}
-        water={data.water}
-        targetSpecies={data.targetSpecies}
-      />
-    );
+  it('renders a card with date, water, target', ({ data }) => {
+    render(<Cards date={data.date} water={data.water} target={data.target} />);
 
     const date = screen.getByText(/2022-01-01/i);
-    const time = screen.getByText(/10:15/i);
     const water = screen.getByText(/fluss/i);
-    const targetSpecies = screen.getByText(/fish/i);
+    const target = screen.getByText(/fish/i);
 
     expect(date).toBeInTheDocument();
-    expect(time).toBeInTheDocument();
     expect(water).toBeInTheDocument();
-    expect(targetSpecies).toBeInTheDocument();
+    expect(target).toBeInTheDocument();
   });
 });
