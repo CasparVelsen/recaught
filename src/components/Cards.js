@@ -2,8 +2,15 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import Button from './Button';
+import DeleteModal from './modal/DeleteModal';
 
-export default function Cards({ data, onDelete }) {
+export default function Cards({
+  data,
+  onDelete,
+  showModal,
+  confirmDelete,
+  cancelDelete,
+}) {
   const [showDetails, setshowDetails] = useState(true);
 
   function toggleShowDetails() {
@@ -102,6 +109,15 @@ export default function Cards({ data, onDelete }) {
             </Data>
           </Part>
           <Button text="Delete card" isAccent={true} onClick={onDelete} />
+          <Modal>
+            {showModal && (
+              <DeleteModal
+                text="card"
+                confirmDelete={confirmDelete}
+                cancelDelete={cancelDelete}
+              />
+            )}
+          </Modal>
         </Details>
       )}
     </Card>
@@ -162,4 +178,9 @@ const Data = styled.small`
 const Term = styled.span`
   font-weight: bold;
   color: #687a48;
+`;
+
+const Modal = styled.div`
+  display: flex;
+  justify-content: center;
 `;

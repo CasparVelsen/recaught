@@ -17,8 +17,8 @@ async function handler(request, response) {
   }
 
   if (request.method === 'DELETE') {
-    const { _id } = request.body;
-    const result = await Catch.findByIdAndDelete(_id);
+    const { currentId } = request.body;
+    const result = await Catch.findByIdAndDelete(currentId);
     response.json(result);
   }
 }
