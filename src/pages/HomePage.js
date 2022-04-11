@@ -25,7 +25,6 @@ export default function HomePage({
   }
 
   function handleDeleteCatch(id) {
-    console.log(id);
     setShowCatchModal(true);
     setCurrentId(id);
   }

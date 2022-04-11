@@ -40,8 +40,7 @@ export default function DisplayCatches({
 
 const Catches = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   list-style: none;
   padding: 0;
