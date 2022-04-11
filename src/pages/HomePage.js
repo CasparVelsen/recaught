@@ -5,27 +5,41 @@ import styled, { css } from 'styled-components';
 import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
 
-export default function HomePage({ cards, handleDelete }) {
+export default function HomePage({
+  cards,
+  handleDelete,
+  showModal,
+  cancelDelete,
+  confirmDelete,
+}) {
   const [catches, setCatches] = useState([]);
 
   const [showData, setShowData] = useState(true);
   const [active, setActive] = useState(true);
+  const [showCatchModal, setShowCatchModal] = useState(false);
+  const [currentId, setCurrentId] = useState('');
 
   function showPage() {
     setShowData(!showData);
     setActive(!active);
   }
 
-  async function handleDeleteCatch(_id) {
-    const filteredCatches = catches.filter(fish => fish._id !== _id);
+  function handleDeleteCatch(id) {
+    setShowCatchModal(true);
+    setCurrentId(id);
+  }
+
+  async function confirmDeleteCatch() {
+    const filteredCatches = catches.filter(fish => fish._id !== currentId);
     setCatches(filteredCatches);
+    setShowCatchModal(false);
 
     await fetch('api/catches', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ _id }),
+      body: JSON.stringify({ currentId }),
     });
   }
 
@@ -59,10 +73,22 @@ export default function HomePage({ cards, handleDelete }) {
         </Nav>
         <div>
           {showData && (
-            <DisplayDays cards={cards} handleDelete={handleDelete} />
+            <DisplayDays
+              cards={cards}
+              handleDelete={handleDelete}
+              showModal={showModal}
+              cancelDelete={cancelDelete}
+              confirmDelete={confirmDelete}
+            />
           )}
           {!showData && (
-            <DisplayCatches catches={catches} onDelete={handleDeleteCatch} />
+            <DisplayCatches
+              catches={catches}
+              onDeleteCatch={handleDeleteCatch}
+              confirmDeleteCatch={confirmDeleteCatch}
+              cancelDeleteCatch={() => setShowCatchModal(false)}
+              showCatchModal={showCatchModal}
+            />
           )}
         </div>
       </main>
@@ -113,4 +139,9 @@ const LinkStyled = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   color: black;
+`;
+
+const Modal = styled.div`
+  display: flex;
+  justify-content: center;
 `;

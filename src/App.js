@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
 export default function App() {
+  const [showModal, setShowModal] = useState(false);
   const [cards, setCards] = useState([]);
 
   const navigate = useNavigate();
@@ -26,7 +27,15 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<HomePage cards={cards} handleDelete={handleDeleteCard} />}
+          element={
+            <HomePage
+              cards={cards}
+              handleDelete={handleDeleteCard}
+              showModal={showModal}
+              confirmDelete={handleConfirmDeleteCard}
+              cancelDelete={() => setShowModal(false)}
+            />
+          }
         />
         <Route
           path="/formpage"
@@ -52,9 +61,14 @@ export default function App() {
     });
   }
 
-  async function handleDeleteCard(_id) {
+  function handleDeleteCard() {
+    setShowModal(true);
+  }
+
+  async function handleConfirmDeleteCard(_id) {
     const filteredCards = cards.filter(card => card._id !== _id);
     setCards(filteredCards);
+    setShowModal(false);
 
     await fetch('/api/cards', {
       method: 'DELETE',
