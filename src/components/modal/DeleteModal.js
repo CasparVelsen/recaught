@@ -24,7 +24,7 @@ const Container = styled.div`
   width: 90%;
 `;
 
-const Description = styled.h3`
+const Description = styled.p`
   font-size: 1.1rem;
   font-weight: normal;
   padding: 0;

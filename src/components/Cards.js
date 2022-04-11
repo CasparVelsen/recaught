@@ -109,7 +109,7 @@ export default function Cards({
             </Data>
           </Part>
           <Button text="Delete card" isAccent={true} onClick={onDelete} />
-          <Modal>
+          <ModalWrapper>
             {showModal && (
               <DeleteModal
                 text="card"
@@ -117,7 +117,7 @@ export default function Cards({
                 cancelDelete={cancelDelete}
               />
             )}
-          </Modal>
+          </ModalWrapper>
         </Details>
       )}
     </Card>
@@ -180,7 +180,7 @@ const Term = styled.span`
   color: #687a48;
 `;
 
-const Modal = styled.div`
+const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;

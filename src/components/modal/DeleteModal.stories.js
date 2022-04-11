@@ -8,9 +8,4 @@ export default {
 const Template = args => <DeleteModal {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  text: 'Submit',
-};
-
-export const Accent = Template.bind({});
-Accent.args = {};
+Default.args = {};

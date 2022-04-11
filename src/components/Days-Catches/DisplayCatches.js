@@ -24,14 +24,14 @@ export default function DisplayCatches({
       </Catches>
       {showCatchModal && (
         <Container>
-          <Modal>
+          <ModalWrapper>
             <Title>Are you sure?</Title>
             <DeleteModal
               text="catch"
               confirmDelete={confirmDeleteCatch}
               cancelDelete={cancelDeleteCatch}
             />
-          </Modal>
+          </ModalWrapper>
         </Container>
       )}
     </>
@@ -59,7 +59,7 @@ const Title = styled.h3`
   color: #687a48;
 `;
 
-const Modal = styled.div`
+const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
