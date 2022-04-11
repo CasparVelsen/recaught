@@ -81,7 +81,7 @@ const Nav = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: #687a48;
-  height: 30px;
+  height: 25px;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 `;
@@ -92,7 +92,7 @@ const Page = styled.div`
   align-items: center;
   text-decoration: none;
   color: white;
-  height: 30px;
+  height: 25px;
   width: 100%;
   border-radius: 20px;
 
