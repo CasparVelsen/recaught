@@ -1,6 +1,7 @@
 import dbConnect from '../../lib/dbConnect';
 import User from '../../models/User';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const loginHandler = async (request, response) => {
   const { name, password } = request.body;
@@ -26,7 +27,9 @@ const loginHandler = async (request, response) => {
     return response.status(401).json({ code: 401, message: 'Unauthorized' });
   }
 
-  response.status(200).json('toller-token');
+  const token = jwt.sign({ sub: foundUser._id }, 'JWT_SUPER_SECRET');
+
+  response.status(200).json(token);
 };
 
 export default loginHandler;
