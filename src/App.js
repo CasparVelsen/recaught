@@ -10,6 +10,23 @@ import { useEffect, useState } from 'react';
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [cards, setCards] = useState([]);
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    console.log({ token });
+  }, [token]);
+
+  const loginWithNameAndPassword = async credentials => {
+    const response = await fetch('/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    });
+    const data = await response.json();
+    setToken(data.token);
+  };
 
   const navigate = useNavigate();
 
@@ -44,7 +61,10 @@ export default function App() {
           element={<FormPage onCreateCard={createCard} />}
         />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/login"
+          element={<LoginPage onLogin={loginWithNameAndPassword} />}
+        />
       </Routes>
       <Footer>
         <Navigation />

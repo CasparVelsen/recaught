@@ -1,12 +1,32 @@
 import { HiArrowLeft } from 'react-icons/hi';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
+import { useState } from 'react';
 
-export default function LoginPage({ handleOnChange }) {
+const initalCredentials = {
+  name: '',
+  password: '',
+};
+
+export default function LoginPage({ onLogin }) {
+  const [credentials, setCredentials] = useState(initalCredentials);
+
+  const handleOnChange = event => {
+    const { name, value } = event.target;
+    setCredentials({
+      ...credentials,
+      [name]: value,
+    });
+  };
+
+  const navigate = useNavigate();
+
   function handleSubmit(event) {
     event.preventDefault();
+    onLogin(credentials);
+    navigate('/profile');
   }
 
   return (
