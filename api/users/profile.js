@@ -33,6 +33,8 @@ const profileHandler = async (request, response) => {
 
   const foundUser = await User.findById(userId);
 
+  foundUser.password = undefined;
+
   response.status(200).json(foundUser);
 };
 
