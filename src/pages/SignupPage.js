@@ -4,29 +4,8 @@ import { NavLink } from 'react-router-dom';
 import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
-import Button from '../components/Button';
 
-const initalCredentials = {
-  name: '',
-  password: '',
-};
-
-export default function LoginPage({ onLogin }) {
-  const [credentials, setCredentials] = useState(initalCredentials);
-
-  const handleOnChange = event => {
-    const { name, value } = event.target;
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    });
-  };
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onLogin(credentials);
-  }
-
+export default function SignUp({ handleSubmit, handleOnChange }) {
   return (
     <>
       <header>
@@ -35,7 +14,7 @@ export default function LoginPage({ onLogin }) {
         </LinkStyled>
       </header>
       <main>
-        <Title>Login</Title>
+        <Title>SignUp</Title>
         <Form
           aria-labelledby="form-name"
           autoComplete="off"
@@ -44,13 +23,24 @@ export default function LoginPage({ onLogin }) {
         >
           <Fieldset>
             <Part>
-              <Label htmlFor="name">Your name</Label>
+              <Label htmlFor="name">Name</Label>
               <Input
                 id="name"
                 name="name"
                 type="text"
-                placeholder="enter your user name"
+                placeholder="enter your name"
                 min={0}
+                onChange={handleOnChange}
+              />
+            </Part>
+            <Part>
+              <Label htmlFor="username">User name</Label>
+              <Input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="set your user name"
+                min={5}
                 onChange={handleOnChange}
               />
             </Part>
@@ -60,24 +50,18 @@ export default function LoginPage({ onLogin }) {
                 id="password"
                 name="password"
                 type="text"
-                placeholder="enter your password"
+                placeholder="set your password"
                 min={0}
                 onChange={handleOnChange}
               />
             </Part>
           </Fieldset>
           <ButtonToRight>
-            <SubmitButton text="Login" isAccent={true} id="form-name">
-              <ScreenRaderOnly>Login</ScreenRaderOnly>
+            <SubmitButton text="Create account" isAccent={true} id="form-name">
+              <ScreenRaderOnly>SignUp</ScreenRaderOnly>
             </SubmitButton>
           </ButtonToRight>
         </Form>
-        <SignUp>
-          <p>You don't have a acocunt yet?</p>
-          <LinkStyled to="/signup">
-            <Button text="Sign up now" />
-          </LinkStyled>
-        </SignUp>
       </main>
     </>
   );
@@ -144,16 +128,4 @@ const Input = styled.input`
 const ButtonToRight = styled.div`
   display: flex;
   justify-content: right;
-`;
-
-const SignUp = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10px;
-  gap: 10px;
-
-  p {
-    margin: 0;
-  }
 `;

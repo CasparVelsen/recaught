@@ -52,6 +52,11 @@ const LinkStyled = styled(NavLink)`
 const LogButton = styled.button`
   position: absolute;
   right: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #687a48;
 `;
 
 const Title = styled.h1`

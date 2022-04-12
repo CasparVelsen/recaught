@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import FormPage from './pages/FormPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
+import SignUp from './pages/SignupPage';
 import RequirePermission from './components/RequirePermission';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
@@ -77,6 +78,10 @@ export default function App() {
         <Route
           path="/login"
           element={<LoginPage onLogin={loginWithNameAndPassword} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp onLogin={loginWithNameAndPassword} />}
         />
       </Routes>
       <Footer>
