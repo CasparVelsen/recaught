@@ -79,10 +79,7 @@ export default function App() {
           path="/login"
           element={<LoginPage onLogin={loginWithNameAndPassword} />}
         />
-        <Route
-          path="/signup"
-          element={<SignUp onLogin={loginWithNameAndPassword} />}
-        />
+        <Route path="/signup" element={<SignUp onCreateUser={createUser} />} />
       </Routes>
       <Footer>
         <Navigation />
@@ -118,6 +115,18 @@ export default function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ _id }),
+    });
+  }
+
+  async function createUser(userData) {
+    navigate('/profile');
+
+    await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
     });
   }
 }

@@ -18,9 +18,9 @@ const loginHandler = async (request, response) => {
       .json({ code: 405, message: 'Method not allowed' });
   }
 
-  const { name, password } = request.body;
+  const { username, password } = request.body;
 
-  if (!(name && password)) {
+  if (!(username && password)) {
     return response
       .status(404)
       .json({ code: 404, message: 'Name and password required' });
@@ -29,16 +29,20 @@ const loginHandler = async (request, response) => {
   await dbConnect();
   console.log('Connected to DB');
 
-  const foundUser = await User.findOne({ name });
+  const foundUser = await User.findOne({ username });
+
+  console.log(foundUser);
 
   if (!foundUser) {
-    return response.status(401).json({ code: 401, message: 'Unauthorized' });
+    return response.status(401).json({ code: 401, message: 'No user found' });
   }
 
-  const isPasswordMatch = await bcrypt.compare(password, foundUser.password);
+  const hashedPassword = bcrypt.hashSync(foundUser.password, 12);
+
+  const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
 
   if (!isPasswordMatch) {
-    return response.status(401).json({ code: 401, message: 'Unauthorized' });
+    return response.status(401).json({ code: 402, message: 'Unauthorized' });
   }
 
   const token = jwt.sign({ sub: foundUser._id }, JWT_SECRET);

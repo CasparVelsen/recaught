@@ -5,7 +5,22 @@ import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
 
-export default function SignUp({ handleSubmit, handleOnChange }) {
+export default function SignUp({ onCreateUser }) {
+  const [userData, setUserData] = useState();
+
+  const handleOnChange = event => {
+    const { name, value } = event.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onCreateUser(userData);
+  }
+
   return (
     <>
       <header>
@@ -54,7 +69,7 @@ export default function SignUp({ handleSubmit, handleOnChange }) {
                 type="text"
                 placeholder="set your password"
                 min={0}
-                onChange={handleOnChange}
+                onChange={handleOnChangePassword}
                 required
               />
             </Part>
