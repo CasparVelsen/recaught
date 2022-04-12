@@ -1,3 +1,11 @@
+import jwt from 'jsonwebtoken';
+
+const { JWT_SECRET } = process.env;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET not set');
+}
+
 const profileHandler = (request, response) => {
   const { method } = request;
 
@@ -15,7 +23,9 @@ const profileHandler = (request, response) => {
 
   const token = authorizationHeader.replace('Bearer', '').trim();
 
-  response.status(200).json({ token });
+  const claims = jwt.verify(token, JWT_SECRET);
+
+  response.status(200).json({ claims });
 };
 
 export default profileHandler;
