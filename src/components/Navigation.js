@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { HiPlus, HiHome } from 'react-icons/hi';
+import { HiPlus, HiHome, HiUser } from 'react-icons/hi';
 import ScreenReaderOnly from './ScreenRaderOnly';
 
 export default function Navigation() {
@@ -13,6 +13,10 @@ export default function Navigation() {
       <LinkStyled to="/formpage">
         <ScreenReaderOnly>formpage</ScreenReaderOnly>
         <HiPlus size={35} />
+      </LinkStyled>
+      <LinkStyled to="/profile">
+        <ScreenReaderOnly>profilepage</ScreenReaderOnly>
+        <HiUser size={35} />
       </LinkStyled>
     </Nav>
   );

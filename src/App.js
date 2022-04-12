@@ -2,6 +2,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
 import FormPage from './pages/FormPage';
+import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/LoginPage';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
@@ -41,6 +43,8 @@ export default function App() {
           path="/formpage"
           element={<FormPage onCreateCard={createCard} />}
         />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
       <Footer>
         <Navigation />

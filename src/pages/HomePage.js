@@ -140,8 +140,3 @@ const LinkStyled = styled(NavLink)`
   text-decoration: none;
   color: black;
 `;
-
-const Modal = styled.div`
-  display: flex;
-  justify-content: center;
-`;
