@@ -15,7 +15,17 @@ const loginHandler = async (request, response) => {
 
   const foundUser = await User.findOne({ name });
 
-  response.status(200).json(foundUser);
+  if (!foundUser) {
+    return response.status(401).json({ code: 401, message: 'Unauthorized' });
+  }
+
+  const isPasswordMatch = password === foundUser.password;
+
+  if (!isPasswordMatch) {
+    return response.status(403).json({ code: 401, message: 'Unauthorized' });
+  }
+
+  response.status(200).json('toller-token');
 };
 
 export default loginHandler;
