@@ -9,7 +9,13 @@ const profileHandler = (request, response) => {
 
   const authorizationHeader = request.headers.authorization;
 
-  response.status(200).json({ authorizationHeader });
+  if (!authorizationHeader) {
+    return response.status(401).json({ code: 401, message: 'Unauthorized' });
+  }
+
+  const token = authorizationHeader.replace('Bearer', '').trim();
+
+  response.status(200).json({ token });
 };
 
 export default profileHandler;
