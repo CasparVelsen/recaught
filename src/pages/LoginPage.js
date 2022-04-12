@@ -1,4 +1,3 @@
-import { HiArrowLeft } from 'react-icons/hi';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import SubmitButton from '../components/SubmitButton';
@@ -7,7 +6,7 @@ import { useState } from 'react';
 import Button from '../components/Button';
 
 const initalCredentials = {
-  name: '',
+  username: '',
   password: '',
 };
 
@@ -42,10 +41,10 @@ export default function LoginPage({ onLogin }) {
         >
           <Fieldset>
             <Part>
-              <Label htmlFor="name">Your name</Label>
+              <Label htmlFor="username">Your user name</Label>
               <Input
-                id="name"
-                name="name"
+                id="udername"
+                name="username"
                 type="text"
                 placeholder="enter your user name"
                 min={0}

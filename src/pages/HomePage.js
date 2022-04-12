@@ -11,6 +11,7 @@ export default function HomePage({
   showModal,
   cancelDelete,
   confirmDelete,
+  profile,
 }) {
   const [catches, setCatches] = useState([]);
 
@@ -62,7 +63,7 @@ export default function HomePage({
         </LinkStyled>
       </header>
       <main>
-        <Title>Tight lines, Caspar</Title>
+        <Title>Tight lines, {profile.firstname}</Title>
         <Nav>
           <Page onClick={showPage} active={active}>
             Days

@@ -38,12 +38,24 @@ export default function SignUp({ onCreateUser }) {
         >
           <Fieldset>
             <Part>
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="firstname">First name</Label>
               <Input
-                id="name"
-                name="name"
+                id="firstname"
+                name="firstname"
                 type="text"
-                placeholder="enter your name"
+                placeholder="enter your first name"
+                min={0}
+                onChange={handleOnChange}
+                required
+              />
+            </Part>
+            <Part>
+              <Label htmlFor="lastname">Last mame</Label>
+              <Input
+                id="lastname"
+                name="lastname"
+                type="text"
+                placeholder="enter your last name"
                 min={0}
                 onChange={handleOnChange}
                 required

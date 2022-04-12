@@ -1,29 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
-const initalProfile = {
-  _id: '',
-  name: '',
-};
-
-export default function ProfilePage({ token, logout }) {
-  const [profile, setProfile] = useState(initalProfile);
-
-  useEffect(() => {
-    if (!token) {
-      return;
-    }
-    fetch('/api/users/profile', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(response => response.json())
-      .then(setProfile);
-  }, [token]);
-
+export default function ProfilePage({ profile, token, logout }) {
   return (
     <>
       <header>
@@ -36,7 +14,7 @@ export default function ProfilePage({ token, logout }) {
         )}
       </header>
       <main>
-        <Title>Hello {profile.name}</Title>
+        <Title>Hello, {profile.firstname}</Title>
       </main>
     </>
   );

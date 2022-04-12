@@ -9,10 +9,16 @@ import RequirePermission from './components/RequirePermission';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
+const initalProfile = {
+  _id: '',
+  name: '',
+};
+
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [cards, setCards] = useState([]);
   const [token, setToken] = useState();
+  const [profile, setProfile] = useState(initalProfile);
 
   useEffect(() => {
     console.log({ token });
@@ -27,13 +33,24 @@ export default function App() {
       body: JSON.stringify(credentials),
     });
     const data = await response.json();
+    console.log(data);
     setToken(data.token);
     navigate('/profile');
   };
 
-  function onLogout() {
-    setToken();
-  }
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    fetch('/api/users/profile', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => response.json())
+      .then(setProfile);
+  }, [token]);
 
   const navigate = useNavigate();
 
@@ -48,6 +65,10 @@ export default function App() {
     });
   }, []);
 
+  function onLogout() {
+    setToken();
+  }
+
   return (
     <>
       <Routes>
@@ -60,6 +81,7 @@ export default function App() {
               showModal={showModal}
               confirmDelete={handleConfirmDeleteCard}
               cancelDelete={() => setShowModal(false)}
+              profile={profile}
             />
           }
         />
@@ -71,7 +93,7 @@ export default function App() {
           path="/profile"
           element={
             <RequirePermission token={token}>
-              <ProfilePage token={token} logout={onLogout} />
+              <ProfilePage token={token} logout={onLogout} profile={profile} />
             </RequirePermission>
           }
         />

@@ -13,4 +13,4 @@ Content-Type: application/json
 ### Get profile via acces token
 
 GET {{baseUrl}}/users/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjU1OWI5YTFhMWI5NzZkMzYyZmY0NWYiLCJpYXQiOjE2NDk3NzgwOTR9.lCG2hDPfzdv3gX1v7h2EsLuRSvW1RB6Qh0xYVi3f28c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MjU1OWI5YTFhMWI5NzZkMzYyZmY0NWYiLCJpYXQiOjE2NDk3NzkwNjR9.aOIOhqr_5_JB8bgKHk6bnh7PwOmylHuSvZCDAZC4aDw
