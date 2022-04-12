@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import dbConnect from '../../lib/dbConnect';
+import User from '../../models/User';
 
 const { JWT_SECRET } = process.env;
 
@@ -6,7 +8,7 @@ if (!JWT_SECRET) {
   throw new Error('JWT_SECRET not set');
 }
 
-const profileHandler = (request, response) => {
+const profileHandler = async (request, response) => {
   const { method } = request;
 
   if (method !== 'GET') {
@@ -25,7 +27,13 @@ const profileHandler = (request, response) => {
 
   const claims = jwt.verify(token, JWT_SECRET);
 
-  response.status(200).json({ claims });
+  const userId = claims.sub;
+
+  await dbConnect();
+
+  const foundUser = await User.findById(userId);
+
+  response.status(200).json(foundUser);
 };
 
 export default profileHandler;
