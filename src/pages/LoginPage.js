@@ -21,12 +21,9 @@ export default function LoginPage({ onLogin }) {
     });
   };
 
-  const navigate = useNavigate();
-
   function handleSubmit(event) {
     event.preventDefault();
     onLogin(credentials);
-    navigate('/profile');
   }
 
   return (

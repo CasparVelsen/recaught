@@ -27,6 +27,7 @@ export default function App() {
     });
     const data = await response.json();
     setToken(data.token);
+    navigate('/profile');
   };
 
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ export default function App() {
         <Route
           path="/profile"
           element={
-            <RequirePermission>
+            <RequirePermission token={token}>
               <ProfilePage token={token} />
             </RequirePermission>
           }
