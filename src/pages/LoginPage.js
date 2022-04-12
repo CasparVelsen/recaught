@@ -27,13 +27,11 @@ export default function LoginPage({ onLogin }) {
     onLogin(credentials);
   }
 
+  const disabled = credentials === initalCredentials;
+
   return (
     <>
-      <header>
-        <LinkStyled to="/profile">
-          <HiArrowLeft size={35} color="#FF9C27" />
-        </LinkStyled>
-      </header>
+      <header></header>
       <main>
         <Title>Login</Title>
         <Form
@@ -52,6 +50,7 @@ export default function LoginPage({ onLogin }) {
                 placeholder="enter your user name"
                 min={0}
                 onChange={handleOnChange}
+                required
               />
             </Part>
             <Part>
@@ -63,11 +62,17 @@ export default function LoginPage({ onLogin }) {
                 placeholder="enter your password"
                 min={0}
                 onChange={handleOnChange}
+                required
               />
             </Part>
           </Fieldset>
           <ButtonToRight>
-            <SubmitButton text="Login" isAccent={true} id="form-name">
+            <SubmitButton
+              text="Login"
+              isAccent={true}
+              id="form-name"
+              disabled={disabled}
+            >
               <ScreenRaderOnly>Login</ScreenRaderOnly>
             </SubmitButton>
           </ButtonToRight>
@@ -150,10 +155,11 @@ const SignUp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
   gap: 10px;
 
   p {
     margin: 0;
+    color: #a2c36c;
   }
 `;

@@ -31,6 +31,7 @@ export default function SignUp({ handleSubmit, handleOnChange }) {
                 placeholder="enter your name"
                 min={0}
                 onChange={handleOnChange}
+                required
               />
             </Part>
             <Part>
@@ -42,6 +43,7 @@ export default function SignUp({ handleSubmit, handleOnChange }) {
                 placeholder="set your user name"
                 min={5}
                 onChange={handleOnChange}
+                required
               />
             </Part>
             <Part>
@@ -53,6 +55,7 @@ export default function SignUp({ handleSubmit, handleOnChange }) {
                 placeholder="set your password"
                 min={0}
                 onChange={handleOnChange}
+                required
               />
             </Part>
           </Fieldset>
