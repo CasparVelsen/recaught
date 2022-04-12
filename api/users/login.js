@@ -10,6 +10,14 @@ if (!JWT_SECRET) {
 }
 
 const loginHandler = async (request, response) => {
+  const { method } = request;
+
+  if (method !== 'POST') {
+    return response
+      .status(405)
+      .json({ code: 405, message: 'Method not allowed' });
+  }
+
   const { name, password } = request.body;
 
   if (!(name && password)) {
