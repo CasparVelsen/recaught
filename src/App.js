@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import FormPage from './pages/FormPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
+import RequirePermission from './components/RequirePermission';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 
@@ -60,7 +61,14 @@ export default function App() {
           path="/formpage"
           element={<FormPage onCreateCard={createCard} />}
         />
-        <Route path="/profile" element={<ProfilePage token={token} />} />
+        <Route
+          path="/profile"
+          element={
+            <RequirePermission>
+              <ProfilePage token={token} />
+            </RequirePermission>
+          }
+        />
         <Route
           path="/login"
           element={<LoginPage onLogin={loginWithNameAndPassword} />}
