@@ -1,5 +1,6 @@
 import dbConnect from '../../lib/dbConnect';
 import User from '../../models/User';
+import bcrypt from 'bcrypt';
 
 const loginHandler = async (request, response) => {
   const { name, password } = request.body;
@@ -19,10 +20,10 @@ const loginHandler = async (request, response) => {
     return response.status(401).json({ code: 401, message: 'Unauthorized' });
   }
 
-  const isPasswordMatch = password === foundUser.password;
+  const isPasswordMatch = await bcrypt.compare(password, foundUser.password);
 
   if (!isPasswordMatch) {
-    return response.status(403).json({ code: 401, message: 'Unauthorized' });
+    return response.status(401).json({ code: 401, message: 'Unauthorized' });
   }
 
   response.status(200).json('toller-token');
