@@ -69,7 +69,7 @@ export default function SignUp({ onCreateUser }) {
                 type="text"
                 placeholder="set your password"
                 min={0}
-                onChange={handleOnChangePassword}
+                onChange={handleOnChange}
                 required
               />
             </Part>
