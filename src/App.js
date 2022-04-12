@@ -60,7 +60,7 @@ export default function App() {
           path="/formpage"
           element={<FormPage onCreateCard={createCard} />}
         />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage token={token} />} />
         <Route
           path="/login"
           element={<LoginPage onLogin={loginWithNameAndPassword} />}
