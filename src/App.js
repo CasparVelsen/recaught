@@ -8,6 +8,7 @@ import SignUp from './pages/SignupPage';
 import RequirePermission from './components/RequirePermission';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
+import useLocalStorage from './hooks/useLocalStorage';
 
 const initalProfile = {
   _id: '',
@@ -17,8 +18,10 @@ const initalProfile = {
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [cards, setCards] = useState([]);
-  const [token, setToken] = useState();
+  const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
+
+  console.log(token);
 
   useEffect(() => {
     console.log({ token });
@@ -66,7 +69,7 @@ export default function App() {
   }, []);
 
   function onLogout() {
-    setToken();
+    setToken('');
   }
 
   return (
