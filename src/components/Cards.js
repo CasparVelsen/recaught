@@ -73,32 +73,41 @@ export default function Cards({
               <Term>windspeed:</Term> {data.windspeed} km/h
             </Data>
           </Part>
-          {data.catches.map((item, index) => (
-            <Part key={index}>
-              <PartTitle>Catch {index + 1})</PartTitle>
+          {data.catches ? (
+            data.catches.map((item, index) => (
+              <Part key={index}>
+                <PartTitle>Catch {index + 1})</PartTitle>
+                <Data>
+                  <Term>species:</Term> {item.species}
+                </Data>
+                <Data>
+                  <Term>time:</Term> {item.time}
+                </Data>
+                <Data>
+                  <Term>length:</Term> {item.length} cm
+                </Data>
+                <Data>
+                  <Term>weight:</Term> {item.weight} kg
+                </Data>
+                <Data>
+                  <Term>bait:</Term> {item.bait}
+                </Data>
+                <Data>
+                  <Term>location:</Term> {item.location}
+                </Data>
+                <Data>
+                  <Term>notes:</Term> {item.notes}
+                </Data>
+              </Part>
+            ))
+          ) : (
+            <Part>
+              <PartTitle>Catch</PartTitle>
               <Data>
-                <Term>species:</Term> {item.species}
-              </Data>
-              <Data>
-                <Term>time:</Term> {item.time}
-              </Data>
-              <Data>
-                <Term>length:</Term> {item.length} cm
-              </Data>
-              <Data>
-                <Term>weight:</Term> {item.weight} kg
-              </Data>
-              <Data>
-                <Term>bait:</Term> {item.bait}
-              </Data>
-              <Data>
-                <Term>location:</Term> {item.location}
-              </Data>
-              <Data>
-                <Term>notes:</Term> {item.notes}
+                <NoFish>no fish caught this day</NoFish>
               </Data>
             </Part>
-          ))}
+          )}
           <Part>
             <PartTitle>Summary</PartTitle>
             <Data>
@@ -178,6 +187,11 @@ const Data = styled.small`
 const Term = styled.span`
   font-weight: bold;
   color: #687a48;
+`;
+
+const NoFish = styled.span`
+  font-weight: bold;
+  color: #a2c36c;
 `;
 
 const ModalWrapper = styled.div`
