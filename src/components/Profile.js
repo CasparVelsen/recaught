@@ -34,11 +34,15 @@ const Stats = styled.span`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  gap: 5px;
   width: 100%;
+  color: #687a48;
 
   div {
-    font-weight: normal;
+    font-weight: bold;
+    color: #ff9c27;
   }
 
   :nth-child(2) {
