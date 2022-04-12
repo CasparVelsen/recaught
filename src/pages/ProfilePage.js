@@ -7,7 +7,7 @@ const initalProfile = {
   name: '',
 };
 
-export default function ProfilePage({ token }) {
+export default function ProfilePage({ token, logout }) {
   const [profile, setProfile] = useState(initalProfile);
 
   useEffect(() => {
@@ -27,9 +27,13 @@ export default function ProfilePage({ token }) {
   return (
     <>
       <header>
-        <LinkStyled to="/login">
-          <LoginButton>Login</LoginButton>
-        </LinkStyled>
+        {token ? (
+          <LogButton onClick={logout}>Logout</LogButton>
+        ) : (
+          <LinkStyled to="/login">
+            <LogButton>Login</LogButton>
+          </LinkStyled>
+        )}
       </header>
       <main>
         <Title>Hello {profile.name}</Title>
@@ -45,7 +49,7 @@ const LinkStyled = styled(NavLink)`
   color: black;
 `;
 
-const LoginButton = styled.button`
+const LogButton = styled.button`
   position: absolute;
   right: 10px;
 `;

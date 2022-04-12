@@ -30,6 +30,10 @@ export default function App() {
     navigate('/profile');
   };
 
+  function onLogout() {
+    setToken();
+  }
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,7 +70,7 @@ export default function App() {
           path="/profile"
           element={
             <RequirePermission token={token}>
-              <ProfilePage token={token} />
+              <ProfilePage token={token} logout={onLogout} />
             </RequirePermission>
           }
         />
