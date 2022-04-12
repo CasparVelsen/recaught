@@ -3,6 +3,12 @@ import User from '../../models/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+const { JWT_SECRET } = process.env;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET not set');
+}
+
 const loginHandler = async (request, response) => {
   const { name, password } = request.body;
 
@@ -27,9 +33,9 @@ const loginHandler = async (request, response) => {
     return response.status(401).json({ code: 401, message: 'Unauthorized' });
   }
 
-  const token = jwt.sign({ sub: foundUser._id }, 'JWT_SUPER_SECRET');
+  const token = jwt.sign({ sub: foundUser._id }, JWT_SECRET);
 
-  response.status(200).json(token);
+  response.status(200).json({ token });
 };
 
 export default loginHandler;
