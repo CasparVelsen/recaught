@@ -1,6 +1,6 @@
 import { HiPlus } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
@@ -9,51 +9,22 @@ export default function HomePage({
   cards,
   handleDelete,
   showModal,
+  showCatchModal,
   cancelDelete,
   confirmDelete,
+  handleDeleteCatch,
+  confirmDeleteCatch,
+  cancelDeleteCatch,
   profile,
+  catches,
 }) {
-  const [catches, setCatches] = useState([]);
-
   const [showData, setShowData] = useState(true);
   const [active, setActive] = useState(true);
-  const [showCatchModal, setShowCatchModal] = useState(false);
-  const [currentId, setCurrentId] = useState('');
 
   function showPage() {
     setShowData(!showData);
     setActive(!active);
   }
-
-  function handleDeleteCatch(id) {
-    setShowCatchModal(true);
-    setCurrentId(id);
-  }
-
-  async function confirmDeleteCatch() {
-    const filteredCatches = catches.filter(fish => fish._id !== currentId);
-    setCatches(filteredCatches);
-    setShowCatchModal(false);
-
-    await fetch('api/catches', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ currentId }),
-    });
-  }
-
-  useEffect(() => {
-    fetch('/api/catches').then(async res => {
-      const data = await res.json();
-      if (!res.ok) {
-        console.error(data);
-        return [];
-      }
-      setCatches([...data]);
-    });
-  }, []);
 
   return (
     <>
@@ -76,19 +47,19 @@ export default function HomePage({
           {showData && (
             <DisplayDays
               cards={cards}
-              handleDelete={handleDelete}
               showModal={showModal}
-              cancelDelete={cancelDelete}
+              handleDelete={handleDelete}
               confirmDelete={confirmDelete}
+              cancelDelete={cancelDelete}
             />
           )}
           {!showData && (
             <DisplayCatches
               catches={catches}
-              onDeleteCatch={handleDeleteCatch}
-              confirmDeleteCatch={confirmDeleteCatch}
-              cancelDeleteCatch={() => setShowCatchModal(false)}
               showCatchModal={showCatchModal}
+              handleDeleteCatch={handleDeleteCatch}
+              confirmDeleteCatch={confirmDeleteCatch}
+              cancelDeleteCatch={cancelDeleteCatch}
             />
           )}
         </div>

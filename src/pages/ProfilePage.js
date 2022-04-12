@@ -1,7 +1,14 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import Profile from '../components/Profile';
 
-export default function ProfilePage({ profile, token, logout }) {
+export default function ProfilePage({
+  profile,
+  token,
+  logout,
+  cards,
+  catches,
+}) {
   return (
     <>
       <header>
@@ -15,6 +22,7 @@ export default function ProfilePage({ profile, token, logout }) {
       </header>
       <main>
         <Title>Hello, {profile.firstname}</Title>
+        <Profile cards={cards} catches={catches} />
       </main>
     </>
   );

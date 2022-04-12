@@ -1,4 +1,4 @@
-import Cards from '../Cards';
+import Cards from './DayCard';
 import styled from 'styled-components';
 
 export default function DisplayDays({
