@@ -20,13 +20,6 @@ export default function FormPage({ onCreateCard }) {
       ...formData,
       catches: [...previousCatches, catchValue],
     });
-    await fetch('/api/catches', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(catchValue),
-    });
   }
 
   async function handleDeleteCatch(_id) {
@@ -53,8 +46,7 @@ export default function FormPage({ onCreateCard }) {
     });
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
     onCreateCard(formData);
   }
 

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
-import Button from './Button';
-import DeleteModal from './modal/DeleteModal';
+import Button from '../Button';
+import DeleteModal from '../modal/DeleteModal';
 
 export default function Cards({
   data,

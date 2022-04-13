@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { HiCheckCircle } from 'react-icons/hi';
 
-export default function SubmitButton({ text, isAccent }) {
+export default function SubmitButton({ text, isAccent, disabled }) {
   return (
     <>
-      <Button isAccent={isAccent} type="submit">
+      <Button isAccent={isAccent} type="submit" disabled={disabled}>
         {text}
         <HiCheckCircle />
       </Button>
@@ -25,4 +25,11 @@ const Button = styled.button`
   :hover {
     transform: scale(1.1);
   }
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      background-color: #ddd;
+      color: #eee;
+    `};
 `;
