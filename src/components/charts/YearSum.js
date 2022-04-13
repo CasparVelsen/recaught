@@ -16,7 +16,7 @@ export default function YearSummary({ cards }) {
 
   return (
     <>
-      <h2>Stats:</h2>
+      <Title>Stats:</Title>
       <PeriodChoice>
         <button
           onClick={() => {
@@ -52,16 +52,35 @@ export default function YearSummary({ cards }) {
         </button>
       </PeriodChoice>
       {period === 1 && (
-        <div>
+        <Period>
           <span>You caught {numberCatches} fish this year</span>
-        </div>
+        </Period>
       )}
-      {period === 2 && <span>You caught {numberCatches} fish last year</span>}
-      {period === 3 && <span>You caught {numberCatches} fish this moth</span>}
-      {period === 4 && <span>You caught {numberCatches} fish last month</span>}
+      {period === 2 && (
+        <Period>
+          <span>You caught {numberCatches} fish last year</span>
+        </Period>
+      )}
+      {period === 3 && (
+        <Period>
+          <span>You caught {numberCatches} fish this moth</span>
+        </Period>
+      )}
+      {period === 4 && (
+        <Period>
+          <span>You caught {numberCatches} fish last month</span>
+        </Period>
+      )}
     </>
   );
 }
+
+const Title = styled.h1`
+  color: #687a48;
+  font-size: 24px;
+  width: 50%;
+  margin: 20px 0 20px;
+`;
 
 const PeriodChoice = styled.div`
   display: flex;
@@ -74,9 +93,24 @@ const PeriodChoice = styled.div`
     background-color: white;
     color: #687a48;
     font-size: 0.9rem;
-    border: 0.5px solid #a2c36c;
+    border: 0.5px solid #ff9c27;
     border-radius: 5px;
     padding: 5px 10px;
     margin-bottom: 10px;
   }
+
+  :nth-child(2) {
+    background-color: green;
+  }
+`;
+
+const Period = styled.div`
+  background-color: #fffcf8;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 0.5px solid #a2c36c;
+  color: #687a48;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 `;
