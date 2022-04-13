@@ -172,9 +172,7 @@ export default function App() {
   }
 
   async function createCatch(catchData) {
-    console.log(catchData);
     setCatches(catches.concat(catchData));
-    console.log(catches);
 
     await fetch('/api/catches', {
       method: 'POST',
