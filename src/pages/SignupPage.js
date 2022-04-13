@@ -50,7 +50,7 @@ export default function SignUp({ onCreateUser }) {
               />
             </Part>
             <Part>
-              <Label htmlFor="lastname">Last mame</Label>
+              <Label htmlFor="lastname">Last name</Label>
               <Input
                 id="lastname"
                 name="lastname"
