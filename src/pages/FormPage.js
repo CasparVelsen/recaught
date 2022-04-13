@@ -11,8 +11,9 @@ import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 
-export default function FormPage({ onCreateCard }) {
+export default function FormPage({ onCreateCard, onCreateCatch }) {
   const [formData, setFormData] = useState({});
+  const [catchData, setCatchData] = useState([]);
 
   async function handleAddCatch(catchValue) {
     const previousCatches = formData.catches ?? [];
@@ -20,6 +21,7 @@ export default function FormPage({ onCreateCard }) {
       ...formData,
       catches: [...previousCatches, catchValue],
     });
+    setCatchData([...catchData, catchValue]);
   }
 
   async function handleDeleteCatch(_id) {
@@ -27,14 +29,6 @@ export default function FormPage({ onCreateCard }) {
     setFormData({
       ...formData,
       catches: filteredCatches,
-    });
-
-    await fetch('api/catches', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ _id }),
     });
   }
 
@@ -48,6 +42,7 @@ export default function FormPage({ onCreateCard }) {
 
   function handleSubmit() {
     onCreateCard(formData);
+    onCreateCatch(catchData);
   }
 
   return (
