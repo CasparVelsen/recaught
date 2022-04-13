@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Profile from '../components/Profile';
+import Stats from '../components/charts/Stats';
+import YearSummary from '../components/charts/YearSum';
 
 export default function ProfilePage({
   profile,
@@ -22,7 +23,8 @@ export default function ProfilePage({
       </header>
       <main>
         <Title>Hello, {profile.firstname}</Title>
-        <Profile cards={cards} catches={catches} />
+        <Stats cards={cards} catches={catches} />
+        <YearSummary cards={cards} />
       </main>
     </>
   );
