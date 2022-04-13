@@ -24,9 +24,7 @@ export default function App() {
   const [profile, setProfile] = useState(initalProfile);
   const [currentId, setCurrentId] = useState('');
 
-  useEffect(() => {
-    console.log({ token });
-  }, [token]);
+  useEffect(() => {}, [token]);
 
   const loginWithNameAndPassword = async credentials => {
     const response = await fetch('/api/users/login', {
@@ -37,7 +35,6 @@ export default function App() {
       body: JSON.stringify(credentials),
     });
     const data = await response.json();
-    console.log(data);
     setToken(data.token);
     navigate('/profile');
   };
@@ -108,7 +105,9 @@ export default function App() {
         />
         <Route
           path="/formpage"
-          element={<FormPage onCreateCard={createCard} />}
+          element={
+            <FormPage onCreateCard={createCard} onCreateCatch={createCatch} />
+          }
         />
         <Route
           path="/profile"
@@ -147,14 +146,6 @@ export default function App() {
       },
       body: JSON.stringify(formData),
     });
-
-    await fetch('/api/catches', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData.catches),
-    });
   }
 
   function handleDeleteCard() {
@@ -178,6 +169,18 @@ export default function App() {
   function handleDeleteCatch(id) {
     setShowCatchModal(true);
     setCurrentId(id);
+  }
+
+  async function createCatch(catchData) {
+    setCatches(catches.concat(catchData));
+
+    await fetch('/api/catches', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(catchData),
+    });
   }
 
   async function handleConfirmDeleteCatch() {
