@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Profile from '../components/Profile';
+import Stats from '../components/charts/Stats';
 import DepthMap from '../images/DepthMap.svg';
+import { Stats } from 'webpack';
 
 export default function ProfilePage({
   profile,
@@ -24,7 +25,7 @@ export default function ProfilePage({
       <Main>
         <Map src={DepthMap} alt="DepthMap" />
         <Title>Hello, {profile.firstname}</Title>
-        <Profile
+        <Stats
           filteredCards={filteredCards}
           filteredCatches={filteredCatches}
         />

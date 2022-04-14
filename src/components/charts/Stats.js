@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-export default function Profile({ cards, catches }) {
-  const succesRate = catches.length / cards.length;
+export default function Profile({ filteredCards, filteredCatches }) {
+  const succesRate = filteredCatches.length / filteredCards.length;
   const roundedNumber = Math.round((succesRate + Number.EPSILON) * 100) / 100;
 
   return (
     <StatsList>
       <Stats>
-        catches <div>{catches.length}</div>
+        catches <div>{filteredCatches.length}</div>
       </Stats>
       <Stats>
-        trips <div>{cards.length}</div>
+        trips <div>{filteredCards.length}</div>
       </Stats>
       <Stats>
         fish/trip <div>{roundedNumber}</div>
