@@ -18,17 +18,16 @@ const initalProfile = {
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [showCatchModal, setShowCatchModal] = useState(false);
-  const [cards, setCards] = useState([]);
-  const [catches, setCatches] = useState([]);
+
+  const [currentId, setCurrentId] = useState('');
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
-  const [currentId, setCurrentId] = useState('');
 
+  const [cards, setCards] = useState([]);
   const filteredCards = cards.filter(card => card.author === profile._id);
-  console.log(filteredCards);
 
+  const [catches, setCatches] = useState([]);
   const filteredCatches = catches.filter(fish => fish.author === profile._id);
-  console.log(filteredCatches);
 
   useEffect(() => {}, [token]);
 

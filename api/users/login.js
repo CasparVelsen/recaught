@@ -34,15 +34,13 @@ const loginHandler = async (request, response) => {
   console.log(foundUser);
 
   if (!foundUser) {
-    return response.status(401).json({ code: 401, message: 'No user found' });
+    return response.status(404).json({ code: 401, message: 'Unauthorized' });
   }
 
-  const hashedPassword = bcrypt.hashSync(foundUser.password, 12);
-
-  const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
+  const isPasswordMatch = await bcrypt.compare(password, foundUser.password);
 
   if (!isPasswordMatch) {
-    return response.status(401).json({ code: 402, message: 'Unauthorized' });
+    return response.status(401).json({ code: 401, message: 'Unauthorized' });
   }
 
   const token = jwt.sign({ sub: foundUser._id }, JWT_SECRET);
