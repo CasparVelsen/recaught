@@ -33,6 +33,7 @@ export default function LoginPage({ onLogin }) {
       <header></header>
       <main>
         <Title>Login</Title>
+        <Subtitle>You have to login first to see your data</Subtitle>
         <Form
           aria-labelledby="form-name"
           autoComplete="off"
@@ -98,7 +99,13 @@ const Title = styled.h1`
   color: #687a48;
   font-size: 32px;
   width: 50%;
-  margin: 0 0 20px;
+  margin: 0 0 15px;
+`;
+
+const Subtitle = styled.h3`
+  color: #a2c36c;
+  font-size: 18px;
+  margin: 0;
 `;
 
 const Form = styled.form`

@@ -93,29 +93,33 @@ export default function App() {
         <Route
           path="/"
           element={
-            <HomePage
-              showModal={showModal}
-              showCatchModal={showCatchModal}
-              filteredCards={filteredCards}
-              filteredCatches={filteredCatches}
-              handleDelete={handleDeleteCard}
-              confirmDelete={handleConfirmDeleteCard}
-              cancelDelete={() => setShowModal(false)}
-              handleDeleteCatch={handleDeleteCatch}
-              confirmDeleteCatch={handleConfirmDeleteCatch}
-              cancelDeleteCatch={() => setShowCatchModal(false)}
-              profile={profile}
-            />
+            <RequirePermission token={token}>
+              <HomePage
+                showModal={showModal}
+                showCatchModal={showCatchModal}
+                filteredCards={filteredCards}
+                filteredCatches={filteredCatches}
+                handleDelete={handleDeleteCard}
+                confirmDelete={handleConfirmDeleteCard}
+                cancelDelete={() => setShowModal(false)}
+                handleDeleteCatch={handleDeleteCatch}
+                confirmDeleteCatch={handleConfirmDeleteCatch}
+                cancelDeleteCatch={() => setShowCatchModal(false)}
+                profile={profile}
+              />
+            </RequirePermission>
           }
         />
         <Route
           path="/formpage"
           element={
-            <FormPage
-              onCreateCard={createCard}
-              onCreateCatch={createCatch}
-              profile={profile}
-            />
+            <RequirePermission token={token}>
+              <FormPage
+                onCreateCard={createCard}
+                onCreateCatch={createCatch}
+                profile={profile}
+              />
+            </RequirePermission>
           }
         />
         <Route
