@@ -36,15 +36,15 @@ export default function HomePage({
       <main>
         <Title>Tight lines, {profile.firstname}</Title>
         <Nav>
-          <Page onClick={showPage} active={!active}>
+          <Page onClick={showPage} active={active}>
             Days
           </Page>
-          <Page onClick={showPage} active={active}>
+          <Page onClick={showPage} active={!active}>
             Catches
           </Page>
         </Nav>
         <div>
-          {!showData && (
+          {showData && (
             <DisplayDays
               cards={cards}
               showModal={showModal}
@@ -53,7 +53,7 @@ export default function HomePage({
               cancelDelete={cancelDelete}
             />
           )}
-          {showData && (
+          {!showData && (
             <DisplayCatches
               catches={catches}
               showCatchModal={showCatchModal}

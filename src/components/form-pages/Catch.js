@@ -14,9 +14,15 @@ const initialValues = {
   location: '',
   notes: '',
   _id: '',
+  author: '',
 };
 
-export default function Catch({ handleAddCatch, deleteCatch, catches }) {
+export default function Catch({
+  handleAddCatch,
+  deleteCatch,
+  catches,
+  profile,
+}) {
   const [showInputs, setShowInputs] = useState(true);
   const [values, setValues] = useState(initialValues);
 
@@ -31,6 +37,7 @@ export default function Catch({ handleAddCatch, deleteCatch, catches }) {
       ...values,
       [name]: value,
       _id: _id,
+      author: profile._id,
     });
   };
 

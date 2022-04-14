@@ -34,6 +34,8 @@ const schema = new mongoose.Schema(
 
       bites: { type: Number },
       lost: { type: Number },
+
+      author: { type: String },
     },
   ],
   {

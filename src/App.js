@@ -106,7 +106,11 @@ export default function App() {
         <Route
           path="/formpage"
           element={
-            <FormPage onCreateCard={createCard} onCreateCatch={createCatch} />
+            <FormPage
+              onCreateCard={createCard}
+              onCreateCatch={createCatch}
+              profile={profile}
+            />
           }
         />
         <Route
