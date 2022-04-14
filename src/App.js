@@ -18,11 +18,16 @@ const initalProfile = {
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [showCatchModal, setShowCatchModal] = useState(false);
-  const [cards, setCards] = useState([]);
-  const [catches, setCatches] = useState([]);
+
+  const [currentId, setCurrentId] = useState('');
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
-  const [currentId, setCurrentId] = useState('');
+
+  const [cards, setCards] = useState([]);
+  const filteredCards = cards.filter(card => card.author === profile._id);
+
+  const [catches, setCatches] = useState([]);
+  const filteredCatches = catches.filter(fish => fish.author === profile._id);
 
   useEffect(() => {}, [token]);
 
@@ -91,8 +96,8 @@ export default function App() {
             <HomePage
               showModal={showModal}
               showCatchModal={showCatchModal}
-              cards={cards}
-              catches={catches}
+              filteredCards={filteredCards}
+              filteredCatches={filteredCatches}
               handleDelete={handleDeleteCard}
               confirmDelete={handleConfirmDeleteCard}
               cancelDelete={() => setShowModal(false)}
@@ -106,7 +111,11 @@ export default function App() {
         <Route
           path="/formpage"
           element={
-            <FormPage onCreateCard={createCard} onCreateCatch={createCatch} />
+            <FormPage
+              onCreateCard={createCard}
+              onCreateCatch={createCatch}
+              profile={profile}
+            />
           }
         />
         <Route
@@ -117,8 +126,8 @@ export default function App() {
                 token={token}
                 logout={onLogout}
                 profile={profile}
-                cards={cards}
-                catches={catches}
+                filteredCards={filteredCards}
+                filteredCatches={filteredCatches}
               />
             </RequirePermission>
           }

@@ -11,7 +11,7 @@ import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 
-export default function FormPage({ onCreateCard, onCreateCatch }) {
+export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
   const [formData, setFormData] = useState({});
   const [catchData, setCatchData] = useState([]);
 
@@ -37,6 +37,7 @@ export default function FormPage({ onCreateCard, onCreateCatch }) {
     setFormData({
       ...formData,
       [name]: value,
+      author: profile._id,
     });
   };
 
@@ -69,6 +70,7 @@ export default function FormPage({ onCreateCard, onCreateCatch }) {
               handleAddCatch={handleAddCatch}
               deleteCatch={handleDeleteCatch}
               catches={formData.catches}
+              profile={profile}
             />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>

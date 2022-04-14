@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
   location: { type: String },
   notes: { type: String },
   _id: { type: Number },
+  author: { type: String },
 });
 
 export default mongoose.model('Catch', schema);

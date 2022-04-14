@@ -2,7 +2,7 @@ import Cards from './DayCard';
 import styled from 'styled-components';
 
 export default function DisplayDays({
-  cards,
+  filteredCards,
   showModal,
   handleDelete,
   confirmDelete,
@@ -10,8 +10,8 @@ export default function DisplayDays({
 }) {
   return (
     <CardsList>
-      {cards
-        ? cards.map((data, tempId) => (
+      {filteredCards
+        ? filteredCards.map((data, tempId) => (
             <li key={tempId}>
               <Cards
                 data={data}

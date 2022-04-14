@@ -3,7 +3,7 @@ import DeleteModal from '../modal/DeleteModal';
 import CatchCard from './CatchCard';
 
 export default function DisplayCatches({
-  catches,
+  filteredCatches,
   handleDeleteCatch,
   confirmDeleteCatch,
   cancelDeleteCatch,
@@ -12,8 +12,8 @@ export default function DisplayCatches({
   return (
     <>
       <Catches>
-        {catches ? (
-          catches.map((data, tempId, _id) => (
+        {filteredCatches ? (
+          filteredCatches.map((data, tempId, _id) => (
             <li key={tempId}>
               <CatchCard data={data} onDelete={handleDeleteCatch} />
             </li>
