@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
+import DepthMap from '../images/DepthMap.svg';
 
 export default function HomePage({
   filteredCards,
@@ -33,7 +34,8 @@ export default function HomePage({
           <PlusIcon size={35} color="#FF9C27" />
         </LinkStyled>
       </header>
-      <main>
+      <Main>
+        <Map src={DepthMap} alt="DepthMap" />
         <Title>Tight lines, {profile.firstname}</Title>
         <Nav>
           <Page onClick={showPage} active={active}>
@@ -63,7 +65,7 @@ export default function HomePage({
             />
           )}
         </div>
-      </main>
+      </Main>
     </>
   );
 }
@@ -111,4 +113,20 @@ const LinkStyled = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   color: black;
+`;
+
+const Map = styled.img`
+  position: absolute;
+  top: 0;
+  right: 50px;
+  height: 200px;
+  z-index: 0;
+`;
+
+const Main = styled.div`
+  margin: 10px;
+  padding-bottom: 68px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;

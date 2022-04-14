@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
+import DepthMap2 from '../images/DepthMap2.svg';
 
 export default function SignUp({ onCreateUser }) {
   const [userData, setUserData] = useState();
@@ -28,7 +29,7 @@ export default function SignUp({ onCreateUser }) {
           <HiArrowLeft size={35} color="#FF9C27" />
         </LinkStyled>
       </header>
-      <main>
+      <Main>
         <Title>SignUp</Title>
         <Form
           aria-labelledby="form-name"
@@ -92,7 +93,8 @@ export default function SignUp({ onCreateUser }) {
             </SubmitButton>
           </ButtonToRight>
         </Form>
-      </main>
+        <Map src={DepthMap2} alt="DepthMap2" stroke="red" />
+      </Main>
     </>
   );
 }
@@ -119,10 +121,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
-  margin-top: 20px;
   background-color: #fffcf8;
   color: #a2c36c;
   font-size: 1.5rem;
+  z-index: 1;
 `;
 
 const Fieldset = styled.fieldset`
@@ -158,4 +160,20 @@ const Input = styled.input`
 const ButtonToRight = styled.div`
   display: flex;
   justify-content: right;
+`;
+
+const Map = styled.img`
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  height: 450px;
+  z-index: 0;
+`;
+
+const Main = styled.div`
+  margin: 10px;
+  padding-bottom: 68px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;

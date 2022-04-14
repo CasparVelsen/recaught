@@ -1,6 +1,0 @@
-const bcrypt = require("bcrypt")
-bcrypt.hashSync("password", 12)
-bcrypt.compareSync("password", '$2b$12$n49oCheZaCIjWGA0jItj..Ih8eaPb2U6L/PQRzQFmVaCAaijIn7uq')
-bcrypt.compareSync("pass", '$2b$12$n49oCheZaCIjWGA0jItj..Ih8eaPb2U6L/PQRzQFmVaCAaijIn7uq')
-bcrypt.compareSync("password", '$2b$12$n49oCheZaCIjWGA0jItj..Ih8eaPb2U6L/PQRzQFmVaCAaijIn7uq')
-save crypt-example-js

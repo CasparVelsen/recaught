@@ -13,7 +13,6 @@ export default createGlobalStyle`
   align-items: center;
   gap: 10px;
   height: 38px;
-  border-bottom: 0.5px solid #a2c36c;
   padding: 0 10px;
   position: relative;
   }

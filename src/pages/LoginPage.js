@@ -4,6 +4,7 @@ import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
 import Button from '../components/Button';
+import DepthMap2 from '../images/DepthMap2.svg';
 
 const initalCredentials = {
   username: '',
@@ -31,7 +32,7 @@ export default function LoginPage({ onLogin }) {
   return (
     <>
       <header></header>
-      <main>
+      <Main>
         <Title>Login</Title>
         <Subtitle>You have to login first to see your data</Subtitle>
         <Form
@@ -83,7 +84,8 @@ export default function LoginPage({ onLogin }) {
             <Button text="Sign up now" />
           </LinkStyled>
         </SignUp>
-      </main>
+        <Map src={DepthMap2} alt="DepthMap2" stroke="red" />
+      </Main>
     </>
   );
 }
@@ -168,4 +170,20 @@ const SignUp = styled.div`
     margin: 0;
     color: #a2c36c;
   }
+`;
+
+const Main = styled.div`
+  margin: 10px;
+  padding-bottom: 68px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Map = styled.img`
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  height: 450px;
+  z-index: -5;
 `;

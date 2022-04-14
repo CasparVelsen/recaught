@@ -10,6 +10,7 @@ import Water from '../components/form-pages/Water';
 import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
+import DepthMap from '../images/DepthMap.svg';
 
 export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
   const [formData, setFormData] = useState({});
@@ -53,7 +54,8 @@ export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
           <HiArrowLeft size={35} color="#FF9C27" />
         </LinkStyled>
       </header>
-      <main>
+      <Main>
+        <Map src={DepthMap} alt="DepthMap" />
         <form
           aria-labelledby="form-name"
           onSubmit={handleSubmit}
@@ -82,7 +84,7 @@ export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
             </ButtonToRight>
           </Inputs>
         </form>
-      </main>
+      </Main>
     </>
   );
 }
@@ -114,4 +116,20 @@ const Inputs = styled.div`
   border-radius: 20px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
   margin-top: 20px;
+`;
+
+const Map = styled.img`
+  position: absolute;
+  top: 0;
+  right: 50px;
+  height: 200px;
+  z-index: -5;
+`;
+
+const Main = styled.div`
+  margin: 10px;
+  padding-bottom: 68px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
