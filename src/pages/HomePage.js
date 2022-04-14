@@ -25,7 +25,6 @@ export default function HomePage({
   function showPage() {
     setShowData(!showData);
     setActive(!active);
-    console.log('clicked');
   }
 
   return (
