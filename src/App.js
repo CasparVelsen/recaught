@@ -24,6 +24,12 @@ export default function App() {
   const [profile, setProfile] = useState(initalProfile);
   const [currentId, setCurrentId] = useState('');
 
+  const filteredCards = cards.filter(card => card.author === profile._id);
+  console.log(filteredCards);
+
+  const filteredCatches = catches.filter(fish => fish.author === profile._id);
+  console.log(filteredCatches);
+
   useEffect(() => {}, [token]);
 
   const loginWithNameAndPassword = async credentials => {
@@ -91,8 +97,8 @@ export default function App() {
             <HomePage
               showModal={showModal}
               showCatchModal={showCatchModal}
-              cards={cards}
-              catches={catches}
+              filteredCards={filteredCards}
+              filteredCatches={filteredCatches}
               handleDelete={handleDeleteCard}
               confirmDelete={handleConfirmDeleteCard}
               cancelDelete={() => setShowModal(false)}
@@ -121,8 +127,8 @@ export default function App() {
                 token={token}
                 logout={onLogout}
                 profile={profile}
-                cards={cards}
-                catches={catches}
+                filteredCards={filteredCards}
+                filteredCatches={filteredCatches}
               />
             </RequirePermission>
           }

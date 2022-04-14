@@ -6,8 +6,8 @@ export default function ProfilePage({
   profile,
   token,
   logout,
-  cards,
-  catches,
+  filteredCards,
+  filteredCatches,
 }) {
   return (
     <>
@@ -22,7 +22,10 @@ export default function ProfilePage({
       </header>
       <main>
         <Title>Hello, {profile.firstname}</Title>
-        <Profile cards={cards} catches={catches} />
+        <Profile
+          filteredCards={filteredCards}
+          filteredCatches={filteredCatches}
+        />
       </main>
     </>
   );

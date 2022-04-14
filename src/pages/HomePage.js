@@ -6,7 +6,8 @@ import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
 
 export default function HomePage({
-  cards,
+  filteredCards,
+  filteredCatches,
   handleDelete,
   showModal,
   showCatchModal,
@@ -16,7 +17,6 @@ export default function HomePage({
   confirmDeleteCatch,
   cancelDeleteCatch,
   profile,
-  catches,
 }) {
   const [showData, setShowData] = useState(true);
   const [active, setActive] = useState(true);
@@ -46,7 +46,7 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-              cards={cards}
+              filteredCards={filteredCards}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}
@@ -55,7 +55,7 @@ export default function HomePage({
           )}
           {!showData && (
             <DisplayCatches
-              catches={catches}
+              filteredCatches={filteredCatches}
               showCatchModal={showCatchModal}
               handleDeleteCatch={handleDeleteCatch}
               confirmDeleteCatch={confirmDeleteCatch}
