@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Stats from '../components/charts/Stats';
+import YearSummary from '../components/charts/YearSum';
 import DepthMap from '../images/DepthMap.svg';
 
 export default function ProfilePage({
@@ -28,6 +29,7 @@ export default function ProfilePage({
           filteredCards={filteredCards}
           filteredCatches={filteredCatches}
         />
+        <YearSummary filteredCards={filteredCards} />
       </Main>
     </>
   );
