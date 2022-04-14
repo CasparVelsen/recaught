@@ -1,9 +1,12 @@
 import lodash from 'lodash';
 import { useState } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
+import WaterStats from './WaterStats';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-export default function YearSummary({ filteredCards }) {
-  const [timeSpan, setTimeSpan] = useState(2022);
+export default function Periods({ filteredCards }) {
+  const [timeSpan, setTimeSpan] = useLocalStorage('timeSpan');
   const [period, setPeriod] = useState(1);
 
   const filteredCardsByTime = filteredCards.filter(card =>
@@ -16,13 +19,18 @@ export default function YearSummary({ filteredCards }) {
 
   var numberCatches = lodash.sum(filterNumberCatches);
 
+  const m = moment();
+  const currentYear = m.format('YYYY');
+  const currentMonth = m.format('YYYY[-]MM');
+  const today = m.format('YYYY[-]MM[-]D');
+
   return (
     <>
-      <Title>Stats:</Title>
+      <Header>Stats:</Header>
       <PeriodChoice>
         <button
           onClick={() => {
-            setTimeSpan(2022);
+            setTimeSpan(currentYear);
             setPeriod(1);
           }}
         >
@@ -30,7 +38,7 @@ export default function YearSummary({ filteredCards }) {
         </button>
         <button
           onClick={() => {
-            setTimeSpan(2021);
+            setTimeSpan(currentYear - 1);
             setPeriod(2);
           }}
         >
@@ -38,7 +46,7 @@ export default function YearSummary({ filteredCards }) {
         </button>
         <button
           onClick={() => {
-            setTimeSpan('2022-04');
+            setTimeSpan(currentMonth);
             setPeriod(3);
           }}
         >
@@ -46,46 +54,52 @@ export default function YearSummary({ filteredCards }) {
         </button>
         <button
           onClick={() => {
-            setTimeSpan('2022-03');
+            setTimeSpan(today);
             setPeriod(4);
           }}
         >
-          Last Month
+          Today
         </button>
       </PeriodChoice>
       {period === 1 && (
         <Period>
+          <Title>{currentYear}</Title>
           <span>You caught {numberCatches} fish this year</span>
+          <WaterStats filteredCardsByTime={filteredCardsByTime} />
         </Period>
       )}
       {period === 2 && (
         <Period>
+          <Title>{timeSpan}</Title>
           <span>You caught {numberCatches} fish last year</span>
         </Period>
       )}
       {period === 3 && (
         <Period>
-          <span>You caught {numberCatches} fish this moth</span>
+          <Title>{m.format('MMMM[ ]YY')}</Title>
+          <span>You caught {numberCatches} fish this month</span>
         </Period>
       )}
       {period === 4 && (
         <Period>
-          <span>You caught {numberCatches} fish last month</span>
+          <Title>Today</Title>
+          <span>You caught {numberCatches} fish today</span>
         </Period>
       )}
     </>
   );
 }
 
-const Title = styled.h1`
+const Header = styled.h1`
   color: #687a48;
   font-size: 24px;
   width: 50%;
-  margin: 20px 0 20px;
+  margin: 20px 0 15px;
 `;
 
 const PeriodChoice = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 10px;
 
   button {
@@ -100,10 +114,6 @@ const PeriodChoice = styled.div`
     padding: 5px 10px;
     margin-bottom: 10px;
   }
-
-  :nth-child(2) {
-    background-color: green;
-  }
 `;
 
 const Period = styled.div`
@@ -111,8 +121,15 @@ const Period = styled.div`
   border-radius: 10px;
   padding: 5px 10px;
   border: 0.5px solid #a2c36c;
-  color: #687a48;
+  color: #a2c36c;
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+  margin-top: 5px;
+`;
+
+const Title = styled.h2`
+  font-size: 24px;
+  color: #ff9c27;
+  margin: 0;
 `;

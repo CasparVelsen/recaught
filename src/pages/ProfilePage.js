@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import Stats from '../components/charts/Stats';
-import YearSummary from '../components/charts/YearSum';
+import Periods from '../components/charts/Periods';
 import DepthMap from '../images/DepthMap.svg';
 
 export default function ProfilePage({
@@ -29,7 +29,7 @@ export default function ProfilePage({
           filteredCards={filteredCards}
           filteredCatches={filteredCatches}
         />
-        <YearSummary filteredCards={filteredCards} />
+        <Periods filteredCards={filteredCards} />
       </Main>
     </>
   );
@@ -56,7 +56,7 @@ const Title = styled.h1`
   color: #687a48;
   font-size: 32px;
   width: 50%;
-  margin: 0 0 20px;
+  margin: 0 0 0px;
 `;
 
 const Map = styled.img`

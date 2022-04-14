@@ -45,6 +45,7 @@ const Catches = styled.ul`
   list-style: none;
   padding: 0;
   width: 100%;
+  margin-bottom: 68px;
 `;
 
 const Container = styled.div`
