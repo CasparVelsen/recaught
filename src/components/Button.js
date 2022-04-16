@@ -19,6 +19,7 @@ const NormalButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   background-color: ${props => (props.isAccent ? '#ff9c27' : '#687a48')};
   color: white;
   border: none;

@@ -1,14 +1,66 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import SubmitButton from '../SubmitButton';
 
 export default function WaterStats({ filteredCardsByTime }) {
+  const [water, setWater] = useState('');
+
+  const filteredCardsByWater = filteredCardsByTime.filter(card =>
+    card.water.includes(water)
+  );
+
+  const allCatchesInManyArrays = filteredCardsByWater.map(object => {
+    const tempArray = object.catches.map(entry => {
+      return entry.species;
+    });
+    return tempArray;
+  });
+
+  const allCatches = allCatchesInManyArrays.flat();
+
+  const eachSpecies = [...new Set(allCatches)];
+
+  const count = {};
+
+  allCatches.forEach(item => {
+    if (count[item]) {
+      count[item]++;
+    } else {
+      count[item] = 1;
+    }
+  });
+
+  const numbers = Object.values(count);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const waterName = document.getElementById('water');
+    setWater(waterName.value);
+    waterName.value = '';
+  }
+
   return (
-    <WaterList>
-      {filteredCardsByTime.map((data, index) => (
-        <Water key={index}>
-          <span>{data.water}</span>
-        </Water>
-      ))}
-    </WaterList>
+    <div>
+      <WaterForm onSubmit={handleSubmit}>
+        <Input id="water" value={water.title} />
+        <SubmitButton text="Search" />
+      </WaterForm>
+      <WaterList>
+        <Water>{water ? water : 'All'}:</Water>
+        <CatchList>
+          <Numbers>
+            {numbers.map((n, id) => (
+              <span key={id}>{n}x </span>
+            ))}
+          </Numbers>
+          <Catches>
+            {eachSpecies.map((species, index) => (
+              <span key={index}>{species} </span>
+            ))}
+          </Catches>
+        </CatchList>
+      </WaterList>
+    </div>
   );
 }
 
@@ -17,22 +69,49 @@ const WaterList = styled.ul`
   flex-direction: column;
   gap: 10px;
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 10px 0;
+  background-color: white;
+  border: 1px solid #ff9c27;
+  border-radius: 5px;
 `;
 
-const Water = styled.li`
+const WaterForm = styled.form`
   display: flex;
-  align-items: center;
-  border: 0.5px solid #a2c36c;
-  border-radius: 10px;
-  padding: 10px;
+  gap: 10px;
+  margin-top: 15px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  border: 1px solid #ff9c27;
+  border-radius: 5px;
+  color: #aaa;
   background-color: white;
+  height: 32px;
+`;
+
+const CatchList = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const Water = styled.span`
+  color: #687a48;
+  font-weight: bold;
+  font-size: 1.2rem;
+`;
+
+const Catches = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Numbers = styled.div`
+  display: flex;
+  flex-direction: column;
 
   span {
     color: #687a48;
-    font-size: 1.2rem;
-    border-right: 2px solid #ff9c27;
-    padding: 10px 20px 10px 10px;
   }
 `;
