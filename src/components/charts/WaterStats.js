@@ -42,11 +42,15 @@ export default function WaterStats({ filteredCardsByTime }) {
   return (
     <div>
       <WaterForm onSubmit={handleSubmit}>
-        <Input id="water" value={water.title} />
+        <Input
+          id="water"
+          value={water.title}
+          placeholder="Search for water stats"
+        />
         <SubmitButton text="Search" />
       </WaterForm>
       <WaterList>
-        <Water>{water ? water : 'All'}:</Water>
+        <Water>{water ? water : 'All catches'}:</Water>
         <CatchList>
           <Numbers>
             {numbers.map((n, id) => (

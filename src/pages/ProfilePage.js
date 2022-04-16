@@ -64,7 +64,7 @@ const Map = styled.img`
   top: 0;
   right: 50px;
   height: 200px;
-  z-index: -5;
+  z-index: -100;
 `;
 
 const Main = styled.div`

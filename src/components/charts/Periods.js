@@ -26,7 +26,7 @@ export default function Periods({ filteredCards }) {
 
   return (
     <>
-      <Header>Stats:</Header>
+      <Header>More Stats:</Header>
       <PeriodChoice>
         <button
           onClick={() => {
@@ -72,18 +72,21 @@ export default function Periods({ filteredCards }) {
         <Period>
           <Title>{timeSpan}</Title>
           <span>You caught {numberCatches} fish last year</span>
+          <WaterStats filteredCardsByTime={filteredCardsByTime} />
         </Period>
       )}
       {period === 3 && (
         <Period>
           <Title>{m.format('MMMM[ ]YY')}</Title>
           <span>You caught {numberCatches} fish this month</span>
+          <WaterStats filteredCardsByTime={filteredCardsByTime} />
         </Period>
       )}
       {period === 4 && (
         <Period>
           <Title>Today</Title>
           <span>You caught {numberCatches} fish today</span>
+          <WaterStats filteredCardsByTime={filteredCardsByTime} />
         </Period>
       )}
     </>
