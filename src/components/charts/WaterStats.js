@@ -89,6 +89,7 @@ const WaterForm = styled.form`
   display: flex;
   gap: 10px;
   margin-top: 15px;
+  height: 30px;
 `;
 
 const Select = styled.select`
@@ -97,7 +98,8 @@ const Select = styled.select`
   border-radius: 5px;
   color: #aaa;
   background-color: white;
-  height: 32px;
+  height: 30px;
+  font-size: 1rem;
 `;
 
 const CatchList = styled.div`
