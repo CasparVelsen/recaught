@@ -39,14 +39,19 @@ export default function WaterStats({ filteredCardsByTime }) {
     waterName.value = '';
   }
 
+  console.log(eachSpecies);
+
   return (
     <div>
       <WaterForm onSubmit={handleSubmit}>
-        <Input
-          id="water"
-          value={water.title}
-          placeholder="Search for water stats"
-        />
+        <Select id="water" value={water.title}>
+          <option value="" disabled selected>
+            Search for water
+          </option>
+          {filteredCardsByWater.map((opt, id) => (
+            <option key={id}>{opt.water}</option>
+          ))}
+        </Select>
         <SubmitButton text="Search" />
       </WaterForm>
       <WaterList>
@@ -86,7 +91,7 @@ const WaterForm = styled.form`
   margin-top: 15px;
 `;
 
-const Input = styled.input`
+const Select = styled.select`
   width: 100%;
   border: 1px solid #ff9c27;
   border-radius: 5px;
