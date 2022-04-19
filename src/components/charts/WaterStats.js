@@ -39,7 +39,35 @@ export default function WaterStats({ filteredCardsByTime }) {
     waterName.value = '';
   }
 
-  console.log(eachSpecies);
+  const allLengthsInManyArrays = filteredCardsByWater.map(object => {
+    const tempLengthArray = object.catches.map(entry => {
+      return entry.length;
+    });
+    return tempLengthArray;
+  });
+
+  const lengths = allLengthsInManyArrays.flat();
+
+  function ArrayAvg(lengths) {
+    var i = 0,
+      summ = 0,
+      ArrayLen = lengths.length;
+    while (i < ArrayLen) {
+      summ = summ + lengths[i++];
+    }
+    return summ / ArrayLen;
+  }
+  var averageSize = ArrayAvg(lengths);
+
+  const allWaterInManyArrays = filteredCardsByTime.map(object => {
+    return object.water;
+  });
+
+  console.log(allWaterInManyArrays);
+
+  const eachWater = [...new Set(allWaterInManyArrays)];
+
+  console.log(eachWater);
 
   return (
     <div>
@@ -48,8 +76,8 @@ export default function WaterStats({ filteredCardsByTime }) {
           <option value="" disabled selected>
             Search for water
           </option>
-          {filteredCardsByWater.map((opt, id) => (
-            <option key={id}>{opt.water}</option>
+          {eachWater.map((opt, id) => (
+            <option key={id}>{opt}</option>
           ))}
         </Select>
         <SubmitButton text="Search" />
@@ -68,6 +96,9 @@ export default function WaterStats({ filteredCardsByTime }) {
             ))}
           </Catches>
         </CatchList>
+        <Average>
+          <span>Average size:</span>ø{averageSize} cm
+        </Average>
       </WaterList>
     </div>
   );
@@ -121,6 +152,15 @@ const Catches = styled.div`
 const Numbers = styled.div`
   display: flex;
   flex-direction: column;
+
+  span {
+    color: #687a48;
+  }
+`;
+
+const Average = styled.div`
+  display: flex;
+  gap: 8px;
 
   span {
     color: #687a48;

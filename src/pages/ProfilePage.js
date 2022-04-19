@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Stats from '../components/charts/Stats';
 import Periods from '../components/charts/Periods';
 import DepthMap from '../images/DepthMap.svg';
+import WeatherStats from '../components/charts/WeatherStats';
 
 export default function ProfilePage({
   profile,
@@ -30,6 +31,7 @@ export default function ProfilePage({
           filteredCatches={filteredCatches}
         />
         <Periods filteredCards={filteredCards} />
+        <WeatherStats filteredCards={filteredCards} />
       </Main>
     </>
   );
