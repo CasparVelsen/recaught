@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import SubmitButton from '../SubmitButton';
+import WeatherStats from './WeatherStats';
 
 export default function WaterStats({ filteredCardsByTime }) {
   const [water, setWater] = useState('');
@@ -79,8 +80,9 @@ export default function WaterStats({ filteredCardsByTime }) {
         </Select>
         <SubmitButton text="Search" />
       </WaterForm>
-      <WaterList>
-        <Water>{water ? water : 'All catches'}:</Water>
+      <Water>{water ? water : 'All waters'}:</Water>
+      <Stats>
+        <StatsTitle>Catchbook</StatsTitle>
         <CatchList>
           <Numbers>
             {numbers.map((n, id) => (
@@ -89,32 +91,39 @@ export default function WaterStats({ filteredCardsByTime }) {
           </Numbers>
           <Catches>
             {eachSpecies.map((species, index) => (
-              <span key={index}>{species} </span>
+              <span key={index}>{species}</span>
             ))}
           </Catches>
         </CatchList>
-        {averageSize ? (
-          <Average>
-            <span>Average size:</span>ø{averageSize} cm
-          </Average>
-        ) : (
-          'no fish caught'
-        )}
-      </WaterList>
+        <Average>
+          <span>Average size:</span>ø{averageSize ? averageSize : ' 0'} cm
+        </Average>
+      </Stats>
+      <Stats>
+        <StatsTitle>Weather stats</StatsTitle>
+        <WeatherStats filteredCardsByTime={filteredCardsByTime} />
+      </Stats>
     </div>
   );
 }
 
-const WaterList = styled.ul`
+const Stats = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 3px;
   list-style: none;
   padding: 10px;
-  margin: 10px 0;
+  margin: 15px 0;
   background-color: white;
   border: 1px solid #ff9c27;
   border-radius: 5px;
+`;
+
+const StatsTitle = styled.div`
+  color: #687a48;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 7px;
 `;
 
 const WaterForm = styled.form`
@@ -122,6 +131,7 @@ const WaterForm = styled.form`
   gap: 10px;
   margin-top: 15px;
   height: 30px;
+  margin-bottom: 15px;
 `;
 
 const Select = styled.select`
@@ -141,10 +151,9 @@ const CatchList = styled.div`
 `;
 
 const Water = styled.span`
-  color: #687a48;
+  color: #a2c36c;
   font-weight: bold;
   font-size: 1.2rem;
-  margin-bottom: 7px;
 `;
 
 const Catches = styled.div`

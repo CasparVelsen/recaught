@@ -1,3 +1,26 @@
-export default function WeatherStats({ filteredCards }) {
-  return <h2>Weather Stats</h2>;
+import lodash from 'lodash';
+
+export default function WeatherStats({ filteredCardsByTime }) {
+  console.log(filteredCardsByTime);
+
+  const findAirpressure = filteredCardsByTime.map(card => card.airpressure);
+  const filteredAirpressure = [...new Set(findAirpressure)];
+  console.log(filteredAirpressure);
+
+  filteredAirpressure.forEach((data, index) => {
+    const filterForAirpressure = filteredCardsByTime.filter(
+      card => card.airpressure === data
+    );
+    const catches = filterForAirpressure.map(data => data.catches.length);
+    var numberCatches = lodash.sum(catches);
+    const obj = { id: index, airpressure: data, catches: numberCatches };
+    console.log(obj);
+  });
+
+  return (
+    <>
+      <div>best...</div>
+      <div>...airpressure =</div>
+    </>
+  );
 }

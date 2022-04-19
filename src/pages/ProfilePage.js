@@ -31,7 +31,6 @@ export default function ProfilePage({
           filteredCatches={filteredCatches}
         />
         <Periods filteredCards={filteredCards} />
-        <WeatherStats filteredCards={filteredCards} />
       </Main>
     </>
   );
