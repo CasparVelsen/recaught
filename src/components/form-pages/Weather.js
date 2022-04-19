@@ -29,13 +29,19 @@ export default function Weather({ handleOnChange }) {
           <Fieldset>
             <Part>
               <label htmlFor="weather">Weather</label>
-              <Input
+              <Select
                 id="weather"
                 name="weather"
                 type="text"
-                maxLength={100}
                 onChange={handleOnChange}
-              />
+              >
+                <option value="sunny">sunny</option>
+                <option value="cloudy">cloudy</option>
+                <option value="rainy">rainy</option>
+                <option value="stormy">stormy</option>
+                <option value="foggy">foggy</option>
+                <option value="snow">snow</option>
+              </Select>
             </Part>
             <Part>
               <label htmlFor="temperature">Temperature</label>
@@ -135,6 +141,16 @@ const Part = styled.div`
 `;
 
 const Input = styled.input`
+  width: 100%;
+  border: 1px solid #ff9c27;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #aaa;
+  background-color: white;
+  height: 25px;
+`;
+
+const Select = styled.select`
   width: 100%;
   border: 1px solid #ff9c27;
   padding: 2px 5px;
