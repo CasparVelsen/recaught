@@ -70,7 +70,7 @@ export default function WaterStats({ filteredCardsByTime }) {
   return (
     <div>
       <WaterForm onSubmit={handleSubmit}>
-        <Select id="water" value={water.title} name="waterName">
+        <Select id="water" name="waterName">
           <option value="" disabled selected>
             Search for water
           </option>
@@ -151,7 +151,7 @@ const CatchList = styled.div`
 `;
 
 const Water = styled.span`
-  color: #a2c36c;
+  color: #ff9c27;
   font-weight: bold;
   font-size: 1.2rem;
 `;

@@ -10,8 +10,6 @@ import { useState } from 'react';
 export default function WeatherStats({ filteredCardsByWater }) {
   const [page, setPage] = useState(0);
 
-  console.log(page);
-
   return (
     <>
       <Select>
@@ -22,6 +20,7 @@ export default function WeatherStats({ filteredCardsByWater }) {
         <option onClick={() => setPage(4)}>Wind</option>
         <option onClick={() => setPage(5)}>Wind speed</option>
       </Select>
+
       <div>
         {page === 0 && (
           <StatsContainer>
