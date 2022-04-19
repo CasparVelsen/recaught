@@ -121,7 +121,7 @@ const Map = styled.img`
   top: 0;
   right: 50px;
   height: 200px;
-  z-index: 0;
+  z-index: -10;
 `;
 
 const Main = styled.div`
