@@ -6,19 +6,35 @@ import Moon from './charts/Moon';
 import Wind from './charts/Wind';
 import WindSpeed from './charts/WindSpeed';
 import { useState } from 'react';
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 export default function WeatherStats({ filteredCardsByWater }) {
+  const [showOptions, setShowOptions] = useState(false);
   const [page, setPage] = useState(0);
 
   return (
     <>
-      <Select>
-        <option onClick={() => setPage(0)}>Weather</option>
-        <option onClick={() => setPage(1)}>Temperature</option>
-        <option onClick={() => setPage(2)}>Air pressure</option>
-        <option onClick={() => setPage(3)}>Moon</option>
-        <option onClick={() => setPage(4)}>Wind</option>
-        <option onClick={() => setPage(5)}>Wind speed</option>
+      <Select onClick={() => setShowOptions(!showOptions)}>
+        <Header>
+          select statistics for:
+          {!showOptions && <IoIosArrowForward size={20} color={'#a2c36c'} />}
+          {showOptions && <IoIosArrowDown size={20} color={'#a2c36c'} />}
+        </Header>
+
+        {showOptions && (
+          <Options>
+            <div>
+              <button onClick={() => setPage(0)}>Weather</button>
+              <button onClick={() => setPage(1)}>Temperature</button>
+              <button onClick={() => setPage(2)}>Air pressure</button>
+            </div>
+            <div>
+              <button onClick={() => setPage(3)}>Moon</button>
+              <button onClick={() => setPage(4)}>Wind</button>
+              <button onClick={() => setPage(5)}>Wind speed</button>
+            </div>
+          </Options>
+        )}
       </Select>
 
       <div>
@@ -66,14 +82,49 @@ export default function WeatherStats({ filteredCardsByWater }) {
   );
 }
 
-const Select = styled.select`
+const Select = styled.div`
   width: 100%;
-  border: 1px solid #ff9c27;
-  border-radius: 5px;
+  border: 1px solid #a2c36c;
+  border-radius: 10px;
   color: #aaa;
   background-color: white;
-  height: 30px;
   font-size: 1rem;
+  padding: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Options = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+  background-color: white;
+  margin: 10px 0;
+
+  div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+    color: #aaa;
+    text-align: center;
+  }
 `;
 
 const Title = styled.div`
@@ -82,12 +133,13 @@ const Title = styled.div`
 
 const StatsContainer = styled.div`
   position: relative;
+  padding-right: 10px;
 `;
 
 const Legend = styled.div`
   position: absolute;
-  right: 8px;
-  bottom: 5px;
+  right: -5px;
+  bottom: 4px;
   font-size: 0.7rem;
   font-weight: bold;
   color: #687a48;

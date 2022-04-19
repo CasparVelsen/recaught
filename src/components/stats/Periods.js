@@ -145,6 +145,7 @@ const PeriodChoice = styled.div`
     border-radius: 5px;
     padding: 5px 10px;
     margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
   }
 `;
 

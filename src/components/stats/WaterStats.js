@@ -142,6 +142,7 @@ const Select = styled.select`
   background-color: white;
   height: 30px;
   font-size: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 `;
 
 const CatchList = styled.div`
