@@ -1,6 +1,7 @@
 import Airpressure from './charts/Airpressure';
 import styled from 'styled-components';
 import Weather from './charts/Weather';
+import Temperature from './charts/Temperatur';
 
 export default function WeatherStats({ filteredCardsByTime }) {
   return (
@@ -13,8 +14,12 @@ export default function WeatherStats({ filteredCardsByTime }) {
         <option>Wind</option>
         <option>Wind speed</option>
       </Select>
-      <Airpressure filteredCardsByTime={filteredCardsByTime} />
+      <h4>Weather</h4>
       <Weather filteredCardsByTime={filteredCardsByTime} />
+      <h4>Temperature</h4>
+      <Temperature filteredCardsByTime={filteredCardsByTime} />
+      <h4>Airpressure</h4>
+      <Airpressure filteredCardsByTime={filteredCardsByTime} />
     </>
   );
 }

@@ -6,7 +6,6 @@ function Airpressure({ filteredCardsByTime }) {
   const findAirpressure = filteredCardsByTime.map(card => card.airpressure);
   const filteredAirpressure = [...new Set(findAirpressure)];
   filteredAirpressure.sort();
-  console.log(filteredAirpressure);
 
   const airpressureArray = filteredAirpressure.map((data, index) => {
     const filterForAirpressure = filteredCardsByTime.filter(
@@ -17,8 +16,6 @@ function Airpressure({ filteredCardsByTime }) {
     const obj = { id: index, airpressure: data, catches: numberCatches };
     return obj;
   });
-
-  console.log(airpressureArray);
 
   const airpressure = {
     labels: airpressureArray.map(data => data.airpressure),

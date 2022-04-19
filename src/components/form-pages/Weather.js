@@ -91,15 +91,16 @@ export default function Weather({ handleOnChange }) {
                 type="text"
                 maxLength={100}
                 onChange={handleOnChange}
-              />
-              <option value="north">north</option>
-              <option value="west">west</option>
-              <option value="east">east</option>
-              <option value="south">south</option>
-              <option value="northwest">north west</option>
-              <option value="northeast">north east</option>
-              <option value="southwest">south west</option>
-              <option value="south east">south east</option>
+              >
+                <option value="north">north</option>
+                <option value="west">west</option>
+                <option value="east">east</option>
+                <option value="south">south</option>
+                <option value="northwest">north west</option>
+                <option value="northeast">north east</option>
+                <option value="southwest">south west</option>
+                <option value="south east">south east</option>
+              </Select>
             </Part>
             <Part>
               <label htmlFor="windspeed">Wind speed</label>

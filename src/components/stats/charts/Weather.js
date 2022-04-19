@@ -6,7 +6,6 @@ function Weather({ filteredCardsByTime }) {
   const findWeather = filteredCardsByTime.map(card => card.weather);
   const filteredWeather = [...new Set(findWeather)];
   filteredWeather.sort();
-  console.log(filteredWeather);
 
   const weatherArray = filteredWeather.map((data, index) => {
     const filterForWeather = filteredCardsByTime.filter(
@@ -17,8 +16,6 @@ function Weather({ filteredCardsByTime }) {
     const obj = { id: index, weather: data, catches: numberCatches };
     return obj;
   });
-
-  console.log(weatherArray);
 
   const weather = {
     labels: weatherArray.map(data => data.weather),
