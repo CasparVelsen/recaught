@@ -58,7 +58,7 @@ const Title = styled.h1`
   color: #687a48;
   font-size: 32px;
   width: 50%;
-  margin: 0 0 0px;
+  margin: 0;
 `;
 
 const Map = styled.img`

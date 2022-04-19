@@ -96,9 +96,13 @@ export default function WaterStats({ filteredCardsByTime }) {
             ))}
           </Catches>
         </CatchList>
-        <Average>
-          <span>Average size:</span>ø{averageSize} cm
-        </Average>
+        {averageSize ? (
+          <Average>
+            <span>Average size:</span>ø{averageSize} cm
+          </Average>
+        ) : (
+          'no fish caught'
+        )}
       </WaterList>
     </div>
   );
@@ -107,7 +111,7 @@ export default function WaterStats({ filteredCardsByTime }) {
 const WaterList = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 3px;
   list-style: none;
   padding: 10px;
   margin: 10px 0;
@@ -136,12 +140,14 @@ const Select = styled.select`
 const CatchList = styled.div`
   display: flex;
   gap: 10px;
+  margin-bottom: 7px;
 `;
 
 const Water = styled.span`
   color: #687a48;
   font-weight: bold;
   font-size: 1.2rem;
+  margin-bottom: 7px;
 `;
 
 const Catches = styled.div`
