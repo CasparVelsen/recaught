@@ -146,8 +146,7 @@ export default function Catch({
               </Notes>
             </Fieldset>
             <Button
-              text={'Add Catch'}
-              isAccent={false}
+              text="Add Catch"
               onClick={() => {
                 handleAddCatch(values);
                 setValues(initialValues);

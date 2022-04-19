@@ -28,6 +28,7 @@ const StatsList = styled.div`
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
   margin-top: 20px;
   padding: 10px;
+  background-color: white;
 `;
 
 const Stats = styled.span`

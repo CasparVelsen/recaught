@@ -96,6 +96,7 @@ const Page = styled.div`
   width: 100%;
   border-radius: 20px;
   z-index: 2;
+
   ${({ active }) =>
     active &&
     css`
