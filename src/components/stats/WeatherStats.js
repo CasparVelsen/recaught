@@ -78,7 +78,7 @@ const Select = styled.select`
 `;
 
 const Title = styled.div`
-  margin: 10px 0;
+  margin: 10px 0 0 0;
 `;
 
 const StatsContainer = styled.div`
@@ -89,6 +89,7 @@ const Legend = styled.div`
   position: absolute;
   right: 8px;
   bottom: 5px;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   font-weight: bold;
+  color: #687a48;
 `;

@@ -40,7 +40,7 @@ function Wind({ filteredCardsByWater }) {
         display: true,
         text: 'Catches ',
         align: 'start',
-        color: '#a2c36c',
+        color: '#687a48',
       },
     },
     scales: {
