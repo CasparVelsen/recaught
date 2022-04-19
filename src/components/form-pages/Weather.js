@@ -85,13 +85,21 @@ export default function Weather({ handleOnChange }) {
             </Part>
             <Part>
               <label htmlFor="wind">Wind direction</label>
-              <Input
+              <Select
                 id="wind"
                 name="wind"
                 type="text"
                 maxLength={100}
                 onChange={handleOnChange}
               />
+              <option value="north">north</option>
+              <option value="west">west</option>
+              <option value="east">east</option>
+              <option value="south">south</option>
+              <option value="northwest">north west</option>
+              <option value="northeast">north east</option>
+              <option value="southwest">south west</option>
+              <option value="south east">south east</option>
             </Part>
             <Part>
               <label htmlFor="windspeed">Wind speed</label>
