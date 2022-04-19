@@ -41,6 +41,7 @@ function Airpressure({ filteredCardsByWater }) {
         display: true,
         text: 'Catches ',
         align: 'start',
+        color: '#a2c36c',
       },
     },
     scales: {

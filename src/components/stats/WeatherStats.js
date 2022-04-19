@@ -24,40 +24,43 @@ export default function WeatherStats({ filteredCardsByWater }) {
       </Select>
       <div>
         {page === 0 && (
-          <div>
-            <h4>Weather</h4>
+          <StatsContainer>
+            <Title>Weather:</Title>
             <Weather filteredCardsByWater={filteredCardsByWater} />
-          </div>
+          </StatsContainer>
         )}
         {page === 1 && (
-          <div>
-            <h4>Temperature</h4>
+          <StatsContainer>
+            <Title>Temperature:</Title>
             <Temperature filteredCardsByWater={filteredCardsByWater} />
-          </div>
+            <Legend>°C</Legend>
+          </StatsContainer>
         )}
         {page === 2 && (
-          <div>
-            <h4>Airpressure</h4>
+          <StatsContainer>
+            <Title>Airpressure:</Title>
             <Airpressure filteredCardsByWater={filteredCardsByWater} />
-          </div>
+            <Legend>hPa</Legend>
+          </StatsContainer>
         )}
         {page === 3 && (
-          <div>
-            <h4>Moon</h4>
+          <StatsContainer>
+            <Title>Moon:</Title>
             <Moon filteredCardsByWater={filteredCardsByWater} />
-          </div>
+          </StatsContainer>
         )}
         {page === 4 && (
-          <div>
-            <h4>Wind direction</h4>
+          <StatsContainer>
+            <Title>Wind direction:</Title>
             <Wind filteredCardsByWater={filteredCardsByWater} />
-          </div>
+          </StatsContainer>
         )}
         {page === 5 && (
-          <div>
-            <h4>Wind speed</h4>
+          <StatsContainer>
+            <Title>Wind speed:</Title>
             <WindSpeed filteredCardsByWater={filteredCardsByWater} />
-          </div>
+            <Legend>km/h</Legend>
+          </StatsContainer>
         )}
       </div>
     </>
@@ -72,4 +75,20 @@ const Select = styled.select`
   background-color: white;
   height: 30px;
   font-size: 1rem;
+`;
+
+const Title = styled.div`
+  margin: 10px 0;
+`;
+
+const StatsContainer = styled.div`
+  position: relative;
+`;
+
+const Legend = styled.div`
+  position: absolute;
+  right: 8px;
+  bottom: 5px;
+  font-size: 0.6rem;
+  font-weight: bold;
 `;
