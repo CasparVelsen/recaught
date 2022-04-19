@@ -70,13 +70,18 @@ export default function Weather({ handleOnChange }) {
             </Part>
             <Part>
               <label htmlFor="moon">Moon phase</label>
-              <Input
+              <Select
                 id="moon"
                 name="moon"
                 type="text"
                 maxLength={100}
                 onChange={handleOnChange}
-              />
+              >
+                <option value="full moon">full moon</option>
+                <option value="increasing moon">increasind moon</option>
+                <option value="waning moon">waning moon</option>
+                <option value="new moon">new moon</option>
+              </Select>
             </Part>
             <Part>
               <label htmlFor="wind">Wind direction</label>
