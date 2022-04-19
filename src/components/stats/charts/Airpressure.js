@@ -2,13 +2,13 @@ import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function Airpressure({ filteredCardsByTime }) {
-  const findAirpressure = filteredCardsByTime.map(card => card.airpressure);
+function Airpressure({ filteredCardsByWater }) {
+  const findAirpressure = filteredCardsByWater.map(card => card.airpressure);
   const filteredAirpressure = [...new Set(findAirpressure)];
   filteredAirpressure.sort();
 
   const airpressureArray = filteredAirpressure.map((data, index) => {
-    const filterForAirpressure = filteredCardsByTime.filter(
+    const filterForAirpressure = filteredCardsByWater.filter(
       card => card.airpressure === data
     );
     const catches = filterForAirpressure.map(data => data.catches.length);

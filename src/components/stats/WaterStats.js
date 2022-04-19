@@ -101,7 +101,7 @@ export default function WaterStats({ filteredCardsByTime }) {
       </Stats>
       <Stats>
         <StatsTitle>Weather stats</StatsTitle>
-        <WeatherStats filteredCardsByTime={filteredCardsByTime} />
+        <WeatherStats filteredCardsByWater={filteredCardsByWater} />
       </Stats>
     </div>
   );

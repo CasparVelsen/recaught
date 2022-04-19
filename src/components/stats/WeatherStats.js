@@ -7,7 +7,7 @@ import Wind from './charts/Wind';
 import WindSpeed from './charts/WindSpeed';
 import { useState } from 'react';
 
-export default function WeatherStats({ filteredCardsByTime }) {
+export default function WeatherStats({ filteredCardsByWater }) {
   const [page, setPage] = useState(0);
 
   console.log(page);
@@ -26,37 +26,37 @@ export default function WeatherStats({ filteredCardsByTime }) {
         {page === 0 && (
           <div>
             <h4>Weather</h4>
-            <Weather filteredCardsByTime={filteredCardsByTime} />
+            <Weather filteredCardsByWater={filteredCardsByWater} />
           </div>
         )}
         {page === 1 && (
           <div>
             <h4>Temperature</h4>
-            <Temperature filteredCardsByTime={filteredCardsByTime} />
+            <Temperature filteredCardsByWater={filteredCardsByWater} />
           </div>
         )}
         {page === 2 && (
           <div>
             <h4>Airpressure</h4>
-            <Airpressure filteredCardsByTime={filteredCardsByTime} />
+            <Airpressure filteredCardsByWater={filteredCardsByWater} />
           </div>
         )}
         {page === 3 && (
           <div>
             <h4>Moon</h4>
-            <Moon filteredCardsByTime={filteredCardsByTime} />
+            <Moon filteredCardsByWater={filteredCardsByWater} />
           </div>
         )}
         {page === 4 && (
           <div>
             <h4>Wind direction</h4>
-            <Wind filteredCardsByTime={filteredCardsByTime} />
+            <Wind filteredCardsByWater={filteredCardsByWater} />
           </div>
         )}
         {page === 5 && (
           <div>
             <h4>Wind speed</h4>
-            <WindSpeed filteredCardsByTime={filteredCardsByTime} />
+            <WindSpeed filteredCardsByWater={filteredCardsByWater} />
           </div>
         )}
       </div>
