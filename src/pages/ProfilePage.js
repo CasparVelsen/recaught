@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Stats from '../components/charts/Stats';
-import Periods from '../components/charts/Periods';
+import Stats from '../components/stats/Stats';
+import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
-import WeatherStats from '../components/charts/WeatherStats';
+import WeatherStats from '../components/stats/WeatherStats';
 
 export default function ProfilePage({
   profile,
