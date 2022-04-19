@@ -2,6 +2,9 @@ import Airpressure from './charts/Airpressure';
 import styled from 'styled-components';
 import Weather from './charts/Weather';
 import Temperature from './charts/Temperatur';
+import Moon from './charts/Moon';
+import Wind from './charts/Wind';
+import WindSpeed from './charts/WindSpeed';
 
 export default function WeatherStats({ filteredCardsByTime }) {
   return (
@@ -20,6 +23,12 @@ export default function WeatherStats({ filteredCardsByTime }) {
       <Temperature filteredCardsByTime={filteredCardsByTime} />
       <h4>Airpressure</h4>
       <Airpressure filteredCardsByTime={filteredCardsByTime} />
+      <h4>Moon</h4>
+      <Moon filteredCardsByTime={filteredCardsByTime} />
+      <h4>Wind direction</h4>
+      <Wind filteredCardsByTime={filteredCardsByTime} />
+      <h4>Wind speed</h4>
+      <WindSpeed filteredCardsByTime={filteredCardsByTime} />
     </>
   );
 }
