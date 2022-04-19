@@ -23,11 +23,34 @@ function WindSpeed({ filteredCardsByWater }) {
       {
         label: 'catches',
         data: windSpeedArray.map(data => data.catches),
+        fill: true,
+        backgroundColor: 'rgba(162, 195, 108, 0.5)',
+        borderColor: '#687a48',
+        borderWidth: 1.5,
+        tension: 0.5,
       },
     ],
   };
 
-  return <Line data={windSpeed} />;
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: 'Catches ',
+        align: 'start',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
+  return <Line data={windSpeed} options={options} />;
 }
 
 export default WindSpeed;
