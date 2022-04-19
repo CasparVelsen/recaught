@@ -34,7 +34,8 @@ export default function WaterStats({ filteredCardsByTime }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const waterName = document.getElementById('water');
+    const form = event.target;
+    const { waterName } = form.elements;
     setWater(waterName.value);
     waterName.value = '';
   }
@@ -72,7 +73,7 @@ export default function WaterStats({ filteredCardsByTime }) {
   return (
     <div>
       <WaterForm onSubmit={handleSubmit}>
-        <Select id="water" value={water.title}>
+        <Select id="water" value={water.title} name="waterName">
           <option value="" disabled selected>
             Search for water
           </option>
