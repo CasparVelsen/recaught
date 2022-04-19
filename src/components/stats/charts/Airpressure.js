@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function LineChart({ filteredCardsByTime }) {
+function Airpressure({ filteredCardsByTime }) {
   const findAirpressure = filteredCardsByTime.map(card => card.airpressure);
   const filteredAirpressure = [...new Set(findAirpressure)];
   filteredAirpressure.sort();
@@ -34,4 +33,4 @@ function LineChart({ filteredCardsByTime }) {
   return <Line data={airpressure} />;
 }
 
-export default LineChart;
+export default Airpressure;
