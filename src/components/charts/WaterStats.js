@@ -64,11 +64,7 @@ export default function WaterStats({ filteredCardsByTime }) {
     return object.water;
   });
 
-  console.log(allWaterInManyArrays);
-
   const eachWater = [...new Set(allWaterInManyArrays)];
-
-  console.log(eachWater);
 
   return (
     <div>

@@ -7,7 +7,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function Periods({ filteredCards }) {
   const [timeSpan, setTimeSpan] = useLocalStorage('timeSpan');
-  const [period, setPeriod] = useState(1);
+  const [period, setPeriod] = useState(0);
 
   const filteredCardsByTime = filteredCards.filter(card =>
     card.date.includes(timeSpan)
@@ -28,6 +28,14 @@ export default function Periods({ filteredCards }) {
     <>
       <Header>More Stats:</Header>
       <PeriodChoice>
+        <button
+          onClick={() => {
+            setTimeSpan('');
+            setPeriod(0);
+          }}
+        >
+          All
+        </button>
         <button
           onClick={() => {
             setTimeSpan(currentYear);
@@ -61,6 +69,13 @@ export default function Periods({ filteredCards }) {
           Today
         </button>
       </PeriodChoice>
+      {period === 0 && (
+        <Period>
+          <Title>All time</Title>
+          <span>You caught {numberCatches} fish so far</span>
+          <WaterStats filteredCardsByTime={filteredCardsByTime} />
+        </Period>
+      )}
       {period === 1 && (
         <Period>
           <Title>{currentYear}</Title>
@@ -103,7 +118,6 @@ const Header = styled.h1`
 const PeriodChoice = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 10px;
 
   button {
     display: flex;
