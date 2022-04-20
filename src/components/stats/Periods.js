@@ -73,35 +73,50 @@ export default function Periods({ filteredCards }) {
         <Period>
           <Title>All time</Title>
           <span>You caught {numberCatches} fish so far</span>
-          <WaterStats filteredCardsByTime={filteredCardsByTime} />
+          <WaterStats
+            filteredCardsByTime={filteredCardsByTime}
+            numberCatches={numberCatches}
+          />
         </Period>
       )}
       {period === 1 && (
         <Period>
           <Title>{currentYear}</Title>
           <span>You caught {numberCatches} fish this year</span>
-          <WaterStats filteredCardsByTime={filteredCardsByTime} />
+          <WaterStats
+            filteredCardsByTime={filteredCardsByTime}
+            numberCatches={numberCatches}
+          />
         </Period>
       )}
       {period === 2 && (
         <Period>
           <Title>{timeSpan}</Title>
           <span>You caught {numberCatches} fish last year</span>
-          <WaterStats filteredCardsByTime={filteredCardsByTime} />
+          <WaterStats
+            filteredCardsByTime={filteredCardsByTime}
+            numberCatches={numberCatches}
+          />
         </Period>
       )}
       {period === 3 && (
         <Period>
           <Title>{m.format('MMMM[ ]YY')}</Title>
           <span>You caught {numberCatches} fish this month</span>
-          <WaterStats filteredCardsByTime={filteredCardsByTime} />
+          <WaterStats
+            filteredCardsByTime={filteredCardsByTime}
+            numberCatches={numberCatches}
+          />
         </Period>
       )}
       {period === 4 && (
         <Period>
           <Title>Today</Title>
           <span>You caught {numberCatches} fish today</span>
-          <WaterStats filteredCardsByTime={filteredCardsByTime} />
+          <WaterStats
+            filteredCardsByTime={filteredCardsByTime}
+            numberCatches={numberCatches}
+          />
         </Period>
       )}
     </>
@@ -130,6 +145,7 @@ const PeriodChoice = styled.div`
     border-radius: 5px;
     padding: 5px 10px;
     margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
   }
 `;
 

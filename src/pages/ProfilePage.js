@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Stats from '../components/charts/Stats';
-import Periods from '../components/charts/Periods';
+import Stats from '../components/stats/Stats';
+import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
-import WeatherStats from '../components/charts/WeatherStats';
 
 export default function ProfilePage({
   profile,
@@ -23,7 +22,7 @@ export default function ProfilePage({
           </LinkStyled>
         )}
       </header>
-      <Main>
+      <main>
         <Map src={DepthMap} alt="DepthMap" />
         <Title>Hello, {profile.firstname}</Title>
         <Stats
@@ -31,8 +30,7 @@ export default function ProfilePage({
           filteredCatches={filteredCatches}
         />
         <Periods filteredCards={filteredCards} />
-        <WeatherStats filteredCards={filteredCards} />
-      </Main>
+      </main>
     </>
   );
 }
@@ -67,12 +65,4 @@ const Map = styled.img`
   right: 50px;
   height: 200px;
   z-index: -100;
-`;
-
-const Main = styled.div`
-  margin: 10px;
-  padding-bottom: 68px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 `;

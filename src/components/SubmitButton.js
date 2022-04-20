@@ -21,6 +21,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 
   :hover {
     transform: scale(1.1);

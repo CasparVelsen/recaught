@@ -29,13 +29,19 @@ export default function Weather({ handleOnChange }) {
           <Fieldset>
             <Part>
               <label htmlFor="weather">Weather</label>
-              <Input
+              <Select
                 id="weather"
                 name="weather"
                 type="text"
-                maxLength={100}
                 onChange={handleOnChange}
-              />
+              >
+                <option value="sunny">sunny</option>
+                <option value="cloudy">cloudy</option>
+                <option value="rainy">rainy</option>
+                <option value="stormy">stormy</option>
+                <option value="foggy">foggy</option>
+                <option value="snow">snow</option>
+              </Select>
             </Part>
             <Part>
               <label htmlFor="temperature">Temperature</label>
@@ -64,23 +70,37 @@ export default function Weather({ handleOnChange }) {
             </Part>
             <Part>
               <label htmlFor="moon">Moon phase</label>
-              <Input
+              <Select
                 id="moon"
                 name="moon"
                 type="text"
                 maxLength={100}
                 onChange={handleOnChange}
-              />
+              >
+                <option value="full moon">full moon</option>
+                <option value="increasing moon">increasind moon</option>
+                <option value="waning moon">waning moon</option>
+                <option value="new moon">new moon</option>
+              </Select>
             </Part>
             <Part>
               <label htmlFor="wind">Wind direction</label>
-              <Input
+              <Select
                 id="wind"
                 name="wind"
                 type="text"
                 maxLength={100}
                 onChange={handleOnChange}
-              />
+              >
+                <option value="north">north</option>
+                <option value="west">west</option>
+                <option value="east">east</option>
+                <option value="south">south</option>
+                <option value="northwest">north west</option>
+                <option value="northeast">north east</option>
+                <option value="southwest">south west</option>
+                <option value="south east">south east</option>
+              </Select>
             </Part>
             <Part>
               <label htmlFor="windspeed">Wind speed</label>
@@ -135,6 +155,16 @@ const Part = styled.div`
 `;
 
 const Input = styled.input`
+  width: 100%;
+  border: 1px solid #ff9c27;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #aaa;
+  background-color: white;
+  height: 25px;
+`;
+
+const Select = styled.select`
   width: 100%;
   border: 1px solid #ff9c27;
   padding: 2px 5px;
