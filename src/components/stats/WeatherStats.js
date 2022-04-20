@@ -121,7 +121,7 @@ const Options = styled.div`
     background-color: white;
     padding: 5px;
     margin-bottom: 10px;
-    color: #aaa;
+    color: #a2c36c;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
   }

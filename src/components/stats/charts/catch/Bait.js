@@ -32,6 +32,7 @@ function Bait({ filteredCardsByWater }) {
           <div key={index}>{data}</div>
         ))}
       </Catches>
+      <Hint>Catches</Hint>
     </BaitContainer>
   );
 }
@@ -46,6 +47,7 @@ const BaitContainer = styled.div`
   padding: 10px 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px inset;
   margin-top: 10px;
+  position: relative;
 `;
 
 const Baits = styled.div`
@@ -59,4 +61,13 @@ const Catches = styled.div`
   flex-direction: column;
   color: #687a48;
   gap: 5px;
+`;
+
+const Hint = styled.div`
+  position: absolute;
+  top: -20px;
+  right: 5px;
+  color: #687a48;
+  font-weight: bold;
+  font-size: 0.8rem;
 `;

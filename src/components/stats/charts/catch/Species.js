@@ -1,5 +1,6 @@
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
+import styled from 'styled-components';
 
 function Species({ filteredCardsByWater }) {
   const findSpecies = filteredCardsByWater.map(card =>
@@ -41,7 +42,6 @@ function Species({ filteredCardsByWater }) {
   };
 
   const options = {
-    radius: 130,
     animation: { animateScale: true },
     plugins: {
       legend: {
@@ -53,7 +53,23 @@ function Species({ filteredCardsByWater }) {
     },
   };
 
-  return <Pie data={data} options={options} />;
+  return (
+    <ChartContainer>
+      <Chart>
+        <Pie data={data} options={options} />
+      </Chart>
+    </ChartContainer>
+  );
 }
+
+const Chart = styled.div`
+  width: 75%;
+`;
+
+const ChartContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
 export default Species;

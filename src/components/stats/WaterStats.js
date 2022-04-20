@@ -101,12 +101,11 @@ export default function WaterStats({ filteredCardsByTime }) {
         </Average>
       </Stats>
       <Stats>
-        <StatsTitle>Weather stats</StatsTitle>
-        <WeatherStats filteredCardsByWater={filteredCardsByWater} />
+        <CatchStats filteredCardsByWater={filteredCardsByWater} />
       </Stats>
       <Stats>
-        <StatsTitle>Catch stats</StatsTitle>
-        <CatchStats filteredCardsByWater={filteredCardsByWater} />
+        <StatsTitle>Weather stats</StatsTitle>
+        <WeatherStats filteredCardsByWater={filteredCardsByWater} />
       </Stats>
     </div>
   );
