@@ -23,16 +23,15 @@ export default function WeatherStats({ filteredCardsByWater }) {
 
         {showOptions && (
           <Options>
-            <div>
-              <button onClick={() => setPage(0)}>Weather</button>
-              <button onClick={() => setPage(1)}>Temperature</button>
-              <button onClick={() => setPage(2)}>Air pressure</button>
-            </div>
-            <div>
-              <button onClick={() => setPage(3)}>Moon</button>
-              <button onClick={() => setPage(4)}>Wind</button>
-              <button onClick={() => setPage(5)}>Wind speed</button>
-            </div>
+            <button onClick={() => setPage(0)}>Weather</button>
+            <button onClick={() => setPage(1)}>Temperature</button>
+            <button onClick={() => setPage(2)}>Air pressure</button>
+            <button onClick={() => setPage(3)}>Moon</button>
+            <button onClick={() => setPage(4)}>Wind</button>
+            <button onClick={() => setPage(5)}>Wind speed</button>
+            <button onClick={() => setPage(6)}>Water temperature</button>
+            <button onClick={() => setPage(7)}>Water color</button>
+            <button onClick={() => setPage(8)}>Water level</button>
           </Options>
         )}
       </Select>
@@ -77,6 +76,25 @@ export default function WeatherStats({ filteredCardsByWater }) {
             <Legend>/ km/h</Legend>
           </StatsContainer>
         )}
+        {page === 6 && (
+          <StatsContainer>
+            <Title>Water temperature:</Title>
+            <Moon filteredCardsByWater={filteredCardsByWater} />
+          </StatsContainer>
+        )}
+        {page === 7 && (
+          <StatsContainer>
+            <Title>Water color:</Title>
+            <Wind filteredCardsByWater={filteredCardsByWater} />
+          </StatsContainer>
+        )}
+        {page === 8 && (
+          <StatsContainer>
+            <Title>Water level:</Title>
+            <WindSpeed filteredCardsByWater={filteredCardsByWater} />
+            <Legend>/ km/h</Legend>
+          </StatsContainer>
+        )}
       </div>
     </>
   );
@@ -101,11 +119,9 @@ const Header = styled.div`
 
 const Options = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 10px;
+  flex-direction: column;
   background-color: white;
-  margin: 10px 0;
+  margin-top: 10px;
 
   div {
     width: 100%;
@@ -116,14 +132,11 @@ const Options = styled.div`
 
   button {
     width: 100%;
-    border: 1px solid #a2c36c;
-    border-radius: 10px;
+    border: none;
+    border-top: 0.5px solid #eee;
     background-color: white;
-    padding: 5px;
-    margin-bottom: 10px;
-    color: #a2c36c;
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+    padding: 10px;
+    color: #aaa;
   }
 `;
 
