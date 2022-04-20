@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+import { BiTargetLock } from 'react-icons/bi';
+import { MdWater } from 'react-icons/md';
 import Button from '../Button';
 import DeleteModal from '../modal/DeleteModal';
 
@@ -21,9 +23,15 @@ export default function Cards({
     <Card>
       <div onClick={toggleShowDetails}>
         <Title>{data.date}</Title>
-        <span>{data.water}</span>
+        <Together>
+          <MdWater size={20} color={'#687a48'} />
+          {data.water}
+        </Together>
         <InSameRow>
-          <span>{data.target}</span>
+          <span>
+            <BiTargetLock size={20} color={'#687a48'} />
+            {data.target}
+          </span>
           {showDetails && (
             <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
           )}
@@ -152,10 +160,22 @@ const Title = styled.h2`
   color: #687a48;
 `;
 
+const Together = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
 const InSameRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 `;
 
 const Details = styled.div`
