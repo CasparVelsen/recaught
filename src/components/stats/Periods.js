@@ -72,7 +72,6 @@ export default function Periods({ filteredCards }) {
       {period === 0 && (
         <Period>
           <Title>All time</Title>
-          <span>You caught {numberCatches} fish so far</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -82,7 +81,6 @@ export default function Periods({ filteredCards }) {
       {period === 1 && (
         <Period>
           <Title>{currentYear}</Title>
-          <span>You caught {numberCatches} fish this year</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -92,7 +90,6 @@ export default function Periods({ filteredCards }) {
       {period === 2 && (
         <Period>
           <Title>{timeSpan}</Title>
-          <span>You caught {numberCatches} fish last year</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -102,7 +99,6 @@ export default function Periods({ filteredCards }) {
       {period === 3 && (
         <Period>
           <Title>{m.format('MMMM[ ]YY')}</Title>
-          <span>You caught {numberCatches} fish this month</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -112,7 +108,6 @@ export default function Periods({ filteredCards }) {
       {period === 4 && (
         <Period>
           <Title>Today</Title>
-          <span>You caught {numberCatches} fish today</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}

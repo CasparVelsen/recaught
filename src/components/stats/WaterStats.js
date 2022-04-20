@@ -133,14 +133,14 @@ const StatsTitle = styled.div`
 const WaterForm = styled.form`
   display: flex;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
   height: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 const Select = styled.select`
   width: 100%;
-  border: 1px solid #ff9c27;
+  border: 1px solid #a2c36c;
   border-radius: 5px;
   color: #aaa;
   background-color: white;
@@ -156,9 +156,9 @@ const CatchList = styled.div`
 `;
 
 const Water = styled.span`
-  color: #ff9c27;
+  color: #687a48;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 24px;
 `;
 
 const Catches = styled.div`
