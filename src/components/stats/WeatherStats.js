@@ -7,6 +7,9 @@ import Wind from './charts/weather/Wind';
 import WindSpeed from './charts/weather/WindSpeed';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+import WaterTemp from './charts/weather/WaterTemp';
+import WaterColor from './charts/weather/WaterColor';
+import WaterLevel from './charts/weather/WaterLevel';
 
 export default function WeatherStats({ filteredCardsByWater }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -47,14 +50,14 @@ export default function WeatherStats({ filteredCardsByWater }) {
           <StatsContainer>
             <Title>Temperature:</Title>
             <Temperature filteredCardsByWater={filteredCardsByWater} />
-            <Legend>/ °C</Legend>
+            <Legend> °C</Legend>
           </StatsContainer>
         )}
         {page === 2 && (
           <StatsContainer>
             <Title>Airpressure:</Title>
             <Airpressure filteredCardsByWater={filteredCardsByWater} />
-            <Legend>/ hPa</Legend>
+            <Legend> hPa</Legend>
           </StatsContainer>
         )}
         {page === 3 && (
@@ -73,26 +76,26 @@ export default function WeatherStats({ filteredCardsByWater }) {
           <StatsContainer>
             <Title>Wind speed:</Title>
             <WindSpeed filteredCardsByWater={filteredCardsByWater} />
-            <Legend>/ km/h</Legend>
+            <Legend> km/h</Legend>
           </StatsContainer>
         )}
         {page === 6 && (
           <StatsContainer>
             <Title>Water temperature:</Title>
-            <Moon filteredCardsByWater={filteredCardsByWater} />
+            <WaterTemp filteredCardsByWater={filteredCardsByWater} />
+            <Legend> °C</Legend>
           </StatsContainer>
         )}
         {page === 7 && (
           <StatsContainer>
             <Title>Water color:</Title>
-            <Wind filteredCardsByWater={filteredCardsByWater} />
+            <WaterColor filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
         {page === 8 && (
           <StatsContainer>
             <Title>Water level:</Title>
-            <WindSpeed filteredCardsByWater={filteredCardsByWater} />
-            <Legend>/ km/h</Legend>
+            <WaterLevel filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
       </div>
@@ -151,7 +154,7 @@ const StatsContainer = styled.div`
 
 const Legend = styled.div`
   position: absolute;
-  left: 52px;
+  left: 60px;
   top: 31px;
   font-size: 0.7rem;
   font-weight: bold;

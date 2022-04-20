@@ -39,7 +39,7 @@ function Temperature({ filteredCardsByWater }) {
       },
       title: {
         display: true,
-        text: 'Catches ',
+        text: 'Catches / ',
         align: 'start',
         color: '#687a48',
       },
