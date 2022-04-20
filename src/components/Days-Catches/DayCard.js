@@ -158,6 +158,7 @@ const Title = styled.h2`
   padding: 0;
   margin: 0;
   color: #687a48;
+  margin-bottom: 5px;
 `;
 
 const Together = styled.div`
@@ -201,7 +202,7 @@ const PartTitle = styled.h3`
 `;
 
 const Data = styled.small`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 `;
 
 const Term = styled.span`
