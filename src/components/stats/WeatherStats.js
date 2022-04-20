@@ -48,14 +48,14 @@ export default function WeatherStats({ filteredCardsByWater }) {
           <StatsContainer>
             <Title>Temperature:</Title>
             <Temperature filteredCardsByWater={filteredCardsByWater} />
-            <Legend>°C</Legend>
+            <Legend>/ °C</Legend>
           </StatsContainer>
         )}
         {page === 2 && (
           <StatsContainer>
             <Title>Airpressure:</Title>
             <Airpressure filteredCardsByWater={filteredCardsByWater} />
-            <Legend>hPa</Legend>
+            <Legend>/ hPa</Legend>
           </StatsContainer>
         )}
         {page === 3 && (
@@ -74,7 +74,7 @@ export default function WeatherStats({ filteredCardsByWater }) {
           <StatsContainer>
             <Title>Wind speed:</Title>
             <WindSpeed filteredCardsByWater={filteredCardsByWater} />
-            <Legend>km/h</Legend>
+            <Legend>/ km/h</Legend>
           </StatsContainer>
         )}
       </div>
@@ -116,14 +116,14 @@ const Options = styled.div`
 
   button {
     width: 100%;
-    border: none;
-    border-bottom: 1px solid #aaa;
+    border: 1px solid #a2c36c;
     border-radius: 10px;
     background-color: white;
     padding: 5px;
     margin-bottom: 5px;
     color: #aaa;
     text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
   }
 `;
 
@@ -138,8 +138,8 @@ const StatsContainer = styled.div`
 
 const Legend = styled.div`
   position: absolute;
-  right: -5px;
-  bottom: 4px;
+  left: 52px;
+  top: 31px;
   font-size: 0.7rem;
   font-weight: bold;
   color: #687a48;
