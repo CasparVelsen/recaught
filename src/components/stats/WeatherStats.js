@@ -125,6 +125,8 @@ const Options = styled.div`
   flex-direction: column;
   background-color: white;
   margin-top: 10px;
+  height: 110px;
+  overflow-y: auto;
 
   div {
     width: 100%;
