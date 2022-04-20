@@ -41,7 +41,7 @@ export default function App() {
     });
     const data = await response.json();
     setToken(data.token);
-    navigate('/profile');
+    navigate('/');
   };
 
   useEffect(() => {
