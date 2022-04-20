@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import SubmitButton from '../SubmitButton';
 import WeatherStats from './WeatherStats';
+import CatchStats from './CatchStats';
 
 export default function WaterStats({ filteredCardsByTime }) {
   const [water, setWater] = useState('');
@@ -102,6 +103,10 @@ export default function WaterStats({ filteredCardsByTime }) {
       <Stats>
         <StatsTitle>Weather stats</StatsTitle>
         <WeatherStats filteredCardsByWater={filteredCardsByWater} />
+      </Stats>
+      <Stats>
+        <StatsTitle>Catch stats</StatsTitle>
+        <CatchStats filteredCardsByWater={filteredCardsByWater} />
       </Stats>
     </div>
   );

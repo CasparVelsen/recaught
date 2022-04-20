@@ -1,10 +1,10 @@
-import Airpressure from './charts/Airpressure';
+import Airpressure from './charts/weather/Airpressure';
 import styled from 'styled-components';
-import Weather from './charts/Weather';
-import Temperature from './charts/Temperatur';
-import Moon from './charts/Moon';
-import Wind from './charts/Wind';
-import WindSpeed from './charts/WindSpeed';
+import Weather from './charts/weather/Weather';
+import Temperature from './charts/weather/Temperatur';
+import Moon from './charts/weather/Moon';
+import Wind from './charts/weather/Wind';
+import WindSpeed from './charts/weather/WindSpeed';
 import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
@@ -120,7 +120,7 @@ const Options = styled.div`
     border-radius: 10px;
     background-color: white;
     padding: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: #aaa;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;

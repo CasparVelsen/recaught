@@ -26,7 +26,7 @@ export default function Periods({ filteredCards }) {
 
   return (
     <>
-      <Header>More Stats:</Header>
+      <Header>Your Stats:</Header>
       <PeriodChoice>
         <button
           onClick={() => {
