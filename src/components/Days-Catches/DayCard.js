@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import { BiTargetLock } from 'react-icons/bi';
 import { MdWater } from 'react-icons/md';
+import { IoFishOutline } from 'react-icons/io5';
 import Button from '../Button';
 import DeleteModal from '../modal/DeleteModal';
 
@@ -22,20 +23,24 @@ export default function Cards({
   return (
     <Card>
       <Preview onClick={toggleShowDetails}>
+        <Year>{data.date.slice(0, 4)}</Year>
         <Date>
           <div>{data.date.slice(8, 10)}</div>
           <span>{data.date.slice(5, 7)}</span>
         </Date>
         <Infos>
-          <Year>{data.date.slice(0, 4)}</Year>
           <Together>
             <MdWater size={20} color={'#687a48'} />
             {data.water}
           </Together>
+          <Together>
+            <BiTargetLock size={20} color={'#687a48'} />
+            {data.target}
+          </Together>
           <InSameRow>
             <span>
-              <BiTargetLock size={20} color={'#687a48'} />
-              {data.target}
+              <IoFishOutline color={'#687a48'} />
+              {data.catches.length} fish
             </span>
             {showDetails && (
               <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
@@ -195,12 +200,13 @@ const Card = styled.section`
 
 const Preview = styled.div`
   display: flex;
+  position: relative;
 `;
 
 const Date = styled.div`
-  padding: 0 20px;
-  padding-right: 30px;
-  margin-right: 20px;
+  padding: 0 15px;
+  padding-right: 25px;
+  margin-right: 15px;
   border-right: 3px dotted #a2c36c;
   display: flex;
   flex-direction: column;
@@ -232,7 +238,9 @@ const Infos = styled.div`
 
 const Year = styled.span`
   color: #687a48;
-  font-weight: bold;
+  font-size: 16px;
+  position: absolute;
+  right: 5px;
 `;
 
 const Together = styled.div`
@@ -248,7 +256,8 @@ const InSameRow = styled.div`
   span {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    margin-left: 1px;
   }
 `;
 
