@@ -158,16 +158,12 @@ export default function Cards({
           )}
           <Part>
             <PartTitle>Summary</PartTitle>
-            {data.bites && (
-              <Data>
-                <Term>total bites:</Term> {data.bites}
-              </Data>
-            )}
-            {data.lost && (
-              <Data>
-                <Term>lost fish:</Term> {data.lost}
-              </Data>
-            )}
+            <Data>
+              <Term>total bites:</Term> {data.bites}
+            </Data>
+            <Data>
+              <Term>lost fish:</Term> {data.lost}
+            </Data>
           </Part>
           <Button text="Delete card" isAccent={true} onClick={onDelete} />
           <ModalWrapper>
