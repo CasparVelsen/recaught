@@ -63,7 +63,7 @@ function Species({ filteredCardsByWater }) {
 }
 
 const Chart = styled.div`
-  width: 75%;
+  width: 60%;
 `;
 
 const ChartContainer = styled.div`

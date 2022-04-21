@@ -25,8 +25,6 @@ export default function HomePage({
   const filteredCatches = filteredCards.map(data => data.catches);
   const catches = filteredCatches.flat();
 
-  console.log(catches);
-
   return (
     <>
       <header>
