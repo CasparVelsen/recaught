@@ -21,7 +21,11 @@ const Container = styled.div`
   font-size: 1rem;
   color: #a2c36c;
   border-radius: 20px;
-  width: 90%;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 0.5px solid #ddd;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 `;
 
 const Description = styled.p`
