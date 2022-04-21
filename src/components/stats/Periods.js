@@ -135,7 +135,7 @@ const PeriodChoice = styled.div`
     justify-content: center;
     background-color: white;
     color: #687a48;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border: 0.5px solid #ff9c27;
     border-radius: 5px;
     padding: 5px 10px;

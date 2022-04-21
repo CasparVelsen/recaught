@@ -11,6 +11,8 @@ export default function WaterStats({ filteredCardsByTime }) {
     card.water.includes(water)
   );
 
+  console.log(filteredCardsByWater);
+
   const allCatchesInManyArrays = filteredCardsByWater.map(object => {
     const tempArray = object.catches.map(entry => {
       return entry.species;
@@ -49,7 +51,10 @@ export default function WaterStats({ filteredCardsByTime }) {
     return tempLengthArray;
   });
 
+  console.log(allLengthsInManyArrays);
+
   const lengths = allLengthsInManyArrays.flat();
+  console.log(lengths);
 
   function ArrayAvg(lengths) {
     var i = 0,
@@ -61,6 +66,7 @@ export default function WaterStats({ filteredCardsByTime }) {
     return summ / ArrayLen;
   }
   var averageSize = ArrayAvg(lengths);
+  const roundedNumber = Math.round((averageSize + Number.EPSILON) * 100) / 100;
 
   const allWaterInManyArrays = filteredCardsByTime.map(object => {
     return object.water;
@@ -97,7 +103,7 @@ export default function WaterStats({ filteredCardsByTime }) {
           </Catches>
         </CatchList>
         <Average>
-          <span>Average size:</span>ø{averageSize ? averageSize : ' 0'} cm
+          <span>Average size:</span>ø{roundedNumber ? roundedNumber : ' 0'} cm
         </Average>
       </Stats>
       <Stats>
