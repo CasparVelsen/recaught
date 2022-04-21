@@ -112,7 +112,7 @@ export default function Cards({
               </Data>
             )}
           </Part>
-          {data.catches ? (
+          {data.catches.length > 0 ? (
             data.catches.map((item, index) => (
               <Part key={index}>
                 <PartTitle>Catch {index + 1})</PartTitle>
@@ -164,10 +164,10 @@ export default function Cards({
           <Part>
             <PartTitle>Summary</PartTitle>
             <Data>
-              <Term>total bites:</Term> {data.bites}
+              <Term>total bites:</Term> {data.bites ? data.bites : '0'}
             </Data>
             <Data>
-              <Term>lost fish:</Term> {data.lost}
+              <Term>lost fish:</Term> {data.lost ? data.lost : '0'}
             </Data>
           </Part>
           <Button text="Delete card" isAccent={true} onClick={onDelete} />
