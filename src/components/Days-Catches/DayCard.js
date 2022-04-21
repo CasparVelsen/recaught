@@ -53,65 +53,99 @@ export default function Cards({
             <Data>
               <Term>water:</Term> {data.water}
             </Data>
-            <Data>
-              <Term>stretch:</Term> {data.stretch}
-            </Data>
-            <Data>
-              <Term>watertemp:</Term> {data.watertemp} °C
-            </Data>
-            <Data>
-              <Term>watercolor:</Term> {data.watercolor}
-            </Data>
-            <Data>
-              <Term>waterlevel:</Term> {data.waterlevel}
-            </Data>
+            {data.stretch && (
+              <Data>
+                <Term>stretch:</Term> {data.stretch}
+              </Data>
+            )}
+            {data.watertemp && (
+              <Data>
+                <Term>watertemp:</Term> {data.watertemp} °C
+              </Data>
+            )}
+            {data.watercolor && (
+              <Data>
+                <Term>watercolor:</Term> {data.watercolor}
+              </Data>
+            )}
+            {data.waterlevel && (
+              <Data>
+                <Term>waterlevel:</Term> {data.waterlevel}
+              </Data>
+            )}
           </Part>
           <Part>
             <PartTitle>Weather</PartTitle>
-            <Data>
-              <Term>weather:</Term> {data.weather}
-            </Data>
-            <Data>
-              <Term>airpressure:</Term> {data.airpressure} hPa
-            </Data>
-            <Data>
-              <Term>temperature:</Term> {data.temperature} °C
-            </Data>
-            <Data>
-              <Term>moon:</Term> {data.moon}
-            </Data>
-            <Data>
-              <Term>wind:</Term> {data.wind}
-            </Data>
-            <Data>
-              <Term>windspeed:</Term> {data.windspeed} km/h
-            </Data>
+            {data.weather && (
+              <Data>
+                <Term>weather:</Term> {data.weather}
+              </Data>
+            )}
+            {data.airpressure && (
+              <Data>
+                <Term>airpressure:</Term> {data.airpressure} hPa
+              </Data>
+            )}
+            {data.temperature && (
+              <Data>
+                <Term>temperature:</Term> {data.temperature} °C
+              </Data>
+            )}
+            {data.moon && (
+              <Data>
+                <Term>moon:</Term> {data.moon}
+              </Data>
+            )}
+            {data.wind && (
+              <Data>
+                <Term>wind:</Term> {data.wind}
+              </Data>
+            )}
+            {data.windspeed && (
+              <Data>
+                <Term>windspeed:</Term> {data.windspeed} km/h
+              </Data>
+            )}
           </Part>
           {data.catches ? (
             data.catches.map((item, index) => (
               <Part key={index}>
                 <PartTitle>Catch {index + 1})</PartTitle>
-                <Data>
-                  <Term>species:</Term> {item.species}
-                </Data>
-                <Data>
-                  <Term>time:</Term> {item.time}
-                </Data>
-                <Data>
-                  <Term>length:</Term> {item.length} cm
-                </Data>
-                <Data>
-                  <Term>weight:</Term> {item.weight} kg
-                </Data>
-                <Data>
-                  <Term>bait:</Term> {item.bait}
-                </Data>
-                <Data>
-                  <Term>location:</Term> {item.location}
-                </Data>
-                <Data>
-                  <Term>notes:</Term> {item.notes}
-                </Data>
+                {item.species && (
+                  <Data>
+                    <Term>species:</Term> {item.species}
+                  </Data>
+                )}
+                {item.time && (
+                  <Data>
+                    <Term>time:</Term> {item.time}
+                  </Data>
+                )}
+                {item.length && (
+                  <Data>
+                    <Term>length:</Term> {item.length} cm
+                  </Data>
+                )}
+                {item.weight && (
+                  <Data>
+                    <Term>weight:</Term> {item.weight} kg
+                  </Data>
+                )}
+                {item.bait && (
+                  <Data>
+                    <Term>bait:</Term> {item.bait}
+                  </Data>
+                )}
+                {item.location && (
+                  <Data>
+                    <Term>location:</Term> {item.location}
+                  </Data>
+                )}
+                {item.notes && (
+                  <Data>
+                    <Term>notes:</Term> {item.notes}
+                  </Data>
+                )}
               </Part>
             ))
           ) : (
@@ -124,12 +158,16 @@ export default function Cards({
           )}
           <Part>
             <PartTitle>Summary</PartTitle>
-            <Data>
-              <Term>total bites:</Term> {data.bites}
-            </Data>
-            <Data>
-              <Term>lost fish:</Term> {data.lost}
-            </Data>
+            {data.bites && (
+              <Data>
+                <Term>total bites:</Term> {data.bites}
+              </Data>
+            )}
+            {data.lost && (
+              <Data>
+                <Term>lost fish:</Term> {data.lost}
+              </Data>
+            )}
           </Part>
           <Button text="Delete card" isAccent={true} onClick={onDelete} />
           <ModalWrapper>
@@ -235,9 +273,10 @@ const PartTitle = styled.h3`
   font-size: 1rem;
   padding: 0;
   margin: 0;
-  width: 50%;
+  margin-bottom: 5px;
+  width: 100%;
   color: #687a48;
-  border-bottom: 1px solid #ff9c27;
+  border-bottom: 2px dotted #a2c36c;
 `;
 
 const Data = styled.small`
