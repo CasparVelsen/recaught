@@ -52,11 +52,12 @@ export default function WaterStats({ filteredCardsByTime }) {
   const lengths = allLengthsInManyArrays.flat();
 
   function ArrayAvg(lengths) {
+    const parsedLengths = lengths.map(data => parseInt(data));
     var i = 0,
       summ = 0,
-      ArrayLen = lengths.length;
+      ArrayLen = parsedLengths.length;
     while (i < ArrayLen) {
-      summ = summ + lengths[i++];
+      summ = summ + parsedLengths[i++];
     }
     return summ / ArrayLen;
   }
