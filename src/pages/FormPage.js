@@ -12,7 +12,7 @@ import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 import DepthMap from '../images/DepthMap.svg';
 
-export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
+export default function FormPage({ onCreateCard, profile }) {
   const [formData, setFormData] = useState({});
   const [catchData, setCatchData] = useState([]);
 
@@ -44,7 +44,6 @@ export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
 
   function handleSubmit() {
     onCreateCard(formData);
-    onCreateCatch(catchData);
   }
 
   return (

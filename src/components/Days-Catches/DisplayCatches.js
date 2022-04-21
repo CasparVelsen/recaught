@@ -1,39 +1,20 @@
 import styled from 'styled-components';
-import DeleteModal from '../modal/DeleteModal';
 import CatchCard from './CatchCard';
 
-export default function DisplayCatches({
-  filteredCatches,
-  handleDeleteCatch,
-  confirmDeleteCatch,
-  cancelDeleteCatch,
-  showCatchModal,
-}) {
+export default function DisplayCatches({ catches }) {
   return (
     <>
       <Catches>
-        {filteredCatches ? (
-          filteredCatches.map((data, tempId, _id) => (
+        {catches ? (
+          catches.map((data, tempId, _id) => (
             <li key={tempId}>
-              <CatchCard data={data} onDelete={handleDeleteCatch} />
+              <CatchCard data={data} />
             </li>
           ))
         ) : (
           <p>no catches yet</p>
         )}
       </Catches>
-      {showCatchModal && (
-        <Container>
-          <ModalWrapper>
-            <Title>Are you sure?</Title>
-            <DeleteModal
-              text="catch"
-              confirmDelete={confirmDeleteCatch}
-              cancelDelete={cancelDeleteCatch}
-            />
-          </ModalWrapper>
-        </Container>
-      )}
     </>
   );
 }
@@ -46,30 +27,4 @@ const Catches = styled.ul`
   padding: 0;
   width: 100%;
   margin-bottom: 68px;
-`;
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Title = styled.h3`
-  font-weight: bolder;
-  font-size: 1.3rem;
-  margin: 0;
-  color: #687a48;
-`;
-
-const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: fixed;
-  background-color: white;
-  border: 0.5px solid #a2c36c;
-  border-radius: 20px;
-  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
-  z-index: 10px;
-  bottom: 75px;
-  padding: 10px;
 `;

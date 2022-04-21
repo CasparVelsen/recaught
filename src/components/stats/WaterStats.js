@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import SubmitButton from '../SubmitButton';
 import WeatherStats from './WeatherStats';
+import CatchStats from './CatchStats';
 
 export default function WaterStats({ filteredCardsByTime }) {
   const [water, setWater] = useState('');
@@ -60,6 +61,7 @@ export default function WaterStats({ filteredCardsByTime }) {
     return summ / ArrayLen;
   }
   var averageSize = ArrayAvg(lengths);
+  const roundedNumber = Math.round((averageSize + Number.EPSILON) * 100) / 100;
 
   const allWaterInManyArrays = filteredCardsByTime.map(object => {
     return object.water;
@@ -96,8 +98,11 @@ export default function WaterStats({ filteredCardsByTime }) {
           </Catches>
         </CatchList>
         <Average>
-          <span>Average size:</span>ø{averageSize ? averageSize : ' 0'} cm
+          <span>Average size:</span>ø{roundedNumber ? roundedNumber : ' 0'} cm
         </Average>
+      </Stats>
+      <Stats>
+        <CatchStats filteredCardsByWater={filteredCardsByWater} />
       </Stats>
       <Stats>
         <StatsTitle>Weather stats</StatsTitle>
@@ -129,14 +134,14 @@ const StatsTitle = styled.div`
 const WaterForm = styled.form`
   display: flex;
   gap: 10px;
-  margin-top: 15px;
+  margin-top: 10px;
   height: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 const Select = styled.select`
   width: 100%;
-  border: 1px solid #ff9c27;
+  border: 1px solid #a2c36c;
   border-radius: 5px;
   color: #aaa;
   background-color: white;
@@ -152,9 +157,9 @@ const CatchList = styled.div`
 `;
 
 const Water = styled.span`
-  color: #ff9c27;
+  color: #687a48;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 24px;
 `;
 
 const Catches = styled.div`

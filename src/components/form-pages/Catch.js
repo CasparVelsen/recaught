@@ -106,7 +106,7 @@ export default function Catch({
                   id="weight"
                   name="weight"
                   type="number"
-                  step={0.01}
+                  step={0.1}
                   min={0}
                   placeholder="kg"
                 />

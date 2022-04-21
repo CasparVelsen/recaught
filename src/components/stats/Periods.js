@@ -26,7 +26,7 @@ export default function Periods({ filteredCards }) {
 
   return (
     <>
-      <Header>More Stats:</Header>
+      <Header>Your Stats:</Header>
       <PeriodChoice>
         <button
           onClick={() => {
@@ -72,7 +72,6 @@ export default function Periods({ filteredCards }) {
       {period === 0 && (
         <Period>
           <Title>All time</Title>
-          <span>You caught {numberCatches} fish so far</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -82,7 +81,6 @@ export default function Periods({ filteredCards }) {
       {period === 1 && (
         <Period>
           <Title>{currentYear}</Title>
-          <span>You caught {numberCatches} fish this year</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -92,7 +90,6 @@ export default function Periods({ filteredCards }) {
       {period === 2 && (
         <Period>
           <Title>{timeSpan}</Title>
-          <span>You caught {numberCatches} fish last year</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -102,7 +99,6 @@ export default function Periods({ filteredCards }) {
       {period === 3 && (
         <Period>
           <Title>{m.format('MMMM[ ]YY')}</Title>
-          <span>You caught {numberCatches} fish this month</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -112,7 +108,6 @@ export default function Periods({ filteredCards }) {
       {period === 4 && (
         <Period>
           <Title>Today</Title>
-          <span>You caught {numberCatches} fish today</span>
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
@@ -140,7 +135,7 @@ const PeriodChoice = styled.div`
     justify-content: center;
     background-color: white;
     color: #687a48;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border: 0.5px solid #ff9c27;
     border-radius: 5px;
     padding: 5px 10px;

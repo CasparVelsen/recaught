@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 
-export default function Profile({ filteredCards, filteredCatches }) {
+export default function Profile({ filteredCards }) {
+  const filteredCatches = filteredCards.map(data => data.catches);
+  const catches = filteredCatches.flat();
+
   const succesRate = filteredCatches.length / filteredCards.length;
   const roundedNumber = Math.round((succesRate + Number.EPSILON) * 100) / 100;
 
   return (
     <StatsList>
       <Stats>
-        catches <div>{filteredCatches.length}</div>
+        catches <div>{catches.length}</div>
       </Stats>
       <Stats>
         trips <div>{filteredCards.length}</div>
       </Stats>
       <Stats>
-        fish/trip <div>{roundedNumber}</div>
+        fish/trip <div>{roundedNumber ? roundedNumber : '0'}</div>
       </Stats>
     </StatsList>
   );

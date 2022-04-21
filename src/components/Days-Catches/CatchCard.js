@@ -1,38 +1,19 @@
 import { GiWeight } from 'react-icons/gi';
 import { BiRuler } from 'react-icons/bi';
-import Button from '../Button';
 import styled from 'styled-components';
-import { useState } from 'react';
 
-export default function CatchCard({ onDelete, data }) {
-  const [showMore, setShowMore] = useState(true);
-
-  function handleshowMore() {
-    setShowMore(!showMore);
-  }
-
+export default function CatchCard({ data }) {
   return (
-    <Card onClick={handleshowMore}>
+    <Card>
       <Title>{data.species}</Title>
       <span>
         <BiRuler size={30} color={'#687a48'} />
         {data.length} cm
       </span>
-      {showMore && (
-        <div>
-          <span>
-            <GiWeight size={30} color={'#687a48'} />
-            {data.weight} kg
-          </span>
-        </div>
-      )}
-      {!showMore && (
-        <Button
-          text={'Delete'}
-          isAccent={true}
-          onClick={() => onDelete(data._id)}
-        />
-      )}
+      <span>
+        <GiWeight size={30} color={'#687a48'} />
+        {data.weight} kg
+      </span>
     </Card>
   );
 }

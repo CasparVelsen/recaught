@@ -78,7 +78,7 @@ export default function Weather({ handleOnChange }) {
                 onChange={handleOnChange}
               >
                 <option value="full moon">full moon</option>
-                <option value="increasing moon">increasind moon</option>
+                <option value="increasing moon">increasing moon</option>
                 <option value="waning moon">waning moon</option>
                 <option value="new moon">new moon</option>
               </Select>
