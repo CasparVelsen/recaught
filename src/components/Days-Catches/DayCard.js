@@ -21,25 +21,31 @@ export default function Cards({
 
   return (
     <Card>
-      <div onClick={toggleShowDetails}>
-        <Title>{data.date}</Title>
-        <Together>
-          <MdWater size={20} color={'#687a48'} />
-          {data.water}
-        </Together>
-        <InSameRow>
-          <span>
-            <BiTargetLock size={20} color={'#687a48'} />
-            {data.target}
-          </span>
-          {showDetails && (
-            <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
-          )}
-          {!showDetails && (
-            <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
-          )}
-        </InSameRow>
-      </div>
+      <Preview onClick={toggleShowDetails}>
+        <Date>
+          <div>{data.date.slice(8, 10)}</div>
+          <span>{data.date.slice(5, 7)}</span>
+        </Date>
+        <Infos>
+          <Year>{data.date.slice(0, 4)}</Year>
+          <Together>
+            <MdWater size={20} color={'#687a48'} />
+            {data.water}
+          </Together>
+          <InSameRow>
+            <span>
+              <BiTargetLock size={20} color={'#687a48'} />
+              {data.target}
+            </span>
+            {showDetails && (
+              <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
+            )}
+            {!showDetails && (
+              <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
+            )}
+          </InSameRow>
+        </Infos>
+      </Preview>
       {!showDetails && (
         <Details>
           <Part>
@@ -153,12 +159,46 @@ const Card = styled.section`
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
-const Title = styled.h2`
-  font-size: 1.25rem;
-  padding: 0;
-  margin: 0;
+const Preview = styled.div`
+  display: flex;
+`;
+
+const Date = styled.div`
+  padding: 0 20px;
+  padding-right: 30px;
+  margin-right: 20px;
+  border-right: 3px dotted #a2c36c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  div {
+    font-size: 32px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    color: #687a48;
+  }
+
+  span {
+    font-size: 20px;
+    font-weight: lighter;
+    padding: 0;
+    margin: 0;
+    color: #687a48;
+  }
+`;
+
+const Infos = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+`;
+
+const Year = styled.span`
   color: #687a48;
-  margin-bottom: 5px;
+  font-weight: bold;
 `;
 
 const Together = styled.div`
@@ -169,7 +209,6 @@ const Together = styled.div`
 
 const InSameRow = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
 
   span {
