@@ -13,6 +13,7 @@ export default function DisplayDays({
 }) {
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const [date, setDate] = useState('');
+  const [water, setWater] = useState('');
 
   const m = moment();
   const currentYear = m.format('YYYY');
@@ -21,6 +22,16 @@ export default function DisplayDays({
   const filteredCardsByDate = filteredCards.filter(card =>
     card.date.includes(date)
   );
+
+  const filteredCardsByDateAndWater = filteredCardsByDate.filter(card =>
+    card.water.includes(water)
+  );
+
+  const allWaterInManyArrays = filteredCardsByDate.map(object => {
+    return object.water;
+  });
+
+  const eachWater = [...new Set(allWaterInManyArrays)];
 
   return (
     <>
@@ -32,27 +43,57 @@ export default function DisplayDays({
         </FilterButton>
         {showFilterOptions && (
           <Options>
-            <div>
-              <Category>Date:</Category>
+            <Category>
+              <Title>Date:</Title>
               <Together>
-                <input type="radio" onChange={() => setDate('')} />
+                <input
+                  type="radio"
+                  id="all"
+                  name="date"
+                  onChange={() => setDate('')}
+                />
                 <legend>all</legend>
               </Together>
               <Together>
-                <input type="radio" onChange={() => setDate(currentYear)} />
+                <input
+                  type="radio"
+                  id="this-year"
+                  name="date"
+                  onChange={() => setDate(currentYear)}
+                />
                 <legend>this year</legend>
               </Together>
               <Together>
-                <input type="radio" onChange={() => setDate(currentMonth)} />
+                <input
+                  type="radio"
+                  id="this-month"
+                  name="date"
+                  onChange={() => setDate(currentMonth)}
+                />
                 <legend>this month</legend>
               </Together>
-            </div>
+            </Category>
+            <Category>
+              <Title>Your waters:</Title>
+              <WaterList>
+                {eachWater.map((data, index) => (
+                  <Together key={index}>
+                    <input
+                      type="radio"
+                      name="waters"
+                      onChange={() => setWater(data)}
+                    />
+                    <legend>{data}</legend>
+                  </Together>
+                ))}
+              </WaterList>
+            </Category>
           </Options>
         )}
       </Filter>
       <CardsList>
-        {filteredCardsByDate
-          ? filteredCardsByDate.map((data, tempId) => (
+        {filteredCardsByDateAndWater
+          ? filteredCardsByDateAndWater.map((data, tempId) => (
               <li key={tempId}>
                 <Cards
                   data={data}
@@ -94,11 +135,22 @@ const FilterButton = styled.div`
 const Options = styled.div`
   background-color: #fffcf8;
   color: #687a48;
-  padding: 5px 10px;
+  padding: 10px 10px 5px;
   border-top: 1px solid #a2c36c;
+  display: flex;
+  margin-top: 5px;
 `;
 
 const Category = styled.div`
+  width: 50%;
+`;
+
+const WaterList = styled.div`
+  height: 70px;
+  overflow-y: auto;
+`;
+
+const Title = styled.div`
   color: #687a48;
   font-weight: bold;
   margin-bottom: 5px;
