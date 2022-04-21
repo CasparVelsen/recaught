@@ -81,7 +81,7 @@ const Page = styled.div`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: #fffcf8;
   height: 25px;
   width: 100%;
   border-radius: 20px;
@@ -90,7 +90,8 @@ const Page = styled.div`
   ${({ active }) =>
     active &&
     css`
-      background-color: #ff9c27;
+      background-color: #a2c36c;
+      color: #fffcf8;
     `};
 `;
 
