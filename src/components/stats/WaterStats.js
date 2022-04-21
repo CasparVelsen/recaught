@@ -11,8 +11,6 @@ export default function WaterStats({ filteredCardsByTime }) {
     card.water.includes(water)
   );
 
-  console.log(filteredCardsByWater);
-
   const allCatchesInManyArrays = filteredCardsByWater.map(object => {
     const tempArray = object.catches.map(entry => {
       return entry.species;
@@ -51,10 +49,7 @@ export default function WaterStats({ filteredCardsByTime }) {
     return tempLengthArray;
   });
 
-  console.log(allLengthsInManyArrays);
-
   const lengths = allLengthsInManyArrays.flat();
-  console.log(lengths);
 
   function ArrayAvg(lengths) {
     var i = 0,

@@ -17,17 +17,12 @@ const initalProfile = {
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
-  const [showCatchModal, setShowCatchModal] = useState(false);
 
-  const [currentId, setCurrentId] = useState('');
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
 
   const [cards, setCards] = useState([]);
   const filteredCards = cards.filter(card => card.author === profile._id);
-
-  const [catches, setCatches] = useState([]);
-  const filteredCatches = catches.filter(fish => fish.author === profile._id);
 
   useEffect(() => {}, [token]);
 
@@ -71,17 +66,6 @@ export default function App() {
     });
   }, []);
 
-  useEffect(() => {
-    fetch('/api/catches').then(async res => {
-      const data = await res.json();
-      if (!res.ok) {
-        console.error(data);
-        return [];
-      }
-      setCatches([...data]);
-    });
-  }, []);
-
   function onLogout() {
     setToken('');
     window.location.reload(false);
@@ -96,15 +80,10 @@ export default function App() {
             <RequirePermission token={token}>
               <HomePage
                 showModal={showModal}
-                showCatchModal={showCatchModal}
                 filteredCards={filteredCards}
-                filteredCatches={filteredCatches}
                 handleDelete={handleDeleteCard}
                 confirmDelete={handleConfirmDeleteCard}
                 cancelDelete={() => setShowModal(false)}
-                handleDeleteCatch={handleDeleteCatch}
-                confirmDeleteCatch={handleConfirmDeleteCatch}
-                cancelDeleteCatch={() => setShowCatchModal(false)}
                 profile={profile}
               />
             </RequirePermission>
@@ -114,11 +93,7 @@ export default function App() {
           path="/formpage"
           element={
             <RequirePermission token={token}>
-              <FormPage
-                onCreateCard={createCard}
-                onCreateCatch={createCatch}
-                profile={profile}
-              />
+              <FormPage onCreateCard={createCard} profile={profile} />
             </RequirePermission>
           }
         />
@@ -131,7 +106,6 @@ export default function App() {
                 logout={onLogout}
                 profile={profile}
                 filteredCards={filteredCards}
-                filteredCatches={filteredCatches}
               />
             </RequirePermission>
           }
@@ -176,37 +150,6 @@ export default function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ _id }),
-    });
-  }
-
-  function handleDeleteCatch(id) {
-    setShowCatchModal(true);
-    setCurrentId(id);
-  }
-
-  async function createCatch(catchData) {
-    setCatches(catches.concat(catchData));
-
-    await fetch('/api/catches', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(catchData),
-    });
-  }
-
-  async function handleConfirmDeleteCatch() {
-    const filteredCatches = catches.filter(fish => fish._id !== currentId);
-    setCatches(filteredCatches);
-    setShowCatchModal(false);
-
-    await fetch('api/catches', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ currentId }),
     });
   }
 

@@ -8,15 +8,10 @@ import DepthMap from '../images/DepthMap.svg';
 
 export default function HomePage({
   filteredCards,
-  filteredCatches,
   handleDelete,
   showModal,
-  showCatchModal,
   cancelDelete,
   confirmDelete,
-  handleDeleteCatch,
-  confirmDeleteCatch,
-  cancelDeleteCatch,
   profile,
 }) {
   const [showData, setShowData] = useState(true);
@@ -26,6 +21,11 @@ export default function HomePage({
     setShowData(!showData);
     setActive(!active);
   }
+
+  const filteredCatches = filteredCards.map(data => data.catches);
+  const catches = filteredCatches.flat();
+
+  console.log(catches);
 
   return (
     <>
@@ -55,15 +55,7 @@ export default function HomePage({
               cancelDelete={cancelDelete}
             />
           )}
-          {!showData && (
-            <DisplayCatches
-              filteredCatches={filteredCatches}
-              showCatchModal={showCatchModal}
-              handleDeleteCatch={handleDeleteCatch}
-              confirmDeleteCatch={confirmDeleteCatch}
-              cancelDeleteCatch={cancelDeleteCatch}
-            />
-          )}
+          {!showData && <DisplayCatches catches={catches} />}
         </div>
       </Main>
     </>

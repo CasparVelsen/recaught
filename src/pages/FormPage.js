@@ -16,6 +16,8 @@ export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
   const [formData, setFormData] = useState({});
   const [catchData, setCatchData] = useState([]);
 
+  console.log(formData);
+
   async function handleAddCatch(catchValue) {
     const previousCatches = formData.catches ?? [];
     setFormData({
@@ -44,7 +46,6 @@ export default function FormPage({ onCreateCard, onCreateCatch, profile }) {
 
   function handleSubmit() {
     onCreateCard(formData);
-    onCreateCatch(catchData);
   }
 
   return (
