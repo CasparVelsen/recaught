@@ -86,6 +86,14 @@ export default function DisplayDays({
             <Category>
               <Title>Your waters:</Title>
               <WaterList>
+                <Together>
+                  <input
+                    type="radio"
+                    name="waters"
+                    onChange={() => setWater('')}
+                  />
+                  <legend>all</legend>
+                </Together>
                 {eachWater.length > 0
                   ? eachWater.map((data, index) => (
                       <Together key={index}>

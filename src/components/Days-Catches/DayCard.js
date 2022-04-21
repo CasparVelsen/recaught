@@ -40,6 +40,7 @@ export default function Cards({
           <InSameRow>
             <span>
               <IoFishOutline color={'#687a48'} />
+              {data.catches ? data.catches.length : '0'}
             </span>
             {showDetails && (
               <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
