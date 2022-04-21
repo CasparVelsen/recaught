@@ -195,6 +195,7 @@ const CardsList = styled.ul`
   padding: 0;
   width: 100%;
   margin-bottom: 68px;
+  height: 100%;
   position: relative;
 `;
 
@@ -208,8 +209,8 @@ const Hint = styled.div`
   text-align: center;
   color: #687a48;
   font-weight: bold;
-  position: absolute;
-  top: 100px;
+  position: fixed;
+  top: 50%;
   animation-name: ${fadeOut};
   animation-delay: 3s;
   animation-duration: 0s;
@@ -226,8 +227,8 @@ const Error = styled.div`
   text-align: center;
   color: white;
   font-weight: bold;
-  position: absolute;
-  top: 120px;
+  position: fixed;
+  top: 52%;
   animation-name: ${fadeIn};
   animation-delay: 3s;
   animation-duration: 0s;

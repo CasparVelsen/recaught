@@ -60,7 +60,7 @@ const Title = styled.h1`
 `;
 
 const Map = styled.img`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 50px;
   height: 200px;

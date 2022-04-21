@@ -17,15 +17,17 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
   gap: 10px;
   font-size: 1rem;
   color: #a2c36c;
   border-radius: 20px;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 10px 20px;
   border: 0.5px solid #ddd;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0 1px 4px;
+  position: fixed;
+  bottom: 60px;
+  z-index: 100;
 `;
 
 const Description = styled.p`

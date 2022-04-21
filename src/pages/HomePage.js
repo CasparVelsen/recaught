@@ -108,8 +108,8 @@ const LinkStyled = styled(NavLink)`
 `;
 
 const Map = styled.img`
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 0px;
   right: 50px;
   height: 200px;
   z-index: -10;
