@@ -21,168 +21,171 @@ export default function Cards({
   }
 
   return (
-    <Card>
-      <Preview onClick={toggleShowDetails}>
-        <Year>{data.date.slice(0, 4)}</Year>
-        <Date>
-          <div>{data.date.slice(8, 10)}</div>
-          <span>{data.date.slice(5, 7)}</span>
-        </Date>
-        <Infos>
-          <Together>
-            <MdWater size={20} color={'#687a48'} />
-            {data.water}
-          </Together>
-          <Together>
-            <BiTargetLock size={20} color={'#687a48'} />
-            {data.target}
-          </Together>
-          <InSameRow>
-            <span>
-              <IoFishOutline color={'#687a48'} />
-              {data.catches.length} fish
-            </span>
-            {showDetails && (
-              <IoIosArrowForward onClick={toggleShowDetails} color="#FF9C27" />
-            )}
-            {!showDetails && (
-              <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
-            )}
-          </InSameRow>
-        </Infos>
-      </Preview>
-      {!showDetails && (
-        <Details>
-          <Part>
-            <PartTitle>Water</PartTitle>
-            <Data>
-              <Term>water:</Term> {data.water}
-            </Data>
-            {data.stretch && (
-              <Data>
-                <Term>stretch:</Term> {data.stretch}
-              </Data>
-            )}
-            {data.watertemp && (
-              <Data>
-                <Term>watertemp:</Term> {data.watertemp} °C
-              </Data>
-            )}
-            {data.watercolor && (
-              <Data>
-                <Term>watercolor:</Term> {data.watercolor}
-              </Data>
-            )}
-            {data.waterlevel && (
-              <Data>
-                <Term>waterlevel:</Term> {data.waterlevel}
-              </Data>
-            )}
-          </Part>
-          <Part>
-            <PartTitle>Weather</PartTitle>
-            {data.weather && (
-              <Data>
-                <Term>weather:</Term> {data.weather}
-              </Data>
-            )}
-            {data.airpressure && (
-              <Data>
-                <Term>airpressure:</Term> {data.airpressure} hPa
-              </Data>
-            )}
-            {data.temperature && (
-              <Data>
-                <Term>temperature:</Term> {data.temperature} °C
-              </Data>
-            )}
-            {data.moon && (
-              <Data>
-                <Term>moon:</Term> {data.moon}
-              </Data>
-            )}
-            {data.wind && (
-              <Data>
-                <Term>wind:</Term> {data.wind}
-              </Data>
-            )}
-            {data.windspeed && (
-              <Data>
-                <Term>windspeed:</Term> {data.windspeed} km/h
-              </Data>
-            )}
-          </Part>
-          {data.catches.length > 0 ? (
-            data.catches.map((item, index) => (
-              <Part key={index}>
-                <PartTitle>Catch {index + 1})</PartTitle>
-                {item.species && (
-                  <Data>
-                    <Term>species:</Term> {item.species}
-                  </Data>
-                )}
-                {item.time && (
-                  <Data>
-                    <Term>time:</Term> {item.time}
-                  </Data>
-                )}
-                {item.length && (
-                  <Data>
-                    <Term>length:</Term> {item.length} cm
-                  </Data>
-                )}
-                {item.weight && (
-                  <Data>
-                    <Term>weight:</Term> {item.weight} kg
-                  </Data>
-                )}
-                {item.bait && (
-                  <Data>
-                    <Term>bait:</Term> {item.bait}
-                  </Data>
-                )}
-                {item.location && (
-                  <Data>
-                    <Term>location:</Term> {item.location}
-                  </Data>
-                )}
-                {item.notes && (
-                  <Data>
-                    <Term>notes:</Term> {item.notes}
-                  </Data>
-                )}
-              </Part>
-            ))
-          ) : (
+    <>
+      <Card>
+        <Preview onClick={toggleShowDetails}>
+          <Year>{data.date.slice(0, 4)}</Year>
+          <Date>
+            <div>{data.date.slice(8, 10)}</div>
+            <span>{data.date.slice(5, 7)}</span>
+          </Date>
+          <Infos>
+            <Together>
+              <MdWater size={20} color={'#687a48'} />
+              {data.water}
+            </Together>
+            <Together>
+              <BiTargetLock size={20} color={'#687a48'} />
+              {data.target}
+            </Together>
+            <InSameRow>
+              <span>
+                <IoFishOutline color={'#687a48'} />
+                {data.catches ? data.catches.length : '0'}
+              </span>
+              {showDetails && (
+                <IoIosArrowForward
+                  onClick={toggleShowDetails}
+                  color="#FF9C27"
+                />
+              )}
+              {!showDetails && (
+                <IoIosArrowDown onClick={toggleShowDetails} color="#FF9C27" />
+              )}
+            </InSameRow>
+          </Infos>
+        </Preview>
+        {!showDetails && (
+          <Details>
             <Part>
-              <PartTitle>Catch</PartTitle>
+              <PartTitle>Water</PartTitle>
               <Data>
-                <NoFish>no fish caught this day</NoFish>
+                <Term>water:</Term> {data.water}
+              </Data>
+              {data.stretch && (
+                <Data>
+                  <Term>stretch:</Term> {data.stretch}
+                </Data>
+              )}
+              {data.watertemp && (
+                <Data>
+                  <Term>watertemp:</Term> {data.watertemp} °C
+                </Data>
+              )}
+              {data.watercolor && (
+                <Data>
+                  <Term>watercolor:</Term> {data.watercolor}
+                </Data>
+              )}
+              {data.waterlevel && (
+                <Data>
+                  <Term>waterlevel:</Term> {data.waterlevel}
+                </Data>
+              )}
+            </Part>
+            <Part>
+              <PartTitle>Weather</PartTitle>
+              {data.weather && (
+                <Data>
+                  <Term>weather:</Term> {data.weather}
+                </Data>
+              )}
+              {data.airpressure && (
+                <Data>
+                  <Term>airpressure:</Term> {data.airpressure} hPa
+                </Data>
+              )}
+              {data.temperature && (
+                <Data>
+                  <Term>temperature:</Term> {data.temperature} °C
+                </Data>
+              )}
+              {data.moon && (
+                <Data>
+                  <Term>moon:</Term> {data.moon}
+                </Data>
+              )}
+              {data.wind && (
+                <Data>
+                  <Term>wind:</Term> {data.wind}
+                </Data>
+              )}
+              {data.windspeed && (
+                <Data>
+                  <Term>windspeed:</Term> {data.windspeed} km/h
+                </Data>
+              )}
+            </Part>
+            {data.catches > 0 ? (
+              data.catches.map((item, index) => (
+                <Part key={index}>
+                  <PartTitle>Catch {index + 1})</PartTitle>
+                  {item.species && (
+                    <Data>
+                      <Term>species:</Term> {item.species}
+                    </Data>
+                  )}
+                  {item.time && (
+                    <Data>
+                      <Term>time:</Term> {item.time}
+                    </Data>
+                  )}
+                  {item.length && (
+                    <Data>
+                      <Term>length:</Term> {item.length} cm
+                    </Data>
+                  )}
+                  {item.weight && (
+                    <Data>
+                      <Term>weight:</Term> {item.weight} kg
+                    </Data>
+                  )}
+                  {item.bait && (
+                    <Data>
+                      <Term>bait:</Term> {item.bait}
+                    </Data>
+                  )}
+                  {item.location && (
+                    <Data>
+                      <Term>location:</Term> {item.location}
+                    </Data>
+                  )}
+                  {item.notes && (
+                    <Data>
+                      <Term>notes:</Term> {item.notes}
+                    </Data>
+                  )}
+                </Part>
+              ))
+            ) : (
+              <Part>
+                <PartTitle>Catches</PartTitle>
+                <Data>no fish caught this day</Data>
+              </Part>
+            )}
+            <Part>
+              <PartTitle>Summary</PartTitle>
+              <Data>
+                <Term>total bites:</Term> {data.bites ? data.bites : '0'}
+              </Data>
+              <Data>
+                <Term>lost fish:</Term> {data.lost ? data.lost : '0'}
               </Data>
             </Part>
+            <Button text="Delete card" isAccent={true} onClick={onDelete} />
+          </Details>
+        )}
+        <ModalWrapper>
+          {showModal && (
+            <DeleteModal
+              text="card"
+              confirmDelete={confirmDelete}
+              cancelDelete={cancelDelete}
+            />
           )}
-          <Part>
-            <PartTitle>Summary</PartTitle>
-            <Data>
-              <Term>total bites:</Term> {data.bites ? data.bites : '0'}
-            </Data>
-            <Data>
-              <Term>lost fish:</Term> {data.lost ? data.lost : '0'}
-            </Data>
-          </Part>
-          <Button text="Delete card" isAccent={true} onClick={onDelete} />
-          <ModalWrapper>
-            {showModal && (
-              <DeleteModal
-                text="card"
-                confirmDelete={confirmDelete}
-                cancelDelete={cancelDelete}
-              />
-            )}
-          </ModalWrapper>
-        </Details>
-      )}
-    </Card>
+        </ModalWrapper>
+      </Card>
+    </>
   );
 }
 
@@ -293,12 +296,8 @@ const Term = styled.span`
   color: #687a48;
 `;
 
-const NoFish = styled.span`
-  font-weight: bold;
-  color: #a2c36c;
-`;
-
 const ModalWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
 `;

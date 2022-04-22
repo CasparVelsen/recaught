@@ -119,7 +119,7 @@ const Inputs = styled.div`
 `;
 
 const Map = styled.img`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 50px;
   height: 200px;
