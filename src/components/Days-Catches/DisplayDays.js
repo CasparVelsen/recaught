@@ -222,11 +222,12 @@ const LoaderBox = styled.div`
   justify-content: center;
   width: 100%;
   position: fixed;
-  top: 50%;
+  top: 55%;
   animation-name: ${fadeOut};
   animation-delay: 3s;
   animation-duration: 0s;
   animation-fill-mode: forwards;
+  padding-right: 10px;
 `;
 
 const fadeIn = keyframes`
@@ -240,9 +241,10 @@ const Error = styled.div`
   color: white;
   font-weight: bold;
   position: fixed;
-  top: 52%;
+  top: 58%;
   animation-name: ${fadeIn};
   animation-delay: 3s;
   animation-duration: 0s;
   animation-fill-mode: forwards;
+  padding-right: 10px;
 `;
