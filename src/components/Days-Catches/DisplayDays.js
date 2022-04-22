@@ -145,7 +145,7 @@ export default function DisplayDays({
 const Filter = styled.div`
   width: 100%;
   margin: 15px 0;
-  border: 1px solid #ff9c27;
+  border: 1px solid #687a48;
   border-radius: 10px;
   background-color: #fffcf8;
   color: #687a48;
