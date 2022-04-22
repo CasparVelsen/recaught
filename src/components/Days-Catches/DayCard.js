@@ -175,16 +175,16 @@ export default function Cards({
             <Button text="Delete card" isAccent={true} onClick={onDelete} />
           </Details>
         )}
+        <ModalWrapper>
+          {showModal && (
+            <DeleteModal
+              text="card"
+              confirmDelete={confirmDelete}
+              cancelDelete={cancelDelete}
+            />
+          )}
+        </ModalWrapper>
       </Card>
-      <ModalWrapper>
-        {showModal && (
-          <DeleteModal
-            text="card"
-            confirmDelete={confirmDelete}
-            cancelDelete={cancelDelete}
-          />
-        )}
-      </ModalWrapper>
     </>
   );
 }

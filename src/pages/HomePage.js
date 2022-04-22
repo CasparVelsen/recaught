@@ -117,7 +117,6 @@ const Map = styled.img`
 
 const Main = styled.div`
   margin: 10px;
-  padding-bottom: 68px;
   height: 100%;
   display: flex;
   flex-direction: column;

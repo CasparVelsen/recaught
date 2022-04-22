@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
 import { useState } from 'react';
 import moment from 'moment';
+import Loader from '../Loader';
 
 export default function DisplayDays({
   filteredCards,
@@ -53,7 +54,8 @@ export default function DisplayDays({
                   name="date"
                   onChange={() => setDate('')}
                 />
-                <legend>all</legend>
+
+                <legend>All</legend>
               </Together>
               <Together>
                 <input
@@ -62,7 +64,8 @@ export default function DisplayDays({
                   name="date"
                   onChange={() => setDate(currentYear)}
                 />
-                <legend>this year</legend>
+
+                <legend>This year</legend>
               </Together>
               <Together>
                 <input
@@ -71,7 +74,8 @@ export default function DisplayDays({
                   name="date"
                   onChange={() => setDate(currentMonth)}
                 />
-                <legend>this month</legend>
+
+                <legend>This month</legend>
               </Together>
               <Together>
                 <input
@@ -80,7 +84,8 @@ export default function DisplayDays({
                   name="date"
                   onChange={() => setDate(today)}
                 />
-                <legend>today</legend>
+
+                <legend>Today</legend>
               </Together>
             </Category>
             <Category>
@@ -92,7 +97,7 @@ export default function DisplayDays({
                     name="waters"
                     onChange={() => setWater('')}
                   />
-                  <legend>all</legend>
+                  <legend>All</legend>
                 </Together>
                 {eachWater.length > 0
                   ? eachWater.map((data, index) => (
@@ -126,7 +131,9 @@ export default function DisplayDays({
           ))
         ) : (
           <div>
-            <Hint>...Loading data...</Hint>
+            <LoaderBox>
+              <Loader />
+            </LoaderBox>
             <Error>no matches found</Error>
           </div>
         )}
@@ -138,7 +145,7 @@ export default function DisplayDays({
 const Filter = styled.div`
   width: 100%;
   margin: 15px 0;
-  border: 1px solid #687a48;
+  border: 1px solid #ff9c27;
   border-radius: 10px;
   background-color: #fffcf8;
   color: #687a48;
@@ -155,13 +162,14 @@ const FilterButton = styled.div`
   gap: 5px;
   padding-top: 5px;
   padding-left: 10px;
+  font-weight: bold;
 `;
 
 const Options = styled.div`
   background-color: #fffcf8;
   color: #687a48;
   padding: 10px 10px 5px;
-  border-top: 1px solid #687a48;
+  border-top: 1px solid #ff9c27;
   display: flex;
 `;
 
@@ -181,10 +189,15 @@ const Title = styled.div`
   margin-bottom: 5px;
 `;
 
-const Together = styled.div`
+const Together = styled.label`
   display: flex;
   align-items: center;
   gap: 5px;
+
+  input {
+    height: 17px;
+    width: 17px;
+  }
 `;
 
 const CardsList = styled.ul`
@@ -204,11 +217,10 @@ const fadeOut = keyframes`
   to {color: white;}
 `;
 
-const Hint = styled.div`
+const LoaderBox = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
-  text-align: center;
-  color: #687a48;
-  font-weight: bold;
   position: fixed;
   top: 50%;
   animation-name: ${fadeOut};
