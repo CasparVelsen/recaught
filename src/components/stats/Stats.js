@@ -40,7 +40,7 @@ const Stats = styled.span`
   justify-content: center;
   align-items: center;
   font-weight: bolder;
-  font-size: 1.2rem;
+  font-size: 1rem;
   gap: 5px;
   width: 100%;
   color: #687a48;
