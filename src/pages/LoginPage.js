@@ -5,6 +5,7 @@ import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
 import Button from '../components/Button';
 import DepthMap2 from '../images/DepthMap2.svg';
+import PageTitle from '../components/PageTitle';
 
 const initalCredentials = {
   username: '',
@@ -33,7 +34,7 @@ export default function LoginPage({ onLogin }) {
     <>
       <header></header>
       <Main>
-        <Title>Login</Title>
+        <PageTitle text="Login" />
         <Subtitle>You have to login first to see your data</Subtitle>
         <Form
           aria-labelledby="form-name"
@@ -97,17 +98,11 @@ const LinkStyled = styled(NavLink)`
   color: black;
 `;
 
-const Title = styled.h1`
-  color: #687a48;
-  font-size: 32px;
-  width: 50%;
-  margin: 0 0 15px;
-`;
-
 const Subtitle = styled.h3`
   color: #a2c36c;
   font-size: 18px;
   margin: 0;
+  margin-top: 10px;
 `;
 
 const Form = styled.form`

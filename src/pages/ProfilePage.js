@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Stats from '../components/stats/Stats';
 import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
+import PageTitle from '../components/PageTitle';
 
 export default function ProfilePage({
   profile,
@@ -24,7 +25,7 @@ export default function ProfilePage({
       </header>
       <main>
         <Map src={DepthMap} alt="DepthMap" />
-        <Title>Hello, {profile.firstname}</Title>
+        <PageTitle text={'Hello, ' + profile.firstname} />
         <Stats
           filteredCards={filteredCards}
           filteredCatches={filteredCatches}
@@ -50,13 +51,6 @@ const LogButton = styled.button`
   border-radius: 5px;
   padding: 5px 10px;
   background-color: #687a48;
-`;
-
-const Title = styled.h1`
-  color: #687a48;
-  font-size: 32px;
-  width: 50%;
-  margin: 0;
 `;
 
 const Map = styled.img`

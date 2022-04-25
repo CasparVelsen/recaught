@@ -11,6 +11,7 @@ import Weather from '../components/form-pages/Weather';
 import Catch from '../components/form-pages/Catch';
 import Summary from '../components/form-pages/Summary';
 import DepthMap from '../images/DepthMap.svg';
+import PageTitle from '../components/PageTitle';
 
 export default function FormPage({ onCreateCard, profile }) {
   const [formData, setFormData] = useState({});
@@ -61,8 +62,7 @@ export default function FormPage({ onCreateCard, profile }) {
           autoComplete="off"
           labeltext="form"
         >
-          <Title>Your fishing</Title>
-          <Title>experience:</Title>
+          <PageTitle text="Your fishing experience:" />
           <Inputs>
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
@@ -91,13 +91,6 @@ export default function FormPage({ onCreateCard, profile }) {
 const ButtonToRight = styled.div`
   display: flex;
   justify-content: right;
-`;
-
-const Title = styled.h1`
-  color: #687a48;
-  font-size: 32px;
-  width: 100%;
-  margin: 0;
 `;
 
 const LinkStyled = styled(NavLink)`

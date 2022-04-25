@@ -5,6 +5,7 @@ import SubmitButton from '../components/SubmitButton';
 import ScreenRaderOnly from '../components/ScreenRaderOnly';
 import { useState } from 'react';
 import DepthMap2 from '../images/DepthMap2.svg';
+import PageTitle from '../components/PageTitle';
 
 export default function SignUp({ onCreateUser }) {
   const [userData, setUserData] = useState();
@@ -30,7 +31,7 @@ export default function SignUp({ onCreateUser }) {
         </LinkStyled>
       </header>
       <Main>
-        <Title>SignUp</Title>
+        <PageTitle text="SignUp" />
         <Form
           aria-labelledby="form-name"
           autoComplete="off"
@@ -106,16 +107,10 @@ const LinkStyled = styled(NavLink)`
   color: black;
 `;
 
-const Title = styled.h1`
-  color: #687a48;
-  font-size: 32px;
-  width: 50%;
-  margin: 0 0 20px;
-`;
-
 const Form = styled.form`
   border-radius: 10px;
   padding: 10px;
+  margin-top: 15px;
   padding-bottom: 25px;
   border: 0.5px solid #a2c36c;
   display: flex;
