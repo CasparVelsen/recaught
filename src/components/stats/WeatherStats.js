@@ -158,7 +158,7 @@ const StatsContainer = styled.div`
 const Legend = styled.div`
   position: absolute;
   left: 60px;
-  top: 31px;
+  top: 32px;
   font-size: 0.7rem;
   font-weight: bold;
   color: #687a48;
