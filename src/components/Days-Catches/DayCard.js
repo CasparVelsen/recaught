@@ -69,17 +69,17 @@ export default function Cards({
               )}
               {data.watertemp && (
                 <Data>
-                  <Term>watertemp:</Term> {data.watertemp} °C
+                  <Term>water temperature:</Term> {data.watertemp} °C
                 </Data>
               )}
               {data.watercolor && (
                 <Data>
-                  <Term>watercolor:</Term> {data.watercolor}
+                  <Term>water color:</Term> {data.watercolor}
                 </Data>
               )}
               {data.waterlevel && (
                 <Data>
-                  <Term>waterlevel:</Term> {data.waterlevel}
+                  <Term>water level:</Term> {data.waterlevel}
                 </Data>
               )}
             </Part>
@@ -92,7 +92,7 @@ export default function Cards({
               )}
               {data.airpressure && (
                 <Data>
-                  <Term>airpressure:</Term> {data.airpressure} hPa
+                  <Term>air pressure:</Term> {data.airpressure} hPa
                 </Data>
               )}
               {data.temperature && (
@@ -112,7 +112,7 @@ export default function Cards({
               )}
               {data.windspeed && (
                 <Data>
-                  <Term>windspeed:</Term> {data.windspeed} km/h
+                  <Term>wind speed:</Term> {data.windspeed} km/h
                 </Data>
               )}
             </Part>
