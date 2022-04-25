@@ -116,7 +116,7 @@ export default function Cards({
                 </Data>
               )}
             </Part>
-            {data.catches > 0 ? (
+            {data.catches ? (
               data.catches.map((item, index) => (
                 <Part key={index}>
                   <PartTitle>Catch {index + 1})</PartTitle>
