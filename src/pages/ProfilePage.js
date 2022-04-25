@@ -25,7 +25,9 @@ export default function ProfilePage({
       </header>
       <main>
         <Map src={DepthMap} alt="DepthMap" />
-        <PageTitle text={'Hello, ' + profile.firstname} />
+        <PageTitle
+          text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
+        />
         <Stats
           filteredCards={filteredCards}
           filteredCatches={filteredCatches}

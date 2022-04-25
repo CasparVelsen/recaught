@@ -169,7 +169,7 @@ const Options = styled.div`
   background-color: #fffcf8;
   color: #687a48;
   padding: 10px 10px 5px;
-  border-top: 1px solid #ff9c27;
+  border-top: 1px solid #687a48;
   display: flex;
 `;
 

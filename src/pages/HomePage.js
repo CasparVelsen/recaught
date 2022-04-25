@@ -35,7 +35,13 @@ export default function HomePage({
       </header>
       <Main>
         <Map src={DepthMap} alt="DepthMap" />
-        <PageTitle text={'Tight lines, ' + profile.firstname} />
+        <PageTitle
+          text={
+            profile.firstname
+              ? 'Tight lines, ' + profile.firstname
+              : 'Tight lines, '
+          }
+        />
         <Nav>
           <Page onClick={showPage} active={active}>
             Days
