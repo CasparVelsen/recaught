@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
 import DepthMap from '../images/DepthMap.svg';
+import PageTitle from '../components/PageTitle';
 
 export default function HomePage({
   filteredCards,
@@ -34,7 +35,7 @@ export default function HomePage({
       </header>
       <Main>
         <Map src={DepthMap} alt="DepthMap" />
-        <Title>Tight lines, {profile.firstname}</Title>
+        <PageTitle text={'Tight lines, ' + profile.firstname} />
         <Nav>
           <Page onClick={showPage} active={active}>
             Days
@@ -60,17 +61,11 @@ export default function HomePage({
   );
 }
 
-const Title = styled.h1`
-  color: #687a48;
-  font-size: 32px;
-  width: 50%;
-  margin: 0 0 20px;
-`;
-
 const Nav = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: #687a48;
+  margin-top: 15px;
   height: 25px;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
