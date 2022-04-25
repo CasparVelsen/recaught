@@ -116,53 +116,48 @@ export default function Cards({
                 </Data>
               )}
             </Part>
-            {data.catches ? (
-              data.catches.map((item, index) => (
-                <Part key={index}>
-                  <PartTitle>Catch {index + 1})</PartTitle>
-                  {item.species && (
-                    <Data>
-                      <Term>species:</Term> {item.species}
-                    </Data>
-                  )}
-                  {item.time && (
-                    <Data>
-                      <Term>time:</Term> {item.time}
-                    </Data>
-                  )}
-                  {item.length && (
-                    <Data>
-                      <Term>length:</Term> {item.length} cm
-                    </Data>
-                  )}
-                  {item.weight && (
-                    <Data>
-                      <Term>weight:</Term> {item.weight} kg
-                    </Data>
-                  )}
-                  {item.bait && (
-                    <Data>
-                      <Term>bait:</Term> {item.bait}
-                    </Data>
-                  )}
-                  {item.location && (
-                    <Data>
-                      <Term>location:</Term> {item.location}
-                    </Data>
-                  )}
-                  {item.notes && (
-                    <Data>
-                      <Term>notes:</Term> {item.notes}
-                    </Data>
-                  )}
-                </Part>
-              ))
-            ) : (
-              <Part>
-                <PartTitle>Catches</PartTitle>
-                <Data>no fish caught this day</Data>
-              </Part>
-            )}
+            {data.catches
+              ? data.catches.map((item, index) => (
+                  <Part key={index}>
+                    <PartTitle>Catch {index + 1})</PartTitle>
+                    {item.species && (
+                      <Data>
+                        <Term>species:</Term> {item.species}
+                      </Data>
+                    )}
+                    {item.time && (
+                      <Data>
+                        <Term>time:</Term> {item.time}
+                      </Data>
+                    )}
+                    {item.length && (
+                      <Data>
+                        <Term>length:</Term> {item.length} cm
+                      </Data>
+                    )}
+                    {item.weight && (
+                      <Data>
+                        <Term>weight:</Term> {item.weight} kg
+                      </Data>
+                    )}
+                    {item.bait && (
+                      <Data>
+                        <Term>bait:</Term> {item.bait}
+                      </Data>
+                    )}
+                    {item.location && (
+                      <Data>
+                        <Term>location:</Term> {item.location}
+                      </Data>
+                    )}
+                    {item.notes && (
+                      <Data>
+                        <Term>notes:</Term> {item.notes}
+                      </Data>
+                    )}
+                  </Part>
+                ))
+              : ''}
             <Part>
               <PartTitle>Summary</PartTitle>
               <Data>
