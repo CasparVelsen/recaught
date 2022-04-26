@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
-import { SpeciesOptions } from './SpeciesOptions';
 
 const initialValues = {
   species: '',
@@ -65,16 +64,14 @@ export default function Catch({
             <Fieldset>
               <Part>
                 <label htmlFor="species">Species</label>
-                <Select
+                <Input
                   onChange={handleChange}
                   value={values.species}
                   id="species"
                   name="species"
                   type="text"
                   maxLength={100}
-                >
-                  <SpeciesOptions />
-                </Select>
+                />
               </Part>
               <Part>
                 <label htmlFor="time">Time</label>
