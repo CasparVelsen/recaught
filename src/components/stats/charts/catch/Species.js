@@ -35,6 +35,8 @@ function Species({ filteredCardsByWater }) {
           '#87966b',
           '#ec975f',
           '#a8ae9c',
+          '#a3b08c',
+          '#f3c98c',
         ],
       },
     ],
@@ -45,7 +47,7 @@ function Species({ filteredCardsByWater }) {
     animation: { animateScale: true },
     plugins: {
       legend: {
-        position: 'bottom',
+        display: false,
       },
       title: {
         display: false,
