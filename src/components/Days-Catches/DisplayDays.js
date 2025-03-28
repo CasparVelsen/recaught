@@ -16,7 +16,7 @@ export default function DisplayDays({
   const [date, setDate] = useState('');
   const [water, setWater] = useState('');
 
-  const m = moment();
+  const m = moment().startOf('day');
   const currentYear = m.format('YYYY');
   const currentMonth = m.format('YYYY[-]MM');
   const today = m.format('YYYY[-]MM[-]D');
@@ -34,6 +34,12 @@ export default function DisplayDays({
   });
 
   const eachWater = [...new Set(allWaterInManyArrays)];
+  
+  const sortedCards = filteredCardsByDateAndWater.sort((a, b) => {
+    const dateA = moment(a.date, 'YYYY-MM-DD');
+    const dateB = moment(b.date, 'YYYY-MM-DD');
+    return dateB.isAfter(dateA) ? 1 : -1;  // Neueste zuerst
+  });
 
   return (
     <>
@@ -117,8 +123,8 @@ export default function DisplayDays({
         )}
       </Filter>
       <CardsList>
-        {filteredCardsByDateAndWater.length > 0 ? (
-          filteredCardsByDateAndWater.map((data, tempId) => (
+        {sortedCards.length > 0 ? (
+          sortedCards.map((data, tempId) => (
             <li key={tempId}>
               <Cards
                 data={data}
