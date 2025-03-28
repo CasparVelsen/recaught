@@ -9,6 +9,7 @@ import RequirePermission from './components/RequirePermission';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
+import moment from 'moment';
 
 const initalProfile = {
   _id: '',
@@ -26,7 +27,12 @@ export default function App() {
   .map(card => ({
     ...card,
     catches: card.catches ?? [] // Setze 'catches' auf ein leeres Array, wenn es undefined ist
-  }));
+  }))
+  .sort((a, b) => {
+        const dateA = moment(a.date, 'YYYY-MM-DD');
+        const dateB = moment(b.date, 'YYYY-MM-DD');
+        return dateB.isAfter(dateA) ? 1 : -1;  // Neueste zuerst
+      });;
 
   useEffect(() => {}, [token]);
 
