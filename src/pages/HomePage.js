@@ -6,6 +6,7 @@ import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
+import moment from 'moment';
 
 export default function HomePage({
   filteredCards,
@@ -23,7 +24,15 @@ export default function HomePage({
     setActive(!active);
   }
 
-  const filteredCatches = filteredCards.map(data => data.catches);
+  const m = moment().startOf('day');
+
+  const sortedCards = filteredCards.sort((a, b) => {
+      const dateA = moment(a.date, 'YYYY-MM-DD');
+      const dateB = moment(b.date, 'YYYY-MM-DD');
+      return dateB.isAfter(dateA) ? 1 : -1;  // Neueste zuerst
+    });
+
+  const filteredCatches = sortedCards.map(data => data.catches);
   const catches = filteredCatches.flat();
 
   return (
@@ -53,7 +62,7 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-              filteredCards={filteredCards}
+              sortedCards={sortedCards}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}
