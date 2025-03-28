@@ -22,7 +22,11 @@ export default function App() {
   const [profile, setProfile] = useState(initalProfile);
 
   const [cards, setCards] = useState([]);
-  const filteredCards = cards.filter(card => card.author === profile._id);
+  const filteredCards = cards.filter(card => card.author === profile._id)
+  .map(card => ({
+    ...card,
+    catches: card.catches ?? [] // Setze 'catches' auf ein leeres Array, wenn es undefined ist
+  }));
 
   useEffect(() => {}, [token]);
 
