@@ -5,7 +5,7 @@ Record your fishing experiences!
 
 ## Document your trips and catches
 
-Open the app and quickly enter data about your last fishing trip. From water and weather data to your cathces, enter every single detail of your fishing trip. Save your experience with recaught to always remember them.
+Open the app and quickly enter data about your last fishing trip. From water and weather data to your catches, enter every single detail of your fishing trip. Save your experience with recaught to always remember them.
 
 ## Fish smarter with recaught
 
