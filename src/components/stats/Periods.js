@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 import styled from 'styled-components';
 import moment from 'moment';
-import WaterStats from './WaterStats';
+import WaterStats from './Stats';
 
 export default function Periods({ filteredCardsByTime, filteredCardsByWater }) {
 

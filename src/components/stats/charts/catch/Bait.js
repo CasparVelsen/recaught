@@ -16,23 +16,27 @@ function Bait({ filteredCardsByWater }) {
     }
   });
 
-  const numbers = Object.values(count);
+  // Schritt 1: Kombinieren von Bait + Count
+  const baitList = Object.entries(count).map(([bait, value]) => ({
+    bait,
+    count: value,
+  }));
 
-  const noDubsBait = [...new Set(baits)];
+  // Schritt 2: Sortieren nach count DESC
+  const sortedBaits = baitList.sort((a, b) => b.count - a.count);
 
   return (
     <BaitContainer>
       <Baits>
-        {noDubsBait.map((data, index) => (
-          <div key={index}>{data ? data : 'no name'}</div>
+        {sortedBaits.map((item, index) => (
+          <div key={index}>{item.bait || 'no name'}</div>
         ))}
       </Baits>
       <Catches>
-        {numbers.map((data, index) => (
-          <div key={index}>{data}</div>
+        {sortedBaits.map((item, index) => (
+          <div key={index}>{item.count}</div>
         ))}
       </Catches>
-      <Hint>Catches</Hint>
     </BaitContainer>
   );
 }
@@ -44,8 +48,6 @@ const BaitContainer = styled.div`
   justify-content: space-between;
   gap: 10px;
   border-radius: 10px;
-  padding: 10px 15px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px inset;
   margin-top: 10px;
   position: relative;
 `;
@@ -61,13 +63,4 @@ const Catches = styled.div`
   flex-direction: column;
   color: #687a48;
   gap: 5px;
-`;
-
-const Hint = styled.div`
-  position: absolute;
-  top: -20px;
-  right: 5px;
-  color: #687a48;
-  font-weight: bold;
-  font-size: 0.8rem;
 `;

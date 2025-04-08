@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import QuickStats from '../components/stats/QuickStats';
 import Stats from '../components/stats/Stats';
-import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
 import TimeFilter from '../components/stats/TimeFilter';
@@ -65,10 +65,10 @@ const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
             <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
           </FilterWrapper>
         </TopBar>
-        <Stats
+        <QuickStats
           filteredCardsByWater={filteredCardsByWater}
         />
-        <Periods filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
+        <Stats filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
       </main>
     </>
   );
