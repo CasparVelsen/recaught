@@ -22,7 +22,12 @@ export default function App() {
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
 
+  const [id, setID] = useState()
+
+  console.log(id);
+
   const [cards, setCards] = useState([]);
+
   const filteredCards = cards.filter(card => card.author === profile._id)
   .map(card => ({
     ...card,
@@ -145,12 +150,13 @@ export default function App() {
     });
   }
 
-  function handleDeleteCard() {
+  function handleDeleteCard(_id) {
+    setID(_id);
     setShowModal(true);
   }
 
-  async function handleConfirmDeleteCard(_id) {
-    const filteredCards = cards.filter(card => card._id !== _id);
+  async function handleConfirmDeleteCard() {
+    const filteredCards = cards.filter(card => card._id !== id);
     setCards(filteredCards);
     setShowModal(false);
 
@@ -159,7 +165,7 @@ export default function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ _id }),
+      body: JSON.stringify({id}),
     });
   }
 

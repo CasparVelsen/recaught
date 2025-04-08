@@ -13,7 +13,7 @@ export default function Periods({ filteredCards }) {
     card.date.includes(timeSpan)
   );
 
-  const filteredCatches = filteredCardsByTime.map(data => data.catches);
+  const filteredCatches = (filteredCardsByTime ?? []).map(data => data?.catches ?? []);
 
   const filterNumberCatches = filteredCatches.map(number => number.length);
 

@@ -124,7 +124,7 @@ export default function DisplayDays({
                 data={data}
                 showModal={showModal}
                 onDelete={handleDelete}
-                confirmDelete={() => confirmDelete(data._id)}
+                confirmDelete={confirmDelete}
                 cancelDelete={cancelDelete}
               />
             </li>
