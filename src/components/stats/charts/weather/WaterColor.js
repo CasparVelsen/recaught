@@ -34,8 +34,6 @@ function WaterColor({ filteredCardsByWater }) {
     ],
   };
 
-  console.log(watercolorArray)
-
   const options = {
     plugins: {
       legend: {

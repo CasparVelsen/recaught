@@ -32,8 +32,6 @@ function Temperature({ filteredCardsByWater }) {
     ],
   };
 
-  console.log(temperatureArray);
-  
   const options = {
     plugins: {
       legend: {
