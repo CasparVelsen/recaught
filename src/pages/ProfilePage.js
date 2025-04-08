@@ -4,6 +4,8 @@ import Stats from '../components/stats/Stats';
 import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
+import TimeFilter from '../components/stats/TimeFilter';
+import { useState } from 'react';
 
 export default function ProfilePage({
   profile,
@@ -12,6 +14,18 @@ export default function ProfilePage({
   filteredCards,
   filteredCatches,
 }) {
+  const [season, setSeason] = useState('');
+
+  function handleSelectSeason(event) {
+    setSeason(event.target.value);
+    handleSubmitSeason(event);
+  }
+
+  function handleSubmitSeason(event) {
+    event.preventDefault();
+}
+
+const filteredCardsByTime = filteredCards.filter(card => card.date.includes(season));
 
   return (
     <>
@@ -29,11 +43,12 @@ export default function ProfilePage({
         <PageTitle
           text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
         />
+        <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
         <Stats
-          filteredCards={filteredCards}
+          filteredCardsByTime={filteredCardsByTime}
           filteredCatches={filteredCatches}
         />
-        <Periods filteredCards={filteredCards} />
+        <Periods filteredCardsByTime={filteredCardsByTime} />
       </main>
     </>
   );

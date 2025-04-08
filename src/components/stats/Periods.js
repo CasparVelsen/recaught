@@ -1,14 +1,9 @@
 import lodash from 'lodash';
-import { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import TimeFilter from './TimeFilter.js';
 import WaterStats from './WaterStats';
 
-export default function Periods({ filteredCards }) {
-  const [season, setSeason] = useState('');
-
-  const filteredCardsByTime = filteredCards.filter(card => card.date.includes(season));
+export default function Periods({ filteredCardsByTime }) {
 
   const filteredCatches = (filteredCardsByTime ?? []).map(data => data?.catches ?? []);
 
@@ -21,19 +16,9 @@ export default function Periods({ filteredCards }) {
   const currentMonth = m.format('YYYY[-]MM');
   const today = m.format('YYYY[-]MM[-]D');
 
-  function handleSelectSeason(event) {
-    setSeason(event.target.value);
-    handleSubmitSeason(event);
-  }
-
-function handleSubmitSeason(event) {
-    event.preventDefault();
-}
-
   return (
     <>
         <Period>
-          <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason} />
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}

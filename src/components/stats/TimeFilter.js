@@ -13,7 +13,7 @@ export default function TimeFilter ({filteredCards, handleChange, handleSubmit})
         <div>
             <SeasonForm onSubmit={handleSubmit}>
                 <Select id="season" name="selectedSeason" onChange={handleChange}>
-                    <option value="" disabled selected>All time</option>
+                    <option value="">All time</option>
                     {eachYear.map((opt, id) => (
                         <option key={id}>{opt}</option>
                     ))}
