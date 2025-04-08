@@ -22,9 +22,7 @@ export default function App() {
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
 
-  const [id, setID] = useState()
-
-  console.log(id);
+  const [id, setID] = useState() //id confirmDelete mitgeben zum löschen der richtigen Karte
 
   const [cards, setCards] = useState([]);
 
