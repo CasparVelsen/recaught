@@ -80,7 +80,6 @@ export default function WaterStats({filteredCardsByWater }) {
         <Bait filteredCardsByWater={filteredCardsByWater} />
       </Period>
       <Period>
-        <StatsTitle>Weather stats</StatsTitle>
         <WeatherStats filteredCardsByWater={filteredCardsByWater} />
       </Period>
     </div>

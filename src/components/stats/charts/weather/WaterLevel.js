@@ -4,7 +4,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function WaterLevel({ filteredCardsByWater }) {
   const findWaterLevel = filteredCardsByWater.map(card => card.waterlevel);
-  const filteredWaterLevel = [...new Set(findWaterLevel)];
+  const filteredWaterLevel = [...new Set(findWaterLevel)].filter(item => item);
 
   const waterlevelArray = filteredWaterLevel.map((data, index) => {
     const filterForWaterLevel = filteredCardsByWater.filter(

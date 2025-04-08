@@ -4,7 +4,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function Moon({ filteredCardsByWater }) {
   const findMoon = filteredCardsByWater.map(card => card.moon);
-  const filteredMoon = [...new Set(findMoon)];
+  const filteredMoon = [...new Set(findMoon)].filter(item => item);
 
   const moonArray = filteredMoon.map((data, index) => {
     const filterForMoon = filteredCardsByWater.filter(
