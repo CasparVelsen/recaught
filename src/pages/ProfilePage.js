@@ -40,10 +40,12 @@ const filteredCardsByTime = filteredCards.filter(card => card.date.includes(seas
       </header>
       <main>
         <Map src={DepthMap} alt="DepthMap" />
-        <PageTitle
+        <TopBar>
+          <PageTitle
           text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
-        />
-        <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+          />
+          <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+        </TopBar>
         <Stats
           filteredCardsByTime={filteredCardsByTime}
           filteredCatches={filteredCatches}
@@ -53,6 +55,10 @@ const filteredCardsByTime = filteredCards.filter(card => card.date.includes(seas
     </>
   );
 }
+
+const TopBar = styled.div`
+  display: flex;
+`;
 
 const LinkStyled = styled(NavLink)`
   display: flex;

@@ -10,31 +10,43 @@ export default function TimeFilter ({filteredCards, handleChange, handleSubmit})
     const eachYear = [...new Set(allYearsInManyArrays)];
 
     return (
-        <div>
-            <SeasonForm onSubmit={handleSubmit}>
+        <Wrapper>
+            <form onSubmit={handleSubmit}>
+                <P>season:</P>
                 <Select id="season" name="selectedSeason" onChange={handleChange}>
                     <option value="">All time</option>
                     {eachYear.map((opt, id) => (
                         <option key={id}>{opt}</option>
                     ))}
                 </Select>
-            </SeasonForm>
-        </div>
+            </form>
+        </Wrapper>
         
     );
 }
 
-const SeasonForm = styled.form`
-margin-top: 10px;
+const Wrapper = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-end;
+`;
+
+const P = styled.p`
+color: #687a48;
+font-size: 1rem;
+text-align: right;
+margin: 0 0 5px 0;
 `;
 
 const Select = styled.select`
-width: auto%;
   border: none;
   background-color: transparent;
   font-size: 24px;
   font-weight: bold;
   color: #ff9c27;
+  text-align: right;
 
   &:focus {
     outline: none;  /* Keine Umrandung bei Fokus */
