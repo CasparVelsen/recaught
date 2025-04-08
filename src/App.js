@@ -136,7 +136,13 @@ export default function App() {
   );
 
   async function createCard(formData) {
-    setCards([...cards, formData]);
+    console.log(formData);
+    const trimmedData = Object.keys(formData).reduce((acc, key) => {
+      acc[key] = typeof formData[key] === 'string' ? formData[key].trim() : formData[key];
+      return acc;
+    }, {});
+    console.log(trimmedData);
+    setCards([...cards, trimmedData]);
     navigate('/');
 
     await fetch('/api/cards', {
@@ -144,7 +150,7 @@ export default function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(trimmedData),
     });
   }
 
