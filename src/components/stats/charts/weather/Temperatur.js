@@ -4,7 +4,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function Temperature({ filteredCardsByWater }) {
   const findTemperature = filteredCardsByWater.map(card => card.temperature);
-  const filteredTemperature = [...new Set(findTemperature)];
+  const filteredTemperature = [...new Set(findTemperature)].filter(item => item);
   filteredTemperature.sort();
 
   const temperatureArray = filteredTemperature.map((data, index) => {

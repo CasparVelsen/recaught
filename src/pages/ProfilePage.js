@@ -1,19 +1,47 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import QuickStats from '../components/stats/QuickStats';
 import Stats from '../components/stats/Stats';
-import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
+import TimeFilter from '../components/stats/TimeFilter';
+import WaterFilter from '../components/stats/WaterFilter';
+import { useState } from 'react';
 
 export default function ProfilePage({
   profile,
   token,
   logout,
   filteredCards,
-  filteredCatches,
 }) {
+  const [season, setSeason] = useState('');
+  const [water, setWater] = useState('');
 
-  console.log(filteredCards);
+  function handleSelectSeason(event) {
+    setSeason(event.target.value);
+    handleSubmitSeason(event);
+  }
+
+  function handleSubmitSeason(event) {
+    event.preventDefault();
+}
+
+const filteredCardsByTime = (filteredCards || []).filter(card =>
+  card?.date?.includes(season)
+);
+
+function handleSelectWater(event) {
+  setWater(event.target.value);
+  handleSubmitWater(event);
+}
+
+function handleSubmitWater(event) {
+  event.preventDefault();
+}
+
+const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
+  card.water?.includes(water)
+);
 
   return (
     <>
@@ -28,18 +56,36 @@ export default function ProfilePage({
       </header>
       <main>
         <Map src={DepthMap} alt="DepthMap" />
-        <PageTitle
+        <TopBar>
+          <PageTitle
           text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
+          />
+          <FilterWrapper>
+            <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+            <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
+          </FilterWrapper>
+        </TopBar>
+        <QuickStats
+          filteredCardsByWater={filteredCardsByWater}
         />
-        <Stats
-          filteredCards={filteredCards}
-          filteredCatches={filteredCatches}
-        />
-        <Periods filteredCards={filteredCards} />
+        <Stats filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
       </main>
     </>
   );
 }
+
+const TopBar = styled.div`
+  display: flex;
+justify-content: space-between;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 5px;
+`;
 
 const LinkStyled = styled(NavLink)`
   display: flex;
@@ -51,6 +97,7 @@ const LinkStyled = styled(NavLink)`
 const LogButton = styled.button`
   position: absolute;
   right: 10px;
+  top: 10px;
   color: white;
   border: none;
   border-radius: 5px;
@@ -62,6 +109,6 @@ const Map = styled.img`
   position: fixed;
   top: 0;
   right: 50px;
-  height: 200px;
+  height: 250px;
   z-index: -100;
 `;

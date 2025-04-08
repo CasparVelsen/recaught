@@ -6,95 +6,84 @@ import Moon from './charts/weather/Moon';
 import Wind from './charts/weather/Wind';
 import WindSpeed from './charts/weather/WindSpeed';
 import { useState } from 'react';
-import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import WaterTemp from './charts/weather/WaterTemp';
 import WaterColor from './charts/weather/WaterColor';
 import WaterLevel from './charts/weather/WaterLevel';
 
 export default function WeatherStats({ filteredCardsByWater }) {
-  const [showOptions, setShowOptions] = useState(false);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState("Weather");
+
+  function handleChange(event) {
+    setPage(event.target.value);
+    handleSubmit(event);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+}
 
   return (
     <>
-      <Select onClick={() => setShowOptions(!showOptions)}>
-        <Header>
-          select statistics for:
-          {!showOptions && <IoIosArrowForward size={20} color={'#a2c36c'} />}
-          {showOptions && <IoIosArrowDown size={20} color={'#a2c36c'} />}
-        </Header>
-
-        {showOptions && (
-          <Options>
-            <button onClick={() => setPage(0)}>Weather</button>
-            <button onClick={() => setPage(1)}>Temperature</button>
-            <button onClick={() => setPage(2)}>Air pressure</button>
-            <button onClick={() => setPage(3)}>Moon</button>
-            <button onClick={() => setPage(4)}>Wind</button>
-            <button onClick={() => setPage(5)}>Wind speed</button>
-            <button onClick={() => setPage(6)}>Water temperature</button>
-            <button onClick={() => setPage(7)}>Water color</button>
-            <button onClick={() => setPage(8)}>Water level</button>
-          </Options>
-        )}
-      </Select>
-
+      <form onSubmit={handleSubmit}>
+          <Select id="charts" name="selectedCharts" onChange={handleChange}>
+              <option >Weather</option>
+              <option >Temperature</option>
+              <option >Airpressure</option>
+              <option >Moon</option>
+              <option >Wind</option>
+              <option >Windspeed</option>
+              <option >Watertemperature</option>
+              <option >Watercolor</option>
+              <option >Waterlevel</option>
+          </Select>
+        </form>
       <div>
-        {page === 0 && (
+        {page === "Weather" && (
           <StatsContainer>
-            <Title>Weather:</Title>
             <Weather filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
-        {page === 1 && (
+        {page === "Temperature" && (
           <StatsContainer>
-            <Title>Temperature:</Title>
             <Temperature filteredCardsByWater={filteredCardsByWater} />
             <Legend> °C</Legend>
           </StatsContainer>
         )}
-        {page === 2 && (
+        {page === "Airpressure" && (
           <StatsContainer>
-            <Title>Airpressure:</Title>
             <Airpressure filteredCardsByWater={filteredCardsByWater} />
             <Legend> hPa</Legend>
           </StatsContainer>
         )}
-        {page === 3 && (
+        {page === "Moon" && (
           <StatsContainer>
-            <Title>Moon:</Title>
             <Moon filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
-        {page === 4 && (
+        {page === "Wind" && (
           <StatsContainer>
-            <Title>Wind direction:</Title>
             <Wind filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
-        {page === 5 && (
+        {page === "Windspeed" && (
           <StatsContainer>
-            <Title>Wind speed:</Title>
             <WindSpeed filteredCardsByWater={filteredCardsByWater} />
             <Legend> km/h</Legend>
           </StatsContainer>
         )}
-        {page === 6 && (
+        {page === "Watertemperature" && (
           <StatsContainer>
-            <Title>Water temperature:</Title>
             <WaterTemp filteredCardsByWater={filteredCardsByWater} />
             <Legend> °C</Legend>
           </StatsContainer>
         )}
-        {page === 7 && (
+        {page === "Watercolor" && (
           <StatsContainer>
-            <Title>Water color:</Title>
             <WaterColor filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
-        {page === 8 && (
+        {page === "Waterlevel" && (
           <StatsContainer>
-            <Title>Water level:</Title>
             <WaterLevel filteredCardsByWater={filteredCardsByWater} />
           </StatsContainer>
         )}
@@ -103,17 +92,18 @@ export default function WeatherStats({ filteredCardsByWater }) {
   );
 }
 
-const Select = styled.div`
-  width: 100%;
-  border: 1px solid #a2c36c;
-  border-radius: 10px;
-  color: #aaa;
-  background-color: white;
-  font-size: 1rem;
-  padding: 5px 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
-`;
+const Select = styled.select`
+  border: none;
+  background-color: transparent;
+  color: #687a48;
+  font-weight: bold;
+  font-size: 1.2rem;
 
+  &:focus {
+    outline: none;  /* Keine Umrandung bei Fokus */
+    border: none;   /* Keine Border bei Fokus */
+  }
+`;
 const Header = styled.div`
   display: flex;
   align-items: center;
@@ -146,10 +136,6 @@ const Options = styled.div`
   }
 `;
 
-const Title = styled.div`
-  margin: 10px 0 0 0;
-`;
-
 const StatsContainer = styled.div`
   position: relative;
   padding-right: 10px;
@@ -158,7 +144,7 @@ const StatsContainer = styled.div`
 const Legend = styled.div`
   position: absolute;
   left: 60px;
-  top: 32px;
+  top: 10px;
   font-size: 0.7rem;
   font-weight: bold;
   color: #687a48;

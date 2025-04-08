@@ -4,7 +4,10 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function WaterColor({ filteredCardsByWater }) {
   const findWaterColor = filteredCardsByWater.map(card => card.watercolor);
-  const filteredWaterColor = [...new Set(findWaterColor)];
+  console.log(findWaterColor)
+  const filteredWaterColor = [...new Set(findWaterColor)].filter(item => item);
+
+  console.log(filteredWaterColor);
 
   const watercolorArray = filteredWaterColor.map((data, index) => {
     const filterForWaterColor = filteredCardsByWater.filter(
