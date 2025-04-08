@@ -29,7 +29,7 @@ const StatsList = styled.div`
   border: 0.5px solid #a2c36c;
   border-radius: 10px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
-  margin-top: 20px;
+  margin: 10px 0 15px 0;
   padding: 10px;
   background-color: white;
 `;

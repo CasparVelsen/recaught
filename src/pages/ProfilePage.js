@@ -5,6 +5,7 @@ import Periods from '../components/stats/Periods';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
 import TimeFilter from '../components/stats/TimeFilter';
+import WaterFilter from '../components/stats/WaterFilter';
 import { useState } from 'react';
 
 export default function ProfilePage({
@@ -15,6 +16,7 @@ export default function ProfilePage({
   filteredCatches,
 }) {
   const [season, setSeason] = useState('');
+  const [water, setWater] = useState('');
 
   function handleSelectSeason(event) {
     setSeason(event.target.value);
@@ -26,6 +28,19 @@ export default function ProfilePage({
 }
 
 const filteredCardsByTime = filteredCards.filter(card => card.date.includes(season));
+
+function handleSelectWater(event) {
+  setWater(event.target.value);
+  handleSubmitWater(event);
+}
+
+function handleSubmitWater(event) {
+  event.preventDefault();
+}
+
+const filteredCardsByWater = filteredCardsByTime.filter(card =>
+  card.water.includes(water)
+);
 
   return (
     <>
@@ -44,13 +59,16 @@ const filteredCardsByTime = filteredCards.filter(card => card.date.includes(seas
           <PageTitle
           text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
           />
-          <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+          <FilterWrapper>
+            <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+            <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
+          </FilterWrapper>
         </TopBar>
         <Stats
           filteredCardsByTime={filteredCardsByTime}
           filteredCatches={filteredCatches}
         />
-        <Periods filteredCardsByTime={filteredCardsByTime} />
+        <Periods filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
       </main>
     </>
   );
@@ -58,6 +76,15 @@ const filteredCardsByTime = filteredCards.filter(card => card.date.includes(seas
 
 const TopBar = styled.div`
   display: flex;
+justify-content: space-between;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 5px;
 `;
 
 const LinkStyled = styled(NavLink)`
@@ -70,6 +97,7 @@ const LinkStyled = styled(NavLink)`
 const LogButton = styled.button`
   position: absolute;
   right: 10px;
+  top: 10px;
   color: white;
   border: none;
   border-radius: 5px;
@@ -81,6 +109,6 @@ const Map = styled.img`
   position: fixed;
   top: 0;
   right: 50px;
-  height: 200px;
+  height: 250px;
   z-index: -100;
 `;

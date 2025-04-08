@@ -1,15 +1,9 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import SubmitButton from '../SubmitButton';
 import WeatherStats from './WeatherStats';
 import CatchStats from './CatchStats';
 
-export default function WaterStats({ filteredCardsByTime }) {
-  const [water, setWater] = useState('');
-
-  const filteredCardsByWater = filteredCardsByTime.filter(card =>
-    card.water.includes(water)
-  );
+export default function WaterStats({filteredCardsByWater, water }) {
+  
 
   const allCatchesInManyArrays = filteredCardsByWater.map(object => {
     const tempArray = object.catches.map(entry => {
@@ -34,14 +28,6 @@ export default function WaterStats({ filteredCardsByTime }) {
 
   const numbers = Object.values(count);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const form = event.target;
-    const { waterName } = form.elements;
-    setWater(waterName.value);
-    waterName.value = '';
-  }
-
   const allLengthsInManyArrays = filteredCardsByWater.map(object => {
     const tempLengthArray = object.catches.map(entry => {
       return entry.length;
@@ -64,26 +50,8 @@ export default function WaterStats({ filteredCardsByTime }) {
   var averageSize = ArrayAvg(lengths);
   const roundedNumber = Math.round((averageSize + Number.EPSILON) * 100) / 100;
 
-  const allWaterInManyArrays = filteredCardsByTime.map(object => {
-    return object.water;
-  });
-
-  const eachWater = [...new Set(allWaterInManyArrays)];
-
   return (
     <div>
-      <WaterForm onSubmit={handleSubmit}>
-        <Select id="water" name="waterName">
-          <option value="" disabled selected>
-            Filter by water
-          </option>
-          {eachWater.map((opt, id) => (
-            <option key={id}>{opt}</option>
-          ))}
-        </Select>
-        <SubmitButton text="Search" />
-      </WaterForm>
-      <Water>{water ? water : 'All waters'}:</Water>
       <Stats>
         <StatsTitle>Catchbook</StatsTitle>
         <CatchList>
@@ -130,25 +98,6 @@ const StatsTitle = styled.div`
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 7px;
-`;
-
-const WaterForm = styled.form`
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  height: 30px;
-  margin-bottom: 20px;
-`;
-
-const Select = styled.select`
-  width: 100%;
-  border: 1px solid #a2c36c;
-  border-radius: 5px;
-  color: #aaa;
-  background-color: white;
-  height: 30px;
-  font-size: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
 `;
 
 const CatchList = styled.div`
