@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import WaterStats from './WaterStats';
 
-export default function Periods({ filteredCardsByTime, filteredCardsByWater, water }) {
+export default function Periods({ filteredCardsByTime, filteredCardsByWater }) {
 
   const filteredCatches = (filteredCardsByTime ?? []).map(data => data?.catches ?? []);
 
@@ -23,7 +23,6 @@ export default function Periods({ filteredCardsByTime, filteredCardsByWater, wat
           filteredCardsByTime={filteredCardsByTime}
             filteredCardsByWater={filteredCardsByWater}
             numberCatches={numberCatches}
-            water={water}
           />
         </Period>
     </>

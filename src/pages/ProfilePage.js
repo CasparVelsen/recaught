@@ -27,7 +27,9 @@ export default function ProfilePage({
     event.preventDefault();
 }
 
-const filteredCardsByTime = filteredCards.filter(card => card.date.includes(season));
+const filteredCardsByTime = (filteredCards || []).filter(card =>
+  card?.date?.includes(season)
+);
 
 function handleSelectWater(event) {
   setWater(event.target.value);
@@ -38,9 +40,10 @@ function handleSubmitWater(event) {
   event.preventDefault();
 }
 
-const filteredCardsByWater = filteredCardsByTime.filter(card =>
-  card.water.includes(water)
+const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
+  card.water?.includes(water)
 );
+
 
   return (
     <>
@@ -65,7 +68,7 @@ const filteredCardsByWater = filteredCardsByTime.filter(card =>
           </FilterWrapper>
         </TopBar>
         <Stats
-          filteredCardsByTime={filteredCardsByTime}
+          filteredCardsByWater={filteredCardsByWater}
           filteredCatches={filteredCatches}
         />
         <Periods filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
