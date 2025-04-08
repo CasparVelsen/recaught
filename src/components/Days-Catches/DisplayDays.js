@@ -6,7 +6,7 @@ import moment from 'moment';
 import Loader from '../Loader';
 
 export default function DisplayDays({
-  sortedCards,
+  filteredCards,
   showModal,
   handleDelete,
   confirmDelete,
@@ -21,7 +21,7 @@ export default function DisplayDays({
   const currentMonth = m.format('YYYY[-]MM');
   const today = m.format('YYYY[-]MM[-]D');
 
-  const filteredCardsByDate = sortedCards.filter(card =>
+  const filteredCardsByDate = filteredCards.filter(card =>
     card.date.includes(date)
   );
 
@@ -124,7 +124,7 @@ export default function DisplayDays({
                 data={data}
                 showModal={showModal}
                 onDelete={handleDelete}
-                confirmDelete={() => confirmDelete(data._id)}
+                confirmDelete={confirmDelete}
                 cancelDelete={cancelDelete}
               />
             </li>

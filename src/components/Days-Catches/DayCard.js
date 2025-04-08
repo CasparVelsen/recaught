@@ -18,7 +18,7 @@ export default function Cards({
 
   function toggleShowDetails() {
     setshowDetails(!showDetails);
-  }
+  };
 
   return (
     <>
@@ -167,7 +167,7 @@ export default function Cards({
                 <Term>lost fish:</Term> {data.lost ? data.lost : '0'}
               </Data>
             </Part>
-            <Button text="Delete card" isAccent={true} onClick={onDelete} />
+            <Button text="Delete card" isAccent={true} onClick={() => onDelete(data._id)} />
           </Details>
         )}
         <ModalWrapper>

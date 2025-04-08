@@ -24,15 +24,8 @@ export default function HomePage({
     setActive(!active);
   }
 
-  const m = moment().startOf('day');
+  const filteredCatches = filteredCards.filter(data => data.catches !== undefined).map(data => data.catches);
 
-  const sortedCards = filteredCards.sort((a, b) => {
-      const dateA = moment(a.date, 'YYYY-MM-DD');
-      const dateB = moment(b.date, 'YYYY-MM-DD');
-      return dateB.isAfter(dateA) ? 1 : -1;  // Neueste zuerst
-    });
-
-  const filteredCatches = sortedCards.map(data => data.catches);
   const catches = filteredCatches.flat();
 
   return (
@@ -62,7 +55,7 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-              sortedCards={sortedCards}
+              filteredCards={filteredCards}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}
