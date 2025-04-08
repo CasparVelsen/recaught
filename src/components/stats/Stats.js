@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export default function Profile({ filteredCardsByWater }) {
-  const filteredCatches = filteredCardsByWater?.map(data => data.catches) || [];
-  const catches = filteredCatches.flat();
+  const filteredCatches = filteredCardsByWater.map(data => data.catches).flat();
 
-  const succesRate = (filteredCatches?.length || 0) / (filteredCardsByWater?.length || 1);
-  const roundedNumber = Math.round((succesRate + Number.EPSILON) * 100) / 100;
+  const succesRate = filteredCatches.length / filteredCardsByWater.length;
+  console.log(succesRate);
+  const roundedNumber = Math.round((succesRate + Number.EPSILON) * 10) / 10;
 
   return (
     <StatsList>
       <Stats>
-        catches <div>{catches.length}</div>
+        catches <div>{filteredCatches.length}</div>
       </Stats>
       <Stats>
         trips <div>{filteredCardsByWater.length}</div>

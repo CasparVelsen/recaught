@@ -56,7 +56,7 @@ const PeriodChoice = styled.div`
 `;
 
 const Period = styled.div`
-  background-color: #fffcf8;
+  background-color: pink;
   border-radius: 10px;
   padding: 5px 10px;
   border: 0.5px solid #a2c36c;

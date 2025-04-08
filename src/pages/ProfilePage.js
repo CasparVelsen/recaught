@@ -13,7 +13,6 @@ export default function ProfilePage({
   token,
   logout,
   filteredCards,
-  filteredCatches,
 }) {
   const [season, setSeason] = useState('');
   const [water, setWater] = useState('');
@@ -44,7 +43,6 @@ const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
   card.water?.includes(water)
 );
 
-
   return (
     <>
       <header>
@@ -69,7 +67,6 @@ const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
         </TopBar>
         <Stats
           filteredCardsByWater={filteredCardsByWater}
-          filteredCatches={filteredCatches}
         />
         <Periods filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
       </main>
