@@ -22,7 +22,7 @@ export default function App() {
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
 
-  const [id, setID] = useState() //id confirmDelete mitgeben zum löschen der richtigen Karte
+  const [id, setID] = useState(null) //id confirmDelete mitgeben zum löschen der richtigen Karte
 
   const [cards, setCards] = useState([]);
 
@@ -163,7 +163,7 @@ export default function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({id}),
+      body: JSON.stringify({_id: id}),
     });
   }
 
