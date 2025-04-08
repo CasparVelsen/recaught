@@ -13,8 +13,6 @@ export default function ProfilePage({
   filteredCatches,
 }) {
 
-  console.log(filteredCards);
-
   return (
     <>
       <header>

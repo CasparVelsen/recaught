@@ -2,16 +2,13 @@ import lodash from 'lodash';
 import { useState } from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import TimeFilter from './TimeFilter.js';
 import WaterStats from './WaterStats';
-import useLocalStorage from '../../hooks/useLocalStorage';
 
 export default function Periods({ filteredCards }) {
-  const [timeSpan, setTimeSpan] = useLocalStorage('timeSpan');
-  const [period, setPeriod] = useState(0);
+  const [season, setSeason] = useState('');
 
-  const filteredCardsByTime = filteredCards.filter(card =>
-    card.date.includes(timeSpan)
-  );
+  const filteredCardsByTime = filteredCards.filter(card => card.date.includes(season));
 
   const filteredCatches = (filteredCardsByTime ?? []).map(data => data?.catches ?? []);
 
@@ -24,96 +21,24 @@ export default function Periods({ filteredCards }) {
   const currentMonth = m.format('YYYY[-]MM');
   const today = m.format('YYYY[-]MM[-]D');
 
+  function handleSelectSeason(event) {
+    setSeason(event.target.value);
+    handleSubmitSeason(event);
+  }
+
+function handleSubmitSeason(event) {
+    event.preventDefault();
+}
+
   return (
     <>
-      <Header>Your Stats:</Header>
-      <PeriodChoice>
-        <button
-          onClick={() => {
-            setTimeSpan('');
-            setPeriod(0);
-          }}
-        >
-          All
-        </button>
-        <button
-          onClick={() => {
-            setTimeSpan(currentYear);
-            setPeriod(1);
-          }}
-        >
-          This Year
-        </button>
-        <button
-          onClick={() => {
-            setTimeSpan(currentYear - 1);
-            setPeriod(2);
-          }}
-        >
-          Last Year
-        </button>
-        <button
-          onClick={() => {
-            setTimeSpan(currentMonth);
-            setPeriod(3);
-          }}
-        >
-          This Month
-        </button>
-        <button
-          onClick={() => {
-            setTimeSpan(today);
-            setPeriod(4);
-          }}
-        >
-          Today
-        </button>
-      </PeriodChoice>
-      {period === 0 && (
         <Period>
-          <Title>All time</Title>
+          <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason} />
           <WaterStats
             filteredCardsByTime={filteredCardsByTime}
             numberCatches={numberCatches}
           />
         </Period>
-      )}
-      {period === 1 && (
-        <Period>
-          <Title>{currentYear}</Title>
-          <WaterStats
-            filteredCardsByTime={filteredCardsByTime}
-            numberCatches={numberCatches}
-          />
-        </Period>
-      )}
-      {period === 2 && (
-        <Period>
-          <Title>{timeSpan}</Title>
-          <WaterStats
-            filteredCardsByTime={filteredCardsByTime}
-            numberCatches={numberCatches}
-          />
-        </Period>
-      )}
-      {period === 3 && (
-        <Period>
-          <Title>{m.format('MMMM[ ]YY')}</Title>
-          <WaterStats
-            filteredCardsByTime={filteredCardsByTime}
-            numberCatches={numberCatches}
-          />
-        </Period>
-      )}
-      {period === 4 && (
-        <Period>
-          <Title>Today</Title>
-          <WaterStats
-            filteredCardsByTime={filteredCardsByTime}
-            numberCatches={numberCatches}
-          />
-        </Period>
-      )}
     </>
   );
 }

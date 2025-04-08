@@ -75,7 +75,7 @@ export default function WaterStats({ filteredCardsByTime }) {
       <WaterForm onSubmit={handleSubmit}>
         <Select id="water" name="waterName">
           <option value="" disabled selected>
-            Search for water
+            Filter by water
           </option>
           {eachWater.map((opt, id) => (
             <option key={id}>{opt}</option>
