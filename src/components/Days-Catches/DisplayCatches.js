@@ -22,9 +22,11 @@ export default function DisplayCatches({ catches }) {
 const Catches = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 10px; 
   list-style: none;
   padding: 0;
   width: 100%;
-  margin-bottom: 68px;
+  margin: 0 auto; 
+  margin: 20px 0 68px 0; 
+  box-sizing: border-box:
 `;

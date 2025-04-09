@@ -72,7 +72,7 @@ export default function HomePage({
             text={
               profile.firstname
                 ? 'Tight lines, ' + profile.firstname
-                : 'Tight lines, '
+                : 'Tight lines '
             }
           />
           <FilterWrapper>
@@ -120,32 +120,36 @@ const FilterWrapper = styled.div`
 
 const Nav = styled.div`
   display: flex;
-  justify-content: space-between;
-  background-color: #687a48;
-  margin-top: 15px;
-  height: 25px;
+  width: 100%;
+  margin: 15px auto 0;
   border-radius: 20px;
+  background-color: #687a48;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+  padding: 0;
 `;
 
-const Page = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
+const Page = styled.button`
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
   color: #fffcf8;
+  font-size: 14px;
+  font-weight: bold;
   height: 25px;
-  width: 100%;
+  cursor: pointer;
   border-radius: 20px;
-  z-index: 2;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
 
   ${({ active }) =>
     active &&
     css`
       background-color: #a2c36c;
-      color: #fffcf8;
-    `};
+    `}
 `;
+
 
 const PlusIcon = styled(HiPlus)`
   position: absolute;
