@@ -63,4 +63,5 @@ const Catches = styled.div`
   flex-direction: column;
   color: #687a48;
   gap: 5px;
+  text-align: right;
 `;
