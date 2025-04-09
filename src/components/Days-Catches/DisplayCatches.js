@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import Loader from '../Loader';
 
 export default function DisplayCatches({ filteredCards }) {
-
   const catches = filteredCards.flatMap(entry => entry.catches);
 
   console.log(catches);
@@ -19,11 +18,11 @@ export default function DisplayCatches({ filteredCards }) {
           ))
         ) : (
           <div>
-                      <LoaderBox>
-                        <Loader />
-                      </LoaderBox>
-                      <Error>no matches found</Error>
-                    </div>
+            <LoaderBox>
+              <Loader />
+            </LoaderBox>
+            <Error>no matches found</Error>
+          </div>
         )}
       </Catches>
     </>
@@ -78,4 +77,3 @@ const Error = styled.div`
   animation-fill-mode: forwards;
   padding-right: 10px;
 `;
-
