@@ -22,20 +22,21 @@ export default function App() {
   const [token, setToken] = useLocalStorage('token', {});
   const [profile, setProfile] = useState(initalProfile);
 
-  const [id, setID] = useState(null) //id confirmDelete mitgeben zum löschen der richtigen Karte
+  const [id, setID] = useState(null); //id confirmDelete mitgeben zum löschen der richtigen Karte
 
   const [cards, setCards] = useState([]);
 
-  const profileCards = cards.filter(card => card.author === profile._id)
-  .map(card => ({
-    ...card,
-    catches: card.catches ?? [] // Setze 'catches' auf ein leeres Array, wenn es undefined ist
-  }))
-  .sort((a, b) => {
-        const dateA = moment(a.date, 'YYYY-MM-DD');
-        const dateB = moment(b.date, 'YYYY-MM-DD');
-        return dateB.isAfter(dateA) ? 1 : -1;  // Neueste zuerst
-      });;
+  const profileCards = cards
+    .filter(card => card.author === profile._id)
+    .map(card => ({
+      ...card,
+      catches: card.catches ?? [], // Setze 'catches' auf ein leeres Array, wenn es undefined ist
+    }))
+    .sort((a, b) => {
+      const dateA = moment(a.date, 'YYYY-MM-DD');
+      const dateB = moment(b.date, 'YYYY-MM-DD');
+      return dateB.isAfter(dateA) ? 1 : -1; // Neueste zuerst
+    });
 
   useEffect(() => {}, [token]);
 
@@ -138,7 +139,10 @@ export default function App() {
   async function createCard(formData) {
     console.log(formData);
     const trimmedData = Object.keys(formData).reduce((acc, key) => {
-      acc[key] = typeof formData[key] === 'string' ? formData[key].trim() : formData[key];
+      acc[key] =
+        typeof formData[key] === 'string'
+          ? formData[key].trim()
+          : formData[key];
       return acc;
     }, {});
     console.log(trimmedData);
@@ -169,7 +173,7 @@ export default function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({_id: id}),
+      body: JSON.stringify({ _id: id }),
     });
   }
 

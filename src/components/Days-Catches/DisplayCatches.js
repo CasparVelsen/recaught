@@ -5,8 +5,6 @@ import Loader from '../Loader';
 export default function DisplayCatches({ filteredCards }) {
   const catches = filteredCards.flatMap(entry => entry.catches);
 
-  console.log(catches);
-
   return (
     <>
       <Catches>
