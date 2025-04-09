@@ -2,13 +2,13 @@ import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function Weather({ filteredCardsByWater }) {
-  const findWeather = filteredCardsByWater.map(card => card.weather);
+function Weather({ filteredCards }) {
+  const findWeather = filteredCards.map(card => card.weather);
   const filteredWeather = [...new Set(findWeather)].filter(item => item);
   filteredWeather.sort();
 
   const weatherArray = filteredWeather.map((data, index) => {
-    const filterForWeather = filteredCardsByWater.filter(
+    const filterForWeather = filteredCards.filter(
       card => card.weather === data
     );
     const catches = filterForWeather.map(data => data.catches.length);

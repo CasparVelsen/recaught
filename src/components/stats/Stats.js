@@ -3,10 +3,10 @@ import WeatherStats from './WeatherStats';
 import Species from './charts/catch/Species';
 import Bait from './charts/catch/Bait';
 
-export default function WaterStats({filteredCardsByWater }) {
+export default function WaterStats({filteredCards }) {
   
 
-  const allCatchesInManyArrays = filteredCardsByWater.map(object => {
+  const allCatchesInManyArrays = filteredCards.map(object => {
     const tempArray = object.catches.map(entry => {
       return entry.species;
     });
@@ -29,7 +29,7 @@ export default function WaterStats({filteredCardsByWater }) {
 
   const numbers = Object.values(count);
 
-  const allLengthsInManyArrays = filteredCardsByWater.map(object => {
+  const allLengthsInManyArrays = filteredCards.map(object => {
     const tempLengthArray = object.catches.map(entry => {
       return entry.length;
     });
@@ -70,17 +70,17 @@ export default function WaterStats({filteredCardsByWater }) {
         <Average>
           <span>Average size:</span>ø{roundedNumber ? roundedNumber : ' 0'} cm
         </Average>
-        <Species filteredCardsByWater={filteredCardsByWater} />
+        <Species filteredCards={filteredCards} />
       </Period>
       <Period>
         <Wrapper>
           <StatsTitle>Flybox</StatsTitle>
           <Hint>Catches</Hint>
         </Wrapper>
-        <Bait filteredCardsByWater={filteredCardsByWater} />
+        <Bait filteredCards={filteredCards} />
       </Period>
       <Period>
-        <WeatherStats filteredCardsByWater={filteredCardsByWater} />
+        <WeatherStats filteredCards={filteredCards} />
       </Period>
     </div>
   );

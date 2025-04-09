@@ -5,14 +5,14 @@ import styled from 'styled-components';
 export default function CatchCard({ data }) {
   return (
     <Card>
-      <Title>{data.species}</Title>
+      <Title>{data?.species || '?'}</Title>
       <span>
         <BiRuler size={30} color={'#687a48'} />
-        {data.length} cm
+        {data.length || '?'} cm
       </span>
       <span>
         <GiWeight size={30} color={'#687a48'} />
-        {data.weight} kg
+        {data?.weight || '?'} kg
       </span>
     </Card>
   );
@@ -31,6 +31,8 @@ const Card = styled.div`
   border-radius: 20px;
   box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
   width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
 
   span {
     display: flex;
@@ -42,10 +44,16 @@ const Card = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 1.1rem;
+  font-size: 4vw;
   padding-bottom: 10px;
   margin: 0;
   color: #687a48;
   text-align: center;
   border-bottom: 2px dotted #a2c36c;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 `;
+

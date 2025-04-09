@@ -2,8 +2,8 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import styled from 'styled-components';
 
-function Species({ filteredCardsByWater }) {
-  const findSpecies = filteredCardsByWater.map(card =>
+function Species({ filteredCards }) {
+  const findSpecies = filteredCards.map(card =>
     card.catches.map(data => data.species)
   );
   const species = findSpecies.flat();

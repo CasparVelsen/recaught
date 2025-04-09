@@ -2,12 +2,12 @@ import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function Moon({ filteredCardsByWater }) {
-  const findMoon = filteredCardsByWater.map(card => card.moon);
+function Moon({ filteredCards }) {
+  const findMoon = filteredCards.map(card => card.moon);
   const filteredMoon = [...new Set(findMoon)].filter(item => item);
 
   const moonArray = filteredMoon.map((data, index) => {
-    const filterForMoon = filteredCardsByWater.filter(
+    const filterForMoon = filteredCards.filter(
       card => card.moon === data
     );
     const moon = filterForMoon.map(data => data.catches.length);

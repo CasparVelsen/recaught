@@ -11,7 +11,7 @@ import WaterColor from './charts/weather/WaterColor';
 import WaterLevel from './charts/weather/WaterLevel';
 import { IoIosArrowDown } from 'react-icons/io';
 
-export default function WeatherStats({ filteredCardsByWater }) {
+export default function WeatherStats({ filteredCards }) {
   const [page, setPage] = useState("Weather");
 
   function handleChange(event) {
@@ -44,51 +44,51 @@ export default function WeatherStats({ filteredCardsByWater }) {
       <div>
         {page === "Weather" && (
           <StatsContainer>
-            <Weather filteredCardsByWater={filteredCardsByWater} />
+            <Weather filteredCards={filteredCards} />
           </StatsContainer>
         )}
         {page === "Temperature" && (
           <StatsContainer>
-            <Temperature filteredCardsByWater={filteredCardsByWater} />
+            <Temperature filteredCards={filteredCards} />
             <Legend> °C</Legend>
           </StatsContainer>
         )}
         {page === "Airpressure" && (
           <StatsContainer>
-            <Airpressure filteredCardsByWater={filteredCardsByWater} />
+            <Airpressure filteredCards={filteredCards} />
             <Legend> hPa</Legend>
           </StatsContainer>
         )}
         {page === "Moon" && (
           <StatsContainer>
-            <Moon filteredCardsByWater={filteredCardsByWater} />
+            <Moon filteredCards={filteredCards} />
           </StatsContainer>
         )}
         {page === "Wind" && (
           <StatsContainer>
-            <Wind filteredCardsByWater={filteredCardsByWater} />
+            <Wind filteredCards={filteredCards} />
           </StatsContainer>
         )}
         {page === "Windspeed" && (
           <StatsContainer>
-            <WindSpeed filteredCardsByWater={filteredCardsByWater} />
+            <WindSpeed filteredCards={filteredCards} />
             <Legend> km/h</Legend>
           </StatsContainer>
         )}
         {page === "Watertemperature" && (
           <StatsContainer>
-            <WaterTemp filteredCardsByWater={filteredCardsByWater} />
+            <WaterTemp filteredCards={filteredCards} />
             <Legend> °C</Legend>
           </StatsContainer>
         )}
         {page === "Watercolor" && (
           <StatsContainer>
-            <WaterColor filteredCardsByWater={filteredCardsByWater} />
+            <WaterColor filteredCards={filteredCards} />
           </StatsContainer>
         )}
         {page === "Waterlevel" && (
           <StatsContainer>
-            <WaterLevel filteredCardsByWater={filteredCardsByWater} />
+            <WaterLevel filteredCards={filteredCards} />
           </StatsContainer>
         )}
       </div>

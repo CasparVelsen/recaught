@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowDown } from 'react-icons/io';
 
-export default function TimeFilter ({filteredCards, handleChange, handleSubmit}) {
+export default function TimeFilter ({profileCards, handleChange, handleSubmit}) {
 
-    const allYearsInManyArrays = filteredCards.map(object => {
+    const allYearsInManyArrays = profileCards?.map(object => {
         const year = new Date(object.date).getFullYear();
         return year;
-    })
+    }) || [];    
 
     const eachYear = [...new Set(allYearsInManyArrays)];
 

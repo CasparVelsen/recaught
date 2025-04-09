@@ -6,10 +6,11 @@ import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
-import moment from 'moment';
+import TimeFilter from '../components/stats/TimeFilter';
+import WaterFilter from '../components/stats/WaterFilter';
 
 export default function HomePage({
-  filteredCards,
+  profileCards,
   handleDelete,
   showModal,
   cancelDelete,
@@ -24,9 +25,34 @@ export default function HomePage({
     setActive(!active);
   }
 
-  const filteredCatches = filteredCards.filter(data => data.catches !== undefined).map(data => data.catches);
+  const [season, setSeason] = useState('');
+  const [water, setWater] = useState('');
 
-  const catches = filteredCatches.flat();
+  function handleSelectSeason(event) {
+    setSeason(event.target.value);
+    handleSubmitSeason(event);
+  }
+
+  function handleSubmitSeason(event) {
+    event.preventDefault();
+}
+
+  const filteredCardsByTime = (profileCards || []).filter(card =>
+    card?.date?.includes(season)
+  );
+
+  function handleSelectWater(event) {
+    setWater(event.target.value);
+    handleSubmitWater(event);
+  }
+
+  function handleSubmitWater(event) {
+    event.preventDefault();
+  }
+
+  const filteredCards = Array.isArray(filteredCardsByTime)
+  ? filteredCardsByTime.filter(card => card?.water?.includes(water))
+  : [];
 
   return (
     <>
@@ -37,16 +63,22 @@ export default function HomePage({
       </header>
       <Main>
         <Map src={DepthMap} alt="DepthMap" />
-        <PageTitle
-          text={
-            profile.firstname
-              ? 'Tight lines, ' + profile.firstname
-              : 'Tight lines, '
-          }
-        />
+        <TopBar>
+          <PageTitle
+            text={
+              profile.firstname
+                ? 'Tight lines, ' + profile.firstname
+                : 'Tight lines '
+            }
+          />
+          <FilterWrapper>
+            <TimeFilter profileCards={profileCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+            <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
+          </FilterWrapper>
+        </TopBar>
         <Nav>
           <Page onClick={showPage} active={active}>
-            Days
+            Trips
           </Page>
           <Page onClick={showPage} active={!active}>
             Catches
@@ -55,48 +87,65 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-              filteredCards={filteredCards}
+            filteredCards={filteredCards}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}
               cancelDelete={cancelDelete}
             />
           )}
-          {!showData && <DisplayCatches catches={catches} />}
+          {!showData && <DisplayCatches filteredCards={filteredCards} />}
         </div>
       </Main>
     </>
   );
 }
 
-const Nav = styled.div`
+const TopBar = styled.div`
   display: flex;
-  justify-content: space-between;
-  background-color: #687a48;
-  margin-top: 15px;
-  height: 25px;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+justify-content: space-between;
 `;
 
-const Page = styled.div`
+const FilterWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  color: #fffcf8;
-  height: 25px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 5px;
+`;
+
+const Nav = styled.div`
+  display: flex;
   width: 100%;
+  margin: 15px auto 0;
   border-radius: 20px;
-  z-index: 2;
+  background-color: #687a48;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+  padding: 0;
+`;
+
+const Page = styled.button`
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: #fffcf8;
+  font-size: 14px;
+  font-weight: bold;
+  height: 25px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box;
 
   ${({ active }) =>
     active &&
     css`
       background-color: #a2c36c;
-      color: #fffcf8;
-    `};
+    `}
 `;
+
 
 const PlusIcon = styled(HiPlus)`
   position: absolute;
