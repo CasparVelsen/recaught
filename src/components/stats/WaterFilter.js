@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 export default function TimeFilter ({filteredCardsByTime, handleChange, handleSubmit}) {
 
@@ -17,6 +18,7 @@ export default function TimeFilter ({filteredCardsByTime, handleChange, handleSu
                     ))}
                 </Select>
             </form>
+            <IoIosArrowDown color="#687a48" />
         </Wrapper>
         
     );
@@ -25,9 +27,9 @@ export default function TimeFilter ({filteredCardsByTime, handleChange, handleSu
 const Wrapper = styled.div`
 width: 100%;
 display: flex;
-flex-direction: column;
 justify-content: flex-end;
-align-items: flex-end;
+align-items: center;
+gap: 5px;
 `;
 
 const Select = styled.select`
@@ -37,6 +39,10 @@ const Select = styled.select`
   font-weight: bold;
   color: #687a48;
   text-align: right;
+  text-align-last: right;
+  -webkit-appearance: none; /* verhindert, dass der Browser eigene Styles draufhaut */
+  -moz-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: none;  /* Keine Umrandung bei Fokus */
