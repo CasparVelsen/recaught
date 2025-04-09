@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
+import FlyBoxSelect from './FlyBoxSelect';
 
 const initialValues = {
   species: '',
@@ -21,9 +22,11 @@ export default function Catch({
   deleteCatch,
   catches,
   profile,
+  profileCards,
 }) {
   const [showInputs, setShowInputs] = useState(true);
   const [values, setValues] = useState(initialValues);
+  const [showFlyBox, setShowFlyBox] = useState(false); // Zustand für FlyBox-Ansicht
 
   function toggleShowInputs() {
     setShowInputs(!showInputs);
@@ -38,6 +41,20 @@ export default function Catch({
       _id: _id,
       author: profile._id,
     });
+  };
+
+  const handleFlyChoice = bait => {
+    setValues({
+      ...values,
+      bait: bait,
+      _id: Math.random(),
+      author: profile._id,
+    });
+    setShowFlyBox(prevState => !prevState);
+  };
+
+  const handleFlyBoxClick = () => {
+    setShowFlyBox(prevState => !prevState);
   };
 
   const disabled = values === initialValues;
@@ -109,13 +126,29 @@ export default function Catch({
                 />
               </Part>
               <Part>
-                <label htmlFor="bait">Bait</label>
+                <Wrapper>
+                  <label htmlFor="bait">Bait</label>
+                  {!showFlyBox && (
+                    <FlyBoxButton onClick={handleFlyBoxClick}>
+                      flybox
+                    </FlyBoxButton>
+                  )}
+                  {showFlyBox && (
+                    <FlyBoxSelect
+                      profileCards={profileCards}
+                      handleChange={handleChange}
+                      handleFlyChoice={handleFlyChoice}
+                      handleFlyBoxClick={handleFlyBoxClick}
+                    />
+                  )}
+                </Wrapper>
                 <Input
                   onChange={handleChange}
                   value={values.bait}
                   id="bait"
                   name="bait"
                   type="text"
+                  list="baitlist"
                   maxLength={100}
                 />
               </Part>
@@ -209,6 +242,20 @@ const Fieldset = styled.fieldset`
 const Part = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const FlyBoxButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff9c27;
+  padding: 0;
 `;
 
 const Notes = styled.div`

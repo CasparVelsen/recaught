@@ -13,7 +13,7 @@ import Summary from '../components/form-pages/Summary';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
 
-export default function FormPage({ onCreateCard, profile }) {
+export default function FormPage({ onCreateCard, profile, profileCards }) {
   const [formData, setFormData] = useState({});
   const [catchData, setCatchData] = useState([]);
 
@@ -72,6 +72,7 @@ export default function FormPage({ onCreateCard, profile }) {
               deleteCatch={handleDeleteCatch}
               catches={formData.catches}
               profile={profile}
+              profileCards={profileCards}
             />
             <Summary handleOnChange={handleOnChange} />
             <ButtonToRight>

@@ -107,7 +107,11 @@ export default function App() {
           path="/formpage"
           element={
             <RequirePermission token={token}>
-              <FormPage onCreateCard={createCard} profile={profile} />
+              <FormPage
+                onCreateCard={createCard}
+                profile={profile}
+                profileCards={profileCards}
+              />
             </RequirePermission>
           }
         />
