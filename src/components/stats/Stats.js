@@ -74,7 +74,7 @@ export default function WaterStats({filteredCardsByWater }) {
       </Period>
       <Period>
         <Wrapper>
-          <StatsTitle>Flybox:</StatsTitle>
+          <StatsTitle>Flybox</StatsTitle>
           <Hint>Catches</Hint>
         </Wrapper>
         <Bait filteredCardsByWater={filteredCardsByWater} />

@@ -9,6 +9,7 @@ import { useState } from 'react';
 import WaterTemp from './charts/weather/WaterTemp';
 import WaterColor from './charts/weather/WaterColor';
 import WaterLevel from './charts/weather/WaterLevel';
+import { IoIosArrowDown } from 'react-icons/io';
 
 export default function WeatherStats({ filteredCardsByWater }) {
   const [page, setPage] = useState("Weather");
@@ -24,7 +25,9 @@ export default function WeatherStats({ filteredCardsByWater }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <Wrapper>
+      <IoIosArrowDown color= "#687a48" />
+        <form onSubmit={handleSubmit}>
           <Select id="charts" name="selectedCharts" onChange={handleChange}>
               <option >Weather</option>
               <option >Temperature</option>
@@ -37,6 +40,7 @@ export default function WeatherStats({ filteredCardsByWater }) {
               <option >Waterlevel</option>
           </Select>
         </form>
+      </Wrapper>
       <div>
         {page === "Weather" && (
           <StatsContainer>
@@ -92,12 +96,23 @@ export default function WeatherStats({ filteredCardsByWater }) {
   );
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+`;
+
 const Select = styled.select`
   border: none;
   background-color: transparent;
   color: #687a48;
   font-weight: bold;
   font-size: 1.2rem;
+  -webkit-appearance: none; /* verhindert, dass der Browser eigene Styles draufhaut */
+  -moz-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: none;  /* Keine Umrandung bei Fokus */
