@@ -6,7 +6,7 @@ import moment from 'moment';
 import Loader from '../Loader';
 
 export default function DisplayDays({
-  filteredCardsByWater,
+  filteredCards,
   showModal,
   handleDelete,
   confirmDelete,
@@ -16,8 +16,8 @@ export default function DisplayDays({
   return (
     <>
       <CardsList>
-        {filteredCardsByWater.length > 0 ? (
-          filteredCardsByWater.map((data, tempId) => (
+        {filteredCards.length > 0 ? (
+          filteredCards.map((data, tempId) => (
             <li key={tempId}>
               <Cards
                 data={data}

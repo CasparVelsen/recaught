@@ -50,11 +50,11 @@ export default function HomePage({
     event.preventDefault();
   }
 
-  const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
-    card.water?.includes(water)
-  );
+  const filteredCards = Array.isArray(filteredCardsByTime)
+  ? filteredCardsByTime.filter(card => card?.water?.includes(water))
+  : [];
 
-  const filteredCatches = profileCards.filter(data => data.catches !== undefined).map(data => data.catches);
+  const filteredCatches = filteredCards.filter(data => data.catches !== undefined).map(data => data.catches);
 
   const catches = filteredCatches.flat();
 
@@ -82,7 +82,7 @@ export default function HomePage({
         </TopBar>
         <Nav>
           <Page onClick={showPage} active={active}>
-            Days
+            Trips
           </Page>
           <Page onClick={showPage} active={!active}>
             Catches
@@ -91,7 +91,7 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-              filteredCardsByWater={filteredCardsByWater}
+            filteredCards={filteredCards}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}

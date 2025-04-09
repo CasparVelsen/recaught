@@ -39,9 +39,9 @@ function handleSubmitWater(event) {
   event.preventDefault();
 }
 
-const filteredCards = (filteredCardsByTime || []).filter(card =>
-  card.water?.includes(water)
-);
+const filteredCards = Array.isArray(filteredCardsByTime)
+  ? filteredCardsByTime.filter(card => card?.water?.includes(water))
+  : [];
 
   return (
     <>
