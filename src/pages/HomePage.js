@@ -54,10 +54,6 @@ export default function HomePage({
   ? filteredCardsByTime.filter(card => card?.water?.includes(water))
   : [];
 
-  const filteredCatches = filteredCards.filter(data => data.catches !== undefined).map(data => data.catches);
-
-  const catches = filteredCatches.flat();
-
   return (
     <>
       <header>
@@ -98,7 +94,7 @@ export default function HomePage({
               cancelDelete={cancelDelete}
             />
           )}
-          {!showData && <DisplayCatches catches={catches} />}
+          {!showData && <DisplayCatches filteredCards={filteredCards} />}
         </div>
       </Main>
     </>

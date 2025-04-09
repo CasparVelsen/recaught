@@ -1,8 +1,5 @@
 import Cards from './DayCard';
 import styled, { keyframes } from 'styled-components';
-import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
-import { useState } from 'react';
-import moment from 'moment';
 import Loader from '../Loader';
 
 export default function DisplayDays({
