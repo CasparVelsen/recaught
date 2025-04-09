@@ -26,7 +26,7 @@ export default function App() {
 
   const [cards, setCards] = useState([]);
 
-  const filteredCards = cards.filter(card => card.author === profile._id)
+  const profileCards = cards.filter(card => card.author === profile._id)
   .map(card => ({
     ...card,
     catches: card.catches ?? [] // Setze 'catches' auf ein leeres Array, wenn es undefined ist
@@ -93,7 +93,7 @@ export default function App() {
             <RequirePermission token={token}>
               <HomePage
                 showModal={showModal}
-                filteredCards={filteredCards}
+                profileCards={profileCards}
                 handleDelete={handleDeleteCard}
                 confirmDelete={handleConfirmDeleteCard}
                 cancelDelete={() => setShowModal(false)}
@@ -118,7 +118,7 @@ export default function App() {
                 token={token}
                 logout={onLogout}
                 profile={profile}
-                filteredCards={filteredCards}
+                profileCards={profileCards}
               />
             </RequirePermission>
           }

@@ -12,7 +12,7 @@ export default function ProfilePage({
   profile,
   token,
   logout,
-  filteredCards,
+  profileCards,
 }) {
   const [season, setSeason] = useState('');
   const [water, setWater] = useState('');
@@ -26,7 +26,7 @@ export default function ProfilePage({
     event.preventDefault();
 }
 
-const filteredCardsByTime = (filteredCards || []).filter(card =>
+const filteredCardsByTime = (profileCards || []).filter(card =>
   card?.date?.includes(season)
 );
 
@@ -39,7 +39,7 @@ function handleSubmitWater(event) {
   event.preventDefault();
 }
 
-const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
+const filteredCards = (filteredCardsByTime || []).filter(card =>
   card.water?.includes(water)
 );
 
@@ -61,14 +61,14 @@ const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
           text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
           />
           <FilterWrapper>
-            <TimeFilter filteredCards={filteredCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+            <TimeFilter profileCards={profileCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
             <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
           </FilterWrapper>
         </TopBar>
         <QuickStats
-          filteredCardsByWater={filteredCardsByWater}
+          filteredCards={filteredCards}
         />
-        <Stats filteredCardsByTime={filteredCardsByTime} filteredCardsByWater={filteredCardsByWater}/>
+        <Stats filteredCardsByTime={filteredCardsByTime} filteredCards={filteredCards}/>
       </main>
     </>
   );

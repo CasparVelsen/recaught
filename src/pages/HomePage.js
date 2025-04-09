@@ -6,10 +6,11 @@ import DisplayDays from '../components/Days-Catches/DisplayDays';
 import DisplayCatches from '../components/Days-Catches/DisplayCatches';
 import DepthMap from '../images/DepthMap.svg';
 import PageTitle from '../components/PageTitle';
-import moment from 'moment';
+import TimeFilter from '../components/stats/TimeFilter';
+import WaterFilter from '../components/stats/WaterFilter';
 
 export default function HomePage({
-  filteredCards,
+  profileCards,
   handleDelete,
   showModal,
   cancelDelete,
@@ -24,7 +25,36 @@ export default function HomePage({
     setActive(!active);
   }
 
-  const filteredCatches = filteredCards.filter(data => data.catches !== undefined).map(data => data.catches);
+  const [season, setSeason] = useState('');
+  const [water, setWater] = useState('');
+
+  function handleSelectSeason(event) {
+    setSeason(event.target.value);
+    handleSubmitSeason(event);
+  }
+
+  function handleSubmitSeason(event) {
+    event.preventDefault();
+}
+
+  const filteredCardsByTime = (profileCards || []).filter(card =>
+    card?.date?.includes(season)
+  );
+
+  function handleSelectWater(event) {
+    setWater(event.target.value);
+    handleSubmitWater(event);
+  }
+
+  function handleSubmitWater(event) {
+    event.preventDefault();
+  }
+
+  const filteredCardsByWater = (filteredCardsByTime || []).filter(card =>
+    card.water?.includes(water)
+  );
+
+  const filteredCatches = profileCards.filter(data => data.catches !== undefined).map(data => data.catches);
 
   const catches = filteredCatches.flat();
 
@@ -37,13 +67,19 @@ export default function HomePage({
       </header>
       <Main>
         <Map src={DepthMap} alt="DepthMap" />
-        <PageTitle
-          text={
-            profile.firstname
-              ? 'Tight lines, ' + profile.firstname
-              : 'Tight lines, '
-          }
-        />
+        <TopBar>
+          <PageTitle
+            text={
+              profile.firstname
+                ? 'Tight lines, ' + profile.firstname
+                : 'Tight lines, '
+            }
+          />
+          <FilterWrapper>
+            <TimeFilter profileCards={profileCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
+            <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
+          </FilterWrapper>
+        </TopBar>
         <Nav>
           <Page onClick={showPage} active={active}>
             Days
@@ -55,7 +91,7 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-              filteredCards={filteredCards}
+              filteredCardsByWater={filteredCardsByWater}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}
@@ -68,6 +104,19 @@ export default function HomePage({
     </>
   );
 }
+
+const TopBar = styled.div`
+  display: flex;
+justify-content: space-between;
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 5px;
+`;
 
 const Nav = styled.div`
   display: flex;

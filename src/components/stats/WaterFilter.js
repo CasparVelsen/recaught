@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowDown } from 'react-icons/io';
 
-export default function TimeFilter ({filteredCardsByTime, handleChange, handleSubmit}) {
+export default function WaterFilter ({filteredCardsByTime, handleChange, handleSubmit}) {
 
     const allWaterInManyArrays = filteredCardsByTime?.map(obj => obj.water) || [];
     

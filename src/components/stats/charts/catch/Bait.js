@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-function Bait({ filteredCardsByWater }) {
-  const findBaits = filteredCardsByWater.map(card =>
+function Bait({ filteredCards }) {
+  const findBaits = filteredCards.map(card =>
     card.catches.map(data => data.bait)
   );
   const baits = findBaits.flat();

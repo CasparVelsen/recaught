@@ -2,12 +2,12 @@ import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function Wind({ filteredCardsByWater }) {
-  const findWind = filteredCardsByWater.map(card => card.wind);
+function Wind({ filteredCards }) {
+  const findWind = filteredCards.map(card => card.wind);
   const filteredWind = [...new Set(findWind)].filter(item => item);
 
   const windArray = filteredWind.map((data, index) => {
-    const filterForWind = filteredCardsByWater.filter(
+    const filterForWind = filteredCards.filter(
       card => card.wind === data
     );
     const wind = filterForWind.map(data => data.catches.length);

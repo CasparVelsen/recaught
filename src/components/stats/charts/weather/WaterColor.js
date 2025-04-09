@@ -2,15 +2,15 @@ import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
 import { Chart as ChartJS } from 'chart.js/auto';
 
-function WaterColor({ filteredCardsByWater }) {
-  const findWaterColor = filteredCardsByWater.map(card => card.watercolor);
+function WaterColor({ filteredCards }) {
+  const findWaterColor = filteredCards.map(card => card.watercolor);
   console.log(findWaterColor)
   const filteredWaterColor = [...new Set(findWaterColor)].filter(item => item);
 
   console.log(filteredWaterColor);
 
   const watercolorArray = filteredWaterColor.map((data, index) => {
-    const filterForWaterColor = filteredCardsByWater.filter(
+    const filterForWaterColor = filteredCards.filter(
       card => card.watercolor === data
     );
     const watercolor = filterForWaterColor.map(data => data.catches.length);
