@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 
 export default function TimeFilter ({filteredCards, handleChange, handleSubmit}) {
 
@@ -11,7 +12,7 @@ export default function TimeFilter ({filteredCards, handleChange, handleSubmit})
 
     return (
         <Wrapper>
-            <form onSubmit={handleSubmit}>
+             <form onSubmit={handleSubmit}>
                 <Select id="season" name="selectedSeason" onChange={handleChange}>
                     <option value="">All time</option>
                     {eachYear.map((opt, id) => (
@@ -19,6 +20,7 @@ export default function TimeFilter ({filteredCards, handleChange, handleSubmit})
                     ))}
                 </Select>
             </form>
+            <IoIosArrowDown color="#ff9c27" />
         </Wrapper>
         
     );
@@ -27,9 +29,9 @@ export default function TimeFilter ({filteredCards, handleChange, handleSubmit})
 const Wrapper = styled.div`
 width: 100%;
 display: flex;
-flex-direction: column;
 justify-content: flex-end;
-align-items: flex-end;
+align-items: center;
+gap: 5px;
 `;
 
 const P = styled.p`
@@ -46,6 +48,10 @@ const Select = styled.select`
   font-weight: bold;
   color: #ff9c27;
   text-align: right;
+  text-align-last: right;
+  -webkit-appearance: none; /* verhindert, dass der Browser eigene Styles draufhaut */
+  -moz-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: none;  /* Keine Umrandung bei Fokus */
