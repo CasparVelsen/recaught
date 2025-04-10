@@ -23,8 +23,6 @@ export default function Weather({ handleAddWeather }) {
   const [inputLocation, setInputLocation] = useState('');
   const [showLocationInput, setShowLocationInput] = useState(false);
 
-  console.log(weather);
-
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
