@@ -12,7 +12,7 @@ const initialValues = {
   windspeed: '',
 };
 
-export default function Weather({ handleOnChange }) {
+export default function Weather({ handleAddWeather }) {
   const [wetter, setWetter] = useState(initialValues); // Wetter-State mit initialen Werten
   const [location, setLocation] = useState('');
   const [inputLocation, setInputLocation] = useState('');
@@ -22,6 +22,7 @@ export default function Weather({ handleOnChange }) {
 
   const submitLocation = () => {
     setLocation(inputLocation); // Setzt den Standort beim Klick auf den Submit-Button
+    handleAddWeather(wetter);
   };
 
   useEffect(() => {
@@ -38,8 +39,6 @@ export default function Weather({ handleOnChange }) {
               },
             }
           );
-
-          console.log(response.data);
 
           // Mapping der Wetterbeschreibung auf die gewünschten Werte
           const weatherDescription =
@@ -115,6 +114,7 @@ export default function Weather({ handleOnChange }) {
       ...wetter,
       [name]: value,
     });
+    handleAddWeather(wetter);
   };
 
   const [showInputs, setShowInputs] = useState(true);
@@ -244,7 +244,9 @@ export default function Weather({ handleOnChange }) {
                 placeholder="Enter city name"
               />
             </Part>
-            <button onClick={submitLocation}>Submit</button>
+            <button type="button" onClick={submitLocation}>
+              Submit
+            </button>
           </Fieldset>
         )}
       </Section>

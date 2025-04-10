@@ -27,6 +27,18 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
     });
   };
 
+  const handleAddWeather = weather => {
+    setFormData(formData => ({
+      ...formData,
+      weather: weather.weather,
+      temperature: weather.temperature,
+      airpressure: weather.airpressure,
+      wind: weather.wind,
+      moon: weather.moon,
+      windspeed: weather.windspeed,
+    }));
+  };
+
   async function handleAddCatch(catchValue) {
     const previousCatches = formData.catches ?? [];
     setFormData({
@@ -67,7 +79,7 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
           <Inputs>
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
-            <Weather handleOnChange={handleOnChange} />
+            <Weather handleAddWeather={handleAddWeather} />
             <Catch
               handleAddCatch={handleAddCatch}
               deleteCatch={handleDeleteCatch}
