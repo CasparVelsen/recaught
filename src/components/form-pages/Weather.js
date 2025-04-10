@@ -23,6 +23,8 @@ export default function Weather({ handleAddWeather }) {
   const [inputLocation, setInputLocation] = useState('');
   const [showLocationInput, setShowLocationInput] = useState(false);
 
+  console.log(weather);
+
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
@@ -121,12 +123,12 @@ export default function Weather({ handleAddWeather }) {
 
   const handleChange = event => {
     const { name, value } = event.target;
-    const _id = Math.random();
-    setWeather({
+    const updatedWeather = {
       ...weather,
       [name]: value,
-    });
-    handleAddWeather(weather);
+    };
+    setWeather(updatedWeather);
+    handleAddWeather(updatedWeather);
   };
 
   return (
@@ -202,6 +204,7 @@ export default function Weather({ handleAddWeather }) {
                 onChange={handleChange}
                 value={weather.moon || ''}
               >
+                <option value="">select</option>
                 <option value="full moon">full moon</option>
                 <option value="increasing moon">increasing moon</option>
                 <option value="waning moon">waning moon</option>
