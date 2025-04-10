@@ -15,7 +15,17 @@ import PageTitle from '../components/PageTitle';
 
 export default function FormPage({ onCreateCard, profile, profileCards }) {
   const [formData, setFormData] = useState({});
+  console.log(formData);
   const [catchData, setCatchData] = useState([]);
+
+  const handleOnChange = event => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+      author: profile._id,
+    });
+  };
 
   async function handleAddCatch(catchValue) {
     const previousCatches = formData.catches ?? [];
@@ -33,15 +43,6 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
       catches: filteredCatches,
     });
   }
-
-  const handleOnChange = event => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-      author: profile._id,
-    });
-  };
 
   function handleSubmit() {
     onCreateCard(formData);

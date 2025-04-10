@@ -149,7 +149,6 @@ export default function App() {
           : formData[key];
       return acc;
     }, {});
-    console.log(trimmedData);
     setCards([...cards, trimmedData]);
     navigate('/');
 
