@@ -1,44 +1,47 @@
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
 
-export default function TimeFilter ({profileCards, handleChange, handleSubmit}) {
+export default function TimeFilter({
+  profileCards,
+  handleChange,
+  handleSubmit,
+}) {
+  const allYearsInManyArrays =
+    profileCards?.map(object => {
+      const year = new Date(object.date).getFullYear();
+      return year;
+    }) || [];
 
-    const allYearsInManyArrays = profileCards?.map(object => {
-        const year = new Date(object.date).getFullYear();
-        return year;
-    }) || [];    
+  const eachYear = [...new Set(allYearsInManyArrays)];
 
-    const eachYear = [...new Set(allYearsInManyArrays)];
-
-    return (
-        <Wrapper>
-             <form onSubmit={handleSubmit}>
-                <Select id="season" name="selectedSeason" onChange={handleChange}>
-                    <option value="">All time</option>
-                    {eachYear.map((opt, id) => (
-                        <option key={id}>{opt}</option>
-                    ))}
-                </Select>
-            </form>
-            <IoIosArrowDown color="#ff9c27" />
-        </Wrapper>
-        
-    );
+  return (
+    <Wrapper>
+      <form onSubmit={handleSubmit}>
+        <Select id="season" name="selectedSeason" onChange={handleChange}>
+          <option value="">All time</option>
+          {eachYear.map((opt, id) => (
+            <option key={id}>{opt}</option>
+          ))}
+        </Select>
+      </form>
+      <IoIosArrowDown color="#ff9c27" />
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
-width: 100%;
-display: flex;
-justify-content: flex-end;
-align-items: center;
-gap: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
 `;
 
 const P = styled.p`
-color: #687a48;
-font-size: 1rem;
-text-align: right;
-margin: 0 0 5px 0;
+  color: #687a48;
+  font-size: 1rem;
+  text-align: right;
+  margin: 0 0 5px 0;
 `;
 
 const Select = styled.select`
@@ -54,7 +57,7 @@ const Select = styled.select`
   appearance: none;
 
   &:focus {
-    outline: none;  /* Keine Umrandung bei Fokus */
-    border: none;   /* Keine Border bei Fokus */
+    outline: none; /* Keine Umrandung bei Fokus */
+    border: none; /* Keine Border bei Fokus */
   }
 `;

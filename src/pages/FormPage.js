@@ -17,6 +17,26 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
   const [formData, setFormData] = useState({});
   const [catchData, setCatchData] = useState([]);
 
+  const handleOnChange = event => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+      author: profile._id,
+    });
+  };
+
+  const handleAddWeather = weather => {
+    setFormData(formData => ({
+      ...formData,
+      weather: weather.weather,
+      temperature: weather.temperature,
+      airpressure: weather.airpressure,
+      wind: weather.wind,
+      windspeed: weather.windspeed,
+    }));
+  };
+
   async function handleAddCatch(catchValue) {
     const previousCatches = formData.catches ?? [];
     setFormData({
@@ -33,15 +53,6 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
       catches: filteredCatches,
     });
   }
-
-  const handleOnChange = event => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-      author: profile._id,
-    });
-  };
 
   function handleSubmit() {
     onCreateCard(formData);
@@ -66,7 +77,7 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
           <Inputs>
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
-            <Weather handleOnChange={handleOnChange} />
+            <Weather handleAddWeather={handleAddWeather} />
             <Catch
               handleAddCatch={handleAddCatch}
               deleteCatch={handleDeleteCatch}

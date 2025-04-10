@@ -141,7 +141,6 @@ export default function App() {
   );
 
   async function createCard(formData) {
-    console.log(formData);
     const trimmedData = Object.keys(formData).reduce((acc, key) => {
       acc[key] =
         typeof formData[key] === 'string'
@@ -149,7 +148,6 @@ export default function App() {
           : formData[key];
       return acc;
     }, {});
-    console.log(trimmedData);
     setCards([...cards, trimmedData]);
     navigate('/');
 

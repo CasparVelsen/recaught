@@ -1,12 +1,137 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import { useState, useEffect } from 'react';
+import {
+  AiOutlinePlusCircle,
+  AiOutlineMinusCircle,
+  AiOutlineRightCircle,
+} from 'react-icons/ai';
+import axios from 'axios';
+import LocationSelect from './LocationSelect';
 
-export default function Weather({ handleOnChange }) {
+const initialValues = {
+  weather: '',
+  temperature: '',
+  airpressure: '',
+  moon: '',
+  wind: '',
+  windspeed: '',
+};
+
+export default function Weather({ handleAddWeather }) {
+  const [weather, setWeather] = useState(initialValues); // Weather-State mit initialen Werten
+  const [location, setLocation] = useState('');
+  const [inputLocation, setInputLocation] = useState('');
+  const [showLocationInput, setShowLocationInput] = useState(false);
+
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
   }
+
+  const handleGenerate = () => {
+    setShowLocationInput(prevState => !prevState);
+  };
+
+  const handleSubmitLocation = async () => {
+    if (!inputLocation) return;
+
+    try {
+      const response = await axios.get(
+        'https://api.openweathermap.org/data/2.5/weather',
+        {
+          params: {
+            q: inputLocation,
+            appid: 'b0407075a586294bcaf6c05e44f80fbb',
+            units: 'metric',
+          },
+        }
+      );
+
+      const weatherDescription =
+        response.data.weather[0].description.toLowerCase();
+      let parsedWeather = '';
+
+      if (weatherDescription.includes('clear sky')) parsedWeather = 'sunny';
+      else if (weatherDescription.includes('few clouds'))
+        parsedWeather = 'sunny';
+      else if (weatherDescription.includes('scattered clouds'))
+        parsedWeather = 'sunny';
+      else if (weatherDescription.includes('broken clouds'))
+        parsedWeather = 'cloudy';
+      else if (weatherDescription.includes('overcast clouds'))
+        parsedWeather = 'cloudy';
+      else if (weatherDescription.includes('shower rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('light rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('moderate rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('heavy rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('very heavy rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('extreme rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('freezing rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('snow')) parsedWeather = 'snow';
+      else if (weatherDescription.includes('light snow'))
+        parsedWeather = 'snow';
+      else if (weatherDescription.includes('heavy snow'))
+        parsedWeather = 'snow';
+      else if (weatherDescription.includes('sleet')) parsedWeather = 'snow';
+      else if (
+        weatherDescription.includes('mist') ||
+        weatherDescription.includes('fog') ||
+        weatherDescription.includes('haze') ||
+        weatherDescription.includes('dust') ||
+        weatherDescription.includes('sand') ||
+        weatherDescription.includes('volcanic ash')
+      )
+        parsedWeather = 'foggy';
+      else parsedWeather = 'stormy';
+
+      const windDeg = response.data.wind.deg;
+      let windDir = '';
+      if (windDeg >= 0 && windDeg <= 22.5) windDir = 'north';
+      else if (windDeg > 22.5 && windDeg <= 67.5) windDir = 'northeast';
+      else if (windDeg > 67.5 && windDeg <= 112.5) windDir = 'east';
+      else if (windDeg > 112.5 && windDeg <= 157.5) windDir = 'southeast';
+      else if (windDeg > 157.5 && windDeg <= 202.5) windDir = 'south';
+      else if (windDeg > 202.5 && windDeg <= 247.5) windDir = 'southwest';
+      else if (windDeg > 247.5 && windDeg <= 292.5) windDir = 'west';
+      else if (windDeg > 292.5 && windDeg <= 337.5) windDir = 'northwest';
+      else windDir = 'north';
+
+      const newWeather = {
+        weather: parsedWeather,
+        temperature: Math.round(response.data.main.temp) || '',
+        airpressure: response.data.main.pressure || '',
+        wind: windDir || '',
+        moon: '', // Nicht in API
+        windspeed: Math.round(response.data.wind.speed) || '',
+      };
+
+      setWeather(newWeather);
+      handleAddWeather(newWeather); // Direkt weitergeben
+
+      setLocation(inputLocation); // Nur zum Anzeigen/merken
+      setInputLocation('');
+      setShowLocationInput(false);
+    } catch (error) {
+      console.error('failed to load weather-data:', error);
+    }
+  };
+
+  const handleChange = event => {
+    const { name, value } = event.target;
+    const updatedWeather = {
+      ...weather,
+      [name]: value,
+    };
+    setWeather(updatedWeather);
+    handleAddWeather(updatedWeather);
+  };
 
   return (
     <>
@@ -33,7 +158,8 @@ export default function Weather({ handleOnChange }) {
                 id="weather"
                 name="weather"
                 type="text"
-                onChange={handleOnChange}
+                onChange={handleChange}
+                value={weather.weather || ''}
               >
                 <option value="sunny">sunny</option>
                 <option value="cloudy">cloudy</option>
@@ -52,8 +178,9 @@ export default function Weather({ handleOnChange }) {
                 min={-50}
                 max={50}
                 maxLength={100}
-                onChange={handleOnChange}
+                onChange={handleChange}
                 placeholder="°C"
+                value={weather.temperature}
               />
             </Part>
             <Part>
@@ -64,8 +191,9 @@ export default function Weather({ handleOnChange }) {
                 type="number"
                 min={850}
                 max={1150}
-                onChange={handleOnChange}
+                onChange={handleChange}
                 placeholder="850 - 1150"
+                value={weather.airpressure}
               />
             </Part>
             <Part>
@@ -75,8 +203,10 @@ export default function Weather({ handleOnChange }) {
                 name="moon"
                 type="text"
                 maxLength={100}
-                onChange={handleOnChange}
+                onChange={handleChange}
+                value={weather.moon || ''}
               >
+                <option value="">select</option>
                 <option value="full moon">full moon</option>
                 <option value="increasing moon">increasing moon</option>
                 <option value="waning moon">waning moon</option>
@@ -90,7 +220,8 @@ export default function Weather({ handleOnChange }) {
                 name="wind"
                 type="text"
                 maxLength={100}
-                onChange={handleOnChange}
+                onChange={handleChange}
+                value={weather.wind || ''}
               >
                 <option value="north">north</option>
                 <option value="west">west</option>
@@ -109,10 +240,29 @@ export default function Weather({ handleOnChange }) {
                 name="windspeed"
                 type="number"
                 min={0}
-                onChange={handleOnChange}
+                onChange={handleChange}
                 placeholder="min 0km/h"
+                value={weather.windspeed}
               />
             </Part>
+            {!showLocationInput && (
+              <Wrapper>
+                <GenerateButton onClick={handleGenerate}>
+                  generate
+                </GenerateButton>
+                <AiOutlineRightCircle
+                  color="#FF9C27"
+                  onClick={handleGenerate}
+                />
+              </Wrapper>
+            )}
+            {showLocationInput && (
+              <LocationSelect
+                setInputLocation={setInputLocation}
+                submitLocation={handleSubmitLocation}
+                inputLocation={inputLocation}
+              />
+            )}
           </Fieldset>
         )}
       </Section>
@@ -143,7 +293,7 @@ const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 10px 0 30px;
+  padding: 10px 0 20px;
   border: none;
   position: relative;
   font-size: 1rem;
@@ -172,4 +322,19 @@ const Select = styled.select`
   color: #aaa;
   background-color: white;
   height: 25px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const GenerateButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff9c27;
+  padding: 0;
+  text-align: left;
 `;
