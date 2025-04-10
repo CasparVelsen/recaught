@@ -34,92 +34,96 @@ export default function Weather({ handleAddWeather }) {
     setShowLocationInput(prevState => !prevState);
   };
 
-  const submitLocation = () => {
-    setLocation(inputLocation); // Setzt den Standort beim Klick auf den Submit-Button
-    handleAddWeather(weather);
-    setShowLocationInput(prevState => !prevState);
-  };
+  const handleSubmitLocation = async () => {
+    if (!inputLocation) return;
 
-  useEffect(() => {
-    const fetchWeather = async () => {
-      if (location) {
-        try {
-          const response = await axios.get(
-            'https://api.openweathermap.org/data/2.5/weather',
-            {
-              params: {
-                q: location,
-                appid: 'b0407075a586294bcaf6c05e44f80fbb',
-                units: 'metric',
-              },
-            }
-          );
-
-          const weatherDescription =
-            response.data.weather[0].description.toLowerCase();
-          let weather = '';
-
-          if (weatherDescription.includes('clear sky')) weather = 'sunny';
-          else if (weatherDescription.includes('few clouds')) weather = 'sunny';
-          else if (weatherDescription.includes('scattered clouds'))
-            weather = 'sunny';
-          else if (weatherDescription.includes('broken clouds'))
-            weather = 'cloudy';
-          else if (weatherDescription.includes('overcast clouds'))
-            weather = 'cloudy';
-          else if (weatherDescription.includes('shower rain'))
-            weather = 'rainy';
-          else if (weatherDescription.includes('light rain')) weather = 'rainy';
-          else if (weatherDescription.includes('moderate rain'))
-            weather = 'rainy';
-          else if (weatherDescription.includes('heavy rain')) weather = 'rainy';
-          else if (weatherDescription.includes('very heavy rain'))
-            weather = 'rainy';
-          else if (weatherDescription.includes('extreme rain'))
-            weather = 'rainy';
-          else if (weatherDescription.includes('freezing rain'))
-            weather = 'rainy';
-          else if (weatherDescription.includes('snow')) weather = 'snow';
-          else if (weatherDescription.includes('light snow')) weather = 'snow';
-          else if (weatherDescription.includes('heavy snow')) weather = 'snow';
-          else if (weatherDescription.includes('sleet')) weather = 'snow';
-          else if (weatherDescription.includes('mist')) weather = 'foggy';
-          else if (weatherDescription.includes('fog')) weather = 'foggy';
-          else if (weatherDescription.includes('haze')) weather = 'foggy';
-          else if (weatherDescription.includes('dust')) weather = 'foggy';
-          else if (weatherDescription.includes('sand')) weather = 'foggy';
-          else if (weatherDescription.includes('volcanic ash'))
-            weather = 'foggy';
-          else weather = 'stormy'; // Standardwert, falls keine der genannten Beschreibungen zutrifft
-
-          const windDeg = response.data.wind.deg;
-          let windDir = '';
-          if (windDeg >= 0 && windDeg <= 22.5) windDir = 'north';
-          else if (windDeg > 22.5 && windDeg <= 67.5) windDir = 'northeast';
-          else if (windDeg > 67.5 && windDeg <= 112.5) windDir = 'east';
-          else if (windDeg > 112.5 && windDeg <= 157.5) windDir = 'southeast';
-          else if (windDeg > 157.5 && windDeg <= 202.5) windDir = 'south';
-          else if (windDeg > 202.5 && windDeg <= 247.5) windDir = 'southwest';
-          else if (windDeg > 247.5 && windDeg <= 292.5) windDir = 'west';
-          else if (windDeg > 292.5 && windDeg <= 337.5) windDir = 'northwest';
-          else windDir = 'north';
-
-          setWeather({
-            weather: weather,
-            temperature: Math.round(response.data.main.temp) || '',
-            airpressure: response.data.main.pressure || '',
-            wind: windDir || '',
-            moon: '', // Nicht in API gefunden
-            windspeed: Math.round(response.data.wind.speed) || '',
-          });
-        } catch (error) {
-          console.error('failed to load weather-data:', error);
+    try {
+      const response = await axios.get(
+        'https://api.openweathermap.org/data/2.5/weather',
+        {
+          params: {
+            q: inputLocation,
+            appid: 'b0407075a586294bcaf6c05e44f80fbb',
+            units: 'metric',
+          },
         }
-      }
-    };
+      );
 
-    fetchWeather();
-  }, [location]);
+      const weatherDescription =
+        response.data.weather[0].description.toLowerCase();
+      let parsedWeather = '';
+
+      if (weatherDescription.includes('clear sky')) parsedWeather = 'sunny';
+      else if (weatherDescription.includes('few clouds'))
+        parsedWeather = 'sunny';
+      else if (weatherDescription.includes('scattered clouds'))
+        parsedWeather = 'sunny';
+      else if (weatherDescription.includes('broken clouds'))
+        parsedWeather = 'cloudy';
+      else if (weatherDescription.includes('overcast clouds'))
+        parsedWeather = 'cloudy';
+      else if (weatherDescription.includes('shower rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('light rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('moderate rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('heavy rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('very heavy rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('extreme rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('freezing rain'))
+        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('snow')) parsedWeather = 'snow';
+      else if (weatherDescription.includes('light snow'))
+        parsedWeather = 'snow';
+      else if (weatherDescription.includes('heavy snow'))
+        parsedWeather = 'snow';
+      else if (weatherDescription.includes('sleet')) parsedWeather = 'snow';
+      else if (
+        weatherDescription.includes('mist') ||
+        weatherDescription.includes('fog') ||
+        weatherDescription.includes('haze') ||
+        weatherDescription.includes('dust') ||
+        weatherDescription.includes('sand') ||
+        weatherDescription.includes('volcanic ash')
+      )
+        parsedWeather = 'foggy';
+      else parsedWeather = 'stormy';
+
+      const windDeg = response.data.wind.deg;
+      let windDir = '';
+      if (windDeg >= 0 && windDeg <= 22.5) windDir = 'north';
+      else if (windDeg > 22.5 && windDeg <= 67.5) windDir = 'northeast';
+      else if (windDeg > 67.5 && windDeg <= 112.5) windDir = 'east';
+      else if (windDeg > 112.5 && windDeg <= 157.5) windDir = 'southeast';
+      else if (windDeg > 157.5 && windDeg <= 202.5) windDir = 'south';
+      else if (windDeg > 202.5 && windDeg <= 247.5) windDir = 'southwest';
+      else if (windDeg > 247.5 && windDeg <= 292.5) windDir = 'west';
+      else if (windDeg > 292.5 && windDeg <= 337.5) windDir = 'northwest';
+      else windDir = 'north';
+
+      const newWeather = {
+        weather: parsedWeather,
+        temperature: Math.round(response.data.main.temp) || '',
+        airpressure: response.data.main.pressure || '',
+        wind: windDir || '',
+        moon: '', // Nicht in API
+        windspeed: Math.round(response.data.wind.speed) || '',
+      };
+
+      setWeather(newWeather);
+      handleAddWeather(newWeather); // Direkt weitergeben
+
+      setLocation(inputLocation); // Nur zum Anzeigen/merken
+      setInputLocation('');
+      setShowLocationInput(false);
+    } catch (error) {
+      console.error('failed to load weather-data:', error);
+    }
+  };
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -257,7 +261,7 @@ export default function Weather({ handleAddWeather }) {
             {showLocationInput && (
               <LocationSelect
                 setInputLocation={setInputLocation}
-                submitLocation={submitLocation}
+                submitLocation={handleSubmitLocation}
                 inputLocation={inputLocation}
               />
             )}
