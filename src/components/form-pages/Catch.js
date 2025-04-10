@@ -273,16 +273,6 @@ const Input = styled.input`
   height: 25px;
 `;
 
-const Select = styled.select`
-  width: 100%;
-  border: 1px solid #ff9c27;
-  padding: 2px 5px;
-  border-radius: 5px;
-  color: #aaa;
-  background-color: white;
-  height: 25px;
-`;
-
 const CatchList = styled.ul`
   list-style: none;
   padding: 0;

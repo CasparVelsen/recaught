@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import {
+  AiOutlinePlusCircle,
+  AiOutlineMinusCircle,
+  AiOutlineRightCircle,
+} from 'react-icons/ai';
 import axios from 'axios';
+import LocationSelect from './LocationSelect';
 
 const initialValues = {
   weather: '',
@@ -16,10 +21,21 @@ export default function Weather({ handleAddWeather }) {
   const [weather, setWeather] = useState(initialValues); // Weather-State mit initialen Werten
   const [location, setLocation] = useState('');
   const [inputLocation, setInputLocation] = useState('');
+  const [showLocationInput, setShowLocationInput] = useState(false);
+
+  const [showInputs, setShowInputs] = useState(true);
+  function toggleShowInputs() {
+    setShowInputs(!showInputs);
+  }
+
+  const handleGenerate = () => {
+    setShowLocationInput(prevState => !prevState);
+  };
 
   const submitLocation = () => {
     setLocation(inputLocation); // Setzt den Standort beim Klick auf den Submit-Button
     handleAddWeather(weather);
+    setShowLocationInput(prevState => !prevState);
   };
 
   useEffect(() => {
@@ -101,7 +117,7 @@ export default function Weather({ handleAddWeather }) {
     };
 
     fetchWeather();
-  }, [location, moonPhase]);
+  }, [location]);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -112,11 +128,6 @@ export default function Weather({ handleAddWeather }) {
     });
     handleAddWeather(weather);
   };
-
-  const [showInputs, setShowInputs] = useState(true);
-  function toggleShowInputs() {
-    setShowInputs(!showInputs);
-  }
 
   return (
     <>
@@ -229,20 +240,24 @@ export default function Weather({ handleAddWeather }) {
                 value={weather.windspeed}
               />
             </Part>
-            <Part>
-              <label htmlFor="location">Location</label>
-              <Input
-                id="location"
-                name="location"
-                type="text"
-                value={inputLocation}
-                onChange={e => setInputLocation(e.target.value)}
-                placeholder="Enter city name"
+            {!showLocationInput && (
+              <Wrapper>
+                <GenerateButton onClick={handleGenerate}>
+                  generate
+                </GenerateButton>
+                <AiOutlineRightCircle
+                  color="#FF9C27"
+                  onClick={handleGenerate}
+                />
+              </Wrapper>
+            )}
+            {showLocationInput && (
+              <LocationSelect
+                setInputLocation={setInputLocation}
+                submitLocation={submitLocation}
+                inputLocation={inputLocation}
               />
-            </Part>
-            <button type="button" onClick={submitLocation}>
-              Submit
-            </button>
+            )}
           </Fieldset>
         )}
       </Section>
@@ -273,7 +288,7 @@ const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 10px 0 30px;
+  padding: 10px 0 20px;
   border: none;
   position: relative;
   font-size: 1rem;
@@ -302,4 +317,19 @@ const Select = styled.select`
   color: #aaa;
   background-color: white;
   height: 25px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const GenerateButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ff9c27;
+  padding: 0;
+  text-align: left;
 `;
