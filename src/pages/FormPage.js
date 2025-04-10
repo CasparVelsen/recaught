@@ -15,7 +15,6 @@ import PageTitle from '../components/PageTitle';
 
 export default function FormPage({ onCreateCard, profile, profileCards }) {
   const [formData, setFormData] = useState({});
-  console.log(formData);
   const [catchData, setCatchData] = useState([]);
 
   const handleOnChange = event => {
