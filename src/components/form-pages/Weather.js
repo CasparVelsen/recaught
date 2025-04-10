@@ -13,20 +13,17 @@ const initialValues = {
 };
 
 export default function Weather({ handleAddWeather }) {
-  const [wetter, setWetter] = useState(initialValues); // Wetter-State mit initialen Werten
+  const [weather, setWeather] = useState(initialValues); // Weather-State mit initialen Werten
   const [location, setLocation] = useState('');
   const [inputLocation, setInputLocation] = useState('');
-  const [moonPhase, setMoonPhase] = useState('');
-
-  console.log(wetter);
 
   const submitLocation = () => {
     setLocation(inputLocation); // Setzt den Standort beim Klick auf den Submit-Button
-    handleAddWeather(wetter);
+    handleAddWeather(weather);
   };
 
   useEffect(() => {
-    const fetchWetter = async () => {
+    const fetchWeather = async () => {
       if (location) {
         try {
           const response = await axios.get(
@@ -40,7 +37,6 @@ export default function Weather({ handleAddWeather }) {
             }
           );
 
-          // Mapping der Wetterbeschreibung auf die gewünschten Werte
           const weatherDescription =
             response.data.weather[0].description.toLowerCase();
           let weather = '';
@@ -90,7 +86,7 @@ export default function Weather({ handleAddWeather }) {
           else if (windDeg > 292.5 && windDeg <= 337.5) windDir = 'northwest';
           else windDir = 'north';
 
-          setWetter({
+          setWeather({
             weather: weather,
             temperature: Math.round(response.data.main.temp) || '',
             airpressure: response.data.main.pressure || '',
@@ -99,22 +95,22 @@ export default function Weather({ handleAddWeather }) {
             windspeed: Math.round(response.data.wind.speed) || '',
           });
         } catch (error) {
-          console.error('Fehler beim Laden der Wetterdaten:', error);
+          console.error('failed to load weather-data:', error);
         }
       }
     };
 
-    fetchWetter();
+    fetchWeather();
   }, [location, moonPhase]);
 
   const handleChange = event => {
     const { name, value } = event.target;
     const _id = Math.random();
-    setWetter({
-      ...wetter,
+    setWeather({
+      ...weather,
       [name]: value,
     });
-    handleAddWeather(wetter);
+    handleAddWeather(weather);
   };
 
   const [showInputs, setShowInputs] = useState(true);
@@ -148,7 +144,7 @@ export default function Weather({ handleAddWeather }) {
                 name="weather"
                 type="text"
                 onChange={handleChange}
-                value={wetter.weather || ''}
+                value={weather.weather || ''}
               >
                 <option value="sunny">sunny</option>
                 <option value="cloudy">cloudy</option>
@@ -169,7 +165,7 @@ export default function Weather({ handleAddWeather }) {
                 maxLength={100}
                 onChange={handleChange}
                 placeholder="°C"
-                value={wetter.temperature}
+                value={weather.temperature}
               />
             </Part>
             <Part>
@@ -182,7 +178,7 @@ export default function Weather({ handleAddWeather }) {
                 max={1150}
                 onChange={handleChange}
                 placeholder="850 - 1150"
-                value={wetter.airpressure}
+                value={weather.airpressure}
               />
             </Part>
             <Part>
@@ -193,7 +189,7 @@ export default function Weather({ handleAddWeather }) {
                 type="text"
                 maxLength={100}
                 onChange={handleChange}
-                value={wetter.moon || ''}
+                value={weather.moon || ''}
               >
                 <option value="full moon">full moon</option>
                 <option value="increasing moon">increasing moon</option>
@@ -209,7 +205,7 @@ export default function Weather({ handleAddWeather }) {
                 type="text"
                 maxLength={100}
                 onChange={handleChange}
-                value={wetter.wind || ''}
+                value={weather.wind || ''}
               >
                 <option value="north">north</option>
                 <option value="west">west</option>
@@ -230,7 +226,7 @@ export default function Weather({ handleAddWeather }) {
                 min={0}
                 onChange={handleChange}
                 placeholder="min 0km/h"
-                value={wetter.windspeed}
+                value={weather.windspeed}
               />
             </Part>
             <Part>
