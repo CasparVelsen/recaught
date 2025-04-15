@@ -19,8 +19,10 @@ const initialValues = {
 
 export default function Weather({ handleAddWeather }) {
   const [weather, setWeather] = useState(initialValues); // Weather-State mit initialen Werten
+
+  console.log(weather);
+
   const [location, setLocation] = useState('');
-  const [inputLocation, setInputLocation] = useState('');
   const [showLocationInput, setShowLocationInput] = useState(false);
 
   const [showInputs, setShowInputs] = useState(true);
@@ -33,14 +35,14 @@ export default function Weather({ handleAddWeather }) {
   };
 
   const handleSubmitLocation = async () => {
-    if (!inputLocation) return;
+    if (!location) return;
 
     try {
       const response = await axios.get(
         'https://api.openweathermap.org/data/2.5/weather',
         {
           params: {
-            q: inputLocation,
+            q: location,
             appid: 'b0407075a586294bcaf6c05e44f80fbb',
             units: 'metric',
           },
@@ -108,15 +110,14 @@ export default function Weather({ handleAddWeather }) {
         temperature: Math.round(response.data.main.temp) || '',
         airpressure: response.data.main.pressure || '',
         wind: windDir || '',
-        moon: '', // Nicht in API
+        moon: '',
         windspeed: Math.round(response.data.wind.speed) || '',
       };
 
       setWeather(newWeather);
       handleAddWeather(newWeather); // Direkt weitergeben
 
-      setLocation(inputLocation); // Nur zum Anzeigen/merken
-      setInputLocation('');
+      setLocation('');
       setShowLocationInput(false);
     } catch (error) {
       console.error('failed to load weather-data:', error);
@@ -258,9 +259,9 @@ export default function Weather({ handleAddWeather }) {
             )}
             {showLocationInput && (
               <LocationSelect
-                setInputLocation={setInputLocation}
+                setLocation={setLocation}
                 submitLocation={handleSubmitLocation}
-                inputLocation={inputLocation}
+                location={location}
               />
             )}
           </Fieldset>

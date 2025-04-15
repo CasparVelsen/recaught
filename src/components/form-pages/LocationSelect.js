@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 
 export default function LocationSelect({
-  setInputLocation,
+  setLocation,
   submitLocation,
-  inputLocation,
+  location,
 }) {
   return (
     <Overlay>
@@ -15,8 +15,8 @@ export default function LocationSelect({
             id="location"
             name="location"
             type="text"
-            value={inputLocation}
-            onChange={e => setInputLocation(e.target.value)}
+            value={location}
+            onChange={e => setLocation(e.target.value)}
             placeholder="city name"
           />
           <Button type="button" onClick={submitLocation}>
