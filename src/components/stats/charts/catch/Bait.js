@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-function Bait({ filteredCards }) {
+export default function Bait({ filteredCards }) {
   const findBaits = filteredCards.map(card =>
     card.catches.map(data => data.bait)
   );
@@ -40,8 +40,6 @@ function Bait({ filteredCards }) {
     </BaitContainer>
   );
 }
-
-export default Bait;
 
 const BaitContainer = styled.div`
   display: flex;

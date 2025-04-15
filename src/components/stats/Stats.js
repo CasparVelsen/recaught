@@ -3,31 +3,23 @@ import WeatherStats from './WeatherStats';
 import Species from './charts/catch/Species';
 import Bait from './charts/catch/Bait';
 
-export default function WaterStats({filteredCards }) {
-  
-
-  const allCatchesInManyArrays = filteredCards.map(object => {
-    const tempArray = object.catches.map(entry => {
-      return entry.species;
-    });
-    return tempArray;
-  });
-
-  const allCatches = allCatchesInManyArrays.flat();
-
-  const eachSpecies = [...new Set(allCatches)];
+export default function Stats({ filteredCards }) {
+  // 1. Species extrahieren & zählen
+  const allSpecies = filteredCards.flatMap(card =>
+    card.catches.map(entry => entry.species)
+  );
 
   const count = {};
-
-  allCatches.forEach(item => {
-    if (count[item]) {
-      count[item]++;
-    } else {
-      count[item] = 1;
-    }
+  allSpecies.forEach(item => {
+    count[item] = (count[item] || 0) + 1;
   });
 
-  const numbers = Object.values(count);
+  const speciesList = Object.entries(count).map(([species, count]) => ({
+    species,
+    count,
+  }));
+
+  const sortedSpecies = speciesList.sort((a, b) => b.count - a.count);
 
   const allLengthsInManyArrays = filteredCards.map(object => {
     const tempLengthArray = object.catches.map(entry => {
@@ -36,20 +28,15 @@ export default function WaterStats({filteredCards }) {
     return tempLengthArray;
   });
 
-  const lengths = allLengthsInManyArrays.flat();
+  const lengths = filteredCards.flatMap(card =>
+    card.catches.map(entry => parseInt(entry.length))
+  );
 
-  function ArrayAvg(lengths) {
-    const parsedLengths = lengths.map(data => parseInt(data));
-    var i = 0,
-      summ = 0,
-      ArrayLen = parsedLengths.length;
-    while (i < ArrayLen) {
-      summ = summ + parsedLengths[i++];
-    }
-    return summ / ArrayLen;
-  }
-  var averageSize = ArrayAvg(lengths);
-  const roundedNumber = Math.round((averageSize + Number.EPSILON) * 100) / 100;
+  const average =
+    lengths.reduce((sum, val) => sum + val, 0) / (lengths.length || 1);
+
+  const roundedAverage =
+    Math.round((average + Number.EPSILON) * 100) / 100 || 0;
 
   return (
     <div>
@@ -57,20 +44,20 @@ export default function WaterStats({filteredCards }) {
         <StatsTitle>Catchbook</StatsTitle>
         <CatchList>
           <Numbers>
-            {numbers.map((n, id) => (
-              <span key={id}>{n}x </span>
+            {sortedSpecies.map((item, index) => (
+              <span key={index}>{item.count}x</span>
             ))}
           </Numbers>
           <Catches>
-            {eachSpecies.map((species, index) => (
-              <span key={index}>{species}</span>
+            {sortedSpecies.map((item, index) => (
+              <span key={index}>{item.species}</span>
             ))}
           </Catches>
         </CatchList>
         <Average>
-          <span>Average size:</span>ø{roundedNumber ? roundedNumber : ' 0'} cm
+          <span>Average size:</span>ø{roundedAverage ? roundedAverage : ' 0'} cm
         </Average>
-        <Species filteredCards={filteredCards} />
+        <Species sortedSpecies={sortedSpecies} />
       </Period>
       <Period>
         <Wrapper>
@@ -133,8 +120,8 @@ const Average = styled.div`
 `;
 
 const Wrapper = styled.div`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: flex-end;
 `;
 
