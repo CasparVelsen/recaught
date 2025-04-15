@@ -32,6 +32,7 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
       weather: weather.weather,
       temperature: weather.temperature,
       airpressure: weather.airpressure,
+      moon: weather.moon,
       wind: weather.wind,
       windspeed: weather.windspeed,
     }));
