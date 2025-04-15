@@ -2,30 +2,16 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import styled from 'styled-components';
 
-function Species({ filteredCards }) {
-  const findSpecies = filteredCards.map(card =>
-    card.catches.map(data => data.species)
-  );
-  const species = findSpecies.flat();
+function Species({ sortedSpecies }) {
+  console.log(sortedSpecies);
+  const speciesArray = Array.isArray(sortedSpecies) ? sortedSpecies : [];
 
-  const count = {};
-
-  species.forEach(item => {
-    if (count[item]) {
-      count[item]++;
-    } else {
-      count[item] = 1;
-    }
-  });
-
-  const numbers = Object.values(count);
-
-  const noDubsSpecies = [...new Set(species)];
+  console.log(speciesArray);
 
   const data = {
     datasets: [
       {
-        data: numbers,
+        data: speciesArray.map(item => item.count),
         backgroundColor: [
           '#a2c36c',
           '#ffcd93',
@@ -40,18 +26,14 @@ function Species({ filteredCards }) {
         ],
       },
     ],
-    labels: noDubsSpecies,
+    labels: speciesArray.map(item => item.species),
   };
 
   const options = {
     animation: { animateScale: true },
     plugins: {
-      legend: {
-        display: false,
-      },
-      title: {
-        display: false,
-      },
+      legend: { display: false },
+      title: { display: false },
     },
   };
 
