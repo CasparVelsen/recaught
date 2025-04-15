@@ -19,9 +19,6 @@ const initialValues = {
 
 export default function Weather({ handleAddWeather }) {
   const [weather, setWeather] = useState(initialValues); // Weather-State mit initialen Werten
-
-  console.log(weather);
-
   const [location, setLocation] = useState('');
   const [showLocationInput, setShowLocationInput] = useState(false);
 

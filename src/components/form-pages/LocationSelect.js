@@ -7,7 +7,6 @@ export default function LocationSelect({
   location,
   handleGenerate,
 }) {
-  console.log(handleGenerate);
   return (
     <Overlay>
       <Container>
