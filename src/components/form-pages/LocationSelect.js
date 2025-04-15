@@ -1,15 +1,26 @@
 import styled from 'styled-components';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { AiOutlineCheckCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 
 export default function LocationSelect({
   setLocation,
   submitLocation,
   location,
+  handleGenerate,
 }) {
+  console.log(handleGenerate);
   return (
     <Overlay>
       <Container>
-        <label htmlFor="location">Location</label>
+        <Head>
+          <label htmlFor="location">Location</label>
+          <Closer>
+            <CloseButton type="button" onClick={handleGenerate}>
+              close
+            </CloseButton>
+            <AiOutlineMinusCircle color="#FF9C27" onClick={handleGenerate} />
+          </Closer>
+        </Head>
+
         <Wrapper>
           <Input
             id="location"
@@ -23,6 +34,7 @@ export default function LocationSelect({
             <AiOutlineCheckCircle />
           </Button>
         </Wrapper>
+        <Hint>does not effect moon phase</Hint>
       </Container>
     </Overlay>
   );
@@ -56,9 +68,17 @@ const Container = styled.div`
   gap: 5px;
 `;
 
+const Hint = styled.p`
+  color: lightgray;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   gap: 10px;
+  margin: 5px 0 0 0;
 `;
 
 const Input = styled.input`
@@ -81,6 +101,25 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-bottom: 10px;
   width: 25%;
+`;
+
+const Head = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Closer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+const CloseButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff9c27;
+  padding: 0;
 `;

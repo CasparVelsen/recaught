@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   AiOutlinePlusCircle,
   AiOutlineMinusCircle,
@@ -38,7 +38,8 @@ export default function Weather({ handleAddWeather }) {
     if (!location) return;
 
     try {
-      const response = await axios.get(
+      // 1. Holen der Koordinaten von OpenWeather
+      const weatherResponse = await axios.get(
         'https://api.openweathermap.org/data/2.5/weather',
         {
           params: {
@@ -50,7 +51,7 @@ export default function Weather({ handleAddWeather }) {
       );
 
       const weatherDescription =
-        response.data.weather[0].description.toLowerCase();
+        weatherResponse.data.weather[0].description.toLowerCase();
       let parsedWeather = '';
 
       if (weatherDescription.includes('clear sky')) parsedWeather = 'sunny';
@@ -62,38 +63,17 @@ export default function Weather({ handleAddWeather }) {
         parsedWeather = 'cloudy';
       else if (weatherDescription.includes('overcast clouds'))
         parsedWeather = 'cloudy';
-      else if (weatherDescription.includes('shower rain'))
-        parsedWeather = 'rainy';
-      else if (weatherDescription.includes('light rain'))
-        parsedWeather = 'rainy';
-      else if (weatherDescription.includes('moderate rain'))
-        parsedWeather = 'rainy';
-      else if (weatherDescription.includes('heavy rain'))
-        parsedWeather = 'rainy';
-      else if (weatherDescription.includes('very heavy rain'))
-        parsedWeather = 'rainy';
-      else if (weatherDescription.includes('extreme rain'))
-        parsedWeather = 'rainy';
-      else if (weatherDescription.includes('freezing rain'))
-        parsedWeather = 'rainy';
+      else if (weatherDescription.includes('rain')) parsedWeather = 'rainy';
       else if (weatherDescription.includes('snow')) parsedWeather = 'snow';
-      else if (weatherDescription.includes('light snow'))
-        parsedWeather = 'snow';
-      else if (weatherDescription.includes('heavy snow'))
-        parsedWeather = 'snow';
-      else if (weatherDescription.includes('sleet')) parsedWeather = 'snow';
       else if (
         weatherDescription.includes('mist') ||
         weatherDescription.includes('fog') ||
-        weatherDescription.includes('haze') ||
-        weatherDescription.includes('dust') ||
-        weatherDescription.includes('sand') ||
-        weatherDescription.includes('volcanic ash')
+        weatherDescription.includes('haze')
       )
         parsedWeather = 'foggy';
       else parsedWeather = 'stormy';
 
-      const windDeg = response.data.wind.deg;
+      const windDeg = weatherResponse.data.wind.deg;
       let windDir = '';
       if (windDeg >= 0 && windDeg <= 22.5) windDir = 'north';
       else if (windDeg > 22.5 && windDeg <= 67.5) windDir = 'northeast';
@@ -107,20 +87,19 @@ export default function Weather({ handleAddWeather }) {
 
       const newWeather = {
         weather: parsedWeather,
-        temperature: Math.round(response.data.main.temp) || '',
-        airpressure: response.data.main.pressure || '',
+        temperature: Math.round(weatherResponse.data.main.temp) || '',
+        airpressure: weatherResponse.data.main.pressure || '',
         wind: windDir || '',
         moon: weather.moon,
-        windspeed: Math.round(response.data.wind.speed) || '',
+        windspeed: Math.round(weatherResponse.data.wind.speed) || '',
       };
 
       setWeather(newWeather);
-      handleAddWeather(newWeather); // Direkt weitergeben
-
+      handleAddWeather(newWeather);
       setLocation('');
       setShowLocationInput(false);
     } catch (error) {
-      console.error('failed to load weather-data:', error);
+      console.error('Fehler beim Laden der Daten:', error);
     }
   };
 
@@ -262,6 +241,7 @@ export default function Weather({ handleAddWeather }) {
                 setLocation={setLocation}
                 submitLocation={handleSubmitLocation}
                 location={location}
+                handleGenerate={handleGenerate}
               />
             )}
           </Fieldset>
