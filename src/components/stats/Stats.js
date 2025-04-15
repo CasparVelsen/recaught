@@ -45,12 +45,12 @@ export default function Stats({ filteredCards }) {
         <CatchList>
           <Numbers>
             {sortedSpecies.map((item, index) => (
-              <div key={index}>{item.count}x</div>
+              <span key={index}>{item.count}x</span>
             ))}
           </Numbers>
           <Catches>
             {sortedSpecies.map((item, index) => (
-              <div key={index}>{item.species}</div>
+              <span key={index}>{item.species}</span>
             ))}
           </Catches>
         </CatchList>
