@@ -3,10 +3,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 import styled from 'styled-components';
 
 function Species({ sortedSpecies }) {
-  console.log(sortedSpecies);
   const speciesArray = Array.isArray(sortedSpecies) ? sortedSpecies : [];
-
-  console.log(speciesArray);
 
   const data = {
     datasets: [
