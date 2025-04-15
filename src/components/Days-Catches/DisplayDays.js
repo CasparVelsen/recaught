@@ -8,8 +8,12 @@ export default function DisplayDays({
   handleDelete,
   confirmDelete,
   cancelDelete,
+  handleEdit,
+  profile,
+  profileCards,
+  isEditing,
+  toggleEditing,
 }) {
-
   return (
     <>
       <CardsList>
@@ -22,6 +26,9 @@ export default function DisplayDays({
                 onDelete={handleDelete}
                 confirmDelete={confirmDelete}
                 cancelDelete={cancelDelete}
+                handleEdit={handleEdit}
+                profile={profile}
+                profileCards={profileCards}
               />
             </li>
           ))

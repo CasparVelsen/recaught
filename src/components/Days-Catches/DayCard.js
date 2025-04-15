@@ -6,6 +6,7 @@ import { MdWater } from 'react-icons/md';
 import { IoFishOutline } from 'react-icons/io5';
 import Button from '../Button';
 import DeleteModal from '../modal/DeleteModal';
+import EditModal from '../modal/EditModal';
 
 export default function Cards({
   data,
@@ -13,11 +14,21 @@ export default function Cards({
   showModal,
   confirmDelete,
   cancelDelete,
+  handleEdit,
+  profile,
+  profileCards,
 }) {
   const [showDetails, setshowDetails] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
+  const [cardBeingEdited, setCardBeingEdited] = useState(null);
 
   function toggleShowDetails() {
     setshowDetails(!showDetails);
+  }
+
+  function toggleEditing(card) {
+    setCardBeingEdited(card);
+    setIsEditing(prevState => !prevState);
   }
 
   return (
@@ -55,7 +66,7 @@ export default function Cards({
             </InSameRow>
           </Infos>
         </Preview>
-        {!showDetails && (
+        {!showDetails && !isEditing && (
           <Details>
             <Part>
               <PartTitle>Water</PartTitle>
@@ -167,12 +178,27 @@ export default function Cards({
                 <Term>lost fish:</Term> {data.lost ? data.lost : '0'}
               </Data>
             </Part>
+            <Button text="Edit trip" onClick={() => toggleEditing(data)} />
             <Button
               text="Delete trip"
               isAccent={true}
               onClick={() => onDelete(data._id)}
             />
           </Details>
+        )}
+        {isEditing && (
+          <Overlay>
+            <Container>
+              <EditModal
+                dataforEdit={data}
+                toggleEditing={toggleEditing}
+                handleEdit={handleEdit}
+                profile={profile}
+                profileCards={profileCards}
+                card={cardBeingEdited}
+              />
+            </Container>
+          </Overlay>
         )}
         <ModalWrapper>
           {showModal && (
@@ -279,8 +305,6 @@ const Part = styled.div`
 const PartTitle = styled.h3`
   font-size: 1rem;
   padding: 0;
-  margin: 0;
-  margin-bottom: 5px;
   width: 100%;
   color: #687a48;
   border-bottom: 2px dotted #a2c36c;
@@ -299,4 +323,44 @@ const ModalWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
+  z-index: 999; /* Overlay muss hinter dem Popup liegen */
+  overflow: hidden;
+`;
+
+const Container = styled.div`
+  font-size: 1rem;
+  color: #a2c36c;
+  border: 0.5px solid #a2c36c;
+  border-radius: 20px 20px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.07) 0 1px 4px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  height: 80%;
+  width: 100%;
+  background-color: #fffcf8;
+  padding: 10px;
+
+  /* Animation */
+  animation: slideUp 0.4s ease-out;
+
+  @keyframes slideUp {
+    from {
+      transform: translate(-50%, 100%);
+    }
+    to {
+      transform: translate(-50%, 0%);
+    }
+  }
 `;
