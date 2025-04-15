@@ -110,7 +110,7 @@ export default function Weather({ handleAddWeather }) {
         temperature: Math.round(response.data.main.temp) || '',
         airpressure: response.data.main.pressure || '',
         wind: windDir || '',
-        moon: '',
+        moon: weather.moon,
         windspeed: Math.round(response.data.wind.speed) || '',
       };
 
