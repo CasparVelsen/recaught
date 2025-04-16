@@ -28,13 +28,10 @@ export default function EditModal({
   profile,
   profileCards,
 }) {
-  console.log(dataforEdit);
   const [editData, setEditData] = useState(dataforEdit);
   const [values, setValues] = useState(initialValues);
   const [showFlyBox, setShowFlyBox] = useState(false);
   const [showInputs, setShowInputs] = useState(false);
-
-  console.log(editData);
 
   const handleChange = event => {
     const { name, value } = event.target;
