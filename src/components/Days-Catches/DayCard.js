@@ -339,8 +339,6 @@ const Overlay = styled.div`
 const Container = styled.div`
   font-size: 1rem;
   color: #a2c36c;
-  border: 0.5px solid #a2c36c;
-  border-radius: 20px 20px 0 0;
   box-shadow: rgba(0, 0, 0, 0.07) 0 1px 4px;
   position: fixed;
   bottom: 0;
@@ -350,7 +348,7 @@ const Container = styled.div`
   height: 80%;
   width: 100%;
   background-color: #fffcf8;
-  padding: 10px;
+  border-radius: 20px 20px;
 
   /* Animation */
   animation: slideUp 0.4s ease-out;
