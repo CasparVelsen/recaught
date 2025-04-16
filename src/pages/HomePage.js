@@ -15,6 +15,7 @@ export default function HomePage({
   showModal,
   cancelDelete,
   confirmDelete,
+  handleEdit,
   profile,
 }) {
   const [showData, setShowData] = useState(true);
@@ -35,7 +36,7 @@ export default function HomePage({
 
   function handleSubmitSeason(event) {
     event.preventDefault();
-}
+  }
 
   const filteredCardsByTime = (profileCards || []).filter(card =>
     card?.date?.includes(season)
@@ -51,8 +52,8 @@ export default function HomePage({
   }
 
   const filteredCards = Array.isArray(filteredCardsByTime)
-  ? filteredCardsByTime.filter(card => card?.water?.includes(water))
-  : [];
+    ? filteredCardsByTime.filter(card => card?.water?.includes(water))
+    : [];
 
   return (
     <>
@@ -72,8 +73,16 @@ export default function HomePage({
             }
           />
           <FilterWrapper>
-            <TimeFilter profileCards={profileCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
-            <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
+            <TimeFilter
+              profileCards={profileCards}
+              handleChange={handleSelectSeason}
+              handleSubmit={handleSubmitSeason}
+            />
+            <WaterFilter
+              filteredCardsByTime={filteredCardsByTime}
+              handleChange={handleSelectWater}
+              handleSubmit={handleSubmitWater}
+            />
           </FilterWrapper>
         </TopBar>
         <Nav>
@@ -87,11 +96,14 @@ export default function HomePage({
         <div>
           {showData && (
             <DisplayDays
-            filteredCards={filteredCards}
+              filteredCards={filteredCards}
               showModal={showModal}
               handleDelete={handleDelete}
               confirmDelete={confirmDelete}
               cancelDelete={cancelDelete}
+              handleEdit={handleEdit}
+              profile={profile}
+              profileCards={profileCards}
             />
           )}
           {!showData && <DisplayCatches filteredCards={filteredCards} />}
@@ -103,7 +115,7 @@ export default function HomePage({
 
 const TopBar = styled.div`
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
 `;
 
 const FilterWrapper = styled.div`
@@ -145,7 +157,6 @@ const Page = styled.button`
       background-color: #a2c36c;
     `}
 `;
-
 
 const PlusIcon = styled(HiPlus)`
   position: absolute;

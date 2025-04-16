@@ -98,6 +98,7 @@ export default function App() {
                 handleDelete={handleDeleteCard}
                 confirmDelete={handleConfirmDeleteCard}
                 cancelDelete={() => setShowModal(false)}
+                handleEdit={handleEditCard}
                 profile={profile}
               />
             </RequirePermission>
@@ -158,6 +159,32 @@ export default function App() {
       },
       body: JSON.stringify(trimmedData),
     });
+  }
+
+  async function handleEditCard(editData) {
+    try {
+      console.log('editData before sending:', editData);
+
+      const response = await fetch('/api/cards', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editData),
+      });
+
+      if (!response.ok) throw new Error('Failed to update card');
+
+      const updatedCard = await response.json();
+
+      setCards(prevCards =>
+        prevCards.map(card =>
+          card._id === updatedCard._id ? updatedCard : card
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function handleDeleteCard(_id) {
