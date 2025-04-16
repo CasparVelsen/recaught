@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
+import { createPortal } from 'react-dom';
 
 export default function FlyBoxSelect({
   profileCards,
@@ -11,7 +12,7 @@ export default function FlyBoxSelect({
     .flat();
   const baits = [...new Set(findBaits)].sort();
 
-  return (
+  return createPortal(
     <Overlay>
       <Container>
         <Wrapper>
@@ -33,7 +34,8 @@ export default function FlyBoxSelect({
           ))}
         </ScrollableContainer>
       </Container>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 }
 
@@ -43,7 +45,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 999; /* Overlay muss hinter dem Popup liegen */
 `;
 

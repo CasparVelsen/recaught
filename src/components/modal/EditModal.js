@@ -318,9 +318,9 @@ export default function EditModal({
               {!Array.isArray(dataforEdit.catches) ||
               dataforEdit.catches.length > 0 ? (
                 dataforEdit.catches.map((item, index) => (
-                  <>
+                  <div key={item._id}>
                     <PartTitle>Catch {index + 1}):</PartTitle>
-                    <Fieldset key={index}>
+                    <Fieldset>
                       <Data>
                         <Term>species:</Term>
                         <Input
@@ -403,7 +403,15 @@ export default function EditModal({
                             <FlyBoxSelect
                               profileCards={profileCards}
                               handleChange={handleChange}
-                              handleFlyChoice={handleFlyChoice}
+                              handleFlyChoice={bait => {
+                                const updatedCatches = [...editData.catches];
+                                updatedCatches[index].bait = bait;
+                                setEditData({
+                                  ...editData,
+                                  catches: updatedCatches,
+                                });
+                                handleFlyBoxClick();
+                              }}
                               handleFlyBoxClick={handleFlyBoxClick}
                             />
                           )}
@@ -455,10 +463,10 @@ export default function EditModal({
                         />
                       </Notes>
                     </Fieldset>
-                  </>
+                  </div>
                 ))
               ) : (
-                <>
+                <div>
                   <PartTitle>Catch:</PartTitle>
                   <Fieldset>
                     <Data>
@@ -584,7 +592,7 @@ export default function EditModal({
                       <p>no catches yet, add some</p>
                     )}
                   </CatchList>
-                </>
+                </div>
               )}
             </div>
           )}
