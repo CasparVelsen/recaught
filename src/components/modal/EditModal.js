@@ -721,7 +721,7 @@ const Part = styled.div`
 const Section = styled.div`
   background-color: white;
   border-radius: 10px;
-  padding: 5px 10px;
+  padding: 10px;
   border: 0.5px solid #a2c36c;
   display: flex;
   flex-direction: column;
