@@ -156,51 +156,51 @@ export default function Cards({
                   </Data>
                 )}
               </Part>
-              <PartTitle>Catches</PartTitle>
-              <Part>
+              <PartTitle>Catches: {data.catches.length}</PartTitle>
+              <Catches>
                 {data.catches
                   ? data.catches.map((item, index) => (
                       <CatchPart key={index}>
                         {item.species && (
                           <CatchTitle>
-                            {item.species}
+                            {index + 1}. {item.species}
                             <Term>{' - ' + item.length + ' ' + 'cm:'}</Term>
                           </CatchTitle>
                         )}
                         {item.time && (
                           <Data>
-                            <Term>time:</Term>
-                            <Value>{item.time}</Value>
+                            <CatchTerm>time:</CatchTerm>
+                            <CatchValue>{item.time}</CatchValue>
                           </Data>
                         )}
                         {item.weight && (
                           <Data>
-                            <Term>weight:</Term>
-                            <Value>{item.weight} kg</Value>
+                            <CatchTerm>weight:</CatchTerm>
+                            <CatchValue>{item.weight} kg</CatchValue>
                           </Data>
                         )}
                         {item.bait && (
                           <Data>
-                            <Term>bait:</Term>
-                            <Value>{item.bait}</Value>
+                            <CatchTerm>bait:</CatchTerm>
+                            <CatchValue>{item.bait}</CatchValue>
                           </Data>
                         )}
                         {item.location && (
                           <Data>
-                            <Term>location:</Term>
-                            <Value>{item.location}</Value>
+                            <CatchTerm>location:</CatchTerm>
+                            <CatchValue>{item.location}</CatchValue>
                           </Data>
                         )}
                         {item.notes && (
                           <Data>
-                            <Term>notes:</Term>
-                            <Value>{item.notes}</Value>
+                            <CatchTerm>notes:</CatchTerm>
+                            <CatchValue>{item.notes}</CatchValue>
                           </Data>
                         )}
                       </CatchPart>
                     ))
                   : ''}
-              </Part>
+              </Catches>
               <Part>
                 <PartTitle>Summary</PartTitle>
                 <Data>
@@ -342,22 +342,35 @@ const Part = styled.div`
   margin-bottom: 15px;
 `;
 
+const Catches = styled.div`
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 89vw;
+  max-width: 100%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+`;
+
 const CatchPart = styled.div`
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #a2c36c;
+  border-radius: 8px;
+  background-color: white;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  padding: 10px 15px 10px 15px;
-  border: 0.5px solid #a2c36c;
-  border-radius: 20px;
-  background-color: white;
-  margin-top: 10px;
 `;
 
 const CatchTitle = styled.div`
   color: #ff9c27;
   font-weight: bold;
   font-size: 1rem;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
 `;
 
 const PartTitle = styled.h3`
@@ -383,6 +396,17 @@ const Term = styled.span`
 const Value = styled.div`
   font-size: 0.9rem;
   width: 55%;
+`;
+
+const CatchTerm = styled.span`
+  font-weight: bold;
+  color: #687a48;
+  width: 27%;
+`;
+
+const CatchValue = styled.div`
+  font-size: 0.9rem;
+  width: 73%;
 `;
 
 const Submit = styled.div`
