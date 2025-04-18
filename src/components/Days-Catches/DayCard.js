@@ -405,9 +405,9 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
-  z-index: 999; /* Overlay muss hinter dem Popup liegen */
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
   overflow: hidden;
 `;
 
@@ -420,7 +420,7 @@ const Container = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  height: 80%;
+  height: 85%;
   width: 100%;
   background-color: #fffcf8;
   border-radius: 20px 20px;
