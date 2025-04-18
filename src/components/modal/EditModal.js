@@ -82,8 +82,6 @@ export default function EditModal({
     setShowInputs(prevState => !prevState);
   };
 
-  console.log(editData.catches);
-
   return (
     <Card>
       <Preview onClick={toggleEditing}>

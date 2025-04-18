@@ -3,15 +3,28 @@ import styled from 'styled-components';
 
 export default function DeleteModal({ text, confirmDelete, cancelDelete }) {
   return (
-    <Container>
-      <Description>Do you really want to delete this {text}?</Description>
-      <Buttons>
-        <Button text="Yes" isAccent={true} onClick={confirmDelete} />
-        <Button text="No" isAccent={false} onClick={cancelDelete} />
-      </Buttons>
-    </Container>
+    <Overlay>
+      <Container>
+        <Description>Do you really want to delete this {text}?</Description>
+        <Buttons>
+          <Button text="Yes" isAccent={true} onClick={confirmDelete} />
+          <Button text="No" isAccent={false} onClick={cancelDelete} />
+        </Buttons>
+      </Container>
+    </Overlay>
   );
 }
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.025);
+  z-index: 999;
+  overflow: hidden;
+`;
 
 const Container = styled.div`
   display: flex;
@@ -24,9 +37,13 @@ const Container = styled.div`
   border-radius: 20px;
   padding: 10px 20px;
   border: 0.5px solid #ddd;
-  box-shadow: rgba(0, 0, 0, 0.07) 0 1px 4px;
+  width: 90%;
+
   position: fixed;
-  bottom: 60px;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   z-index: 100;
 `;
 

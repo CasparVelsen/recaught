@@ -237,15 +237,15 @@ export default function Cards({
             </Container>
           </Overlay>
         )}
-        <ModalWrapper>
-          {showModal && (
+        {showModal && (
+          <ModalWrapper>
             <DeleteModal
               text="card"
               confirmDelete={confirmDelete}
               cancelDelete={cancelDelete}
             />
-          )}
-        </ModalWrapper>
+          </ModalWrapper>
+        )}
       </Card>
     </>
   );
