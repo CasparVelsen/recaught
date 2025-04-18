@@ -315,285 +315,131 @@ export default function EditModal({
           </div>
           {showInputs && (
             <div>
-              {!Array.isArray(dataforEdit.catches) ||
-              dataforEdit.catches.length > 0 ? (
-                dataforEdit.catches.map((item, index) => (
-                  <div key={item._id}>
-                    <PartTitle>Catch {index + 1}):</PartTitle>
-                    <Fieldset>
-                      <Data>
-                        <Term>species:</Term>
-                        <Input
-                          type="text"
-                          maxLength={100}
-                          value={item.species}
-                          onChange={e => {
-                            const updatedCatches = [...editData.catches];
-                            updatedCatches[index].species = e.target.value;
-                            setEditData({
-                              ...editData,
-                              catches: updatedCatches,
-                            });
-                          }}
-                        />
-                      </Data>
-                      <Data>
-                        <Term>time:</Term>
-                        <Input
-                          type="time"
-                          value={item.time}
-                          onChange={e => {
-                            const updatedCatches = [...editData.catches];
-                            updatedCatches[index].time = e.target.value;
-                            setEditData({
-                              ...editData,
-                              catches: updatedCatches,
-                            });
-                          }}
-                        />
-                      </Data>
-                      <Data>
-                        <Term>length:</Term>
-                        <Wrapper>
-                          <Input
-                            type="number"
-                            min={0}
-                            value={item.length}
-                            onChange={e => {
-                              const updatedCatches = [...editData.catches];
-                              updatedCatches[index].length = e.target.value;
-                              setEditData({
-                                ...editData,
-                                catches: updatedCatches,
-                              });
-                            }}
-                          />
-                          <span>cm</span>
-                        </Wrapper>
-                      </Data>
-                      <Data>
-                        <Term>weight:</Term>
-                        <Wrapper>
-                          <Input
-                            type="number"
-                            step={0.1}
-                            min={0}
-                            value={item.weight}
-                            onChange={e => {
-                              const updatedCatches = [...editData.catches];
-                              updatedCatches[index].weight = e.target.value;
-                              setEditData({
-                                ...editData,
-                                catches: updatedCatches,
-                              });
-                            }}
-                          />
-                          <span>kg</span>
-                        </Wrapper>
-                      </Data>
-                      <Data>
-                        <Wrapper>
-                          <Term>bait:</Term>
-                          {!showFlyBox && (
-                            <FlyBoxButton onClick={handleFlyBoxClick}>
-                              flybox
-                            </FlyBoxButton>
-                          )}
-                          {showFlyBox && (
-                            <FlyBoxSelect
-                              profileCards={profileCards}
-                              handleChange={handleChange}
-                              handleFlyChoice={bait => {
-                                const updatedCatches = [...editData.catches];
-                                updatedCatches[index].bait = bait;
-                                setEditData({
-                                  ...editData,
-                                  catches: updatedCatches,
-                                });
-                                handleFlyBoxClick();
-                              }}
-                              handleFlyBoxClick={handleFlyBoxClick}
-                            />
-                          )}
-                        </Wrapper>
-                        <Input
-                          type="text"
-                          maxLength={100}
-                          value={item.bait}
-                          onChange={e => {
-                            const updatedCatches = [...editData.catches];
-                            updatedCatches[index].bait = e.target.value;
-                            setEditData({
-                              ...editData,
-                              catches: updatedCatches,
-                            });
-                          }}
-                        />
-                      </Data>
-                      <Data>
-                        <Term>location:</Term>
-                        <Input
-                          type="text"
-                          maxLength={100}
-                          value={item.location}
-                          onChange={e => {
-                            const updatedCatches = [...editData.catches];
-                            updatedCatches[index].location = e.target.value;
-                            setEditData({
-                              ...editData,
-                              catches: updatedCatches,
-                            });
-                          }}
-                        />
-                      </Data>
-                      <Notes>
-                        <Term>notes:</Term>
-                        <Input
-                          type="text"
-                          maxLength={100}
-                          value={item.notes}
-                          onChange={e => {
-                            const updatedCatches = [...editData.catches];
-                            updatedCatches[index].notes = e.target.value;
-                            setEditData({
-                              ...editData,
-                              catches: updatedCatches,
-                            });
-                          }}
-                        />
-                      </Notes>
-                    </Fieldset>
-                  </div>
-                ))
-              ) : (
-                <div>
-                  <PartTitle>Catch:</PartTitle>
-                  <Fieldset>
-                    <Data>
-                      <Term>species:</Term>
-                      <Input
-                        onChange={handleChange}
-                        value={values.species}
-                        id="species"
-                        name="species"
-                        type="text"
-                        maxLength={100}
-                      />
-                    </Data>
-                    <Data>
-                      <Term htmlFor="time">time</Term>
-                      <Input
-                        onChange={handleChange}
-                        value={values.time}
-                        id="time"
-                        name="time"
-                        type="time"
-                      />
-                    </Data>
-                    <Data>
-                      <Term htmlFor="length">length</Term>
-                      <Input
-                        onChange={handleChange}
-                        value={values.length}
-                        id="length"
-                        name="length"
-                        type="number"
-                        min={0}
-                        placeholder="cm"
-                      />
-                    </Data>
-                    <Data>
-                      <Term htmlFor="weight">weight</Term>
-                      <Input
-                        onChange={handleChange}
-                        value={values.weight}
-                        id="weight"
-                        name="weight"
-                        type="number"
-                        step={0.1}
-                        min={0}
-                        placeholder="kg"
-                      />
-                    </Data>
-                    <Part>
-                      <Wrapper>
-                        <Term htmlFor="bait">bait</Term>
-                        {!showFlyBox && (
-                          <FlyBoxButton onClick={handleFlyBoxClick}>
-                            flybox
-                          </FlyBoxButton>
-                        )}
-                        {showFlyBox && (
-                          <FlyBoxSelect
-                            profileCards={profileCards}
-                            handleChange={handleChange}
-                            handleFlyChoice={handleFlyChoice}
-                            handleFlyBoxClick={handleFlyBoxClick}
-                          />
-                        )}
-                      </Wrapper>
-                      <Input
-                        onChange={handleChange}
-                        value={values.bait}
-                        id="bait"
-                        name="bait"
-                        type="text"
-                        list="baitlist"
-                        maxLength={100}
-                      />
-                    </Part>
-                    <Data>
-                      <Term htmlFor="location">location</Term>
-                      <Input
-                        onChange={handleChange}
-                        value={values.location}
-                        id="location"
-                        name="location"
-                        type="text"
-                        maxLength={100}
-                      />
-                    </Data>
-                    <Data>
-                      <Term>notes</Term>
-                      <Input
-                        onChange={handleChange}
-                        value={values.notes}
-                        id="notes"
-                        name="notes"
-                        type="text"
-                        maxLength={300}
-                      />
-                    </Data>
-                  </Fieldset>
-                  <Button
-                    text="Add Catch"
-                    onClick={() => {
-                      handleAddCatch(values);
-                      setValues(initialValues);
-                    }}
-                    icon={<HiPlusCircle />}
+              <PartTitle>Catch:</PartTitle>
+              <Fieldset>
+                <Data>
+                  <Term>species:</Term>
+                  <Input
+                    onChange={handleChange}
+                    value={values.species}
+                    id="species"
+                    name="species"
+                    type="text"
+                    maxLength={100}
                   />
-                  <CatchList>
-                    <span>Your catches:</span>
-                    {editData.catches ? (
-                      editData.catches.map((data, index) => (
-                        <Catches key={index}>
-                          <span>{index + 1}.</span>
-                          <span>{data.species}</span>
-                          <span>{data.length} cm</span>
-                          <HiOutlineTrash
-                            size={25}
-                            color={'#a2c36c'}
-                            onClick={() => deleteCatch(data._id, values)}
-                          />
-                        </Catches>
-                      ))
-                    ) : (
-                      <p>no catches yet, add some</p>
+                </Data>
+                <Data>
+                  <Term htmlFor="time">time</Term>
+                  <Input
+                    onChange={handleChange}
+                    value={values.time}
+                    id="time"
+                    name="time"
+                    type="time"
+                  />
+                </Data>
+                <Data>
+                  <Term htmlFor="length">length</Term>
+                  <Input
+                    onChange={handleChange}
+                    value={values.length}
+                    id="length"
+                    name="length"
+                    type="number"
+                    min={0}
+                    placeholder="cm"
+                  />
+                </Data>
+                <Data>
+                  <Term htmlFor="weight">weight</Term>
+                  <Input
+                    onChange={handleChange}
+                    value={values.weight}
+                    id="weight"
+                    name="weight"
+                    type="number"
+                    step={0.1}
+                    min={0}
+                    placeholder="kg"
+                  />
+                </Data>
+                <Part>
+                  <Wrapper>
+                    <Term htmlFor="bait">bait</Term>
+                    {!showFlyBox && (
+                      <FlyBoxButton onClick={handleFlyBoxClick}>
+                        flybox
+                      </FlyBoxButton>
                     )}
-                  </CatchList>
-                </div>
-              )}
+                    {showFlyBox && (
+                      <FlyBoxSelect
+                        profileCards={profileCards}
+                        handleChange={handleChange}
+                        handleFlyChoice={handleFlyChoice}
+                        handleFlyBoxClick={handleFlyBoxClick}
+                      />
+                    )}
+                  </Wrapper>
+                  <Input
+                    onChange={handleChange}
+                    value={values.bait}
+                    id="bait"
+                    name="bait"
+                    type="text"
+                    list="baitlist"
+                    maxLength={100}
+                  />
+                </Part>
+                <Data>
+                  <Term htmlFor="location">location</Term>
+                  <Input
+                    onChange={handleChange}
+                    value={values.location}
+                    id="location"
+                    name="location"
+                    type="text"
+                    maxLength={100}
+                  />
+                </Data>
+                <Data>
+                  <Term>notes</Term>
+                  <Input
+                    onChange={handleChange}
+                    value={values.notes}
+                    id="notes"
+                    name="notes"
+                    type="text"
+                    maxLength={300}
+                  />
+                </Data>
+              </Fieldset>
+              <Button
+                text="Add Catch"
+                onClick={() => {
+                  handleAddCatch(values);
+                  setValues(initialValues);
+                }}
+                icon={<HiPlusCircle />}
+              />
+              <CatchList>
+                <span>Your catches:</span>
+                {editData.catches ? (
+                  editData.catches.map((data, index) => (
+                    <Catches key={index}>
+                      <span>{index + 1}.</span>
+                      <span>{data.species}</span>
+                      <span>{data.length} cm</span>
+                      <HiOutlineTrash
+                        size={25}
+                        color={'#a2c36c'}
+                        onClick={() => deleteCatch(data._id, values)}
+                      />
+                    </Catches>
+                  ))
+                ) : (
+                  <p>no catches yet, add some</p>
+                )}
+              </CatchList>
             </div>
           )}
         </Section>
@@ -715,6 +561,8 @@ const Details = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 10px;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
 `;
 
 const Part = styled.div`
@@ -853,16 +701,11 @@ const Catches = styled.li`
   }
 `;
 
-const Notes = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
 const Submit = styled.div`
   flex-shrink: 0;
   background-color: #fffcf8;
   padding: 20px 10px 10px 10px;
+  border-top: 0.5px solid #a2c36c;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0px -10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
