@@ -82,6 +82,8 @@ export default function EditModal({
     setShowInputs(prevState => !prevState);
   };
 
+  console.log(editData.catches);
+
   return (
     <Card>
       <Preview onClick={toggleEditing}>
@@ -315,7 +317,6 @@ export default function EditModal({
           </div>
           {showInputs && (
             <div>
-              <PartTitle>Catch:</PartTitle>
               <Fieldset>
                 <Data>
                   <Term>species:</Term>
@@ -422,20 +423,22 @@ export default function EditModal({
                 icon={<HiPlusCircle />}
               />
               <CatchList>
-                <span>Your catches:</span>
-                {editData.catches ? (
-                  editData.catches.map((data, index) => (
-                    <Catches key={index}>
-                      <span>{index + 1}.</span>
-                      <span>{data.species}</span>
-                      <span>{data.length} cm</span>
-                      <HiOutlineTrash
-                        size={25}
-                        color={'#a2c36c'}
-                        onClick={() => deleteCatch(data._id, values)}
-                      />
-                    </Catches>
-                  ))
+                {editData.catches && editData.catches.length > 0 ? (
+                  <>
+                    <span>Your catches:</span>
+                    {editData.catches.map((data, index) => (
+                      <Catches key={index}>
+                        <span>{index + 1}.</span>
+                        <span>{data.species}</span>
+                        <span>{data.length} cm</span>
+                        <HiOutlineTrash
+                          size={25}
+                          color={'#a2c36c'}
+                          onClick={() => deleteCatch(data._id, values)}
+                        />
+                      </Catches>
+                    ))}
+                  </>
                 ) : (
                   <p>no catches yet, add some</p>
                 )}
@@ -649,6 +652,7 @@ const Fieldset = styled.fieldset`
   border: none;
   position: relative;
   font-size: 1rem;
+  margin: 15px 0 15px 0;
 `;
 
 const Wrapper = styled.div`
@@ -675,6 +679,7 @@ const CatchList = styled.ul`
   list-style: none;
   padding: 0;
   width: 100%;
+  margin-bottom: 10px;
 
   span {
     font-weight: bold;
