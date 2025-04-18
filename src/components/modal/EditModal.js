@@ -701,14 +701,6 @@ const Catches = styled.li`
   }
 `;
 
-const Notes = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
 const Submit = styled.div`
   flex-shrink: 0;
   background-color: #fffcf8;
