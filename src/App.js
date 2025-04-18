@@ -162,7 +162,6 @@ export default function App() {
   }
 
   async function handleEditCard(editData) {
-    window.scrollTo(0, 0);
     try {
       console.log('editData before sending:', editData);
 
