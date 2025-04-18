@@ -420,7 +420,7 @@ const Container = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  height: 85%;
+  height: 95%;
   width: 100%;
   background-color: #fffcf8;
   border-radius: 20px 20px;
