@@ -11,9 +11,8 @@ export default function DisplayDays({
   handleEdit,
   profile,
   profileCards,
-  isEditing,
-  toggleEditing,
 }) {
+  console.log(profileCards);
   return (
     <>
       <CardsList>

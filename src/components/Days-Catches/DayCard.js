@@ -31,6 +31,23 @@ export default function Cards({
     setIsEditing(prevState => !prevState);
   }
 
+  function hasValidCatches(catches) {
+    return (
+      Array.isArray(catches) &&
+      catches.some(
+        item =>
+          item &&
+          (item.species?.trim() ||
+            item.time?.trim() ||
+            (item.length !== null && item.length !== 0) ||
+            (item.weight !== null && item.weight !== 0) ||
+            item.bait?.trim() ||
+            item.location?.trim() ||
+            item.notes?.trim())
+      )
+    );
+  }
+
   return (
     <>
       <Card>
@@ -67,124 +84,144 @@ export default function Cards({
           </Infos>
         </Preview>
         {!showDetails && !isEditing && (
-          <Details>
-            <Part>
-              <PartTitle>Water</PartTitle>
-              <Data>
-                <Term>water:</Term> {data.water}
-              </Data>
-              {data.stretch && (
+          <div>
+            <Content>
+              <Part>
+                <PartTitle>Water</PartTitle>
                 <Data>
-                  <Term>stretch:</Term> {data.stretch}
+                  <Term>water:</Term>
+                  <Value>{data.water}</Value>
                 </Data>
-              )}
-              {data.watertemp && (
+                {data.stretch && (
+                  <Data>
+                    <Term>stretch:</Term>
+                    <Value>{data.stretch}</Value>
+                  </Data>
+                )}
+                {data.watertemp && (
+                  <Data>
+                    <Term>water temperature:</Term>
+                    <Value>{data.temperature}</Value>
+                  </Data>
+                )}
+                {data.watercolor && (
+                  <Data>
+                    <Term>water color:</Term>
+                    <Value>{data.watercolor}</Value>
+                  </Data>
+                )}
+                {data.waterlevel && (
+                  <Data>
+                    <Term>water level:</Term>
+                    <Value>{data.waterlevel}</Value>
+                  </Data>
+                )}
+              </Part>
+              <Part>
+                <PartTitle>Weather</PartTitle>
+                {data.weather && (
+                  <Data>
+                    <Term>weather:</Term>
+                    <Value>{data.weather}</Value>
+                  </Data>
+                )}
+                {data.airpressure && (
+                  <Data>
+                    <Term>air pressure:</Term>
+                    <Value>{data.airpressure} hPa</Value>
+                  </Data>
+                )}
+                {data.temperature && (
+                  <Data>
+                    <Term>temperature:</Term>
+                    <Value>{data.temperature} °C</Value>
+                  </Data>
+                )}
+                {data.moon && (
+                  <Data>
+                    <Term>moon:</Term>
+                    <Value>{data.moon}</Value>
+                  </Data>
+                )}
+                {data.wind && (
+                  <Data>
+                    <Term>wind:</Term>
+                    <Value>{data.wind}</Value>
+                  </Data>
+                )}
+                {data.windspeed && (
+                  <Data>
+                    <Term>wind speed:</Term>
+                    <Value>{data.windspeed} km/h</Value>
+                  </Data>
+                )}
+              </Part>
+              <PartTitle>Catches</PartTitle>
+              <Part>
+                {data.catches
+                  ? data.catches.map((item, index) => (
+                      <CatchPart key={index}>
+                        {item.species && (
+                          <CatchTitle>
+                            {item.species}
+                            <Term>{' - ' + item.length + ' ' + 'cm:'}</Term>
+                          </CatchTitle>
+                        )}
+                        {item.time && (
+                          <Data>
+                            <Term>time:</Term>
+                            <Value>{item.time}</Value>
+                          </Data>
+                        )}
+                        {item.weight && (
+                          <Data>
+                            <Term>weight:</Term>
+                            <Value>{item.weight} kg</Value>
+                          </Data>
+                        )}
+                        {item.bait && (
+                          <Data>
+                            <Term>bait:</Term>
+                            <Value>{item.bait}</Value>
+                          </Data>
+                        )}
+                        {item.location && (
+                          <Data>
+                            <Term>location:</Term>
+                            <Value>{item.location}</Value>
+                          </Data>
+                        )}
+                        {item.notes && (
+                          <Data>
+                            <Term>notes:</Term>
+                            <Value>{item.notes}</Value>
+                          </Data>
+                        )}
+                      </CatchPart>
+                    ))
+                  : ''}
+              </Part>
+              <Part>
+                <PartTitle>Summary</PartTitle>
                 <Data>
-                  <Term>water temperature:</Term> {data.watertemp} °C
+                  <Term>total bites:</Term>
+                  <Value>{data.bites ? data.bites : '0'}</Value>
                 </Data>
-              )}
-              {data.watercolor && (
                 <Data>
-                  <Term>water color:</Term> {data.watercolor}
+                  <Term>lost fish:</Term>
+                  <Value>{data.lost ? data.lost : '0'}</Value>
                 </Data>
-              )}
-              {data.waterlevel && (
-                <Data>
-                  <Term>water level:</Term> {data.waterlevel}
-                </Data>
-              )}
-            </Part>
-            <Part>
-              <PartTitle>Weather</PartTitle>
-              {data.weather && (
-                <Data>
-                  <Term>weather:</Term> {data.weather}
-                </Data>
-              )}
-              {data.airpressure && (
-                <Data>
-                  <Term>air pressure:</Term> {data.airpressure} hPa
-                </Data>
-              )}
-              {data.temperature && (
-                <Data>
-                  <Term>temperature:</Term> {data.temperature} °C
-                </Data>
-              )}
-              {data.moon && (
-                <Data>
-                  <Term>moon:</Term> {data.moon}
-                </Data>
-              )}
-              {data.wind && (
-                <Data>
-                  <Term>wind:</Term> {data.wind}
-                </Data>
-              )}
-              {data.windspeed && (
-                <Data>
-                  <Term>wind speed:</Term> {data.windspeed} km/h
-                </Data>
-              )}
-            </Part>
-            {data.catches
-              ? data.catches.map((item, index) => (
-                  <Part key={index}>
-                    <PartTitle>Catch {index + 1})</PartTitle>
-                    {item.species && (
-                      <Data>
-                        <Term>species:</Term> {item.species}
-                      </Data>
-                    )}
-                    {item.time && (
-                      <Data>
-                        <Term>time:</Term> {item.time}
-                      </Data>
-                    )}
-                    {item.length && (
-                      <Data>
-                        <Term>length:</Term> {item.length} cm
-                      </Data>
-                    )}
-                    {item.weight && (
-                      <Data>
-                        <Term>weight:</Term> {item.weight} kg
-                      </Data>
-                    )}
-                    {item.bait && (
-                      <Data>
-                        <Term>bait:</Term> {item.bait}
-                      </Data>
-                    )}
-                    {item.location && (
-                      <Data>
-                        <Term>location:</Term> {item.location}
-                      </Data>
-                    )}
-                    {item.notes && (
-                      <Data>
-                        <Term>notes:</Term> {item.notes}
-                      </Data>
-                    )}
-                  </Part>
-                ))
-              : ''}
-            <Part>
-              <PartTitle>Summary</PartTitle>
-              <Data>
-                <Term>total bites:</Term> {data.bites ? data.bites : '0'}
-              </Data>
-              <Data>
-                <Term>lost fish:</Term> {data.lost ? data.lost : '0'}
-              </Data>
-            </Part>
-            <Button text="Edit trip" onClick={() => toggleEditing(data)} />
-            <Button
-              text="Delete trip"
-              isAccent={true}
-              onClick={() => onDelete(data._id)}
-            />
-          </Details>
+              </Part>
+            </Content>
+            <Submit>
+              <Button text="Edit trip" onClick={() => toggleEditing(data)} />
+              <Button
+                text="Delete trip"
+                isAccent={true}
+                onClick={() => onDelete(data._id)}
+              />
+            </Submit>
+          </div>
         )}
         {isEditing && (
           <Overlay>
@@ -217,8 +254,6 @@ export default function Cards({
 const Card = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  padding: 10px;
   background-color: #fffcf8;
   color: #a2c36c;
   border: 0.5px solid #a2c36c;
@@ -229,6 +264,10 @@ const Card = styled.section`
 const Preview = styled.div`
   display: flex;
   position: relative;
+  padding: 10px;
+  border-bottom: 0.5px solid #a2c36c;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
 const Date = styled.div`
@@ -268,7 +307,7 @@ const Year = styled.span`
   color: #687a48;
   font-size: 16px;
   position: absolute;
-  right: 5px;
+  right: 10px;
 `;
 
 const Together = styled.div`
@@ -289,10 +328,10 @@ const InSameRow = styled.div`
   }
 `;
 
-const Details = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  padding: 10px;
   margin-top: 10px;
 `;
 
@@ -300,23 +339,59 @@ const Part = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3px;
+  margin-bottom: 15px;
+`;
+
+const CatchPart = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 15px 10px 15px;
+  border: 0.5px solid #a2c36c;
+  border-radius: 20px;
+  background-color: white;
+  margin-top: 10px;
+`;
+
+const CatchTitle = styled.div`
+  color: #ff9c27;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 3px;
 `;
 
 const PartTitle = styled.h3`
-  font-size: 1rem;
+  font-size: 1.1rem;
   padding: 0;
-  width: 100%;
   color: #687a48;
   border-bottom: 2px dotted #a2c36c;
+  margin: 0;
+  margin-bottom: 5px;
 `;
 
 const Data = styled.small`
   font-size: 0.9rem;
+  display: flex;
 `;
 
 const Term = styled.span`
   font-weight: bold;
   color: #687a48;
+  width: 45%;
+`;
+
+const Value = styled.div`
+  font-size: 0.9rem;
+  width: 55%;
+`;
+
+const Submit = styled.div`
+  flex-shrink: 0;
+  background-color: #fffcf8;
+  padding: 15px 15px 5px 15px;
+  border-top: 0.5px solid #a2c36c;
+  border-radius: 20px;
+  box-shadow: 0px -10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
 const ModalWrapper = styled.div`
