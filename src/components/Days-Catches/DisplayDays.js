@@ -12,7 +12,6 @@ export default function DisplayDays({
   profile,
   profileCards,
 }) {
-  console.log(profileCards);
   return (
     <>
       <CardsList>
