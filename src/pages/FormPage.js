@@ -128,8 +128,8 @@ const Map = styled.img`
   position: fixed;
   top: 0;
   right: 50px;
-  height: 200px;
-  z-index: -5;
+  height: 250px;
+  z-index: -100;
 `;
 
 const Main = styled.div`

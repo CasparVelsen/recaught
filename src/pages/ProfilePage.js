@@ -8,12 +8,7 @@ import TimeFilter from '../components/stats/TimeFilter';
 import WaterFilter from '../components/stats/WaterFilter';
 import { useState } from 'react';
 
-export default function ProfilePage({
-  profile,
-  token,
-  logout,
-  profileCards,
-}) {
+export default function ProfilePage({ profile, token, logout, profileCards }) {
   const [season, setSeason] = useState('');
   const [water, setWater] = useState('');
 
@@ -24,24 +19,24 @@ export default function ProfilePage({
 
   function handleSubmitSeason(event) {
     event.preventDefault();
-}
+  }
 
-const filteredCardsByTime = (profileCards || []).filter(card =>
-  card?.date?.includes(season)
-);
+  const filteredCardsByTime = (profileCards || []).filter(card =>
+    card?.date?.includes(season)
+  );
 
-function handleSelectWater(event) {
-  setWater(event.target.value);
-  handleSubmitWater(event);
-}
+  function handleSelectWater(event) {
+    setWater(event.target.value);
+    handleSubmitWater(event);
+  }
 
-function handleSubmitWater(event) {
-  event.preventDefault();
-}
+  function handleSubmitWater(event) {
+    event.preventDefault();
+  }
 
-const filteredCards = Array.isArray(filteredCardsByTime)
-  ? filteredCardsByTime.filter(card => card?.water?.includes(water))
-  : [];
+  const filteredCards = Array.isArray(filteredCardsByTime)
+    ? filteredCardsByTime.filter(card => card?.water?.includes(water))
+    : [];
 
   return (
     <>
@@ -58,17 +53,26 @@ const filteredCards = Array.isArray(filteredCardsByTime)
         <Map src={DepthMap} alt="DepthMap" />
         <TopBar>
           <PageTitle
-          text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
+            text={profile.firstname ? 'Hello, ' + profile.firstname : 'Hello, '}
           />
           <FilterWrapper>
-            <TimeFilter profileCards={profileCards} handleChange={handleSelectSeason} handleSubmit={handleSubmitSeason}/>
-            <WaterFilter filteredCardsByTime={filteredCardsByTime} handleChange={handleSelectWater} handleSubmit={handleSubmitWater} />
+            <TimeFilter
+              profileCards={profileCards}
+              handleChange={handleSelectSeason}
+              handleSubmit={handleSubmitSeason}
+            />
+            <WaterFilter
+              filteredCardsByTime={filteredCardsByTime}
+              handleChange={handleSelectWater}
+              handleSubmit={handleSubmitWater}
+            />
           </FilterWrapper>
         </TopBar>
-        <QuickStats
+        <QuickStats filteredCards={filteredCards} />
+        <Stats
+          filteredCardsByTime={filteredCardsByTime}
           filteredCards={filteredCards}
         />
-        <Stats filteredCardsByTime={filteredCardsByTime} filteredCards={filteredCards}/>
       </main>
     </>
   );
@@ -76,7 +80,7 @@ const filteredCards = Array.isArray(filteredCardsByTime)
 
 const TopBar = styled.div`
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
 `;
 
 const FilterWrapper = styled.div`

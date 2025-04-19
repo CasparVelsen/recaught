@@ -156,15 +156,16 @@ export default function Cards({
                   </Data>
                 )}
               </Part>
-              <PartTitle>Catches: {data.catches.length}</PartTitle>
               <Catches>
-                {data.catches
-                  ? data.catches.map((item, index) => (
+                {data.catches && data.catches.length > 0 ? (
+                  <>
+                    <PartTitle>Catches: {data.catches.length}</PartTitle>
+                    {data.catches.map((item, index) => (
                       <CatchPart key={index}>
                         {item.species && (
                           <CatchTitle>
                             {index + 1}. {item.species}
-                            <Term>{' - ' + item.length + ' ' + 'cm:'}</Term>
+                            <Term>{' - ' + item.length + ' cm:'}</Term>
                           </CatchTitle>
                         )}
                         {item.time && (
@@ -198,9 +199,13 @@ export default function Cards({
                           </Data>
                         )}
                       </CatchPart>
-                    ))
-                  : ''}
+                    ))}
+                  </>
+                ) : (
+                  <CatchValue>no fish caught</CatchValue>
+                )}
               </Catches>
+
               <Part>
                 <PartTitle>Summary</PartTitle>
                 <Data>
