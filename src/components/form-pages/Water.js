@@ -58,7 +58,7 @@ export default function Water({ handleOnChange }) {
                 onChange={handleOnChange}
               >
                 <option value="cloudy">cloudy</option>
-                <option value="normal">normal</option>
+                <option value="slightly cloudy">slightly cloudy</option>
                 <option value="clear">clear</option>
               </Select>
             </Part>

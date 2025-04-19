@@ -184,7 +184,7 @@ export default function EditModal({
             >
               <option value="">select</option>
               <option value="cloudy">cloudy</option>
-              <option value="normal">normal</option>
+              <option value="slightly cloudy">slightly cloudy</option>
               <option value="clear">clear</option>
             </Select>
           </Data>
@@ -272,12 +272,14 @@ export default function EditModal({
               value={editData.wind}
               onChange={e => setEditData({ ...editData, wind: e.target.value })}
             >
-              <option value="">select</option>
-              <option value="full moon">full moon</option>
-              <option value="increasing moon">increasing moon</option>
-              <option value="waning moon">waning moon</option>
-              <option value="new moon">new moon</option>
-              <option value="snow">snow</option>
+              <option value="east">east</option>
+              <option value="southeast">south east</option>
+              <option value="south">south</option>
+              <option value="southwest">south west</option>
+              <option value="west">west</option>
+              <option value="northwest">north west</option>
+              <option value="north">north</option>
+              <option value="northeast">north east</option>
             </Select>
           </Data>
           <Data>

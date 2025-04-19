@@ -184,10 +184,10 @@ export default function Weather({ handleAddWeather }) {
                 value={weather.moon || ''}
               >
                 <option value="">select</option>
-                <option value="full moon">full moon</option>
-                <option value="increasing moon">increasing moon</option>
-                <option value="waning moon">waning moon</option>
                 <option value="new moon">new moon</option>
+                <option value="increasing moon">increasing moon</option>
+                <option value="full moon">full moon</option>
+                <option value="waning moon">waning moon</option>
               </Select>
             </Part>
             <Part>
@@ -200,14 +200,14 @@ export default function Weather({ handleAddWeather }) {
                 onChange={handleChange}
                 value={weather.wind || ''}
               >
-                <option value="north">north</option>
-                <option value="west">west</option>
                 <option value="east">east</option>
+                <option value="southeast">south east</option>
                 <option value="south">south</option>
-                <option value="northwest">north west</option>
-                <option value="northeast">north east</option>
                 <option value="southwest">south west</option>
-                <option value="south east">south east</option>
+                <option value="west">west</option>
+                <option value="northwest">north west</option>
+                <option value="north">north</option>
+                <option value="northeast">north east</option>
               </Select>
             </Part>
             <Part>

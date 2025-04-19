@@ -5,16 +5,28 @@ import { Chart as ChartJS } from 'chart.js/auto';
 function Wind({ filteredCards }) {
   const findWind = filteredCards.map(card => card.wind);
   const filteredWind = [...new Set(findWind)].filter(item => item);
+  console.log(filteredWind);
+  const windOrder = [
+    'east',
+    'southeast',
+    'south',
+    'southwest',
+    'west',
+    'northwest',
+    'north',
+    'northeast',
+  ];
 
-  const windArray = filteredWind.map((data, index) => {
-    const filterForWind = filteredCards.filter(
-      card => card.wind === data
-    );
-    const wind = filterForWind.map(data => data.catches.length);
-    var numberCatches = lodash.sum(wind);
-    const obj = { id: index, wind: data, catches: numberCatches };
-    return obj;
-  });
+  const windArray = filteredWind
+    .map((data, index) => {
+      const filterForWind = filteredCards.filter(card => card.wind === data);
+      const catches = filterForWind.map(data => data.catches.length);
+      const numberCatches = lodash.sum(catches);
+      return { id: index, wind: data, catches: numberCatches };
+    })
+    .sort((a, b) => {
+      return windOrder.indexOf(a.wind) - windOrder.indexOf(b.wind);
+    });
 
   const wind = {
     labels: windArray.map(data => data.wind),

@@ -5,17 +5,20 @@ import { Chart as ChartJS } from 'chart.js/auto';
 function Weather({ filteredCards }) {
   const findWeather = filteredCards.map(card => card.weather);
   const filteredWeather = [...new Set(findWeather)].filter(item => item);
-  filteredWeather.sort();
+  const weatherOrder = ['rainy', 'cloudy', 'sunny'];
 
-  const weatherArray = filteredWeather.map((data, index) => {
-    const filterForWeather = filteredCards.filter(
-      card => card.weather === data
-    );
-    const catches = filterForWeather.map(data => data.catches.length);
-    var numberCatches = lodash.sum(catches);
-    const obj = { id: index, weather: data, catches: numberCatches };
-    return obj;
-  });
+  const weatherArray = filteredWeather
+    .map((data, index) => {
+      const filterForWeather = filteredCards.filter(
+        card => card.weather === data
+      );
+      const catches = filterForWeather.map(data => data.catches.length);
+      const numberCatches = lodash.sum(catches);
+      return { id: index, weather: data, catches: numberCatches };
+    })
+    .sort((a, b) => {
+      return weatherOrder.indexOf(a.weather) - weatherOrder.indexOf(b.weather);
+    });
 
   const weather = {
     labels: weatherArray.map(data => data.weather),

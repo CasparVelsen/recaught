@@ -4,20 +4,26 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function WaterColor({ filteredCards }) {
   const findWaterColor = filteredCards.map(card => card.watercolor);
-  console.log(findWaterColor)
+  console.log(findWaterColor);
   const filteredWaterColor = [...new Set(findWaterColor)].filter(item => item);
 
-  console.log(filteredWaterColor);
+  const waterColorOrder = ['cloudy', 'slightly cloudy', 'clear'];
 
-  const watercolorArray = filteredWaterColor.map((data, index) => {
-    const filterForWaterColor = filteredCards.filter(
-      card => card.watercolor === data
-    );
-    const watercolor = filterForWaterColor.map(data => data.catches.length);
-    var numberCatches = lodash.sum(watercolor);
-    const obj = { id: index, watercolor: data, catches: numberCatches };
-    return obj;
-  });
+  const watercolorArray = filteredWaterColor
+    .map((data, index) => {
+      const filterForWaterColor = filteredCards.filter(
+        card => card.watercolor === data
+      );
+      const catches = filterForWaterColor.map(data => data.catches.length);
+      const numberCatches = lodash.sum(catches);
+      return { id: index, watercolor: data, catches: numberCatches };
+    })
+    .sort((a, b) => {
+      return (
+        waterColorOrder.indexOf(a.watercolor) -
+        waterColorOrder.indexOf(b.watercolor)
+      );
+    });
 
   const waterColor = {
     labels: watercolorArray.map(data => data.watercolor),

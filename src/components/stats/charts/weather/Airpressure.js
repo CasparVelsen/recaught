@@ -4,8 +4,10 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function Airpressure({ filteredCards }) {
   const findAirpressure = filteredCards.map(card => card.airpressure);
-  const filteredAirpressure = [...new Set(findAirpressure)].filter(item => item);
-  filteredAirpressure.sort();
+  const filteredAirpressure = [...new Set(findAirpressure)].filter(
+    item => item
+  );
+  filteredAirpressure.sort((a, b) => a - b);
 
   const airpressureArray = filteredAirpressure.map((data, index) => {
     const filterForAirpressure = filteredCards.filter(

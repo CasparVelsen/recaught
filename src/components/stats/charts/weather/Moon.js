@@ -5,16 +5,23 @@ import { Chart as ChartJS } from 'chart.js/auto';
 function Moon({ filteredCards }) {
   const findMoon = filteredCards.map(card => card.moon);
   const filteredMoon = [...new Set(findMoon)].filter(item => item);
+  const moonPhaseOrder = [
+    'new moon',
+    'increasing moon',
+    'full moon',
+    'waning moon',
+  ];
 
-  const moonArray = filteredMoon.map((data, index) => {
-    const filterForMoon = filteredCards.filter(
-      card => card.moon === data
-    );
-    const moon = filterForMoon.map(data => data.catches.length);
-    var numberCatches = lodash.sum(moon);
-    const obj = { id: index, moon: data, catches: numberCatches };
-    return obj;
-  });
+  const moonArray = filteredMoon
+    .map((data, index) => {
+      const filterForMoon = filteredCards.filter(card => card.moon === data);
+      const catches = filterForMoon.map(data => data.catches.length);
+      const numberCatches = lodash.sum(catches);
+      return { id: index, moon: data, catches: numberCatches };
+    })
+    .sort((a, b) => {
+      return moonPhaseOrder.indexOf(a.moon) - moonPhaseOrder.indexOf(b.moon);
+    });
 
   const moon = {
     labels: moonArray.map(data => data.moon),

@@ -5,7 +5,7 @@ import { Chart as ChartJS } from 'chart.js/auto';
 function WindSpeed({ filteredCards }) {
   const findWindSpeed = filteredCards.map(card => card.windspeed);
   const filteredWindSpeed = [...new Set(findWindSpeed)].filter(item => item);
-  filteredWindSpeed.sort();
+  filteredWindSpeed.sort((a, b) => a - b);
 
   const windSpeedArray = filteredWindSpeed.map((data, index) => {
     const filterForWindSpeed = filteredCards.filter(

@@ -6,15 +6,23 @@ function WaterLevel({ filteredCards }) {
   const findWaterLevel = filteredCards.map(card => card.waterlevel);
   const filteredWaterLevel = [...new Set(findWaterLevel)].filter(item => item);
 
-  const waterlevelArray = filteredWaterLevel.map((data, index) => {
-    const filterForWaterLevel = filteredCards.filter(
-      card => card.waterlevel === data
-    );
-    const waterlevel = filterForWaterLevel.map(data => data.catches.length);
-    var numberCatches = lodash.sum(waterlevel);
-    const obj = { id: index, waterlevel: data, catches: numberCatches };
-    return obj;
-  });
+  const waterLevelOrder = ['low', 'normal', 'high'];
+
+  const waterlevelArray = filteredWaterLevel
+    .map((data, index) => {
+      const filterForWaterLevel = filteredCards.filter(
+        card => card.waterlevel === data
+      );
+      const catches = filterForWaterLevel.map(data => data.catches.length);
+      const numberCatches = lodash.sum(catches);
+      return { id: index, waterlevel: data, catches: numberCatches };
+    })
+    .sort((a, b) => {
+      return (
+        waterLevelOrder.indexOf(a.waterlevel) -
+        waterLevelOrder.indexOf(b.waterlevel)
+      );
+    });
 
   const waterLevel = {
     labels: waterlevelArray.map(data => data.waterlevel),
