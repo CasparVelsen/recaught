@@ -60,14 +60,14 @@ export default function Stats({ filteredCards }) {
         <Species sortedSpecies={sortedSpecies} />
       </Period>
       <Period>
+        <WeatherStats filteredCards={filteredCards} />
+      </Period>
+      <Period>
         <Wrapper>
           <StatsTitle>Flybox</StatsTitle>
           <Hint>Catches</Hint>
         </Wrapper>
         <Bait filteredCards={filteredCards} />
-      </Period>
-      <Period>
-        <WeatherStats filteredCards={filteredCards} />
       </Period>
     </div>
   );
