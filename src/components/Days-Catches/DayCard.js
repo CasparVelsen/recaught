@@ -48,6 +48,8 @@ export default function Cards({
     );
   }
 
+  console.log(data.catches.length);
+
   return (
     <>
       <Card>
@@ -165,7 +167,7 @@ export default function Cards({
                         {item.species && (
                           <CatchTitle>
                             {index + 1}. {item.species}
-                            <Term>{' - ' + item.length + ' cm:'}</Term>
+                            <Term>{' - ' + item.length + ' ' + 'cm:'}</Term>
                           </CatchTitle>
                         )}
                         {item.time && (
@@ -202,10 +204,9 @@ export default function Cards({
                     ))}
                   </>
                 ) : (
-                  <CatchValue>no fish caught</CatchValue>
+                  <PartTitle>No fish caught</PartTitle>
                 )}
               </Catches>
-
               <Part>
                 <PartTitle>Summary</PartTitle>
                 <Data>
