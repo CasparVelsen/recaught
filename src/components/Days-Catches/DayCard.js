@@ -386,6 +386,7 @@ const PartTitle = styled.h3`
   border-bottom: 2px dotted #a2c36c;
   margin: 0;
   margin-bottom: 5px;
+  width: 100%;
 `;
 
 const Data = styled.small`
