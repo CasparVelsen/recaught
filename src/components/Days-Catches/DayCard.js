@@ -103,7 +103,7 @@ export default function Cards({
                 {data.watertemp && (
                   <Data>
                     <Term>water temperature:</Term>
-                    <Value>{data.temperature}</Value>
+                    <Value>{data.watertemp}</Value>
                   </Data>
                 )}
                 {data.watercolor && (
