@@ -67,7 +67,9 @@ export default function Stats({ filteredCards }) {
           <StatsTitle>Flybox</StatsTitle>
           <Hint>Catches</Hint>
         </Wrapper>
-        <Bait filteredCards={filteredCards} />
+        <Scrollable>
+          <Bait filteredCards={filteredCards} />
+        </Scrollable>
       </Period>
     </div>
   );
@@ -81,6 +83,11 @@ const Period = styled.div`
   color: #a2c36c;
   box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
   margin: 15px 0 15px 0;
+`;
+
+const Scrollable = styled.div`
+  height: 400px;
+  overflow-y: auto;
 `;
 
 const StatsTitle = styled.div`
