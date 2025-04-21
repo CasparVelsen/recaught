@@ -151,23 +151,27 @@ export default function Cards({
                     <Value>{data.wind}</Value>
                   </Data>
                 )}
-                {data.windspeed && (
-                  <Data>
-                    <Term>wind speed:</Term>
-                    <Value>{data.windspeed} km/h</Value>
-                  </Data>
-                )}
+                {data.windspeed !== null &&
+                  data.windspeed !== undefined &&
+                  data.windspeed !== '' && (
+                    <Data>
+                      <Term>wind speed:</Term>
+                      <Value>{data.windspeed} km/h</Value>
+                    </Data>
+                  )}
               </Part>
+              {data.catches && data.catches.length > 0 && (
+                <PartTitle>Catches: {data.catches.length}</PartTitle>
+              )}
               <Catches>
                 {data.catches && data.catches.length > 0 ? (
                   <>
-                    <PartTitle>Catches: {data.catches.length}</PartTitle>
                     {data.catches.map((item, index) => (
                       <CatchPart key={index}>
                         {item.species && (
                           <CatchTitle>
                             {index + 1}. {item.species}
-                            <Term>{' - ' + item.length + ' ' + 'cm:'}</Term>
+                            <Term>{' - ' + item.length + ' cm:'}</Term>
                           </CatchTitle>
                         )}
                         {item.time && (
@@ -176,7 +180,7 @@ export default function Cards({
                             <CatchValue>{item.time}</CatchValue>
                           </Data>
                         )}
-                        {item.weight && (
+                        {(item.weight === 0 || item.weight) && (
                           <Data>
                             <CatchTerm>weight:</CatchTerm>
                             <CatchValue>{item.weight} kg</CatchValue>
