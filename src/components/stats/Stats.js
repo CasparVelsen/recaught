@@ -79,7 +79,7 @@ const Period = styled.div`
 `;
 
 const Scrollable = styled.div`
-  height: 400px;
+  max-height: 400px;
   overflow-y: auto;
 `;
 
