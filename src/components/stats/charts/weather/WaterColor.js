@@ -1,5 +1,6 @@
 import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
+import { Chart as ChartJS } from 'chart.js/auto';
 
 function WaterColor({ filteredCards }) {
   const findWaterColor = filteredCards.map(card => card.watercolor);

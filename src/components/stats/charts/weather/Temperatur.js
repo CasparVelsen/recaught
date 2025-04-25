@@ -1,5 +1,6 @@
 import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
+import { Chart as ChartJS } from 'chart.js/auto';
 
 function Temperature({ filteredCards }) {
   const findTemperature = filteredCards.map(card => card.temperature);
