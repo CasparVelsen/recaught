@@ -41,7 +41,7 @@ export default function Weather({ handleAddWeather }) {
         {
           params: {
             q: location,
-            appid: 'b0407075a586294bcaf6c05e44f80fbb',
+            appid: process.env.REACT_APP_OPENWEATHER_API_KEY,
             units: 'metric',
           },
         }
