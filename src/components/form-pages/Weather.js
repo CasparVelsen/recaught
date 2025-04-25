@@ -6,7 +6,7 @@ import {
   AiOutlineRightCircle,
 } from 'react-icons/ai';
 import axios from 'axios';
-import LocationSelect from './LocationSelect';
+import LocationLoader from './LocationLoader';
 
 const initialValues = {
   weather: '',
@@ -18,86 +18,108 @@ const initialValues = {
 };
 
 export default function Weather({ handleAddWeather }) {
-  const [weather, setWeather] = useState(initialValues); // Weather-State mit initialen Werten
-  const [location, setLocation] = useState('');
-  const [showLocationInput, setShowLocationInput] = useState(false);
+  const [weather, setWeather] = useState(initialValues);
+  const [showLocationLoader, setshowLocationLoader] = useState(false);
+  const [showHint, setshowHint] = useState(false);
 
   const [showInputs, setShowInputs] = useState(true);
   function toggleShowInputs() {
     setShowInputs(!showInputs);
   }
 
-  const handleGenerate = () => {
-    setShowLocationInput(prevState => !prevState);
+  const handleWeatherResponse = weatherResponse => {
+    const weatherDescription =
+      weatherResponse.data.weather[0].description.toLowerCase();
+    let parsedWeather = '';
+
+    if (weatherDescription.includes('clear sky')) parsedWeather = 'sunny';
+    else if (weatherDescription.includes('few clouds')) parsedWeather = 'sunny';
+    else if (weatherDescription.includes('scattered clouds'))
+      parsedWeather = 'sunny';
+    else if (weatherDescription.includes('broken clouds'))
+      parsedWeather = 'cloudy';
+    else if (weatherDescription.includes('overcast clouds'))
+      parsedWeather = 'cloudy';
+    else if (weatherDescription.includes('rain')) parsedWeather = 'rainy';
+    else if (weatherDescription.includes('snow')) parsedWeather = 'snow';
+    else if (
+      weatherDescription.includes('mist') ||
+      weatherDescription.includes('fog') ||
+      weatherDescription.includes('haze')
+    )
+      parsedWeather = 'foggy';
+    else parsedWeather = 'stormy';
+
+    const windDeg = weatherResponse.data.wind.deg;
+    let windDir = '';
+    if (windDeg >= 0 && windDeg <= 22.5) windDir = 'north';
+    else if (windDeg > 22.5 && windDeg <= 67.5) windDir = 'northeast';
+    else if (windDeg > 67.5 && windDeg <= 112.5) windDir = 'east';
+    else if (windDeg > 112.5 && windDeg <= 157.5) windDir = 'southeast';
+    else if (windDeg > 157.5 && windDeg <= 202.5) windDir = 'south';
+    else if (windDeg > 202.5 && windDeg <= 247.5) windDir = 'southwest';
+    else if (windDeg > 247.5 && windDeg <= 292.5) windDir = 'west';
+    else if (windDeg > 292.5 && windDeg <= 337.5) windDir = 'northwest';
+    else windDir = 'north';
+
+    const newWeather = {
+      weather: parsedWeather,
+      temperature: Math.round(weatherResponse.data.main.temp) || '',
+      airpressure: weatherResponse.data.main.pressure || '',
+      wind: windDir || '',
+      moon: weather.moon, // optional, je nachdem wie du moon verwaltest
+      windspeed: Math.round(weatherResponse.data.wind.speed) || '',
+    };
+
+    setWeather(newWeather);
+    handleAddWeather(newWeather);
+    setshowLocationLoader(false);
   };
 
-  const handleSubmitLocation = async () => {
-    if (!location) return;
+  const handleGenerateLocation = async () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation wird nicht unterstützt.');
+      return;
+    }
 
-    try {
-      // 1. Holen der Koordinaten von OpenWeather
-      const weatherResponse = await axios.get(
-        'https://api.openweathermap.org/data/2.5/weather',
-        {
-          params: {
-            q: location,
-            appid: process.env.REACT_APP_OPENWEATHER_API_KEY,
-            units: 'metric',
-          },
+    // Zeige den Loader an, bevor der Geolocation-Prozess beginnt
+    setshowLocationLoader(true);
+
+    // Verzögerung simulieren (z.B. 1 Sekunde)
+    setTimeout(() => {
+      navigator.geolocation.getCurrentPosition(
+        async position => {
+          const { latitude, longitude } = position.coords;
+
+          try {
+            const weatherResponse = await axios.get(
+              'https://api.openweathermap.org/data/2.5/weather',
+              {
+                params: {
+                  lat: latitude,
+                  lon: longitude,
+                  appid: process.env.REACT_APP_OPENWEATHER_API_KEY,
+                  units: 'metric',
+                },
+              }
+            );
+
+            handleWeatherResponse(weatherResponse);
+            setshowHint(true);
+          } catch (error) {
+            console.error('Fehler beim Abrufen der Wetterdaten:', error);
+            alert(
+              'Fehler beim Abrufen der Wetterdaten. Bitte versuche es später erneut.'
+            );
+          }
+        },
+        error => {
+          console.error('Fehler beim Zugriff auf den Standort:', error);
+          alert('Standort konnte nicht abgerufen werden.');
         }
       );
-
-      const weatherDescription =
-        weatherResponse.data.weather[0].description.toLowerCase();
-      let parsedWeather = '';
-
-      if (weatherDescription.includes('clear sky')) parsedWeather = 'sunny';
-      else if (weatherDescription.includes('few clouds'))
-        parsedWeather = 'sunny';
-      else if (weatherDescription.includes('scattered clouds'))
-        parsedWeather = 'sunny';
-      else if (weatherDescription.includes('broken clouds'))
-        parsedWeather = 'cloudy';
-      else if (weatherDescription.includes('overcast clouds'))
-        parsedWeather = 'cloudy';
-      else if (weatherDescription.includes('rain')) parsedWeather = 'rainy';
-      else if (weatherDescription.includes('snow')) parsedWeather = 'snow';
-      else if (
-        weatherDescription.includes('mist') ||
-        weatherDescription.includes('fog') ||
-        weatherDescription.includes('haze')
-      )
-        parsedWeather = 'foggy';
-      else parsedWeather = 'stormy';
-
-      const windDeg = weatherResponse.data.wind.deg;
-      let windDir = '';
-      if (windDeg >= 0 && windDeg <= 22.5) windDir = 'north';
-      else if (windDeg > 22.5 && windDeg <= 67.5) windDir = 'northeast';
-      else if (windDeg > 67.5 && windDeg <= 112.5) windDir = 'east';
-      else if (windDeg > 112.5 && windDeg <= 157.5) windDir = 'southeast';
-      else if (windDeg > 157.5 && windDeg <= 202.5) windDir = 'south';
-      else if (windDeg > 202.5 && windDeg <= 247.5) windDir = 'southwest';
-      else if (windDeg > 247.5 && windDeg <= 292.5) windDir = 'west';
-      else if (windDeg > 292.5 && windDeg <= 337.5) windDir = 'northwest';
-      else windDir = 'north';
-
-      const newWeather = {
-        weather: parsedWeather,
-        temperature: Math.round(weatherResponse.data.main.temp) || '',
-        airpressure: weatherResponse.data.main.pressure || '',
-        wind: windDir || '',
-        moon: weather.moon,
-        windspeed: Math.round(weatherResponse.data.wind.speed) || '',
-      };
-
-      setWeather(newWeather);
-      handleAddWeather(newWeather);
-      setLocation('');
-      setShowLocationInput(false);
-    } catch (error) {
-      console.error('Fehler beim Laden der Daten:', error);
-    }
+      setshowLocationLoader(false);
+    }, 1300);
   };
 
   const handleChange = event => {
@@ -222,25 +244,17 @@ export default function Weather({ handleAddWeather }) {
                 value={weather.windspeed}
               />
             </Part>
-            {!showLocationInput && (
-              <Wrapper>
-                <GenerateButton onClick={handleGenerate}>
-                  generate
-                </GenerateButton>
-                <AiOutlineRightCircle
-                  color="#FF9C27"
-                  onClick={handleGenerate}
-                />
-              </Wrapper>
-            )}
-            {showLocationInput && (
-              <LocationSelect
-                setLocation={setLocation}
-                submitLocation={handleSubmitLocation}
-                location={location}
-                handleGenerate={handleGenerate}
+            <Wrapper>
+              <GenerateButton onClick={handleGenerateLocation} type="button">
+                generate
+              </GenerateButton>
+              <AiOutlineRightCircle
+                color="#FF9C27"
+                onClick={handleGenerateLocation}
               />
-            )}
+              {showHint && <Hint>please select moon phase</Hint>}
+            </Wrapper>
+            {showLocationLoader && <LocationLoader />}
           </Fieldset>
         )}
       </Section>
@@ -305,6 +319,16 @@ const Select = styled.select`
 const Wrapper = styled.div`
   display: flex;
   gap: 5px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  align-items: center;
+`;
+
+const Hint = styled.div`
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: auto;
+  color: #ddd;
 `;
 
 const GenerateButton = styled.button`
