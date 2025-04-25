@@ -4,7 +4,6 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 function WaterColor({ filteredCards }) {
   const findWaterColor = filteredCards.map(card => card.watercolor);
-  console.log(findWaterColor);
   const filteredWaterColor = [...new Set(findWaterColor)].filter(item => item);
 
   const waterColorOrder = ['cloudy', 'slightly cloudy', 'clear'];
