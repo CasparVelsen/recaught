@@ -31,25 +31,6 @@ export default function Cards({
     setIsEditing(prevState => !prevState);
   }
 
-  function hasValidCatches(catches) {
-    return (
-      Array.isArray(catches) &&
-      catches.some(
-        item =>
-          item &&
-          (item.species?.trim() ||
-            item.time?.trim() ||
-            (item.length !== null && item.length !== 0) ||
-            (item.weight !== null && item.weight !== 0) ||
-            item.bait?.trim() ||
-            item.location?.trim() ||
-            item.notes?.trim())
-      )
-    );
-  }
-
-  console.log(data.catches.length);
-
   return (
     <>
       <Card>

@@ -21,13 +21,6 @@ export default function Stats({ filteredCards }) {
 
   const sortedSpecies = speciesList.sort((a, b) => b.count - a.count);
 
-  const allLengthsInManyArrays = filteredCards.map(object => {
-    const tempLengthArray = object.catches.map(entry => {
-      return entry.length;
-    });
-    return tempLengthArray;
-  });
-
   const lengths = filteredCards.flatMap(card =>
     card.catches.map(entry => parseInt(entry.length))
   );

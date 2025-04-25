@@ -12,7 +12,7 @@ import WaterLevel from './charts/weather/WaterLevel';
 import { IoIosArrowDown } from 'react-icons/io';
 
 export default function WeatherStats({ filteredCards }) {
-  const [page, setPage] = useState("Weather");
+  const [page, setPage] = useState('Weather');
 
   function handleChange(event) {
     setPage(event.target.value);
@@ -21,72 +21,72 @@ export default function WeatherStats({ filteredCards }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-}
+  }
 
   return (
     <>
       <Wrapper>
-      <IoIosArrowDown color= "#687a48" />
+        <IoIosArrowDown color="#687a48" />
         <form onSubmit={handleSubmit}>
           <Select id="charts" name="selectedCharts" onChange={handleChange}>
-              <option >Weather</option>
-              <option >Temperature</option>
-              <option >Airpressure</option>
-              <option >Moon</option>
-              <option >Wind</option>
-              <option >Windspeed</option>
-              <option >Watertemperature</option>
-              <option >Watercolor</option>
-              <option >Waterlevel</option>
+            <option>Weather</option>
+            <option>Temperature</option>
+            <option>Airpressure</option>
+            <option>Moon</option>
+            <option>Wind</option>
+            <option>Windspeed</option>
+            <option>Watertemperature</option>
+            <option>Watercolor</option>
+            <option>Waterlevel</option>
           </Select>
         </form>
       </Wrapper>
       <div>
-        {page === "Weather" && (
+        {page === 'Weather' && (
           <StatsContainer>
             <Weather filteredCards={filteredCards} />
           </StatsContainer>
         )}
-        {page === "Temperature" && (
+        {page === 'Temperature' && (
           <StatsContainer>
             <Temperature filteredCards={filteredCards} />
             <Legend> °C</Legend>
           </StatsContainer>
         )}
-        {page === "Airpressure" && (
+        {page === 'Airpressure' && (
           <StatsContainer>
             <Airpressure filteredCards={filteredCards} />
             <Legend> hPa</Legend>
           </StatsContainer>
         )}
-        {page === "Moon" && (
+        {page === 'Moon' && (
           <StatsContainer>
             <Moon filteredCards={filteredCards} />
           </StatsContainer>
         )}
-        {page === "Wind" && (
+        {page === 'Wind' && (
           <StatsContainer>
             <Wind filteredCards={filteredCards} />
           </StatsContainer>
         )}
-        {page === "Windspeed" && (
+        {page === 'Windspeed' && (
           <StatsContainer>
             <WindSpeed filteredCards={filteredCards} />
             <Legend> km/h</Legend>
           </StatsContainer>
         )}
-        {page === "Watertemperature" && (
+        {page === 'Watertemperature' && (
           <StatsContainer>
             <WaterTemp filteredCards={filteredCards} />
             <Legend> °C</Legend>
           </StatsContainer>
         )}
-        {page === "Watercolor" && (
+        {page === 'Watercolor' && (
           <StatsContainer>
             <WaterColor filteredCards={filteredCards} />
           </StatsContainer>
         )}
-        {page === "Waterlevel" && (
+        {page === 'Waterlevel' && (
           <StatsContainer>
             <WaterLevel filteredCards={filteredCards} />
           </StatsContainer>
@@ -115,39 +115,8 @@ const Select = styled.select`
   appearance: none;
 
   &:focus {
-    outline: none;  /* Keine Umrandung bei Fokus */
-    border: none;   /* Keine Border bei Fokus */
-  }
-`;
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 30px;
-`;
-
-const Options = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  margin-top: 10px;
-  height: 110px;
-  overflow-y: auto;
-
-  div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  button {
-    width: 100%;
-    border: none;
-    border-top: 0.5px solid #eee;
-    background-color: white;
-    padding: 10px;
-    color: #aaa;
+    outline: none; /* Keine Umrandung bei Fokus */
+    border: none; /* Keine Border bei Fokus */
   }
 `;
 

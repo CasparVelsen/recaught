@@ -1,6 +1,5 @@
 import { Line } from 'react-chartjs-2';
 import lodash from 'lodash';
-import { Chart as ChartJS } from 'chart.js/auto';
 
 function Airpressure({ filteredCards }) {
   const findAirpressure = filteredCards.map(card => card.airpressure);

@@ -37,13 +37,6 @@ const Wrapper = styled.div`
   gap: 5px;
 `;
 
-const P = styled.p`
-  color: #687a48;
-  font-size: 1rem;
-  text-align: right;
-  margin: 0 0 5px 0;
-`;
-
 const Select = styled.select`
   border: none;
   background-color: transparent;
