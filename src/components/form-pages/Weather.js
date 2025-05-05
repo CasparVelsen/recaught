@@ -82,44 +82,52 @@ export default function Weather({ handleAddWeather }) {
       return;
     }
 
-    // Zeige den Loader an, bevor der Geolocation-Prozess beginnt
-    setshowLocationLoader(true);
+    setshowLocationLoader(true); // Loader sofort aktivieren
 
-    // Verzögerung simulieren (z.B. 1 Sekunde)
-    setTimeout(() => {
-      navigator.geolocation.getCurrentPosition(
-        async position => {
-          const { latitude, longitude } = position.coords;
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-          try {
-            const weatherResponse = await axios.get(
-              'https://api.openweathermap.org/data/2.5/weather',
-              {
-                params: {
-                  lat: latitude,
-                  lon: longitude,
-                  appid: process.env.REACT_APP_OPENWEATHER_API_KEY,
-                  units: 'metric',
-                },
-              }
-            );
+    navigator.geolocation.getCurrentPosition(
+      async position => {
+        const { latitude, longitude } = position.coords;
 
-            handleWeatherResponse(weatherResponse);
-            setshowHint(true);
-          } catch (error) {
-            console.error('Fehler beim Abrufen der Wetterdaten:', error);
-            alert(
-              'Fehler beim Abrufen der Wetterdaten. Bitte versuche es später erneut.'
-            );
-          }
-        },
-        error => {
-          console.error('Fehler beim Zugriff auf den Standort:', error);
-          alert('Standort konnte nicht abgerufen werden.');
+        try {
+          // Warte auf beides gleichzeitig: API-Call + mindestens 1 Sekunde Delay
+          const [weatherResponse] = await Promise.all([
+            axios.get('https://api.openweathermap.org/data/2.5/weather', {
+              params: {
+                lat: latitude,
+                lon: longitude,
+                appid: process.env.REACT_APP_OPENWEATHER_API_KEY,
+                units: 'metric',
+              },
+            }),
+            delay(1000), // mindestens 1 Sekunde warten
+          ]);
+
+          handleWeatherResponse(weatherResponse);
+          setshowHint(true);
+        } catch (error) {
+          console.error(
+            'Fehler beim Abrufen der Wetterdaten:',
+            error.response?.data || error.message
+          );
+          alert(
+            'Fehler beim Abrufen der Wetterdaten. Bitte versuche es später erneut.'
+          );
+        } finally {
+          setshowLocationLoader(false);
         }
-      );
-      setshowLocationLoader(false);
-    }, 1300);
+      },
+      error => {
+        console.error('Fehler beim Zugriff auf den Standort:', error);
+        alert('Standort konnte nicht abgerufen werden.');
+
+        // Stelle sicher, dass auch bei Fehler der Loader 1 Sekunde angezeigt wird
+        setTimeout(() => {
+          setshowLocationLoader(false);
+        }, 1000);
+      }
+    );
   };
 
   const handleChange = event => {
