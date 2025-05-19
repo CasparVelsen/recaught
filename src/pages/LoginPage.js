@@ -147,6 +147,10 @@ const Input = styled.input`
   color: #aaa;
   background-color: white;
   font-size: 1.3rem;
+
+  &::placeholder {
+    color: #aaa;
+  }
 `;
 
 const ButtonToRight = styled.div`

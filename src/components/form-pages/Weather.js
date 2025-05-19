@@ -312,6 +312,10 @@ const Input = styled.input`
   color: #aaa;
   background-color: white;
   height: 25px;
+
+  &::placeholder {
+    color: #aaa;
+  }
 `;
 
 const Select = styled.select`
