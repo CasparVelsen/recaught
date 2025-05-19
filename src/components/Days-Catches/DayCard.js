@@ -402,6 +402,8 @@ const CatchValue = styled.div`
 `;
 
 const Submit = styled.div`
+  display: flex;
+  gap: 10px;
   flex-shrink: 0;
   background-color: #fffcf8;
   padding: 15px 15px 5px 15px;
