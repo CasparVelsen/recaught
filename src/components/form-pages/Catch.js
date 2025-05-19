@@ -64,7 +64,7 @@ export default function Catch({
       <Section>
         <div onClick={toggleShowInputs}>
           <Title>
-            Add your catches:
+            My catches:
             {showInputs && (
               <AiOutlinePlusCircle onClick={toggleShowInputs} color="#FF9C27" />
             )}
@@ -185,7 +185,7 @@ export default function Catch({
               icon={<HiPlusCircle />}
             />
             <CatchList>
-              <span>Your catches:</span>
+              <span>Catchlist:</span>
               {catches ? (
                 catches.map((data, index) => (
                   <Catches key={index}>

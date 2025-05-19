@@ -16,7 +16,7 @@ export default function FlyBoxSelect({
     <Overlay>
       <Container>
         <Wrapper>
-          <Title>Your Flies</Title>
+          <Title>My Flies</Title>
           <Closer>
             <FlyBoxButton onClick={handleFlyBoxClick}>close</FlyBoxButton>
             <AiOutlineMinusCircle color="#FF9C27" onClick={handleFlyBoxClick} />

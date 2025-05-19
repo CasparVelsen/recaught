@@ -74,7 +74,7 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
           autoComplete="off"
           labeltext="form"
         >
-          <PageTitle text="Your fishing experience:" />
+          <PageTitle text="My fishing experience:" />
           <Inputs>
             <Start handleOnChange={handleOnChange} />
             <Water handleOnChange={handleOnChange} />
