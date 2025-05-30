@@ -19,7 +19,6 @@ export default function EditModal({
 }) {
   const [editData, setEditData] = useState(dataforEdit);
   const [showAddCatch, setShowAddCatch] = useState(false);
-  console.log(showAddCatch);
   const [showEditCatch, setShowEditCatch] = useState(false);
 
   async function handleAddCatch(values) {
