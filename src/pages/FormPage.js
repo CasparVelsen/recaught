@@ -39,12 +39,19 @@ export default function FormPage({ onCreateCard, profile, profileCards }) {
   };
 
   async function handleAddCatch(catchValue) {
+    const trimmedCatchValue = Object.keys(catchValue).reduce((acc, key) => {
+      acc[key] =
+        typeof catchValue[key] === 'string'
+          ? catchValue[key].trim()
+          : catchValue[key];
+      return acc;
+    }, {});
     const previousCatches = formData.catches ?? [];
     setFormData({
       ...formData,
-      catches: [...previousCatches, catchValue],
+      catches: [...previousCatches, trimmedCatchValue],
     });
-    setCatchData([...catchData, catchValue]);
+    setCatchData([...catchData, trimmedCatchValue]);
   }
 
   async function handleDeleteCatch(_id) {
