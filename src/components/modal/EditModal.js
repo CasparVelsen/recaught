@@ -568,12 +568,12 @@ const Catches = styled.li`
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   background-color: white;
 
   span {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #687a48;
     margin: 0;
     font-weight: bold;
@@ -588,5 +588,3 @@ const Submit = styled.div`
   border-radius: 20px 20px 0 0;
   box-shadow: 0px -10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
-
-const Container = styled.div``;
