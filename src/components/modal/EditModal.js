@@ -1,25 +1,14 @@
 import { useState } from 'react';
 import Button from '../Button';
 import styled from 'styled-components';
-import FlyBoxSelect from '../form-pages/FlyBoxSelect';
-import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
+import FlyBoxPopup from './FlyBoxPopup';
+import AddCatchPopup from './AddCatchPopup';
 import { IoIosArrowDown } from 'react-icons/io';
 import { BiTargetLock } from 'react-icons/bi';
 import { MdWater } from 'react-icons/md';
 import { IoFishOutline } from 'react-icons/io5';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import moment from 'moment';
-
-const initialValues = {
-  species: '',
-  time: '',
-  length: '',
-  weight: '',
-  bait: '',
-  location: '',
-  notes: '',
-  _id: '',
-};
 
 export default function EditModal({
   dataforEdit,
@@ -29,20 +18,9 @@ export default function EditModal({
   profileCards,
 }) {
   const [editData, setEditData] = useState(dataforEdit);
-  const [values, setValues] = useState(initialValues);
-  const [showFlyBox, setShowFlyBox] = useState(false);
-  const [showInputs, setShowInputs] = useState(false);
-
-  const handleChange = event => {
-    const { name, value } = event.target;
-    const _id = Math.random();
-    setValues({
-      ...values,
-      [name]: value,
-      _id: _id,
-      author: profile._id,
-    });
-  };
+  const [showAddCatch, setShowAddCatch] = useState(false);
+  console.log(showAddCatch);
+  const [showEditCatch, setShowEditCatch] = useState(false);
 
   async function handleAddCatch(values) {
     const previousCatches = dataforEdit.catches ?? [];
@@ -54,6 +32,7 @@ export default function EditModal({
       ...dataforEdit,
       catches: [...(editData.catches || []), values],
     });
+    setShowAddCatch(prevState => !prevState);
   }
 
   async function deleteCatch(_id) {
@@ -64,22 +43,12 @@ export default function EditModal({
     }));
   }
 
-  const handleFlyChoice = bait => {
-    setValues({
-      ...values,
-      bait: bait,
-      _id: Math.random(),
-      author: profile._id,
-    });
-    setShowFlyBox(prevState => !prevState);
+  const toggleShowAddCatch = () => {
+    setShowAddCatch(prevState => !prevState);
   };
 
-  const handleFlyBoxClick = () => {
-    setShowFlyBox(prevState => !prevState);
-  };
-
-  const toggleShowInputs = () => {
-    setShowInputs(prevState => !prevState);
+  const toggleShowEditCatch = () => {
+    setShowEditCatch(prevState => !prevState);
   };
 
   return (
@@ -109,7 +78,7 @@ export default function EditModal({
         </Infos>
       </Preview>
       <Details>
-        <PartTitle>General Infos:</PartTitle>
+        <PartTitle>General infos:</PartTitle>
         <Fieldset>
           <Data>
             <Term>date:</Term>
@@ -146,7 +115,7 @@ export default function EditModal({
             />
           </Data>
         </Fieldset>
-        <PartTitle>Water Data:</PartTitle>
+        <PartTitle>Water data:</PartTitle>
         <Fieldset>
           <Data>
             <Term>stretch:</Term>
@@ -297,156 +266,42 @@ export default function EditModal({
             </Wrapper>
           </Data>
         </Fieldset>
-        <Section>
-          <div onClick={toggleShowInputs}>
-            <CatchesTitle>
-              Edit your catches:
-              {showInputs && (
-                <AiOutlineMinusCircle
-                  onClick={toggleShowInputs}
-                  color="#FF9C27"
-                />
-              )}
-              {!showInputs && (
-                <AiOutlinePlusCircle
-                  onClick={toggleShowInputs}
-                  color="#FF9C27"
-                />
-              )}
-            </CatchesTitle>
-          </div>
-          {showInputs && (
-            <div>
-              <Fieldset>
-                <Data>
-                  <Term>species:</Term>
-                  <Input
-                    onChange={handleChange}
-                    value={values.species}
-                    id="species"
-                    name="species"
-                    type="text"
-                    maxLength={100}
-                  />
-                </Data>
-                <Data>
-                  <Term htmlFor="time">time</Term>
-                  <Input
-                    onChange={handleChange}
-                    value={values.time}
-                    id="time"
-                    name="time"
-                    type="time"
-                  />
-                </Data>
-                <Data>
-                  <Term htmlFor="length">length</Term>
-                  <Input
-                    onChange={handleChange}
-                    value={values.length}
-                    id="length"
-                    name="length"
-                    type="number"
-                    min={0}
-                    placeholder="cm"
-                  />
-                </Data>
-                <Data>
-                  <Term htmlFor="weight">weight</Term>
-                  <Input
-                    onChange={handleChange}
-                    value={values.weight}
-                    id="weight"
-                    name="weight"
-                    type="number"
-                    step={0.1}
-                    min={0}
-                    placeholder="kg"
-                  />
-                </Data>
-                <Part>
-                  <Wrapper>
-                    <Term htmlFor="bait">bait</Term>
-                    {!showFlyBox && (
-                      <FlyBoxButton onClick={handleFlyBoxClick}>
-                        flybox
-                      </FlyBoxButton>
-                    )}
-                    {showFlyBox && (
-                      <FlyBoxSelect
-                        profileCards={profileCards}
-                        handleChange={handleChange}
-                        handleFlyChoice={handleFlyChoice}
-                        handleFlyBoxClick={handleFlyBoxClick}
-                      />
-                    )}
-                  </Wrapper>
-                  <Input
-                    onChange={handleChange}
-                    value={values.bait}
-                    id="bait"
-                    name="bait"
-                    type="text"
-                    list="baitlist"
-                    maxLength={100}
-                  />
-                </Part>
-                <Data>
-                  <Term htmlFor="location">location</Term>
-                  <Input
-                    onChange={handleChange}
-                    value={values.location}
-                    id="location"
-                    name="location"
-                    type="text"
-                    maxLength={100}
-                  />
-                </Data>
-                <Data>
-                  <Term>notes</Term>
-                  <Input
-                    onChange={handleChange}
-                    value={values.notes}
-                    id="notes"
-                    name="notes"
-                    type="text"
-                    maxLength={300}
-                  />
-                </Data>
-              </Fieldset>
-              <Button
-                text="Add Catch"
-                onClick={() => {
-                  handleAddCatch(values);
-                  setValues(initialValues);
-                }}
-                icon={<HiPlusCircle />}
-              />
-              <CatchList>
-                {editData.catches && editData.catches.length > 0 ? (
-                  <>
-                    <span>Your catches:</span>
-                    {editData.catches.map((data, index) => (
-                      <Catches key={index}>
-                        <span>{index + 1}.</span>
-                        <span>{data.species}</span>
-                        <span>{data.length} cm</span>
-                        <HiOutlineTrash
-                          size={25}
-                          color={'#a2c36c'}
-                          onClick={() => deleteCatch(data._id, values)}
-                        />
-                      </Catches>
-                    ))}
-                  </>
-                ) : (
-                  <p>no catches yet, add some</p>
-                )}
-              </CatchList>
-            </div>
-          )}
-        </Section>
-        <PartTitle>Summary</PartTitle>
+        {editData.catches && editData.catches.length > 0 ? (
+          <>
+            <PartTitle>
+              Catchbook:
+              <AddCatch onClick={toggleShowAddCatch}>
+                <AiOutlinePlusCircle color="#FF9C27" />
+                add catch
+              </AddCatch>
+            </PartTitle>
+            <CatchList>
+              {editData.catches.map((data, index) => (
+                <Catches key={index}>
+                  <span>{index + 1}.</span>
+                  <span>{data.species}</span>
+                  <span>{data.length} cm</span>
+                </Catches>
+              ))}
+            </CatchList>
+          </>
+        ) : (
+          <p>no catches yet, add some</p>
+        )}
+        {showAddCatch && (
+          <AddCatchPopup
+            profile={profile}
+            profileCards={profileCards}
+            handleAddCatch={handleAddCatch}
+            closeAddCatchPopup={toggleShowAddCatch}
+          />
+        )}
+        {/*<HiOutlineTrash
+          size={25}
+          color={'#a2c36c'}
+          onClick={() => deleteCatch(data._id, values)}
+        />*/}
+        <PartTitle>Summary:</PartTitle>
         <Fieldset>
           <Data>
             <Term>total bites:</Term>
@@ -558,6 +413,17 @@ const InSameRow = styled.div`
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    margin-left: 8px;
+    color: #687a48;
+  }
+`;
+
 const Details = styled.div`
   display: flex;
   flex-direction: column;
@@ -566,12 +432,6 @@ const Details = styled.div`
   padding: 10px;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
-`;
-
-const Part = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
 `;
 
 const Section = styled.div`
@@ -648,58 +508,43 @@ const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 5px 0 10px;
+  padding: 0;
   border: none;
   position: relative;
   font-size: 1rem;
-  margin: 15px 0 15px 0;
+  margin: 5px 0 10px 0;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  span {
-    margin-left: 8px;
-    color: #687a48;
-  }
-`;
-
-const FlyBoxButton = styled.button`
-  border: none;
-  background-color: transparent;
-  font-size: 12px;
-  font-weight: bold;
+const AddCatch = styled.div`
   color: #ff9c27;
-  padding: 0;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 0.8rem;
 `;
 
 const CatchList = styled.ul`
   list-style: none;
   padding: 0;
   width: 100%;
-  margin-bottom: 10px;
-
-  span {
-    font-weight: bold;
-    color: #687a48;
-  }
+  margin: 5px 0 10px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 `;
 
 const Catches = styled.li`
-  border: 0.5px solid #ff9c27;
+  border: 0.5px solid #a2c36c;
   border-radius: 10px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
   align-items: center;
-  margin-top: 10px;
-  background-color: #fffcf8;
+  background-color: white;
 
   span {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #687a48;
     margin: 0;
     font-weight: bold;
@@ -714,3 +559,5 @@ const Submit = styled.div`
   border-radius: 20px 20px 0 0;
   box-shadow: 0px -10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
+
+const Container = styled.div``;

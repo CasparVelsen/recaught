@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
-import FlyBoxSelect from './FlyBoxSelect';
+import FlyBoxPopup from '../modal/FlyBoxPopup';
 
 const initialValues = {
   species: '',
@@ -134,7 +134,7 @@ export default function Catch({
                     </FlyBoxButton>
                   )}
                   {showFlyBox && (
-                    <FlyBoxSelect
+                    <FlyBoxPopup
                       profileCards={profileCards}
                       handleChange={handleChange}
                       handleFlyChoice={handleFlyChoice}

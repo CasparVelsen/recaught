@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { createPortal } from 'react-dom';
 
-export default function FlyBoxSelect({
+export default function FlyBoxPopup({
   profileCards,
   handleFlyChoice,
   handleFlyBoxClick,
@@ -15,13 +15,13 @@ export default function FlyBoxSelect({
   return createPortal(
     <Overlay>
       <Container>
-        <Wrapper>
-          <Title>My Flies</Title>
+        <Title>
+          My Flies
           <Closer>
             <FlyBoxButton onClick={handleFlyBoxClick}>close</FlyBoxButton>
             <AiOutlineMinusCircle color="#FF9C27" onClick={handleFlyBoxClick} />
           </Closer>
-        </Wrapper>
+        </Title>
         <ScrollableContainer>
           {baits.map((bait, index) => (
             <Bait
@@ -65,11 +65,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 400px; /* Feste Höhe für das Popup */
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const Closer = styled.div`
