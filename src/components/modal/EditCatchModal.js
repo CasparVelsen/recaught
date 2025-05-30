@@ -3,45 +3,24 @@ import { createPortal } from 'react-dom';
 import FlyBoxPopup from './FlyBoxPopup';
 import { useState } from 'react';
 import Button from '../Button';
-import { HiPlusCircle } from 'react-icons/hi';
+import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
 
-const initialValues = {
-  species: '',
-  time: '',
-  length: '',
-  weight: '',
-  bait: '',
-  location: '',
-  notes: '',
-  _id: '',
-};
-
-export default function AddCatchPopup({
-  handleAddCatch,
+export default function EditCatchPopup({
+  selectedCatch,
   profile,
   profileCards,
-  closeAddCatchPopup,
+  closeEditCatchPopup,
+  handleEditCatch,
+  handleDeleteCatch,
 }) {
+  const [editCatchData, setEditCatchData] = useState(selectedCatch);
   const [showFlyBox, setShowFlyBox] = useState(false);
-  const [values, setValues] = useState(initialValues);
-
-  const handleChange = event => {
-    const { name, value } = event.target;
-    const _id = Math.random();
-    setValues({
-      ...values,
-      [name]: value,
-      _id: _id,
-      author: profile._id,
-    });
-  };
 
   const handleFlyChoice = bait => {
-    setValues({
-      ...values,
+    setEditCatchData({
+      ...editCatchData,
       bait: bait,
-      _id: Math.random(),
       author: profile._id,
     });
     setShowFlyBox(prevState => !prevState);
@@ -50,12 +29,13 @@ export default function AddCatchPopup({
   const handleFlyBoxClick = () => {
     setShowFlyBox(prevState => !prevState);
   };
+
   return createPortal(
     <Overlay>
       <Container>
         <Title>
-          Add a catch
-          <Closer onClick={closeAddCatchPopup}>
+          Edit catch
+          <Closer onClick={closeEditCatchPopup}>
             <CloseButton>close</CloseButton>
             <AiOutlineMinusCircle color="#FF9C27" />
           </Closer>
@@ -64,8 +44,10 @@ export default function AddCatchPopup({
           <Data>
             <Term>species:</Term>
             <Input
-              onChange={handleChange}
-              value={values.species}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, species: e.target.value })
+              }
+              value={editCatchData.species}
               id="species"
               name="species"
               type="text"
@@ -75,8 +57,10 @@ export default function AddCatchPopup({
           <Data>
             <Term htmlFor="time">time</Term>
             <Input
-              onChange={handleChange}
-              value={values.time}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, time: e.target.value })
+              }
+              value={editCatchData.time}
               id="time"
               name="time"
               type="time"
@@ -85,8 +69,10 @@ export default function AddCatchPopup({
           <Data>
             <Term htmlFor="length">length</Term>
             <Input
-              onChange={handleChange}
-              value={values.length}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, length: e.target.value })
+              }
+              value={editCatchData.length}
               id="length"
               name="length"
               type="number"
@@ -97,8 +83,10 @@ export default function AddCatchPopup({
           <Data>
             <Term htmlFor="weight">weight</Term>
             <Input
-              onChange={handleChange}
-              value={values.weight}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, weight: e.target.value })
+              }
+              value={editCatchData.weight}
               id="weight"
               name="weight"
               type="number"
@@ -116,15 +104,16 @@ export default function AddCatchPopup({
               {showFlyBox && (
                 <FlyBoxPopup
                   profileCards={profileCards}
-                  handleChange={handleChange}
                   handleFlyChoice={handleFlyChoice}
                   handleFlyBoxClick={handleFlyBoxClick}
                 />
               )}
             </Wrapper>
             <Input
-              onChange={handleChange}
-              value={values.bait}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, bait: e.target.value })
+              }
+              value={editCatchData.bait}
               id="bait"
               name="bait"
               type="text"
@@ -135,8 +124,10 @@ export default function AddCatchPopup({
           <Data>
             <Term htmlFor="location">location</Term>
             <Input
-              onChange={handleChange}
-              value={values.location}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, location: e.target.value })
+              }
+              value={editCatchData.location}
               id="location"
               name="location"
               type="text"
@@ -146,8 +137,10 @@ export default function AddCatchPopup({
           <Data>
             <Term>notes</Term>
             <Input
-              onChange={handleChange}
-              value={values.notes}
+              onChange={e =>
+                setEditCatchData({ ...editCatchData, notes: e.target.value })
+              }
+              value={editCatchData.notes}
               id="notes"
               name="notes"
               type="text"
@@ -158,19 +151,17 @@ export default function AddCatchPopup({
         <Button
           text="done"
           onClick={() => {
-            handleAddCatch(values);
-            setValues(initialValues);
+            handleEditCatch(editCatchData);
           }}
           icon={<HiPlusCircle />}
-          disabled={
-            !values.species.trim() &&
-            !values.time.trim() &&
-            !values.length.trim() &&
-            !values.weight.trim() &&
-            !values.bait.trim() &&
-            !values.location.trim() &&
-            !values.notes.trim()
-          }
+        />
+        <Button
+          text="delete"
+          isAccent={true}
+          onClick={() => {
+            handleDeleteCatch(editCatchData._id);
+          }}
+          icon={<HiOutlineTrash />}
         />
       </Container>
     </Overlay>,

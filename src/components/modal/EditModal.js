@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Button from '../Button';
 import styled from 'styled-components';
-import FlyBoxPopup from './FlyBoxPopup';
 import AddCatchPopup from './AddCatchPopup';
+import EditCatchPopup from './EditCatchModal';
 import { IoIosArrowDown } from 'react-icons/io';
 import { BiTargetLock } from 'react-icons/bi';
 import { MdWater } from 'react-icons/md';
@@ -20,6 +20,7 @@ export default function EditModal({
   const [editData, setEditData] = useState(dataforEdit);
   const [showAddCatch, setShowAddCatch] = useState(false);
   const [showEditCatch, setShowEditCatch] = useState(false);
+  const [selectedCatch, setSelectedCatch] = useState(null);
 
   async function handleAddCatch(values) {
     const previousCatches = dataforEdit.catches ?? [];
@@ -34,12 +35,30 @@ export default function EditModal({
     setShowAddCatch(prevState => !prevState);
   }
 
-  async function deleteCatch(_id) {
+  async function handleEditCatch(editCatchData) {
+    setEditData(prevData => {
+      const updatedCatches = prevData.catches.map(catchItem =>
+        catchItem._id === editCatchData._id ? { ...editCatchData } : catchItem
+      );
+
+      return {
+        ...prevData,
+        catches: updatedCatches,
+      };
+    });
+
+    setShowEditCatch(false);
+    setSelectedCatch(null);
+  }
+
+  async function handleDeleteCatch(_id) {
     const filteredCatches = editData.catches.filter(fish => fish._id !== _id);
     setEditData(prevState => ({
       ...prevState,
       catches: filteredCatches,
     }));
+    setShowEditCatch(false);
+    setSelectedCatch(null);
   }
 
   const toggleShowAddCatch = () => {
@@ -265,23 +284,39 @@ export default function EditModal({
             </Wrapper>
           </Data>
         </Fieldset>
+        <PartTitle>
+          Catchbook:
+          <AddCatch onClick={toggleShowAddCatch}>
+            <AiOutlinePlusCircle color="#FF9C27" />
+            add catch
+          </AddCatch>
+        </PartTitle>
         {editData.catches && editData.catches.length > 0 ? (
           <>
-            <PartTitle>
-              Catchbook:
-              <AddCatch onClick={toggleShowAddCatch}>
-                <AiOutlinePlusCircle color="#FF9C27" />
-                add catch
-              </AddCatch>
-            </PartTitle>
             <CatchList>
               {editData.catches.map((data, index) => (
-                <Catches key={index}>
+                <Catches
+                  key={index}
+                  onClick={() => {
+                    setSelectedCatch(data);
+                    toggleShowEditCatch();
+                  }}
+                >
                   <span>{index + 1}.</span>
                   <span>{data.species}</span>
                   <span>{data.length} cm</span>
                 </Catches>
               ))}
+              {showEditCatch && (
+                <EditCatchPopup
+                  selectedCatch={selectedCatch}
+                  closeEditCatchPopup={toggleShowEditCatch}
+                  profileCards={profileCards}
+                  profile={profile}
+                  handleEditCatch={handleEditCatch}
+                  handleDeleteCatch={handleDeleteCatch}
+                />
+              )}
             </CatchList>
           </>
         ) : (
@@ -295,11 +330,6 @@ export default function EditModal({
             closeAddCatchPopup={toggleShowAddCatch}
           />
         )}
-        {/*<HiOutlineTrash
-          size={25}
-          color={'#a2c36c'}
-          onClick={() => deleteCatch(data._id, values)}
-        />*/}
         <PartTitle>Summary:</PartTitle>
         <Fieldset>
           <Data>
