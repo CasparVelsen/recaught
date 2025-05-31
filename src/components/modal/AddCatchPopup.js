@@ -51,8 +51,8 @@ export default function AddCatchPopup({
     setShowFlyBox(prevState => !prevState);
   };
   return createPortal(
-    <Overlay>
-      <Container>
+    <Overlay onClick={closeAddCatchPopup}>
+      <Container onClick={e => e.stopPropagation()}>
         <Title>
           Add a catch
           <Closer onClick={closeAddCatchPopup}>

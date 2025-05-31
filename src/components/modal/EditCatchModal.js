@@ -31,8 +31,8 @@ export default function EditCatchPopup({
   };
 
   return createPortal(
-    <Overlay>
-      <Container>
+    <Overlay onClick={closeEditCatchPopup}>
+      <Container onClick={e => e.stopPropagation()}>
         <Title>
           Edit catch
           <Closer onClick={closeEditCatchPopup}>

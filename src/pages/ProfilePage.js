@@ -72,6 +72,8 @@ export default function ProfilePage({ profile, token, logout, profileCards }) {
         <Stats
           filteredCardsByTime={filteredCardsByTime}
           filteredCards={filteredCards}
+          season={season}
+          water={water}
         />
       </main>
     </>

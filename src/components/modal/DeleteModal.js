@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 export default function DeleteModal({ text, confirmDelete, cancelDelete }) {
   return (
-    <Overlay>
-      <Container>
+    <Overlay onClick={cancelDelete}>
+      <Container onClick={e => e.stopPropagation()}>
         <Description>Do you really want to delete this {text}?</Description>
         <Buttons>
           <Button text="Yes" isAccent={true} onClick={confirmDelete} />

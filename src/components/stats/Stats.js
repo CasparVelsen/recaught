@@ -2,9 +2,15 @@ import styled from 'styled-components';
 import WeatherStats from './WeatherStats';
 import Species from './charts/catch/Species';
 import Bait from './charts/catch/Bait';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+import { IoShareSocialOutline } from 'react-icons/io5';
+import ExportStatsModal from '../modal/ExportStatsModal';
+import { useState } from 'react';
 
-export default function Stats({ filteredCards }) {
-  // 1. Species extrahieren & zählen
+export default function Stats({ filteredCards, season, water }) {
+  const [toggleExportModal, setToggleExportModal] = useState(false);
+
   const allSpecies = filteredCards.flatMap(card =>
     card.catches.map(entry => entry.species)
   );
@@ -31,10 +37,85 @@ export default function Stats({ filteredCards }) {
   const roundedAverage =
     Math.round((average + Number.EPSILON) * 100) / 100 || 0;
 
+  const exportToExcel = () => {
+    // Flache Struktur für jeden Catch
+    const flatData = filteredCards.flatMap(entry =>
+      entry.catches.map(catchItem => ({
+        date: entry.date,
+        water: entry.water,
+        stretch: entry.stretch,
+        target: entry.target,
+        watertemp: entry.watertemp,
+        waterlevel: entry.waterlevel,
+        watercolor: entry.watercolor || '',
+        bites: entry.bites,
+        lost: entry.lost,
+        species: catchItem.species,
+        time: catchItem.time,
+        length: catchItem.length,
+        weight: catchItem.weight,
+        bait: catchItem.bait,
+        location: catchItem.location,
+        notes: catchItem.notes,
+      }))
+    );
+
+    // Arbeitsblatt und Arbeitsmappe erstellen
+    const worksheet = XLSX.utils.json_to_sheet(flatData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Fänge');
+
+    // In eine Blob-Datei schreiben und speichern
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+
+    const data = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(data, 'fangliste.xlsx');
+  };
+
+  const generateWhatsAppText = () => {
+    const time = season;
+    const river = water;
+    const sessions = filteredCards.length;
+    const allCatches = filteredCards.flatMap(entry => entry.catches || []);
+    const fishCount = allCatches.length;
+    const catchLines = filteredCards.flatMap(card =>
+      card.catches.map(entry => `- ${entry.species}: ${entry.length} cm`)
+    );
+    const message = `My Catchlist${time ? ` ${time}` : ''}${
+      river ? ` - ${river}` : ''
+    }:
+
+    
+I was out fishing ${sessions} times and caught ${fishCount} fish in total:
+
+${catchLines.join('\n')}
+    
+Tight lines!`;
+
+    return message;
+  };
+
+  const exportToWhatsApp = () => {
+    const text = generateWhatsAppText();
+    const encoded = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/?text=${encoded}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div>
       <Period>
-        <StatsTitle>Catchbook</StatsTitle>
+        <StatsTitle>
+          Catchbook
+          <IoShareSocialOutline
+            size={25}
+            color="#FF9C27"
+            onClick={() => setToggleExportModal(prevState => !prevState)}
+          />
+        </StatsTitle>
         <CatchList>
           <Numbers>
             {sortedSpecies.map((item, index) => (
@@ -52,6 +133,16 @@ export default function Stats({ filteredCards }) {
         </Average>
         <Species sortedSpecies={sortedSpecies} />
       </Period>
+      {toggleExportModal && (
+        <ExportStatsModal
+          handleCloseExportModal={() =>
+            setToggleExportModal(prevState => !prevState)
+          }
+          exportToExcel={exportToExcel}
+          exportToWhatsApp={exportToWhatsApp}
+        />
+      )}
+
       <Period>
         <WeatherStats filteredCards={filteredCards} />
       </Period>
@@ -87,6 +178,8 @@ const StatsTitle = styled.div`
   color: #687a48;
   font-weight: bold;
   font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const CatchList = styled.div`

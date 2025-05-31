@@ -13,8 +13,8 @@ export default function FlyBoxPopup({
   const baits = [...new Set(findBaits)].sort();
 
   return createPortal(
-    <Overlay>
-      <Container>
+    <Overlay onClick={handleFlyBoxClick}>
+      <Container onClick={e => e.stopPropagation()}>
         <Title>
           My Flies
           <Closer>
