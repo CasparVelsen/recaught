@@ -81,9 +81,21 @@ export default function Stats({ filteredCards, season, water }) {
     const sessions = filteredCards.length;
     const allCatches = filteredCards.flatMap(entry => entry.catches || []);
     const fishCount = allCatches.length;
-    const catchLines = filteredCards.flatMap(card =>
-      card.catches.map(entry => `- ${entry.species}: ${entry.length} cm`)
-    );
+    const catchLines = filteredCards
+      .flatMap(card =>
+        card.catches.map(entry => ({
+          species: entry.species,
+          length: entry.length,
+          line: `- ${entry.species}: ${entry.length} cm`,
+        }))
+      )
+      .sort((a, b) => {
+        const speciesCompare = a.species.localeCompare(b.species);
+        if (speciesCompare !== 0) return speciesCompare;
+        return b.length - a.length; // längste Fische zuerst
+      })
+      .map(entry => entry.line);
+
     const message = `My Catchlist${time ? ` ${time}` : ''}${
       river ? ` - ${river}` : ''
     }:
