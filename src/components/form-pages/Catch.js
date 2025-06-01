@@ -81,7 +81,7 @@ export default function Catch({
           <div>
             <Fieldset>
               <Part>
-                <label htmlFor="species">Species</label>
+                <label htmlFor="species">Species *</label>
                 <Input
                   onChange={handleChange}
                   value={values.species}
@@ -197,14 +197,13 @@ export default function Catch({
                 </ToggleWrapper>
               </Part>
             </Fieldset>
-
             <Button
               text="Add Catch"
               onClick={() => {
                 handleAddCatch(values);
                 setValues(initialValues);
               }}
-              disabled={disabled}
+              disabled={!values.species.trim()}
               icon={<HiPlusCircle />}
             />
             <CatchList>

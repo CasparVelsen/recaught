@@ -9,7 +9,7 @@ export default function Start({ handleOnChange }) {
       <Fieldset>
         <Part>
           <label htmlFor="date">
-            Date <Hint>(no future dates)</Hint>
+            Date * <Hint>(no future dates)</Hint>
           </label>
           <Input
             id="date"
@@ -22,7 +22,7 @@ export default function Start({ handleOnChange }) {
         </Part>
         <Part>
           <label htmlFor="water">
-            water<ScreenRaderOnly>Waters</ScreenRaderOnly>
+            Water *<ScreenRaderOnly>Waters</ScreenRaderOnly>
           </label>
           <Input
             id="water"
@@ -34,7 +34,7 @@ export default function Start({ handleOnChange }) {
           />
         </Part>
         <Species>
-          <label htmlFor="target">Target species</label>
+          <label htmlFor="target">Target species *</label>
           <Input
             id="target"
             name="target"
@@ -78,6 +78,7 @@ const Species = styled.div`
 
 const Input = styled.input`
   width: 100%;
+  min-width: 0; /* ← Wichtig für Safari */
   border: 1px solid #ff9c27;
   padding: 2px 5px;
   border-radius: 5px;
