@@ -51,8 +51,6 @@ export default function Stats({ filteredCards, season, water }) {
         Watertemp: entry.watertemp,
         Waterlevel: entry.waterlevel,
         Watercolor: entry.watercolor || '',
-        Bites: entry.bites,
-        Lost: entry.lost,
         Species: catchItem.species,
         Time: catchItem.time,
         Length: catchItem.length,
