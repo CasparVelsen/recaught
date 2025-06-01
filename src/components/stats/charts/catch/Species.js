@@ -21,6 +21,7 @@ function Species({ sortedSpecies }) {
           '#a3b08c',
           '#f3c98c',
         ],
+        borderWidth: 1,
       },
     ],
     labels: speciesArray.map(item => item.species),
