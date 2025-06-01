@@ -221,7 +221,7 @@ export default function Catch({
                   <Catches key={index}>
                     <span>{index + 1}.</span>
                     <span>{data.species}</span>
-                    <span>{data.length} cm</span>
+                    {data.length > 0 && <span>{data.length} cm</span>}
                     <HiOutlineTrash
                       size={25}
                       color={'#a2c36c'}
