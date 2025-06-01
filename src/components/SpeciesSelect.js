@@ -145,17 +145,8 @@ const customSelectStyles = {
     },
   }),
 
-  clearIndicator: provided => ({
-    ...provided,
-    color: '#aaa',
-    padding: '0 2px',
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'pointer',
-    svg: {
-      width: 14,
-      height: 14,
-    },
+  clearIndicator: () => ({
+    display: 'none',
   }),
 
   menu: provided => ({
