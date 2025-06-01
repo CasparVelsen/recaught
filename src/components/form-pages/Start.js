@@ -84,6 +84,7 @@ const Input = styled.input`
   color: #aaa;
   background-color: white;
   height: 25px;
+  flex: 1;
 
   &::placeholder {
     color: #ddd;
