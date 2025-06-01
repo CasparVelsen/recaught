@@ -4,6 +4,7 @@ import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import { BiTargetLock } from 'react-icons/bi';
 import { MdWater } from 'react-icons/md';
 import { IoFishOutline } from 'react-icons/io5';
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import Button from '../Button';
 import DeleteModal from '../modal/DeleteModal';
 import EditModal from '../modal/EditModal';
@@ -141,59 +142,63 @@ export default function Cards({
                     </Data>
                   )}
               </Part>
-              {data.catches && data.catches.length > 0 && (
-                <PartTitle>Catches: {data.catches.length}</PartTitle>
-              )}
-              <Catches>
-                {data.catches && data.catches.length > 0 ? (
-                  <>
-                    {data.catches.map((item, index) => (
-                      <CatchPart key={index}>
-                        {item.species && (
-                          <CatchTitle>
-                            {index + 1}. {item.species}
-                            <Term>{' - ' + item.length + ' cm:'}</Term>
-                          </CatchTitle>
-                        )}
-                        {item.time && (
-                          <Data>
-                            <CatchTerm>time:</CatchTerm>
-                            <CatchValue>{item.time}</CatchValue>
-                          </Data>
-                        )}
-                        {(item.weight === 0 || item.weight) && (
-                          <Data>
-                            <CatchTerm>weight:</CatchTerm>
-                            <CatchValue>{item.weight} kg</CatchValue>
-                          </Data>
-                        )}
-                        {item.bait && (
-                          <Data>
-                            <CatchTerm>bait:</CatchTerm>
-                            <CatchValue>{item.bait}</CatchValue>
-                          </Data>
-                        )}
-                        {item.location && (
-                          <Data>
-                            <CatchTerm>location:</CatchTerm>
-                            <CatchValue>{item.location}</CatchValue>
-                          </Data>
-                        )}
-                        {item.notes && (
-                          <Data>
-                            <CatchTerm>notes:</CatchTerm>
-                            <CatchValue>{item.notes}</CatchValue>
-                          </Data>
-                        )}
-                      </CatchPart>
-                    ))}
-                  </>
-                ) : (
-                  <PartTitle>No fish caught</PartTitle>
-                )}
-              </Catches>
               <Part>
-                <PartTitle>Summary</PartTitle>
+                {data.catches && data.catches.length > 0 && (
+                  <PartTitle>
+                    {data.catches.length}
+                    {data.catches.length === 1 ? ' Catch:' : ' Catches:'}
+                  </PartTitle>
+                )}
+                <Catches>
+                  {data.catches && data.catches.length > 0 ? (
+                    <>
+                      {data.catches.map((item, index) => (
+                        <CatchPart key={index}>
+                          {item.species && (
+                            <CatchTitle>
+                              {index + 1}. {item.species}
+                              <Term>{' - ' + item.length + ' cm:'}</Term>
+                            </CatchTitle>
+                          )}
+                          {item.time && (
+                            <Data>
+                              <CatchTerm>time:</CatchTerm>
+                              <CatchValue>{item.time}</CatchValue>
+                            </Data>
+                          )}
+                          {(item.weight === 0 || item.weight) && (
+                            <Data>
+                              <CatchTerm>weight:</CatchTerm>
+                              <CatchValue>{item.weight} kg</CatchValue>
+                            </Data>
+                          )}
+                          {item.bait && (
+                            <Data>
+                              <CatchTerm>bait:</CatchTerm>
+                              <CatchValue>{item.bait}</CatchValue>
+                            </Data>
+                          )}
+                          {item.location && (
+                            <Data>
+                              <CatchTerm>location:</CatchTerm>
+                              <CatchValue>{item.location}</CatchValue>
+                            </Data>
+                          )}
+                          {item.notes && (
+                            <Data>
+                              <CatchTerm>notes:</CatchTerm>
+                              <CatchValue>{item.notes}</CatchValue>
+                            </Data>
+                          )}
+                        </CatchPart>
+                      ))}
+                    </>
+                  ) : (
+                    <PartTitle>No fish caught</PartTitle>
+                  )}
+                </Catches>
+              </Part>
+              <Part>
                 <Data>
                   <Term>total bites:</Term>
                   <Value>{data.bites ? data.bites : '0'}</Value>
@@ -202,16 +207,20 @@ export default function Cards({
                   <Term>lost fish:</Term>
                   <Value>{data.lost ? data.lost : '0'}</Value>
                 </Data>
+                <Options>
+                  <AiOutlineEdit
+                    size={25}
+                    color="687a48"
+                    onClick={() => toggleEditing(data)}
+                  />
+                  <AiOutlineDelete
+                    size={25}
+                    color="ff9c27"
+                    onClick={() => onDelete(data._id)}
+                  />
+                </Options>
               </Part>
             </Content>
-            <Submit>
-              <Button text="Edit trip" onClick={() => toggleEditing(data)} />
-              <Button
-                text="Delete trip"
-                isAccent={true}
-                onClick={() => onDelete(data._id)}
-              />
-            </Submit>
           </div>
         )}
         {isEditing && (
@@ -322,15 +331,15 @@ const InSameRow = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 15px;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 0 5px 0;
 `;
 
 const Part = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3px;
-  margin-bottom: 15px;
 `;
 
 const Catches = styled.div`
@@ -341,8 +350,6 @@ const Catches = styled.div`
   gap: 10px;
   width: 89vw;
   max-width: 100%;
-  margin-bottom: 20px;
-  margin-top: 10px;
 `;
 
 const CatchPart = styled.div`
@@ -368,7 +375,7 @@ const PartTitle = styled.h3`
   font-size: 1.1rem;
   padding: 0;
   color: #687a48;
-  border-bottom: 2px dotted #a2c36c;
+  border-bottom: 2px dotted #ddd;
   margin: 0;
   margin-bottom: 5px;
   width: 100%;
@@ -401,15 +408,10 @@ const CatchValue = styled.div`
   width: 73%;
 `;
 
-const Submit = styled.div`
+const Options = styled.div`
   display: flex;
+  justify-content: end;
   gap: 10px;
-  flex-shrink: 0;
-  background-color: #fffcf8;
-  padding: 15px 15px 5px 15px;
-  border-top: 0.5px solid #a2c36c;
-  border-radius: 20px;
-  box-shadow: 0px -10px 20px -10px rgba(0, 0, 0, 0.25);
 `;
 
 const ModalWrapper = styled.div`

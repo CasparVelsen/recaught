@@ -31,11 +31,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
-  gap: 10px;
+  gap: 5px;
   font-size: 1rem;
   color: #a2c36c;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 15px 20px 10px 20px;
   border: 0.5px solid #ddd;
   width: 90%;
 
@@ -50,6 +50,7 @@ const Container = styled.div`
 const Description = styled.p`
   font-size: 1.1rem;
   font-weight: normal;
+  color: #687a48;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -59,6 +60,6 @@ const Buttons = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin-top: 10px;
 `;
