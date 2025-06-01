@@ -42,34 +42,32 @@ export default function Stats({ filteredCards, season, water }) {
     .filter(catchItem => catchItem.taken === true).length;
 
   const exportToExcel = () => {
-    // Flache Struktur für jeden Catch
     const flatData = filteredCards.flatMap(entry =>
       entry.catches.map(catchItem => ({
-        date: entry.date,
-        water: entry.water,
-        stretch: entry.stretch,
-        target: entry.target,
-        watertemp: entry.watertemp,
-        waterlevel: entry.waterlevel,
-        watercolor: entry.watercolor || '',
-        bites: entry.bites,
-        lost: entry.lost,
-        species: catchItem.species,
-        time: catchItem.time,
-        length: catchItem.length,
-        weight: catchItem.weight,
-        bait: catchItem.bait,
-        location: catchItem.location,
-        notes: catchItem.notes,
+        Date: entry.date,
+        Water: entry.water,
+        Stretch: entry.stretch,
+        Target: entry.target,
+        Watertemp: entry.watertemp,
+        Waterlevel: entry.waterlevel,
+        Watercolor: entry.watercolor || '',
+        Bites: entry.bites,
+        Lost: entry.lost,
+        Species: catchItem.species,
+        Time: catchItem.time,
+        Length: catchItem.length,
+        Weight: catchItem.weight,
+        Bait: catchItem.bait,
+        Location: catchItem.location,
+        Notes: catchItem.notes,
+        Taken: catchItem.taken ? '1' : '',
       }))
     );
 
-    // Arbeitsblatt und Arbeitsmappe erstellen
     const worksheet = XLSX.utils.json_to_sheet(flatData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Fänge');
 
-    // In eine Blob-Datei schreiben und speichern
     const excelBuffer = XLSX.write(workbook, {
       bookType: 'xlsx',
       type: 'array',
