@@ -150,12 +150,12 @@ Tight lines!`;
             </CatchList>
             <div>
               <Average>
-                <span>Average size:</span>ø
-                {roundedAverage ? roundedAverage : ' 0'} cm
-              </Average>
-              <Average>
                 <span>Taken:</span>
                 {takenFishCount ? takenFishCount : ' 0'} fish
+              </Average>
+              <Average>
+                <span>Ø size:</span>
+                {roundedAverage ? roundedAverage : ' 0'} cm
               </Average>
             </div>
           </Component>
@@ -218,7 +218,7 @@ const CatchList = styled.div`
 `;
 
 const Component = styled.div`
-  max-width: 55%;
+  max-width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

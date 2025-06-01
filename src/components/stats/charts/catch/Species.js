@@ -44,7 +44,7 @@ function Species({ sortedSpecies }) {
 
 const ChartContainer = styled.div`
   display: flex;
-  max-width: 45%;
+  max-width: 50%;
   align-items: center;
 `;
 
