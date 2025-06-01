@@ -78,14 +78,12 @@ const Species = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  min-width: 0; /* ← Wichtig für Safari */
   border: 1px solid #ff9c27;
   padding: 2px 5px;
   border-radius: 5px;
   color: #aaa;
   background-color: white;
   height: 25px;
-  flex: 1;
 
   &::placeholder {
     color: #ddd;

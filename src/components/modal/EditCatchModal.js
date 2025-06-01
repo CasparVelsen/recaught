@@ -42,7 +42,7 @@ export default function EditCatchPopup({
         </Title>
         <Fieldset>
           <Part>
-            <Term>Species:</Term>
+            <Term>species:</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, species: e.target.value })
@@ -55,7 +55,7 @@ export default function EditCatchPopup({
             />
           </Part>
           <Part>
-            <Term htmlFor="time">Time</Term>
+            <Term htmlFor="time">time</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, time: e.target.value })
@@ -67,7 +67,7 @@ export default function EditCatchPopup({
             />
           </Part>
           <Part>
-            <Term htmlFor="length">Length</Term>
+            <Term htmlFor="length">length</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, length: e.target.value })
@@ -81,7 +81,7 @@ export default function EditCatchPopup({
             />
           </Part>
           <Part>
-            <Term htmlFor="weight">Weight</Term>
+            <Term htmlFor="weight">weight</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, weight: e.target.value })
@@ -97,7 +97,7 @@ export default function EditCatchPopup({
           </Part>
           <Part>
             <Wrapper>
-              <Term htmlFor="bait">Bait</Term>
+              <Term htmlFor="bait">bait</Term>
               {!showFlyBox && (
                 <FlyBoxButton onClick={handleFlyBoxClick}>flybox</FlyBoxButton>
               )}
@@ -122,7 +122,7 @@ export default function EditCatchPopup({
             />
           </Part>
           <Part>
-            <Term htmlFor="location">Location</Term>
+            <Term htmlFor="location">location</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, location: e.target.value })
@@ -135,7 +135,7 @@ export default function EditCatchPopup({
             />
           </Part>
           <Part>
-            <Term>Notes</Term>
+            <Term>notes</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, notes: e.target.value })
@@ -148,7 +148,7 @@ export default function EditCatchPopup({
             />
           </Part>
           <Part>
-            <Term htmlFor="taken">Taken?</Term>
+            <Term htmlFor="taken">taken?</Term>
             <ToggleWrapper
               onClick={() =>
                 setEditCatchData(prev => ({
