@@ -155,10 +155,15 @@ export default function Cards({
                       {data.catches.map((item, index) => (
                         <CatchPart key={index}>
                           {item.species && (
-                            <CatchTitle>
-                              {index + 1}. {item.species}
-                              <Term>{' - ' + item.length + ' cm:'}</Term>
-                            </CatchTitle>
+                            <Wrapper>
+                              <CatchTitle>
+                                {index + 1}. {item.species}
+                                <Term>{' - ' + item.length + ' cm:'}</Term>
+                              </CatchTitle>
+                              <Taken>
+                                {item.taken === true ? 'taken' : 'released'}
+                              </Taken>
+                            </Wrapper>
                           )}
                           {item.time && (
                             <Data>
@@ -368,7 +373,6 @@ const CatchTitle = styled.div`
   color: #ff9c27;
   font-weight: bold;
   font-size: 1rem;
-  margin-bottom: 10px;
 `;
 
 const PartTitle = styled.h3`
@@ -401,6 +405,17 @@ const CatchTerm = styled.span`
   font-weight: bold;
   color: #687a48;
   width: 27%;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+`;
+
+const Taken = styled.span`
+  color: #ddd;
+  font-size: 0.7rem;
 `;
 
 const CatchValue = styled.div`

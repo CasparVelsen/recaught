@@ -163,8 +163,6 @@ export default function App() {
 
   async function handleEditCard(editData) {
     try {
-      console.log('editData before sending:', editData);
-
       const response = await fetch('/api/cards', {
         method: 'PUT',
         headers: {

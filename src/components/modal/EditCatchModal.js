@@ -41,8 +41,8 @@ export default function EditCatchPopup({
           </Closer>
         </Title>
         <Fieldset>
-          <Data>
-            <Term>species:</Term>
+          <Part>
+            <Term>Species:</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, species: e.target.value })
@@ -53,9 +53,9 @@ export default function EditCatchPopup({
               type="text"
               maxLength={100}
             />
-          </Data>
-          <Data>
-            <Term htmlFor="time">time</Term>
+          </Part>
+          <Part>
+            <Term htmlFor="time">Time</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, time: e.target.value })
@@ -65,9 +65,9 @@ export default function EditCatchPopup({
               name="time"
               type="time"
             />
-          </Data>
-          <Data>
-            <Term htmlFor="length">length</Term>
+          </Part>
+          <Part>
+            <Term htmlFor="length">Length</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, length: e.target.value })
@@ -79,9 +79,9 @@ export default function EditCatchPopup({
               min={0}
               placeholder="cm"
             />
-          </Data>
-          <Data>
-            <Term htmlFor="weight">weight</Term>
+          </Part>
+          <Part>
+            <Term htmlFor="weight">Weight</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, weight: e.target.value })
@@ -94,10 +94,10 @@ export default function EditCatchPopup({
               min={0}
               placeholder="kg"
             />
-          </Data>
+          </Part>
           <Part>
             <Wrapper>
-              <Term htmlFor="bait">bait</Term>
+              <Term htmlFor="bait">Bait</Term>
               {!showFlyBox && (
                 <FlyBoxButton onClick={handleFlyBoxClick}>flybox</FlyBoxButton>
               )}
@@ -121,8 +121,8 @@ export default function EditCatchPopup({
               maxLength={100}
             />
           </Part>
-          <Data>
-            <Term htmlFor="location">location</Term>
+          <Part>
+            <Term htmlFor="location">Location</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, location: e.target.value })
@@ -133,9 +133,9 @@ export default function EditCatchPopup({
               type="text"
               maxLength={100}
             />
-          </Data>
-          <Data>
-            <Term>notes</Term>
+          </Part>
+          <Part>
+            <Term>Notes</Term>
             <Input
               onChange={e =>
                 setEditCatchData({ ...editCatchData, notes: e.target.value })
@@ -146,7 +146,28 @@ export default function EditCatchPopup({
               type="text"
               maxLength={300}
             />
-          </Data>
+          </Part>
+          <Part>
+            <Term htmlFor="taken">Taken?</Term>
+            <ToggleWrapper
+              onClick={() =>
+                setEditCatchData(prev => ({
+                  ...prev,
+                  taken: !prev.taken,
+                }))
+              }
+            >
+              <Toggle checked={editCatchData.taken}>
+                <Dot checked={editCatchData.taken} />
+              </Toggle>
+              <HiddenCheckbox
+                id="taken"
+                name="taken"
+                checked={editCatchData.taken}
+                onChange={() => {}} // optional, da wir onClick am Wrapper haben
+              />
+            </ToggleWrapper>
+          </Part>
         </Fieldset>
         <Button
           text="done"
@@ -208,18 +229,16 @@ const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 0;
+  padding: 10px 0 20px;
+  margin: 0;
   border: none;
   position: relative;
   font-size: 1rem;
-  margin: 15px 0 25px 0;
 `;
 
-const Data = styled.div`
+const Part = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  font-size: 0.9rem;
 `;
 
 const Term = styled.div`
@@ -235,12 +254,12 @@ const Input = styled.input`
   color: #aaa;
   background-color: white;
   height: 25px;
-`;
+  font-size: 0.9rem;
 
-const Part = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  &::placeholder {
+    color: #aaa;
+    font-size: 0.8rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -276,4 +295,37 @@ const Closer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+`;
+
+const ToggleWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 24px;
+  margin-top: 4px;
+`;
+
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  display: none;
+`;
+
+const Toggle = styled.div`
+  width: 42px;
+  height: 22px;
+  background: ${props => (props.checked ? '#FF9C27' : '#ccc')};
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.3s;
+`;
+
+const Dot = styled.div`
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: ${props => (props.checked ? '22px' : '2px')};
+  transition: left 0.3s;
 `;

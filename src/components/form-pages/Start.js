@@ -87,6 +87,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: #ddd;
+    font-size: 0.8rem;
   }
 `;
 

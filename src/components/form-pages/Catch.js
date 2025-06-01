@@ -13,6 +13,7 @@ const initialValues = {
   bait: '',
   location: '',
   notes: '',
+  taken: '',
   _id: '',
   author: '',
 };
@@ -163,7 +164,7 @@ export default function Catch({
                   maxLength={100}
                 />
               </Part>
-              <Notes>
+              <Part>
                 <label htmlFor="notes">Notes</label>
                 <Input
                   onChange={handleChange}
@@ -173,8 +174,30 @@ export default function Catch({
                   type="text"
                   maxLength={300}
                 />
-              </Notes>
+              </Part>
+              <Part>
+                <label htmlFor="taken">Taken?</label>
+                <ToggleWrapper
+                  onClick={() =>
+                    setValues(prev => ({
+                      ...prev,
+                      taken: !prev.taken,
+                    }))
+                  }
+                >
+                  <Toggle checked={values.taken}>
+                    <Dot checked={values.taken} />
+                  </Toggle>
+                  <HiddenCheckbox
+                    id="taken"
+                    name="taken"
+                    checked={values.taken}
+                    onChange={() => {}} // optional, da wir onClick am Wrapper haben
+                  />
+                </ToggleWrapper>
+              </Part>
             </Fieldset>
+
             <Button
               text="Add Catch"
               onClick={() => {
@@ -233,7 +256,7 @@ const Fieldset = styled.fieldset`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  padding: 10px 0 30px;
+  padding: 10px 0 20px;
   border: none;
   position: relative;
   font-size: 1rem;
@@ -258,11 +281,6 @@ const FlyBoxButton = styled.button`
   padding: 0;
 `;
 
-const Notes = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 3;
-`;
-
 const Input = styled.input`
   width: 100%;
   border: 1px solid #ff9c27;
@@ -274,6 +292,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: #aaa;
+    font-size: 0.8rem;
   }
 `;
 
@@ -305,4 +324,37 @@ const Catches = styled.li`
     margin: 0;
     font-weight: bold;
   }
+`;
+
+const ToggleWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 24px;
+  margin-top: 4px;
+`;
+
+const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
+  display: none;
+`;
+
+const Toggle = styled.div`
+  width: 42px;
+  height: 22px;
+  background: ${props => (props.checked ? '#FF9C27' : '#ccc')};
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.3s;
+`;
+
+const Dot = styled.div`
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: ${props => (props.checked ? '22px' : '2px')};
+  transition: left 0.3s;
 `;

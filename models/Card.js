@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
           weight: { type: Number },
           bait: { type: String },
           location: { type: String },
+          taken: { type: Boolean },
           notes: { type: String },
           _id: { type: Number },
         },

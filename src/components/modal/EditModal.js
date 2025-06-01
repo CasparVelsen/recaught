@@ -521,6 +521,7 @@ const Input = styled.input`
   color: #aaa;
   background-color: white;
   height: 25px;
+  font-size: 0.9rem;
 `;
 
 const Select = styled.select`
@@ -531,6 +532,7 @@ const Select = styled.select`
   color: #aaa;
   background-color: white;
   height: 25px;
+  font-size: 0.9rem;
 `;
 
 const Fieldset = styled.fieldset`
