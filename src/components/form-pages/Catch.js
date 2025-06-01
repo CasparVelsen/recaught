@@ -4,9 +4,7 @@ import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
 import FlyBoxPopup from '../modal/FlyBoxPopup';
-import germanFishSpecies from '../../utils/Species';
-import CreatableSelect from 'react-select/creatable';
-import customSelectStyles from '../../utils/reactSelectStyles';
+import SpeciesSelect from '../SpeciesSelect';
 
 const initialValues = {
   species: '',
@@ -20,11 +18,6 @@ const initialValues = {
   _id: '',
   author: '',
 };
-
-const speciesOptions = germanFishSpecies.map(species => ({
-  label: species,
-  value: species,
-}));
 
 export default function Catch({
   handleAddCatch,
@@ -74,9 +67,6 @@ export default function Catch({
     setShowFlyBox(prevState => !prevState);
   };
 
-  const selectedOption =
-    speciesOptions.find(opt => opt.value === values.species) || null;
-
   return (
     <>
       <Section>
@@ -99,21 +89,14 @@ export default function Catch({
             <Fieldset>
               <Part>
                 <label htmlFor="species">Species *</label>
-                <CreatableSelect
-                  inputId="species"
-                  options={speciesOptions}
-                  value={selectedOption}
-                  onChange={option => {
-                    const selectedValue = option?.value || '';
+                <SpeciesSelect
+                  value={values.species}
+                  onChange={selectedValue =>
                     setValues(prev => ({
                       ...prev,
                       species: selectedValue,
-                    }));
-                  }}
-                  isClearable
-                  isSearchable
-                  placeholder=""
-                  styles={customSelectStyles}
+                    }))
+                  }
                 />
               </Part>
               <Part>

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Button from '../Button';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
+import SpeciesSelect from '../SpeciesSelect';
 
 export default function EditCatchPopup({
   selectedCatch,
@@ -43,15 +44,14 @@ export default function EditCatchPopup({
         <Fieldset>
           <Part>
             <Term>species:</Term>
-            <Input
-              onChange={e =>
-                setEditCatchData({ ...editCatchData, species: e.target.value })
-              }
+            <SpeciesSelect
               value={editCatchData.species}
-              id="species"
-              name="species"
-              type="text"
-              maxLength={100}
+              onChange={selectedValue =>
+                setEditCatchData(prev => ({
+                  ...prev,
+                  species: selectedValue,
+                }))
+              }
             />
           </Part>
           <Part>
