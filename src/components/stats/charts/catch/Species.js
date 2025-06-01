@@ -36,21 +36,14 @@ function Species({ sortedSpecies }) {
 
   return (
     <ChartContainer>
-      <Chart>
-        <Pie data={data} options={options} />
-      </Chart>
+      <Pie data={data} options={options} />
     </ChartContainer>
   );
 }
 
-const Chart = styled.div`
-  width: 60%;
-`;
-
 const ChartContainer = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: center;
+  max-width: 45%;
 `;
 
 export default Species;

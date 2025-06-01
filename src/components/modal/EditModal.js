@@ -483,7 +483,7 @@ const PartTitle = styled.h3`
   margin-bottom: 5px;
   width: 100%;
   color: #687a48;
-  border-bottom: 2px dotted #a2c36c;
+  border-bottom: 2px dotted #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;

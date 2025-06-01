@@ -37,6 +37,10 @@ export default function Stats({ filteredCards, season, water }) {
   const roundedAverage =
     Math.round((average + Number.EPSILON) * 100) / 100 || 0;
 
+  const takenFishCount = filteredCards
+    .flatMap(entry => entry.catches || [])
+    .filter(catchItem => catchItem.taken === true).length;
+
   const exportToExcel = () => {
     // Flache Struktur für jeden Catch
     const flatData = filteredCards.flatMap(entry =>
@@ -101,8 +105,11 @@ export default function Stats({ filteredCards, season, water }) {
     }:
 
 I was out fishing ${sessions} times and caught ${fishCount} fish in total:
+Taken:
 
 ${catchLines.join('\n')}
+
+I took ${takenFishCount} fish home.
     
 Tight lines!`;
 
@@ -127,22 +134,33 @@ Tight lines!`;
             onClick={() => setToggleExportModal(prevState => !prevState)}
           />
         </StatsTitle>
-        <CatchList>
-          <Numbers>
-            {sortedSpecies.map((item, index) => (
-              <span key={index}>{item.count}x</span>
-            ))}
-          </Numbers>
-          <Catches>
-            {sortedSpecies.map((item, index) => (
-              <span key={index}>{item.species}</span>
-            ))}
-          </Catches>
-        </CatchList>
-        <Average>
-          <span>Average size:</span>ø{roundedAverage ? roundedAverage : ' 0'} cm
-        </Average>
-        <Species sortedSpecies={sortedSpecies} />
+        <WrapCatchList>
+          <Component>
+            <CatchList>
+              <Numbers>
+                {sortedSpecies.map((item, index) => (
+                  <span key={index}>{item.count}x</span>
+                ))}
+              </Numbers>
+              <Catches>
+                {sortedSpecies.map((item, index) => (
+                  <span key={index}>{item.species}</span>
+                ))}
+              </Catches>
+            </CatchList>
+            <div>
+              <Average>
+                <span>Average size:</span>ø
+                {roundedAverage ? roundedAverage : ' 0'} cm
+              </Average>
+              <Average>
+                <span>Taken:</span>
+                {takenFishCount ? takenFishCount : ' 0'} fish
+              </Average>
+            </div>
+          </Component>
+          <Species sortedSpecies={sortedSpecies} />
+        </WrapCatchList>
       </Period>
       {toggleExportModal && (
         <ExportStatsModal
@@ -199,6 +217,13 @@ const CatchList = styled.div`
   margin: 10px 0 10px;
 `;
 
+const Component = styled.div`
+  max-width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const Catches = styled.div`
   display: flex;
   flex-direction: column;
@@ -215,8 +240,9 @@ const Numbers = styled.div`
 
 const Average = styled.div`
   display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  gap: 5px;
+  margin-top: 5px;
 
   span {
     color: #687a48;
@@ -227,6 +253,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+`;
+
+const WrapCatchList = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
 `;
 
 const Hint = styled.div`
