@@ -4,6 +4,9 @@ import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import { HiPlusCircle, HiOutlineTrash } from 'react-icons/hi';
 import Button from '../Button';
 import FlyBoxPopup from '../modal/FlyBoxPopup';
+import germanFishSpecies from '../../utils/Species';
+import CreatableSelect from 'react-select/creatable';
+import customSelectStyles from '../../utils/reactSelectStyles';
 
 const initialValues = {
   species: '',
@@ -17,6 +20,11 @@ const initialValues = {
   _id: '',
   author: '',
 };
+
+const speciesOptions = germanFishSpecies.map(species => ({
+  label: species,
+  value: species,
+}));
 
 export default function Catch({
   handleAddCatch,
@@ -33,15 +41,23 @@ export default function Catch({
     setShowInputs(!showInputs);
   }
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    const _id = Math.random();
-    setValues({
-      ...values,
-      [name]: value,
-      _id: _id,
-      author: profile._id,
-    });
+  const handleChange = (eventOrValue, fieldName) => {
+    if (typeof eventOrValue === 'string') {
+      setValues(prev => ({
+        ...prev,
+        [fieldName]: eventOrValue,
+        _id: Math.random(),
+        author: profile._id,
+      }));
+    } else {
+      const { name, value } = eventOrValue.target;
+      setValues(prev => ({
+        ...prev,
+        [name]: value,
+        _id: Math.random(),
+        author: profile._id,
+      }));
+    }
   };
 
   const handleFlyChoice = bait => {
@@ -58,7 +74,8 @@ export default function Catch({
     setShowFlyBox(prevState => !prevState);
   };
 
-  const disabled = values === initialValues;
+  const selectedOption =
+    speciesOptions.find(opt => opt.value === values.species) || null;
 
   return (
     <>
@@ -82,13 +99,21 @@ export default function Catch({
             <Fieldset>
               <Part>
                 <label htmlFor="species">Species *</label>
-                <Input
-                  onChange={handleChange}
-                  value={values.species}
-                  id="species"
-                  name="species"
-                  type="text"
-                  maxLength={100}
+                <CreatableSelect
+                  inputId="species"
+                  options={speciesOptions}
+                  value={selectedOption}
+                  onChange={option => {
+                    const selectedValue = option?.value || '';
+                    setValues(prev => ({
+                      ...prev,
+                      species: selectedValue,
+                    }));
+                  }}
+                  isClearable
+                  isSearchable
+                  placeholder=""
+                  styles={customSelectStyles}
                 />
               </Part>
               <Part>
@@ -281,6 +306,21 @@ const FlyBoxButton = styled.button`
 `;
 
 const Input = styled.input`
+  width: 100%;
+  border: 1px solid #ff9c27;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #aaa;
+  background-color: white;
+  height: 25px;
+
+  &::placeholder {
+    color: #aaa;
+    font-size: 0.8rem;
+  }
+`;
+
+const Select = styled.input`
   width: 100%;
   border: 1px solid #ff9c27;
   padding: 2px 5px;
