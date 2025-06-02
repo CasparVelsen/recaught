@@ -101,7 +101,6 @@ export default function Stats({ filteredCards, season, water }) {
     }:
 
 I was out fishing ${sessions} times and caught ${fishCount} fish in total:
-Taken:
 
 ${catchLines.join('\n')}
 
